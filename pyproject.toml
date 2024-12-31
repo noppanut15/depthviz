@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "depthviz"
+version = "0.1.0"
+description = ""
+authors = ["Noppanut Ploywong <noppanut15@hotmail.com>"]
+license = "Apache-2.0"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+moviepy = "^1.0.3"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.4"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
