@@ -12,6 +12,30 @@ moviepy = "^1.0.3"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.4"
+mypy = "^1.14.1"
+ruff = "^0.8.4"
+interrogate = "^1.7.0"
+coverage = "^7.6.10"
+
+[tool.ruff]
+exclude = [
+    "dist",
+    "build",
+    "env",
+    "venv",
+    ".env",
+    ".venv",
+    ".tox",
+    ".git",
+    ".mypy_cache",
+    ".pytest_cache",
+    "__pycache__",
+    ".ruff",
+]
+
+[tool.pytest.ini_options]
+pythonpath = "."
+testpaths = ["depthviz/tests"]
 
 [build-system]
 requires = ["poetry-core"]

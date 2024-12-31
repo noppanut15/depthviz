@@ -54,7 +54,7 @@ class TestCsvParser:
         """
         Test parsing a missing CSV file.
         """
-        file_path = file_path = request.path.parent.joinpath('data', 'missing_file_xyz.csv')
+        file_path = request.path.parent.joinpath('data', 'missing_file_xyz.csv')
         csv_parser = CsvParser()
         assert not os.path.exists(file_path)
         with pytest.raises(CsvFileNotFoundError):
