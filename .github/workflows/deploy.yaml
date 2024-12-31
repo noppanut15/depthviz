@@ -3,14 +3,14 @@ name: deploy
 on:
   push:
     branches:
-      - '!main'
+      - main
     tags:
       - v*
   pull_request:
 
 jobs:
   test:
-    name: Test depthviz
+    name: Test depthviz-python
     runs-on: ubuntu-latest
     strategy:
       matrix:
