@@ -29,8 +29,9 @@ class TestCsvParser:
         """
         file_path = request.path.parent.joinpath('data', 'invalid_data_x_header.csv')
         csv_parser = CsvParser()
-        with pytest.raises(InvalidHeaderError):
+        with pytest.raises(InvalidHeaderError) as e:
             csv_parser.parse(file_path)
+        assert str(e.value) == "Invalid CSV: Target header not found"
 
     def test_parse_empty_csv(self, request: pytest.FixtureRequest):
         """
@@ -38,8 +39,9 @@ class TestCsvParser:
         """
         file_path = request.path.parent.joinpath('data', 'empty_file.csv')
         csv_parser = CsvParser()
-        with pytest.raises(EmptyFileError):
+        with pytest.raises(EmptyFileError) as e:
             csv_parser.parse(file_path)
+        assert str(e.value) == "Invalid CSV: File is empty"
 
     def test_parse_invalid_csv_missing_depth(self, request: pytest.FixtureRequest):
         """
@@ -47,8 +49,9 @@ class TestCsvParser:
         """
         file_path = request.path.parent.joinpath('data', 'invalid_data_x_depth.csv')
         csv_parser = CsvParser()
-        with pytest.raises(InvalidDepthValueError):
+        with pytest.raises(InvalidDepthValueError) as e:
             csv_parser.parse(file_path)
+        assert str(e.value) == "Invalid CSV: Invalid depth values"
 
     def test_parse_invalid_csv_missing_file(self, request: pytest.FixtureRequest):
         """
@@ -57,5 +60,6 @@ class TestCsvParser:
         file_path = request.path.parent.joinpath('data', 'missing_file_xyz.csv')
         csv_parser = CsvParser()
         assert not os.path.exists(file_path)
-        with pytest.raises(CsvFileNotFoundError):
+        with pytest.raises(CsvFileNotFoundError) as e:
             csv_parser.parse(file_path)
+        assert str(e.value) == f"Invalid CSV: File not found: {file_path}"

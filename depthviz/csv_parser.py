@@ -59,17 +59,17 @@ class CsvParser:
         """
         return self.depth_data
 
-if __name__ == '__main__':
-    if len(sys.argv) != 2:
-        print("Usage: python csv_parser.py <file_path>")
-        sys.exit(1)
+# if __name__ == '__main__':
+#     if len(sys.argv) != 2:
+#         print("Usage: python csv_parser.py <file_path>")
+#         sys.exit(1)
 
-    csv_file_path = sys.argv[1]
-    csv_parser = CsvParser()
-    try:
-        csv_parser.parse(csv_file_path)
-        print(csv_parser.get_depth_data())
-    except CsvParserError as e:
-        print(e)
-        sys.exit(1)
-    sys.exit(0)
+#     csv_file_path = sys.argv[1]
+#     csv_parser = CsvParser()
+#     try:
+#         csv_parser.parse(csv_file_path)
+#         print(csv_parser.get_depth_data())
+#     except CsvParserError as e:
+#         print(e)
+#         sys.exit(1)
+#     sys.exit(0)
