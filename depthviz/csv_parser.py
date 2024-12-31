@@ -48,10 +48,6 @@ class CsvParser:
                 raise EmptyFileError("Invalid CSV: File is empty")
         except FileNotFoundError as e:
             raise CsvFileNotFoundError(f"Invalid CSV: File not found: {file_path}") from e
-        except KeyError as e:
-            raise InvalidHeaderError("Invalid CSV: Target header not found") from e
-        except ValueError as e:
-            raise InvalidDepthValueError("Invalid CSV: Invalid depth values") from e
 
     def get_depth_data(self):
         """
