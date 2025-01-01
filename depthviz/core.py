@@ -3,9 +3,11 @@ Module to create a video that reports the depth in meters from an array input.
 """
 
 import os.path
-import moviepy.editor as mpy
+from moviepy import TextClip, concatenate_videoclips
 
 # from depthviz.csv_parser import CsvParser
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 class DepthReportVideoCreatorError(Exception):
@@ -24,7 +26,9 @@ class DepthReportVideoCreator:
     def __init__(
         self,
         sample_rate=0.250,
-        font="Arial-Rounded-MT-Bold",
+        font=os.path.abspath(
+            os.path.join(BASE_DIR, "fonts/Open_Sans/static/OpenSans-Bold.ttf")
+        ),
         fontsize=100,
         interline=-20,
         color="white",
@@ -59,28 +63,29 @@ class DepthReportVideoCreator:
 
         # Create a text clip for each depth value
         clips = []
-        for i, depth in enumerate(depth_data):
+        for _, depth in enumerate(depth_data):
             rounded_depth = round(depth)
             if rounded_depth == 0:
                 text = "0m"
             else:
                 text = f"-{rounded_depth}m"
-            clip = mpy.TextClip(
-                text,
+            clip = TextClip(
+                text=text,
                 font=self.font,
-                fontsize=self.fontsize,
+                font_size=self.fontsize,
+                interline=self.interline,
                 color=self.color,
                 bg_color=self.bg_color,
                 stroke_color=self.stroke_color,
                 stroke_width=self.stroke_width,
-                align=self.align,
+                text_align=self.align,
                 size=self.size,
+                duration=self.sample_rate,
             )
-            clip = clip.set_duration(self.sample_rate).set_start(i * self.sample_rate)
             clips.append(clip)
 
         # Concatenate all the clips into a single video
-        self.final_video = mpy.concatenate_videoclips(clips)
+        self.final_video = concatenate_videoclips(clips)
 
     def save(self, path, fps=25):
         """
@@ -121,7 +126,11 @@ class DepthReportVideoCreator:
 # if __name__ == "__main__":
 #     # Main function to create a depth report video
 #     csv_parser = CsvParser()
-#     csv_parser.parse("tests/data/valid_depth_data_trimmed.csv")
+#     csv_parser.parse(
+#         os.path.abspath(
+#             os.path.join(BASE_DIR, "tests/data/valid_depth_data_trimmed.csv")
+#         )
+#     )
 #     depth_data_from_csv = csv_parser.get_depth_data()
 #     depth_report_video_creator = DepthReportVideoCreator(
 #         sample_rate=1  # Sample rate of the dive computer in seconds (e.g., 1, 0.50, 0.25)

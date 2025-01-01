@@ -57,15 +57,15 @@ class TestDepthReportVideoCreator:
         Test the save method in the current directory.
         """
         # Create a DepthReportVideoCreator instance
-        depth_report_video_creator = DepthReportVideoCreator()
+        depth_report_video_creator = DepthReportVideoCreator(sample_rate=0.25)
 
         # Create a depth report video
-        depth_data = [0.1, 0.2, 0.3]
+        depth_data = [0, 1, 2, 3]
         depth_report_video_creator.render_depth_report_video(depth_data)
 
         # Save the video to a file in the current directory
         path = ".depth_overlay.mp4"
-        depth_report_video_creator.save(path=path, fps=1)
+        depth_report_video_creator.save(path=path, fps=4)
 
         assert os.path.exists(".depth_overlay.mp4")
 

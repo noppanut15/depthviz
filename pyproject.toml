@@ -8,7 +8,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.9"
-moviepy = "^1.0.3"
+moviepy = "^2.1.1"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.4"
@@ -35,7 +35,7 @@ exclude = [
 ]
 
 [[tool.mypy.overrides]]
-module = ["moviepy.*"]
+module = ["moviepy"]
 ignore_missing_imports = true
 
 [tool.pytest.ini_options]
