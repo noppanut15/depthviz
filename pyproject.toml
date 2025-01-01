@@ -9,6 +9,7 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.9"
 moviepy = "^1.0.3"
+pytest-cov = "^6.0.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.4"
