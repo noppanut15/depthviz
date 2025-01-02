@@ -12,7 +12,7 @@
 
 This allows you to create more informative and engaging dive videos, enriching the storytelling experience for both yourself and your audience.
 
-### Installation
+## Installation
 
 **Prerequisites:**
 
@@ -25,7 +25,7 @@ This allows you to create more informative and engaging dive videos, enriching t
 pipx install depthviz
 ```
 
-### Usage
+## Usage
 
 **1. Download Your Data:**
 
@@ -65,7 +65,7 @@ Import the generated overlay video into your preferred video editing software an
 > [Watch this tutorial](https://www.youtube.com/watch?v=ZggKrWk98Ag) on how to import an overlay video in CapCut Desktop.
 
 
-### Contribution
+## Contribution
 
 We welcome contributions to the `depthviz` project! If you have any ideas for improvement, bug fixes, or feature suggestions, feel free to [open an issue](https://github.com/noppanut15/depthviz/issues) to discuss or [submit a pull request](https://github.com/noppanut15/depthviz/pulls).
 
