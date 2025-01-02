@@ -16,7 +16,7 @@ This allows you to create more informative and engaging dive videos, enriching t
 
 **Prerequisites:**
 
-* Python 3.10 or later
+* Python 3.9 or later
 * [pipx](https://pipx.pypa.io/stable/installation/) for installing Python CLI tools in isolated environments.
 
 **Installation:**
