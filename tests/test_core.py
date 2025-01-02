@@ -5,7 +5,7 @@ Unit tests for the core module.
 import os.path
 import pathlib
 import pytest
-from depthviz.core import DepthReportVideoCreator, VideoNotRenderError
+from depthviz.core import DepthReportVideoCreator, VideoNotRenderError, VideoFormatError
 
 
 class TestDepthReportVideoCreator:
@@ -120,3 +120,20 @@ class TestDepthReportVideoCreator:
         with pytest.raises(VideoNotRenderError) as e:
             depth_report_video_creator.save(path=path.as_posix(), fps=1)
         assert str(e.value) == "Cannot save video because it has not been rendered yet."
+
+    def test_save_video_wrong_format(self, tmp_path: pathlib.Path) -> None:
+        """
+        Test the save method with a wrong file format.
+        """
+        # Create a DepthReportVideoCreator instance
+        depth_report_video_creator = DepthReportVideoCreator()
+
+        # Create a depth report video
+        depth_data = [0.1, 0.2, 0.3]
+        depth_report_video_creator.render_depth_report_video(depth_data)
+
+        # Save the video to a file with a wrong file format
+        wrong_path = tmp_path / "test_depth_report_video.avi"
+        with pytest.raises(VideoFormatError) as e:
+            depth_report_video_creator.save(wrong_path.as_posix(), fps=1)
+        assert str(e.value) == "Invalid file format: The file format must be .mp4"

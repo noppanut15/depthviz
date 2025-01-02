@@ -87,3 +87,28 @@ class TestMainCLI:
         captured = capsys.readouterr()
         assert "usage: " in captured.err
         assert "[-h] -i INPUT -s SAMPLE_RATE -o OUTPUT" in captured.err
+
+    def test_main_with_invalid_output_video_filetype(
+        self,
+        capsys: pytest.CaptureFixture[str],
+        tmp_path: pathlib.Path,
+        request: pytest.FixtureRequest,
+    ) -> None:
+        """
+        Test the main function with an invalid output video file type.
+        """
+
+        input_path = request.path.parent / "data" / "valid_depth_data_trimmed.csv"
+        output_path = tmp_path / "invalid.mp3"
+        sys.argv = [
+            "main",
+            "-i",
+            str(input_path.as_posix()),
+            "-s",
+            "0.25",
+            "-o",
+            str(output_path.as_posix()),
+        ]
+        main()
+        captured = capsys.readouterr()
+        assert "Invalid file format" in captured.out

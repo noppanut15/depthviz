@@ -19,6 +19,10 @@ class VideoNotRenderError(DepthReportVideoCreatorError):
     """Exception raised for video not rendered errors."""
 
 
+class VideoFormatError(DepthReportVideoCreatorError):
+    """Exception raised for invalid video format errors."""
+
+
 class DepthReportVideoCreator:
     """
     Class to create a video that reports the depth in meters from an array input.
@@ -106,6 +110,10 @@ class DepthReportVideoCreator:
                         (e.g., path/to/mydepth_video.mp4)"
                 )
             if self.final_video is not None:
+                if not path.endswith(".mp4"):
+                    raise VideoFormatError(
+                        "Invalid file format: The file format must be .mp4"
+                    )
                 self.final_video.write_videofile(path, fps=fps)
             else:
                 raise VideoNotRenderError(
