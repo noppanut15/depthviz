@@ -1,0 +1,80 @@
+[tool.poetry]
+name = "depthviz"
+version = "0.0.0"
+description = "Python CLI tool for generating depth tracking overlays for your dive footage from exported dive computer logs."
+authors = ["Noppanut Ploywong <noppanut15@hotmail.com>"]
+license = "Apache-2.0"
+readme = "README.md"
+packages = [{ include = "depthviz", from = "src" }]
+repository = "https://github.com/noppanut15/depthviz"
+keywords = ["freediving", "dive", "video", "overlay", "depth", "dive-computer", "dive-log"]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Intended Audience :: End Users/Desktop",
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+    "Topic :: Multimedia",
+    "Topic :: Multimedia :: Video"
+]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+moviepy = "2.1.1"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "8.3.4"
+mypy = "1.14.1"
+ruff = "^0.8.4"
+interrogate = "1.7.0"
+coverage = "7.6.10"
+pytest-cov = "^6.0.0"
+cyclonedx-bom = "5.1.1"
+
+[tool.ruff]
+exclude = [
+    "dist",
+    "build",
+    "env",
+    "venv",
+    ".env",
+    ".venv",
+    ".tox",
+    ".git",
+    ".mypy_cache",
+    ".pytest_cache",
+    "__pycache__",
+    ".ruff",
+]
+
+[[tool.mypy.overrides]]
+module = ["moviepy"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+pythonpath = "src"
+testpaths = ["tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "if __name__ == .__main__.:",
+]
+
+[tool.poetry-dynamic-versioning]
+enable = true
+
+[tool.poetry-dynamic-versioning.substitution]
+folders = [
+  { path = "src" }
+]
+
+[build-system]
+requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning>=1.0.0,<2.0.0"]
+build-backend = "poetry_dynamic_versioning.backend"
