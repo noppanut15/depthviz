@@ -4,6 +4,7 @@ This module provides the command line interface for the depthviz package.
 
 import sys
 import argparse
+from depthviz._version import __version__
 from depthviz.csv_parser import CsvParser, CsvParserError
 from depthviz.core import DepthReportVideoCreator, DepthReportVideoCreatorError
 
@@ -43,6 +44,12 @@ def main() -> int:
     )
     required_args.add_argument(
         "-o", "--output", help="Path or filename of the video file.", required=True
+    )
+    parser.add_argument(
+        "-v",
+        "--version",
+        action="version",
+        version=f"%(prog)s version {__version__}",
     )
 
     if len(sys.argv) == 1:
