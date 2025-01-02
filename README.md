@@ -42,6 +42,7 @@ depthviz -i <input_file.csv> -s <sample_rate> -o <output_video.mp4>
 **Arguments:**
 
 * `-i`, `--input <input_file.csv>`: Path to your CSV file containing depth data. 
+* `-o`, `--output <output_video.mp4>`: Path or filename for the generated video with the depth overlay.
 * `-s`, `--sample-rate <sample_rate>`: Sample rate (in seconds) at which your dive computer recorded the data. (e.g., 0.25, 0.5, 1, etc.) 
 > [!IMPORTANT]
 > **Sample rate** is crucial for the accuracy of the depth visualization over time. Consult your dive computer manual for this information.
@@ -51,7 +52,6 @@ depthviz -i <input_file.csv> -s <sample_rate> -o <output_video.mp4>
 
 > [!TIP]
 > Example 2: If your dive computer recorded data 4 samples per second, **set the sample rate to 0.25**. (i.e., 1 sample every 0.25 seconds)
-* `-o`, `--output <output_video.mp4>`: Path or filename for the generated video with the depth overlay.
 
 **Example**:
 
