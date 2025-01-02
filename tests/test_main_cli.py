@@ -5,7 +5,7 @@ Unit tests for the main CLI.
 import sys
 import pathlib
 import pytest
-from depthviz.main_cli import main
+from depthviz.main_cli import main, run
 
 
 class TestMainCLI:
@@ -112,3 +112,10 @@ class TestMainCLI:
         main()
         captured = capsys.readouterr()
         assert "Invalid file format" in captured.out
+
+    def test_cli_run(self) -> None:
+        """
+        Test the entrypoint function.
+        """
+        ret_code = run()
+        assert ret_code == 1
