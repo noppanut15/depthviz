@@ -23,7 +23,7 @@ def main() -> int:
     """
     print(BANNER)
     parser = argparse.ArgumentParser(
-        description="Generate depth overlay videos from your dive log."
+        prog="depthviz", description="Generate depth overlay videos from your dive log."
     )
     required_args = parser.add_argument_group("required arguments")
     required_args.add_argument(
