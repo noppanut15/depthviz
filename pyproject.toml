@@ -5,6 +5,7 @@ description = ""
 authors = ["Noppanut Ploywong <noppanut15@hotmail.com>"]
 license = "Apache-2.0"
 readme = "README.md"
+packages = [{ include = "depthviz", from = "src" }]
 
 [tool.poetry.dependencies]
 python = "^3.9"
@@ -39,8 +40,8 @@ module = ["moviepy"]
 ignore_missing_imports = true
 
 [tool.pytest.ini_options]
-pythonpath = "."
-testpaths = ["depthviz/tests"]
+pythonpath = "src"
+testpaths = ["tests"]
 
 [tool.coverage.report]
 exclude_lines = [
