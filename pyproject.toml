@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "depthviz"
-version = "0.1.0.dev1"
+version = "0.0.0"
 description = "Python CLI tool for generating depth tracking overlays for your dive footage from exported dive computer logs."
 authors = ["Noppanut Ploywong <noppanut15@hotmail.com>"]
 license = "Apache-2.0"
