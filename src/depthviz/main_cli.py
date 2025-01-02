@@ -84,5 +84,13 @@ def main() -> int:
     return 0
 
 
+def run() -> int:
+    """
+    Entry point for the depthviz command line interface.
+    """
+    exit_code: int = main()
+    return exit_code
+
+
 if __name__ == "__main__":
-    sys.exit(main())
+    run()
