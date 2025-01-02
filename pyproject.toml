@@ -8,14 +8,14 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.9"
-moviepy = "^2.1.1"
+moviepy = "2.1.1"
 
 [tool.poetry.group.dev.dependencies]
-pytest = "^8.3.4"
-mypy = "^1.14.1"
+pytest = "8.3.4"
+mypy = "1.14.1"
 ruff = "^0.8.4"
-interrogate = "^1.7.0"
-coverage = "^7.6.10"
+interrogate = "1.7.0"
+coverage = "7.6.10"
 pytest-cov = "^6.0.0"
 
 [tool.ruff]
