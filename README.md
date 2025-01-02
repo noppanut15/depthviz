@@ -48,10 +48,7 @@ depthviz -i <input_file.csv> -s <sample_rate> -o <output_video.mp4>
 > **Sample rate** is crucial for the accuracy of the depth visualization over time. Consult your dive computer manual for this information.
 
 > [!TIP]
-> Example 1: If your dive computer recorded data every 1 second, **set the sample rate to 1**. (i.e., 1 sample per second)
-
-> [!TIP]
-> Example 2: If your dive computer recorded data 4 samples per second, **set the sample rate to 0.25**. (i.e., 1 sample every 0.25 seconds)
+> If your dive computer recorded data every 1 second, **set the sample rate to 1**. (i.e., 1 sample per second) If your dive computer recorded data 4 samples per second, **set the sample rate to 0.25**. (i.e., 1 sample every 0.25 seconds)
 
 **Example**:
 
