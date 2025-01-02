@@ -37,7 +37,7 @@ jobs:
           poetry install --with dev
       - name: Check types, syntax and duckstrings 🦆
         run: |
-          poetry run mypy --explicit-package-bases .
+          poetry run mypy .
           poetry run ruff check .
           poetry run interrogate --ignore-init-module --ignore-init-method --quiet --fail-under=95 .
       - name: Test depthviz with coverage 🧪
