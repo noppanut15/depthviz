@@ -3,7 +3,8 @@ Module to create a video that reports the depth in meters from an array input.
 """
 
 import os.path
-from moviepy import TextClip, concatenate_videoclips
+from typing import Tuple
+from moviepy import TextClip, VideoClip, concatenate_videoclips
 
 # from depthviz.csv_parser import CsvParser
 
@@ -25,18 +26,18 @@ class DepthReportVideoCreator:
 
     def __init__(
         self,
-        sample_rate=0.250,
-        font=os.path.abspath(
+        sample_rate: float = 0.250,
+        font: str = os.path.abspath(
             os.path.join(BASE_DIR, "assets/fonts/Open_Sans/static/OpenSans-Bold.ttf")
         ),
-        fontsize=100,
-        interline=-20,
-        color="white",
-        bg_color="black",
-        stroke_color="black",
-        stroke_width=2,
-        align="center",
-        size=(640, 360),
+        fontsize: int = 100,
+        interline: int = -20,
+        color: str = "white",
+        bg_color: str = "black",
+        stroke_color: str = "black",
+        stroke_width: int = 2,
+        align: str = "center",
+        size: Tuple[int, int] = (640, 360),
     ):
         self.sample_rate = sample_rate
         self.font = font
@@ -50,7 +51,7 @@ class DepthReportVideoCreator:
         self.size = size
         self.final_video = None
 
-    def render_depth_report_video(self, depth_data):
+    def render_depth_report_video(self, depth_data: list[float]) -> None:
         """
         Creates a video that reports the depth in meters from an array input.
 
@@ -87,7 +88,7 @@ class DepthReportVideoCreator:
         # Concatenate all the clips into a single video
         self.final_video = concatenate_videoclips(clips)
 
-    def save(self, path, fps=25):
+    def save(self, path: str, fps: int = 25) -> None:
         """
         Saves the video to a file.
 
@@ -113,7 +114,7 @@ class DepthReportVideoCreator:
         else:
             raise FileNotFoundError(f"Parent directory does not exist: {parent_dir}")
 
-    def get_video(self):
+    def get_video(self) -> VideoClip:
         """
         Returns the processed video.
 

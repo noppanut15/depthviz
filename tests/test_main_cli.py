@@ -3,6 +3,7 @@ Unit tests for the main CLI.
 """
 
 import sys
+import pathlib
 import pytest
 from depthviz.main_cli import main
 
@@ -12,7 +13,7 @@ class TestMainCLI:
     Test suite for the main CLI.
     """
 
-    def test_main(self, capsys):
+    def test_main(self, capsys: pytest.CaptureFixture[str]) -> None:
         """
         Test the main function.
         """
@@ -26,7 +27,12 @@ class TestMainCLI:
             in captured.err
         )
 
-    def test_main_with_args(self, capsys, tmp_path, request: pytest.FixtureRequest):
+    def test_main_with_args(
+        self,
+        capsys: pytest.CaptureFixture[str],
+        tmp_path: pathlib.Path,
+        request: pytest.FixtureRequest,
+    ) -> None:
         """
         Test the main function with arguments.
         """
@@ -47,8 +53,11 @@ class TestMainCLI:
         assert f"Video successfully created: {output_path.as_posix()}" in captured.out
 
     def test_main_with_invalid_csv(
-        self, capsys, tmp_path, request: pytest.FixtureRequest
-    ):
+        self,
+        capsys: pytest.CaptureFixture[str],
+        tmp_path: pathlib.Path,
+        request: pytest.FixtureRequest,
+    ) -> None:
         """
         Test the main function with an invalid CSV.
         """
@@ -69,7 +78,7 @@ class TestMainCLI:
         captured = capsys.readouterr()
         assert "Invalid CSV: Target header not found" in captured.out
 
-    def test_main_without_args(self, capsys):
+    def test_main_without_args(self, capsys: pytest.CaptureFixture[str]) -> None:
         """
         Test the main function without arguments.
         """

@@ -3,6 +3,7 @@ Unit tests for the core module.
 """
 
 import os.path
+import pathlib
 import pytest
 from depthviz.core import DepthReportVideoCreator, VideoNotRenderError
 
@@ -12,7 +13,7 @@ class TestDepthReportVideoCreator:
     Test the DepthReportVideoCreator class.
     """
 
-    def test_render_depth_report_video(self):
+    def test_render_depth_report_video(self) -> None:
         """
         Test the render_depth_report_video method.
         """
@@ -33,7 +34,7 @@ class TestDepthReportVideoCreator:
         # Check the number of clips in the video
         assert len(video.clips) == 12
 
-    def test_save_specific_dir(self, tmp_path):
+    def test_save_specific_dir(self, tmp_path: pathlib.Path) -> None:
         """
         Test the save method in a specific directory.
         """
@@ -52,7 +53,7 @@ class TestDepthReportVideoCreator:
         assert path.stat().st_size > 0
         assert path.suffix == ".mp4"
 
-    def test_save_current_dir(self):
+    def test_save_current_dir(self) -> None:
         """
         Test the save method in the current directory.
         """
@@ -60,7 +61,7 @@ class TestDepthReportVideoCreator:
         depth_report_video_creator = DepthReportVideoCreator(sample_rate=0.25)
 
         # Create a depth report video
-        depth_data = [0, 1, 2, 3]
+        depth_data = [0.0, 1.0, 2.0, 3.0]
         depth_report_video_creator.render_depth_report_video(depth_data)
 
         # Save the video to a file in the current directory
@@ -69,9 +70,9 @@ class TestDepthReportVideoCreator:
 
         assert os.path.exists(".depth_overlay.mp4")
 
-    def test_save_wrong_path(self, tmp_path):
+    def test_save_to_nonexistent_path(self, tmp_path: pathlib.Path) -> None:
         """
-        Test the save method with a wrong path.
+        Test the save method with a nonexistent path.
         """
         # Create a DepthReportVideoCreator instance
         depth_report_video_creator = DepthReportVideoCreator()
@@ -80,12 +81,24 @@ class TestDepthReportVideoCreator:
         depth_data = [0.1, 0.2, 0.3]
         depth_report_video_creator.render_depth_report_video(depth_data)
 
-        # Save the video to a wrong path
-        wrong_path = tmp_path / "not_exist_dir" / "test_depth_report_video.mp4"
+        # Save the video to a nonexistent path
+        wrong_path = tmp_path / "non_existent_dir" / "test_depth_report_video.mp4"
         with pytest.raises(FileNotFoundError) as e:
             depth_report_video_creator.save(wrong_path.as_posix(), fps=1)
         assert str(e.value) == f"Parent directory does not exist: {wrong_path.parent}"
 
+    def test_save_without_file_name(self, tmp_path: pathlib.Path) -> None:
+        """
+        Test the save method without a file name.
+        """
+        # Create a DepthReportVideoCreator instance
+        depth_report_video_creator = DepthReportVideoCreator()
+
+        # Create a depth report video
+        depth_data = [0.1, 0.2, 0.3]
+        depth_report_video_creator.render_depth_report_video(depth_data)
+
+        # Save the video to a file without a file name
         wrong_path = tmp_path
         with pytest.raises(NameError) as e:
             depth_report_video_creator.save(wrong_path.as_posix(), fps=1)
@@ -95,7 +108,7 @@ class TestDepthReportVideoCreator:
                         (e.g., path/to/mydepth_video.mp4)"
         )
 
-    def test_save_video_not_rendered(self, tmp_path):
+    def test_save_video_not_rendered(self, tmp_path: pathlib.Path) -> None:
         """
         Test the save method with a video not rendered.
         """

@@ -17,7 +17,7 @@ BANNER = """
 """
 
 
-def main():
+def main() -> int:
     """
     Main function for the depthviz command line interface.
     """

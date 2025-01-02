@@ -32,10 +32,10 @@ class CsvParser:
     A class to parse a CSV file containing depth data.
     """
 
-    def __init__(self):
-        self.depth_data = []
+    def __init__(self) -> None:
+        self.depth_data: list[float] = []
 
-    def parse(self, file_path):
+    def parse(self, file_path: str) -> None:
         """
         Parses a CSV file containing depth data.
         Args:
@@ -61,7 +61,7 @@ class CsvParser:
                 f"Invalid CSV: File not found: {file_path}"
             ) from e
 
-    def get_depth_data(self):
+    def get_depth_data(self) -> list[float]:
         """
         Returns the depth data.
         """
