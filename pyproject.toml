@@ -2,7 +2,7 @@
 name = "depthviz"
 version = "0.0.0"
 description = "Python CLI tool for generating depth tracking overlays for your dive footage from exported dive computer logs."
-authors = ["Noppanut Ploywong <noppanut15@hotmail.com>"]
+authors = ["Noppanut Ploywong <noppanut.connect@gmail.com>"]
 license = "Apache-2.0"
 readme = "README.md"
 packages = [{ include = "depthviz", from = "src" }]
