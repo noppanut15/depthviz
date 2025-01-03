@@ -81,10 +81,6 @@ By providing this information, you'll be helping us understand the specific form
 
 This project is licensed under the Apache-2.0 License. See the [LICENSE](LICENSE) file for details.
 
-## Acknowledgements
-
-- [MoviePy](https://github.com/Zulko/moviepy) for video processing
-- [Open Sans](https://github.com/googlefonts/opensans) font
 
 ## Contact
 
