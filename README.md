@@ -8,11 +8,9 @@
 > [!NOTE]
 > This project is in active development. Feel free to [open an issue](https://github.com/noppanut15/depthviz/issues) for any feedback or feature requests.
 
-**depthviz** makes it easy to add dynamic depth tracking, giving your viewers a deeper understanding of your underwater sensation. 
+**depthviz** makes it easy to add dynamic depth tracking, giving your viewers a deeper understanding of your underwater sensation. It is a command-line tool for generating depth overlay videos from the data recorded by your dive computer. It processes your dive log and creates a video that visualizes the depth over time.
 
 ![depthviz DEMO](https://raw.githubusercontent.com/noppanut15/depthviz/docs/README/assets/demo.gif)
-
-It is a command-line tool for generating depth overlay videos from the data recorded by your dive computer. It processes your dive log and creates a video that visualizes the depth over time.
 
 This allows you to create more informative and engaging dive videos, enriching the storytelling experience for both yourself and your audience.
 
