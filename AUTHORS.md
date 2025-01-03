@@ -19,7 +19,7 @@
 
 **ruff**: Charlie Marsh and [other contributors](https://github.com/astral-sh/ruff/graphs/contributors).
 
-**interrogate**: Lynn Root and [other contributors]((https://github.com/econchick/interrogate/graphs/contributors)).
+**interrogate**: Lynn Root and [other contributors](https://github.com/econchick/interrogate/graphs/contributors).
 
 **coverage**: Ned Batchelder and [other contributors](https://github.com/nedbat/coveragepy/blob/master/CONTRIBUTORS.txt).
 
