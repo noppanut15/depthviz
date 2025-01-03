@@ -34,4 +34,4 @@ If your code or changes are here, but you are not mentioned, please open an issu
 * [Your name here 🙂]
 
 ---
-Made with ❤️ by freedivers, for freedivers. 🌊🤿
+— Made with ❤️ by freedivers, for freedivers. 🌊🤿
