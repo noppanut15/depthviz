@@ -16,8 +16,8 @@ This allows you to create more informative and engaging dive videos, enriching t
 
 **Prerequisites:**
 
-* Python 3.9 or later
-* [pipx](https://pipx.pypa.io/stable/installation/) for installing Python CLI tools in isolated environments.
+* [Python](https://www.python.org/downloads/) (3.9 or higher) installed on your system.
+* [pipx](https://pipx.pypa.io/stable/installation/) for installing Python CLI tools.
 
 **Installation:**
 
@@ -86,5 +86,5 @@ This project is licensed under the Apache-2.0 License. See the [LICENSE](LICENSE
 
 ## Contact
 
-For any inquiries, please [open an issue](https://github.com/noppanut15/depthviz/issues).
+For any inquiries, please [open an issue](https://github.com/noppanut15/depthviz/issues). We'd love to hear from you!
 
