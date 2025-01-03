@@ -69,6 +69,11 @@ Import the generated overlay video into your preferred video editing software an
 
 We welcome contributions to the `depthviz` project! If you have any ideas for improvement, bug fixes, or feature suggestions, feel free to [open an issue](https://github.com/noppanut15/depthviz/issues) to discuss or [submit a pull request](https://github.com/noppanut15/depthviz/pulls).
 
+## Help Us Expand Dive Computer Support!
+
+**Missing your dive computer?** Help us add support! Submit a [Dive Computer Support Request issue](https://github.com/noppanut15/depthviz/issues) on GitHub with a sample CSV and export source.
+
+By providing this information, you'll be helping us understand the specific format of your dive computer's exported data. This allows us to implement the necessary parsing logic and add support for your device in a future release.
 
 ## License
 
