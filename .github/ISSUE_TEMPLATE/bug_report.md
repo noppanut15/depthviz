@@ -17,6 +17,9 @@ Steps or commands to reproduce the behavior:
 [COMMAND WITH ARGS]
 ```
 2. See error
+```
+[ERROR MESSAGES]
+```
 
 **Expected behavior**
 A clear and concise description of what you expected to happen.
@@ -24,9 +27,11 @@ A clear and concise description of what you expected to happen.
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
 
-**Desktop (please complete the following information):**
- - OS: [e.g. MacOS]
- - Version [e.g. 15.1.1]
+**Detail information (please complete the following information):**
+ - **OS**: [e.g. MacOS]
+ - **App Version**: [e.g. 0.1.0] *(You can find this by running `depthviz --version`)*
+ - **Python Version**: [e.g. 3.9.7] *(You can find this by running `python --version`)*
+ - **Dive Computer Brand and Model**: [e.g. Shearwater Teric]
 
 **Additional context**
 Add any other context about the problem here.

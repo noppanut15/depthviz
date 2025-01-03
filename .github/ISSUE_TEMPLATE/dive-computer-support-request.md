@@ -14,7 +14,9 @@ Thank you for requesting support for your dive computer! This will help make dep
 
 *   **Dive Computer Brand:** (e.g., Suunto, Shearwater, Garmin)
 *   **Dive Computer Model:** (e.g., D4i Novo, Terric, Descent Mk2i)
-*   **A Sample CSV File:** Please attach a *small* sample CSV file exported from your dive computer. Ideally, this should contain at least one complete dive. **Please remove any personally identifiable information (PII) like serial numbers, dive site names (unless you are comfortable sharing), or other sensitive data.** You can replace specific values with placeholder data. (e.g., replace actual depths with generic depths)
+*   **A Sample CSV File:** Please attach a *small* sample CSV file exported from your dive computer. Ideally, this should contain at least one complete dive. 
+    * **Please remove any personally identifiable information (PII)** like serial numbers, dive site names (unless you are comfortable sharing), or other sensitive data. 
+    * You can replace specific values with placeholder data. (e.g., replace actual depths with generic depths)
 *   **Export Source:** Where are you exporting the CSV file from? (e.g., Desktop software, Web platform)
 *   **Relevant Documentation (if available):** If you have any documentation or specifications from the manufacturer, please provide a link or attach the document.
 
