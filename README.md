@@ -16,8 +16,8 @@ This allows you to create more informative and engaging dive videos, enriching t
 
 **Prerequisites:**
 
-* Python 3.9 or later
-* [pipx](https://pipx.pypa.io/stable/installation/) for installing Python CLI tools in isolated environments.
+* [Python](https://www.python.org/downloads/) (3.9 or higher) installed on your system.
+* [pipx](https://pipx.pypa.io/stable/installation/) for installing Python CLI tools.
 
 **Installation:**
 
@@ -69,6 +69,11 @@ Import the generated overlay video into your preferred video editing software an
 
 We welcome contributions to the `depthviz` project! If you have any ideas for improvement, bug fixes, or feature suggestions, feel free to [open an issue](https://github.com/noppanut15/depthviz/issues) to discuss or [submit a pull request](https://github.com/noppanut15/depthviz/pulls).
 
+## Help Us Expand Dive Computer Support!
+
+**Missing your dive computer?** Help us add support! [Submit a Dive Computer Support Request](https://github.com/noppanut15/depthviz/issues) issue with a sample CSV and export source.
+
+By providing this information, you'll be helping us understand the specific format of your dive computer's exported data. This allows us to implement the necessary parsing logic and add support for your device in a future release.
 
 ## License
 
@@ -81,5 +86,5 @@ This project is licensed under the Apache-2.0 License. See the [LICENSE](LICENSE
 
 ## Contact
 
-For any inquiries, please [open an issue](https://github.com/noppanut15/depthviz/issues).
+For any inquiries, please [open an issue](https://github.com/noppanut15/depthviz/issues). We'd love to hear from you!
 
