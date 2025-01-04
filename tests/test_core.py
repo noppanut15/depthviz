@@ -18,11 +18,27 @@ class TestDepthReportVideoCreator:
         Test the render_depth_report_video method.
         """
         # Create a DepthReportVideoCreator instance
-        depth_report_video_creator = DepthReportVideoCreator(sample_rate=0.25)
+        depth_report_video_creator = DepthReportVideoCreator()
 
         # Create a depth report video
+        time_data = [
+            0.25,
+            0.5,
+            0.75,
+            1.0,
+            1.25,
+            1.5,
+            1.75,
+            2.0,
+            2.25,
+            2.5,
+            2.75,
+            3.0,
+        ]
         depth_data = [0.1, 0.2, 0.3, 0.4, 0.5, 0.9, 1.3, 1.7, 2.1, 2.5, 2.9, 3.3]
-        depth_report_video_creator.render_depth_report_video(depth_data)
+        depth_report_video_creator.render_depth_report_video(
+            time_data=time_data, depth_data=depth_data
+        )
         video = depth_report_video_creator.get_video()
 
         # Check the video is not None
@@ -42,8 +58,11 @@ class TestDepthReportVideoCreator:
         depth_report_video_creator = DepthReportVideoCreator()
 
         # Create a depth report video
+        time_data = [1.0, 2.0, 3.0]
         depth_data = [0.1, 0.2, 0.3]
-        depth_report_video_creator.render_depth_report_video(depth_data)
+        depth_report_video_creator.render_depth_report_video(
+            time_data=time_data, depth_data=depth_data
+        )
 
         # Save the video to a file in directory tmp_path
         path = tmp_path / "test_depth_report_video.mp4"
@@ -58,11 +77,14 @@ class TestDepthReportVideoCreator:
         Test the save method in the current directory.
         """
         # Create a DepthReportVideoCreator instance
-        depth_report_video_creator = DepthReportVideoCreator(sample_rate=0.25)
+        depth_report_video_creator = DepthReportVideoCreator()
 
         # Create a depth report video
+        time_data = [0.25, 0.5, 0.75, 1.0]
         depth_data = [0.0, 1.0, 2.0, 3.0]
-        depth_report_video_creator.render_depth_report_video(depth_data)
+        depth_report_video_creator.render_depth_report_video(
+            time_data=time_data, depth_data=depth_data
+        )
 
         # Save the video to a file in the current directory
         path = ".depth_overlay.mp4"
@@ -78,8 +100,11 @@ class TestDepthReportVideoCreator:
         depth_report_video_creator = DepthReportVideoCreator()
 
         # Create a depth report video
+        time_data = [1.0, 2.0, 3.0]
         depth_data = [0.1, 0.2, 0.3]
-        depth_report_video_creator.render_depth_report_video(depth_data)
+        depth_report_video_creator.render_depth_report_video(
+            time_data=time_data, depth_data=depth_data
+        )
 
         # Save the video to a nonexistent path
         wrong_path = tmp_path / "non_existent_dir" / "test_depth_report_video.mp4"
@@ -95,8 +120,11 @@ class TestDepthReportVideoCreator:
         depth_report_video_creator = DepthReportVideoCreator()
 
         # Create a depth report video
+        time_data = [1.0, 2.0, 3.0]
         depth_data = [0.1, 0.2, 0.3]
-        depth_report_video_creator.render_depth_report_video(depth_data)
+        depth_report_video_creator.render_depth_report_video(
+            time_data=time_data, depth_data=depth_data
+        )
 
         # Save the video to a file without a file name
         wrong_path = tmp_path
@@ -129,8 +157,11 @@ class TestDepthReportVideoCreator:
         depth_report_video_creator = DepthReportVideoCreator()
 
         # Create a depth report video
+        time_data = [1.0, 2.0, 3.0]
         depth_data = [0.1, 0.2, 0.3]
-        depth_report_video_creator.render_depth_report_video(depth_data)
+        depth_report_video_creator.render_depth_report_video(
+            time_data=time_data, depth_data=depth_data
+        )
 
         # Save the video to a file with a wrong file format
         wrong_path = tmp_path / "test_depth_report_video.avi"

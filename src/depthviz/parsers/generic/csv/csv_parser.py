@@ -18,6 +18,10 @@ class InvalidHeaderError(CsvParserError):
     """Exception raised for missing target header errors."""
 
 
+class InvalidTimeValueError(CsvParserError):
+    """Exception raised for invalid time value errors."""
+
+
 class InvalidDepthValueError(CsvParserError):
     """Exception raised for invalid depth value errors."""
 
@@ -38,6 +42,15 @@ class CsvParser(ABC):
 
         Parameters:
         file_path (str): The path to the CSV file to be parsed.
+        """
+
+    @abstractmethod
+    def get_time_data(self) -> list[float]:
+        """
+        Returns the time data parsed from the CSV file.
+
+        Returns:
+        list[float]: The time data parsed from the CSV file.
         """
 
     @abstractmethod

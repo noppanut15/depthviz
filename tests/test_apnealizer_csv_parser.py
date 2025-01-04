@@ -7,6 +7,7 @@ import pytest
 from depthviz.parsers.apnealizer.csv_parser import ApnealizerCsvParser
 from depthviz.parsers.generic.csv.csv_parser import (
     InvalidHeaderError,
+    InvalidTimeValueError,
     InvalidDepthValueError,
     EmptyFileError,
     CsvFileNotFoundError,
@@ -88,3 +89,17 @@ class TestApnealizerCsvParser:
         with pytest.raises(CsvFileNotFoundError) as e:
             csv_parser.parse(file_path)
         assert str(e.value) == f"Invalid CSV: File not found: {file_path}"
+
+    def test_parse_invalid_csv_missing_time(
+        self, request: pytest.FixtureRequest
+    ) -> None:
+        """
+        Test parsing a CSV file with missing time values.
+        """
+        file_path = str(
+            request.path.parent.joinpath("data", "invalid_time_depth_mismatched.csv")
+        )
+        csv_parser = ApnealizerCsvParser()
+        with pytest.raises(InvalidTimeValueError) as e:
+            csv_parser.parse(file_path)
+        assert str(e.value) == "Invalid CSV: Invalid time values"

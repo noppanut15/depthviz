@@ -23,7 +23,7 @@ class TestMainCLI:
         captured = capsys.readouterr()
         assert "usage: " in captured.err
         assert (
-            "error: the following arguments are required: -i/--input, -s/--sample-rate, -o/--output"
+            "error: the following arguments are required: -i/--input, -o/--output"
             in captured.err
         )
 
@@ -43,8 +43,6 @@ class TestMainCLI:
             "main",
             "-i",
             str(input_path.as_posix()),
-            "-s",
-            "0.25",
             "-o",
             str(output_path.as_posix()),
         ]
@@ -68,8 +66,6 @@ class TestMainCLI:
             "main",
             "-i",
             str(input_path.as_posix()),
-            "-s",
-            "0.25",
             "-o",
             str(output_path.as_posix()),
         ]
@@ -86,7 +82,7 @@ class TestMainCLI:
         main()
         captured = capsys.readouterr()
         assert "usage: " in captured.err
-        assert "[-h] -i INPUT -s SAMPLE_RATE -o OUTPUT" in captured.err
+        assert "[-h] -i INPUT -o OUTPUT" in captured.err
 
     def test_main_with_invalid_output_video_filetype(
         self,
@@ -104,8 +100,6 @@ class TestMainCLI:
             "main",
             "-i",
             str(input_path.as_posix()),
-            "-s",
-            "0.25",
             "-o",
             str(output_path.as_posix()),
         ]

@@ -28,7 +28,6 @@ class DepthReportVideoCreator:
 
     def __init__(
         self,
-        sample_rate: float = 0.250,
         font: str = os.path.abspath(
             os.path.join(BASE_DIR, "assets/fonts/Open_Sans/static/OpenSans-Bold.ttf")
         ),
@@ -41,7 +40,6 @@ class DepthReportVideoCreator:
         align: str = "center",
         size: Tuple[int, int] = (640, 360),
     ):
-        self.sample_rate = sample_rate
         self.font = font
         self.fontsize = fontsize
         self.interline = interline
@@ -53,11 +51,33 @@ class DepthReportVideoCreator:
         self.size = size
         self.final_video = None
 
-    def render_depth_report_video(self, depth_data: list[float]) -> None:
+    def __clip_duration_in_seconds(
+        self, current_pos: int, time_data: list[float]
+    ) -> float:
+        """
+        Returns the total duration of the video in seconds.
+
+        Args:
+            current_pos: The current position in the array.
+            time_data: An array of time values in seconds.
+
+        Returns:
+            The total duration of the video in seconds.
+        """
+        if current_pos == len(time_data) - 1:
+            # If it's the last element, return the difference between the last two elements
+            return abs(time_data[current_pos] - time_data[current_pos - 1])
+        # Otherwise, return the difference between the current and next element
+        return abs(time_data[current_pos + 1] - time_data[current_pos])
+
+    def render_depth_report_video(
+        self, time_data: list[float], depth_data: list[float]
+    ) -> None:
         """
         Creates a video that reports the depth in meters from an array input.
 
         Args:
+            time_data: An array of time values in seconds.
             depth_data: An array of depth values in meters.
 
         Returns:
@@ -66,8 +86,10 @@ class DepthReportVideoCreator:
 
         # Create a text clip for each depth value
         clips = []
-        for _, depth in enumerate(depth_data):
-            rounded_depth = round(depth)
+        clip_count = len(time_data)
+        for i in range(clip_count):
+            duration = self.__clip_duration_in_seconds(i, time_data)
+            rounded_depth = round(depth_data[i])
             if rounded_depth == 0:
                 text = "0m"
             else:
@@ -83,7 +105,7 @@ class DepthReportVideoCreator:
                 stroke_width=self.stroke_width,
                 text_align=self.align,
                 size=self.size,
-                duration=self.sample_rate,
+                duration=duration,
             )
             clips.append(clip)
 
