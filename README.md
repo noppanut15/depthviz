@@ -32,7 +32,7 @@ pipx install depthviz
 **1. Download Your Data:**
 
 Export your dive log data from Apnealizer in CSV format. 
-> [!IMPORTANT]
+> [!NOTE]
 > We are currently working on adding support for direct logs from dive computers, so we don't just rely on Apnealizer. Stay tuned for updates!
 
 **2. Generate the Overlay:**
