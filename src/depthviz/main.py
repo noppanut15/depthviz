@@ -97,6 +97,10 @@ class DepthvizApplication:
 
             return self.create_video(divelog_parser=csv_parser, output_path=args.output)
 
+        # Otherwise, print an error message
+        print(f"Source {args.source} not supported.")
+        return 1
+
 
 def run() -> int:
     """

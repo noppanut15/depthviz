@@ -3,6 +3,7 @@ Unit tests for the main CLI.
 """
 
 import sys
+import argparse
 import pathlib
 import pytest
 from depthviz.main import DepthvizApplication, run
@@ -143,6 +144,27 @@ class TestMainCLI:
             app.main()
         captured = capsys.readouterr()
         assert "error: argument -s/--source: invalid choice: 'XXXXXXXX'" in captured.err
+
+    def test_main_with_invalid_source_direct_call_function(
+        self, monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
+    ) -> None:
+        """
+        Test the main function with an invalid source using direct function call.
+        """
+        mock_source = "random-stuff"
+
+        def mock_parse_args(  # type: ignore
+            *args,  # pylint: disable=unused-argument
+        ) -> argparse.Namespace:
+            return argparse.Namespace(
+                input="test.csv", source=mock_source, output="test.mp4"
+            )
+
+        monkeypatch.setattr(argparse.ArgumentParser, "parse_args", mock_parse_args)
+        app = DepthvizApplication()
+        app.main()
+        captured = capsys.readouterr()
+        assert f"Source {mock_source} not supported." in captured.out
 
     def test_cli_run(self) -> None:
         """
