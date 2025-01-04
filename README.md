@@ -38,27 +38,20 @@ Export your dive log data from [Apnealizer](https://apnealizer.com/) in CSV form
 **2. Generate the Overlay:**
 
 ```bash
-depthviz -i <input_file.csv> -s <sample_rate> -o <output_video.mp4>
+depthviz -i <input_file.csv> -o <output_video.mp4>
 ```
 
 **Arguments:**
 
 * `-i`, `--input <input_file.csv>`: Path to your CSV file containing your dive log.
-* `-s`, `--sample-rate <sample_rate>`: Sample rate (in seconds) at which your dive computer recorded the data. (e.g., 0.25, 0.5, 1, etc.)
 * `-o`, `--output <output_video.mp4>`: Path or filename for the generated video with the depth overlay.
-
-> [!IMPORTANT]
-> **Sample rate** is crucial for the accuracy of the depth visualization over time. Consult your dive computer manual for this information.
-
-> [!TIP]
-> If your dive computer recorded data every 1 second, **set the sample rate to 1**. (i.e., 1 sample per second) If your dive computer recorded data 4 samples per second, **set the sample rate to 0.25**. (i.e., 1 sample every 0.25 seconds)
 
 **Example**:
 
-Here's an example of using `depthviz` to generate a depth overlay video named `depth_tracking.mp4` with a sample rate of 0.5 seconds, using the data from `my_dive.csv`:
+Here's an example of using `depthviz` to generate a depth overlay video named `depth_tracking.mp4`, using the data from `my_dive.csv`:
 
 ```bash
-depthviz -i my_dive.csv -s 0.5 -o depth_tracking.mp4
+depthviz -i my_dive.csv -o depth_tracking.mp4
 ```
 
 **3. Integrate with Your Footage:**
