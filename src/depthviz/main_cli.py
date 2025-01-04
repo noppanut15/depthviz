@@ -31,7 +31,7 @@ def main() -> int:
     required_args.add_argument(
         "-i",
         "--input",
-        help="Path to the CSV file containing depth data.",
+        help="Path to the CSV file containing your dive log.",
         required=True,
     )
     required_args.add_argument(
