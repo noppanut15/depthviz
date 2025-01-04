@@ -49,12 +49,12 @@ depthviz -i <input_file.csv> -s <source> -o <output_video.mp4>
 
 **Source Options:**
 
-| Source       | Description                                                                                    | Status                                                                                                  |
-| ------------ | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `apnealizer` | Data exported from [Apnealizer](https://apnealizer.com/), log and analyzing application.       | :white_check_mark: Supported                                                                            |
-| `shearwater` | Data exported from [Shearwater](https://shearwater.com/pages/shearwater-cloud) dive computers. | :construction: Under development, not supported yet                                                     |
-| `garmin`     | Data exported from [Garmin](https://connect.garmin.com/) dive computers.                       | :x: Not supported yet, [**sample data needed**](#help-us-expand-dive-computer-support) :rotating_light: |
-| `manual`     | Manually input the dive data, for those who don't have a dive computer                         | :x: Not supported yet                                                                                   |
+| Source       | Description                                                                                    | Development Status                                                                                                 |
+| ------------ | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| `apnealizer` | Data exported from [Apnealizer](https://apnealizer.com/), log and analyzing application.       | :white_check_mark: Supported                                                                                       |
+| `shearwater` | Data exported from [Shearwater](https://shearwater.com/pages/shearwater-cloud) dive computers. | :construction: Under development, not supported yet                                                                |
+| `garmin`     | Data exported from [Garmin](https://connect.garmin.com/) dive computers.                       | :x: Not supported yet, [**sample data needed**](https://github.com/noppanut15/depthviz/issues/15) :rotating_light: |
+| `manual`     | Manually input the dive data, for those who don't have a dive computer.                        | :x: Not supported yet                                                                                              |
 
 **Example**:
 
