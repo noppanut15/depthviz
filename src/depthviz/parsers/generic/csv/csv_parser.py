@@ -4,8 +4,6 @@ This module contains the CsvParser class which is used to parse a CSV file conta
 
 import csv
 
-# import sys
-
 
 class CsvParserError(Exception):
     """Base class for exceptions in this module."""
