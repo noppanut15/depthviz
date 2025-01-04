@@ -9,8 +9,8 @@ def test_main_entrypoint() -> None:
     its dependencies are able to be imported.
     """
     # pylint: disable=import-outside-toplevel
-    from depthviz.__main__ import main  # type: ignore
+    from depthviz.__main__ import run  # type: ignore
 
     # pylint: enable=import-outside-toplevel
-    ret_code = main()
+    ret_code = run()
     assert ret_code == 1

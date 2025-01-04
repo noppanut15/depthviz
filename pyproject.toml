@@ -68,7 +68,7 @@ exclude_lines = [
 ]
 
 [tool.poetry.scripts]
-depthviz = 'depthviz.main_cli:run'
+depthviz = 'depthviz.main:run'
 
 [tool.poetry-dynamic-versioning]
 enable = true

@@ -1,9 +1,9 @@
 """
-Thid module is the main entry point for the command line interface.
+This is the entry point of the package.
 """
 
 import sys
-from depthviz.main_cli import main
+from depthviz.main import run
 
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit(run())
