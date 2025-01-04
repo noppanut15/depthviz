@@ -86,15 +86,16 @@ class DepthvizApplication:
 
         args = self.parser.parse_args(sys.argv[1:])
 
-        # Parse the Apnealizer CSV file
-        csv_parser = ApnealizerCsvParser()
-        try:
-            csv_parser.parse(file_path=args.input)
-        except CsvParserError as e:
-            print(e)
-            return 1
+        if args.source == "apnealizer":
+            # If source is Apnealizer, use the ApnealizerCsvParser
+            csv_parser = ApnealizerCsvParser()
+            try:
+                csv_parser.parse(file_path=args.input)
+            except CsvParserError as e:
+                print(e)
+                return 1
 
-        return self.create_video(divelog_parser=csv_parser, output_path=args.output)
+            return self.create_video(divelog_parser=csv_parser, output_path=args.output)
 
 
 def run() -> int:

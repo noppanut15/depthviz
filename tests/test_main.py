@@ -118,9 +118,36 @@ class TestMainCLI:
         captured = capsys.readouterr()
         assert "Invalid file format" in captured.out
 
+    def test_main_with_invalid_source(
+        self,
+        capsys: pytest.CaptureFixture[str],
+        tmp_path: pathlib.Path,
+        request: pytest.FixtureRequest,
+    ) -> None:
+        """
+        Test the main function with an invalid source.
+        """
+        input_path = request.path.parent / "data" / "valid_depth_data_trimmed.csv"
+        output_path = tmp_path / "test_main_with_args.mp4"
+        sys.argv = [
+            "main",
+            "-i",
+            str(input_path.as_posix()),
+            "-s",
+            "XXXXXXXX",
+            "-o",
+            str(output_path.as_posix()),
+        ]
+        with pytest.raises(SystemExit):
+            app = DepthvizApplication()
+            app.main()
+        captured = capsys.readouterr()
+        assert "error: argument -s/--source: invalid choice: 'XXXXXXXX'" in captured.err
+
     def test_cli_run(self) -> None:
         """
         Test the entrypoint function.
         """
+        sys.argv = ["main"]
         ret_code = run()
         assert ret_code == 1
