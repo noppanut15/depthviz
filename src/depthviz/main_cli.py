@@ -31,17 +31,8 @@ def main() -> int:
     required_args.add_argument(
         "-i",
         "--input",
-        help="Path to the CSV file containing depth data.",
+        help="Path to the CSV file containing your dive log.",
         required=True,
-    )
-    required_args.add_argument(
-        "-s",
-        "--sample-rate",
-        help="Sample rate of your dive computer in seconds. \
-            The sample rate controls how often information from the dive is saved to the dive log. \
-            (e.g., 1, 0.50, 0.25)",
-        required=True,
-        type=float,
     )
     required_args.add_argument(
         "-o", "--output", help="Path or filename of the video file.", required=True
@@ -70,11 +61,12 @@ def main() -> int:
 
     # Create the video
     try:
+        time_data_from_csv = csv_parser.get_time_data()
         depth_data_from_csv = csv_parser.get_depth_data()
-        depth_report_video_creator = DepthReportVideoCreator(
-            sample_rate=args.sample_rate
+        depth_report_video_creator = DepthReportVideoCreator()
+        depth_report_video_creator.render_depth_report_video(
+            time_data=time_data_from_csv, depth_data=depth_data_from_csv
         )
-        depth_report_video_creator.render_depth_report_video(depth_data_from_csv)
         depth_report_video_creator.save(args.output, fps=25)
     except DepthReportVideoCreatorError as e:
         print(e)
