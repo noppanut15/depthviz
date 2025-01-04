@@ -5,7 +5,7 @@ This module provides the command line interface for the depthviz package.
 import sys
 import argparse
 from depthviz._version import __version__
-from depthviz.csv_parser import CsvParser, CsvParserError
+from depthviz.parsers.generic.csv.csv_parser import CsvParser, CsvParserError
 from depthviz.core import DepthReportVideoCreator, DepthReportVideoCreatorError
 
 BANNER = """

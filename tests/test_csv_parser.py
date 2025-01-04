@@ -4,7 +4,7 @@ Unit tests for the CsvParser class.
 
 import os
 import pytest
-from depthviz.csv_parser import (
+from depthviz.parsers.generic.csv.csv_parser import (
     CsvParser,
     InvalidHeaderError,
     InvalidDepthValueError,
