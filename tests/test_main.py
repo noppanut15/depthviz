@@ -5,7 +5,7 @@ Unit tests for the main CLI.
 import sys
 import pathlib
 import pytest
-from depthviz.main_cli import main, run
+from depthviz.main import DepthvizApplication, run
 
 
 class TestMainCLI:
@@ -18,12 +18,13 @@ class TestMainCLI:
         Test the main function.
         """
         with pytest.raises(SystemExit) as excinfo:
-            main()
+            app = DepthvizApplication()
+            app.main()
         assert excinfo.value.code == 2
         captured = capsys.readouterr()
         assert "usage: " in captured.err
         assert (
-            "error: the following arguments are required: -i/--input, -o/--output"
+            "error: the following arguments are required: -i/--input, -s/--source, -o/--output"
             in captured.err
         )
 
@@ -43,10 +44,13 @@ class TestMainCLI:
             "main",
             "-i",
             str(input_path.as_posix()),
+            "-s",
+            "apnealizer",
             "-o",
             str(output_path.as_posix()),
         ]
-        main()
+        app = DepthvizApplication()
+        app.main()
         captured = capsys.readouterr()
         assert f"Video successfully created: {output_path.as_posix()}" in captured.out
 
@@ -66,11 +70,14 @@ class TestMainCLI:
             "main",
             "-i",
             str(input_path.as_posix()),
+            "-s",
+            "apnealizer",
             "-o",
             str(output_path.as_posix()),
         ]
 
-        main()
+        app = DepthvizApplication()
+        app.main()
         captured = capsys.readouterr()
         assert "Invalid CSV: Target header not found" in captured.out
 
@@ -79,10 +86,11 @@ class TestMainCLI:
         Test the main function without arguments.
         """
         sys.argv = ["main"]
-        main()
+        app = DepthvizApplication()
+        app.main()
         captured = capsys.readouterr()
         assert "usage: " in captured.err
-        assert "[-h] -i INPUT -o OUTPUT" in captured.err
+        assert "[-h] -i INPUT -s {apnealizer} -o OUTPUT [-v]" in captured.err
 
     def test_main_with_invalid_output_video_filetype(
         self,
@@ -100,10 +108,13 @@ class TestMainCLI:
             "main",
             "-i",
             str(input_path.as_posix()),
+            "-s",
+            "apnealizer",
             "-o",
             str(output_path.as_posix()),
         ]
-        main()
+        app = DepthvizApplication()
+        app.main()
         captured = capsys.readouterr()
         assert "Invalid file format" in captured.out
 
