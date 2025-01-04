@@ -1,11 +1,11 @@
 """
-Unit tests for the CsvParser class.
+Unit tests for the ApnealizerCsvParser class.
 """
 
 import os
 import pytest
-from depthviz.csv_parser import (
-    CsvParser,
+from depthviz.parsers.apnealizer.csv_parser import ApnealizerCsvParser
+from depthviz.parsers.generic.csv.csv_parser import (
     InvalidHeaderError,
     InvalidDepthValueError,
     EmptyFileError,
@@ -13,9 +13,9 @@ from depthviz.csv_parser import (
 )
 
 
-class TestCsvParser:
+class TestApnealizerCsvParser:
     """
-    Test class for the CsvParser
+    Test class for the ApnealizerCsvParser
     """
 
     def test_parse_valid_csv(self, request: pytest.FixtureRequest) -> None:
@@ -25,7 +25,7 @@ class TestCsvParser:
         file_path = str(
             request.path.parent.joinpath("data", "valid_depth_data_trimmed.csv")
         )
-        csv_parser = CsvParser()
+        csv_parser = ApnealizerCsvParser()
         csv_parser.parse(file_path)
         assert csv_parser.get_depth_data() == [
             0.76,
@@ -47,7 +47,7 @@ class TestCsvParser:
         file_path = str(
             request.path.parent.joinpath("data", "invalid_data_x_header.csv")
         )
-        csv_parser = CsvParser()
+        csv_parser = ApnealizerCsvParser()
         with pytest.raises(InvalidHeaderError) as e:
             csv_parser.parse(file_path)
         assert str(e.value) == "Invalid CSV: Target header not found"
@@ -57,7 +57,7 @@ class TestCsvParser:
         Test parsing an empty CSV file.
         """
         file_path = str(request.path.parent.joinpath("data", "empty_file.csv"))
-        csv_parser = CsvParser()
+        csv_parser = ApnealizerCsvParser()
         with pytest.raises(EmptyFileError) as e:
             csv_parser.parse(file_path)
         assert str(e.value) == "Invalid CSV: File is empty"
@@ -71,7 +71,7 @@ class TestCsvParser:
         file_path = str(
             request.path.parent.joinpath("data", "invalid_data_x_depth.csv")
         )
-        csv_parser = CsvParser()
+        csv_parser = ApnealizerCsvParser()
         with pytest.raises(InvalidDepthValueError) as e:
             csv_parser.parse(file_path)
         assert str(e.value) == "Invalid CSV: Invalid depth values"
@@ -83,7 +83,7 @@ class TestCsvParser:
         Test parsing a missing CSV file.
         """
         file_path = str(request.path.parent.joinpath("data", "missing_file_xyz.csv"))
-        csv_parser = CsvParser()
+        csv_parser = ApnealizerCsvParser()
         assert not os.path.exists(file_path)
         with pytest.raises(CsvFileNotFoundError) as e:
             csv_parser.parse(file_path)

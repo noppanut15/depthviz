@@ -6,8 +6,6 @@ import os.path
 from typing import Tuple
 from moviepy import TextClip, VideoClip, concatenate_videoclips
 
-# from depthviz.csv_parser import CsvParser
-
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 

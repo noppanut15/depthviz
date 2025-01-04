@@ -31,9 +31,9 @@ pipx install depthviz
 
 **1. Download Your Data:**
 
-* Ensure your dive computer data is exported in a CSV format with two columns:
-    * `Time`: Represents the time elapsed since the dive start (e.g., in seconds).
-    * `Depth`: Represents the current depth during the dive (e.g., in meters).
+Export your dive log data from [Apnealizer](https://apnealizer.com/) in CSV format. 
+> [!NOTE]
+> We are currently working on adding support for direct logs from dive computers, so we don't just rely on Apnealizer. Stay tuned for updates!
 
 **2. Generate the Overlay:**
 
@@ -76,6 +76,7 @@ We welcome contributions to the `depthviz` project! If you have any ideas for im
 **Missing your dive computer?** Help us add support! [Submit a Dive Computer Support Request](https://github.com/noppanut15/depthviz/issues) issue with a sample CSV and export source.
 
 By providing this information, you'll be helping us understand the specific format of your dive computer's exported data. This allows us to implement the necessary parsing logic and add support for your device in a future release.
+
 
 ## License
 

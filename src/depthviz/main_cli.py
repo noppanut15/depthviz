@@ -5,7 +5,8 @@ This module provides the command line interface for the depthviz package.
 import sys
 import argparse
 from depthviz._version import __version__
-from depthviz.csv_parser import CsvParser, CsvParserError
+from depthviz.parsers.apnealizer.csv_parser import ApnealizerCsvParser
+from depthviz.parsers.generic.csv.csv_parser import CsvParserError
 from depthviz.core import DepthReportVideoCreator, DepthReportVideoCreatorError
 
 BANNER = """
@@ -59,8 +60,8 @@ def main() -> int:
     print("===================================================")
     args = parser.parse_args(sys.argv[1:])
 
-    # Parse the CSV file
-    csv_parser = CsvParser()
+    # Parse the Apnealizer CSV file
+    csv_parser = ApnealizerCsvParser()
     try:
         csv_parser.parse(args.input)
     except CsvParserError as e:
