@@ -39,7 +39,9 @@ class TestMainCLI:
         Test the main function with arguments.
         """
 
-        input_path = request.path.parent / "data" / "valid_depth_data_trimmed.csv"
+        input_path = (
+            request.path.parent / "data" / "apnealizer" / "valid_depth_data_trimmed.csv"
+        )
         output_path = tmp_path / "test_main_with_args.mp4"
         sys.argv = [
             "main",
@@ -65,7 +67,9 @@ class TestMainCLI:
         Test the main function with an invalid CSV.
         """
 
-        input_path = request.path.parent / "data" / "invalid_data_x_header.csv"
+        input_path = (
+            request.path.parent / "data" / "apnealizer" / "invalid_data_x_header.csv"
+        )
         output_path = tmp_path / "test_main_with_invalid_csv.mp4"
         sys.argv = [
             "main",
@@ -103,7 +107,9 @@ class TestMainCLI:
         Test the main function with an invalid output video file type.
         """
 
-        input_path = request.path.parent / "data" / "valid_depth_data_trimmed.csv"
+        input_path = (
+            request.path.parent / "data" / "apnealizer" / "valid_depth_data_trimmed.csv"
+        )
         output_path = tmp_path / "invalid.mp3"
         sys.argv = [
             "main",
@@ -128,7 +134,9 @@ class TestMainCLI:
         """
         Test the main function with an invalid source.
         """
-        input_path = request.path.parent / "data" / "valid_depth_data_trimmed.csv"
+        input_path = (
+            request.path.parent / "data" / "apnealizer" / "valid_depth_data_trimmed.csv"
+        )
         output_path = tmp_path / "test_main_with_args.mp4"
         sys.argv = [
             "main",
