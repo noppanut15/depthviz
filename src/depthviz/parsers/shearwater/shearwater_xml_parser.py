@@ -37,16 +37,21 @@ from depthviz.parsers.generic.generic_divelog_parser import (
 
 from depthviz.parsers.generic.xml.xml_parser import (
     DiveLogXmlParser,
+    DiveLogXmlParserError,
     DiveLogXmlInvalidRootElementError,
     DiveLogXmlInvalidElementError,
     DiveLogXmlFileContentUnreadableError,
 )
 
 # Constants related to the hydrostatic pressure calculation
-WATER_DENSITY_FRESH = 1010
+WATER_DENSITY_FRESH = 1000
 WATER_DENSITY_EN13319 = 1020
 WATER_DENSITY_SALT = 1030
 GRAVITY = 9.80665
+
+
+class InvalidSurfacePressureValueError(DiveLogXmlParserError):
+    """Exception raised for invalid surface pressure values."""
 
 
 class ShearwaterXmlParser(DiveLogXmlParser):
@@ -55,10 +60,18 @@ class ShearwaterXmlParser(DiveLogXmlParser):
     """
 
     def __init__(self, salinity: str = "en13319") -> None:
+        """
+        Initializes the ShearwaterXmlParser with the specified salinity setting.
+
+        Args:
+            salinity: The salinity setting for the water density calculation.
+                      Can be "fresh", "en13319", or "salt". Default is "en13319".
+        """
         self.__time_data: list[float] = []
         self.__depth_data: list[float] = []
         self.__start_surface_pressure: float = 0
         self.__water_density: float = WATER_DENSITY_EN13319
+        salinity = salinity.lower()
         if salinity == "salt":
             self.__water_density = WATER_DENSITY_SALT
         elif salinity == "fresh":
@@ -73,6 +86,14 @@ class ShearwaterXmlParser(DiveLogXmlParser):
         Parses a XML file containing depth data.
         Args:
             file_path: Path to the XML file containing depth data.
+
+        Raises:
+            DiveLogXmlInvalidRootElementError: If the root element is not 'dive'.
+            DiveLogXmlInvalidElementError: If required elements are not found.
+            InvalidTimeValueError: If time values are invalid.
+            InvalidDepthValueError: If depth values are invalid.
+            DiveLogFileNotFoundError: If the file is not found.
+            DiveLogXmlFileContentUnreadableError: If the file content is unreadable.
         """
 
         try:
@@ -85,13 +106,17 @@ class ShearwaterXmlParser(DiveLogXmlParser):
             dive_log = root.find("diveLog")
             if dive_log is None:
                 raise DiveLogXmlInvalidElementError("Invalid XML: Dive log not found")
-
-            start_surface_pressure = dive_log.find("startSurfacePressure")
-            if start_surface_pressure is None:
-                raise DiveLogXmlInvalidElementError(
-                    "Invalid XML: Start surface pressure not found"
-                )
-            self.__start_surface_pressure = float(str(start_surface_pressure.text))
+            try:
+                start_surface_pressure = dive_log.find("startSurfacePressure")
+                if start_surface_pressure is None:
+                    raise DiveLogXmlInvalidElementError(
+                        "Invalid XML: Start surface pressure not found"
+                    )
+                self.__start_surface_pressure = float(str(start_surface_pressure.text))
+            except ValueError as e:
+                raise InvalidSurfacePressureValueError(
+                    "Invalid XML: Invalid start surface pressure value"
+                ) from e
 
             dive_log_records = dive_log.find("diveLogRecords")
             if dive_log_records is None:
@@ -121,8 +146,8 @@ class ShearwaterXmlParser(DiveLogXmlParser):
                     raise InvalidDepthValueError(
                         "Invalid XML: Invalid depth values"
                     ) from e
-                mbar_hydrostatic_pressure = (
-                    mbar_absolute_pressure - self.__start_surface_pressure
+                mbar_hydrostatic_pressure = max(
+                    mbar_absolute_pressure - self.__start_surface_pressure, 0
                 )
                 time = msec_time / 1000
                 depth_meter = self.__find_depth_meter(
@@ -154,12 +179,3 @@ class ShearwaterXmlParser(DiveLogXmlParser):
             The depth data parsed from the XML file.
         """
         return self.__depth_data
-
-
-# if __name__ == "__main__":
-#     shearwater_parser = ShearwaterXmlParser(salinity="en13319")
-#     shearwater_parser.parse(
-#         "/Users/nploywon/Desktop/git/personal/depthviz/tests/data/shearwater/valid_depth_data_trimmed.xml"
-#     )
-#     print(shearwater_parser.get_time_data())
-#     print(shearwater_parser.get_depth_data())

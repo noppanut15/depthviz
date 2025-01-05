@@ -4,7 +4,10 @@ Unit tests for the ShearwaterXmlParser class.
 
 import os
 import pytest
-from depthviz.parsers.shearwater.shearwater_xml_parser import ShearwaterXmlParser
+from depthviz.parsers.shearwater.shearwater_xml_parser import (
+    ShearwaterXmlParser,
+    InvalidSurfacePressureValueError,
+)
 from depthviz.parsers.generic.generic_divelog_parser import (
     DiveLogFileNotFoundError,
     InvalidTimeValueError,
@@ -75,16 +78,16 @@ class TestShearwaterXmlParser:
         xml_parser = ShearwaterXmlParser(salinity="fresh")
         xml_parser.parse(file_path)
         assert xml_parser.get_depth_data() == [
-            0.78,
-            1.24,
-            2.64,
-            3.31,
-            3.2,
-            3.76,
-            5.1,
-            6.43,
-            6.39,
-            6.9,
+            0.79,
+            1.25,
+            2.66,
+            3.34,
+            3.23,
+            3.79,
+            5.15,
+            6.5,
+            6.45,
+            6.96,
         ]
         assert xml_parser.get_time_data() == [
             0.0,
@@ -209,6 +212,25 @@ class TestShearwaterXmlParser:
             xml_parser.parse(file_path)
 
         assert str(e.value) == "Invalid XML: Depth not found"
+
+    def test_parse_invalid_xml_x_value_start_surface_pressure(
+        self, request: pytest.FixtureRequest
+    ) -> None:
+        """
+        Test parsing a XML file with an invalid startSurfacePressure value.
+        """
+        file_path = str(
+            request.path.parent.joinpath(
+                "data",
+                "shearwater",
+                "invalid_data_x_value_start_surface_pressure.xml",
+            )
+        )
+        xml_parser = ShearwaterXmlParser()
+        with pytest.raises(InvalidSurfacePressureValueError) as e:
+            xml_parser.parse(file_path)
+
+        assert str(e.value) == "Invalid XML: Invalid start surface pressure value"
 
     def test_parse_invalid_xml_x_value_time(
         self, request: pytest.FixtureRequest
