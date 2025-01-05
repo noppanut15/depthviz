@@ -5,12 +5,15 @@ Unit tests for the ApnealizerCsvParser class.
 import os
 import pytest
 from depthviz.parsers.apnealizer.csv_parser import ApnealizerCsvParser
-from depthviz.parsers.generic.csv.csv_parser import (
-    InvalidHeaderError,
+from depthviz.parsers.generic.generic_divelog_parser import (
+    DiveLogFileNotFoundError,
     InvalidTimeValueError,
     InvalidDepthValueError,
     EmptyFileError,
-    CsvFileNotFoundError,
+)
+
+from depthviz.parsers.generic.csv.csv_parser import (
+    DiveLogCsvInvalidHeaderError,
 )
 
 
@@ -49,7 +52,7 @@ class TestApnealizerCsvParser:
             request.path.parent.joinpath("data", "invalid_data_x_header.csv")
         )
         csv_parser = ApnealizerCsvParser()
-        with pytest.raises(InvalidHeaderError) as e:
+        with pytest.raises(DiveLogCsvInvalidHeaderError) as e:
             csv_parser.parse(file_path)
         assert str(e.value) == "Invalid CSV: Target header not found"
 
@@ -86,7 +89,7 @@ class TestApnealizerCsvParser:
         file_path = str(request.path.parent.joinpath("data", "missing_file_xyz.csv"))
         csv_parser = ApnealizerCsvParser()
         assert not os.path.exists(file_path)
-        with pytest.raises(CsvFileNotFoundError) as e:
+        with pytest.raises(DiveLogFileNotFoundError) as e:
             csv_parser.parse(file_path)
         assert str(e.value) == f"Invalid CSV: File not found: {file_path}"
 

@@ -4,13 +4,16 @@ which is used to parse a CSV file from the Apnealizer software.
 """
 
 import csv
-from depthviz.parsers.generic.csv.csv_parser import (
-    CsvParser,
-    CsvFileNotFoundError,
-    EmptyFileError,
+from depthviz.parsers.generic.generic_divelog_parser import (
+    DiveLogFileNotFoundError,
     InvalidTimeValueError,
     InvalidDepthValueError,
-    InvalidHeaderError,
+    EmptyFileError,
+)
+
+from depthviz.parsers.generic.csv.csv_parser import (
+    CsvParser,
+    DiveLogCsvInvalidHeaderError,
 )
 
 
@@ -47,11 +50,13 @@ class ApnealizerCsvParser(CsvParser):
                                 "Invalid CSV: Invalid depth values"
                             ) from e
                     else:
-                        raise InvalidHeaderError("Invalid CSV: Target header not found")
+                        raise DiveLogCsvInvalidHeaderError(
+                            "Invalid CSV: Target header not found"
+                        )
             if not self.__depth_data or not self.__time_data:
                 raise EmptyFileError("Invalid CSV: File is empty")
         except FileNotFoundError as e:
-            raise CsvFileNotFoundError(
+            raise DiveLogFileNotFoundError(
                 f"Invalid CSV: File not found: {file_path}"
             ) from e
 

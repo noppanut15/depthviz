@@ -5,8 +5,11 @@ This module provides the command line interface for the depthviz package.
 import sys
 import argparse
 from depthviz._version import __version__
+from depthviz.parsers.generic.generic_divelog_parser import (
+    DiveLogParser,
+    DiveLogParserError,
+)
 from depthviz.parsers.apnealizer.csv_parser import ApnealizerCsvParser
-from depthviz.parsers.generic.csv.csv_parser import CsvParser, CsvParserError
 from depthviz.core import DepthReportVideoCreator, DepthReportVideoCreatorError
 
 
@@ -53,7 +56,7 @@ class DepthvizApplication:
             version=f"%(prog)s version {__version__}",
         )
 
-    def create_video(self, divelog_parser: CsvParser, output_path: str) -> int:
+    def create_video(self, divelog_parser: DiveLogParser, output_path: str) -> int:
         """
         Create the depth overlay video.
         """
@@ -91,7 +94,7 @@ class DepthvizApplication:
             csv_parser = ApnealizerCsvParser()
             try:
                 csv_parser.parse(file_path=args.input)
-            except CsvParserError as e:
+            except DiveLogParserError as e:
                 print(e)
                 return 1
 
