@@ -12,12 +12,12 @@ from depthviz.parsers.generic.generic_divelog_parser import (
 )
 
 from depthviz.parsers.generic.csv.csv_parser import (
-    CsvParser,
+    DiveLogCsvParser,
     DiveLogCsvInvalidHeaderError,
 )
 
 
-class ApnealizerCsvParser(CsvParser):
+class ApnealizerCsvParser(DiveLogCsvParser):
     """
     A class to parse a CSV file containing depth data.
     """

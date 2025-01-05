@@ -18,7 +18,7 @@ class DiveLogCsvInvalidHeaderError(DiveLogParserError):
     """Exception raised for missing target header errors."""
 
 
-class CsvParser(DiveLogParser):
+class DiveLogCsvParser(DiveLogParser):
     """
     A class to parse a CSV file containing depth data.
     """
