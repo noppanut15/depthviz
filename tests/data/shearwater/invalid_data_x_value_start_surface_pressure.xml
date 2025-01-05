@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-16"?>
 <dive xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="3">
   <diveLog>
-    <number>660</number>
+    <number>999</number>
     <gfMin>50</gfMin>
     <gfMax>70</gfMax>
     <surfaceMins>10</surfaceMins>
     <imperialUnits>false</imperialUnits>
     <startBatteryVoltage>4.3</startBatteryVoltage>
     <startCns>0</startCns>
-    <startDate>9/13/2024 12:07:10 PM</startDate>
+    <startDate>9/13/2024 00:07:10 AM</startDate>
     <startO2SensorStatus>false</startO2SensorStatus>
     <startLowSetPoint>0</startLowSetPoint>
     <startHighSetPoint>1</startHighSetPoint>
     <computerFirmware>23</computerFirmware>
-    <maxDepth>35.3</maxDepth>
+    <maxDepth>20</maxDepth>
     <maxTime>94</maxTime>
     <errorHistory />
     <endBatteryVoltage>4.3</endBatteryVoltage>
     <endCns>0</endCns>
-    <endDate>9/13/2024 12:08:44 PM</endDate>
+    <endDate>9/13/2024 00:08:44 AM</endDate>
     <endO2SensorStatus>false</endO2SensorStatus>
     <endLowSetPoint>0</endLowSetPoint>
     <endHighSetPoint>0</endHighSetPoint>
-    <computerSerial>E96BAF7F</computerSerial>
+    <computerSerial>XXXXXXXX</computerSerial>
     <computerSoftwareVersion>23</computerSoftwareVersion>
     <computerModel>0</computerModel>
     <logVersion>13</logVersion>
