@@ -90,6 +90,7 @@ class DepthvizApplication:
 
         args = self.parser.parse_args(sys.argv[1:])
 
+        divelog_parser: DiveLogParser
         if args.source == "apnealizer":
             divelog_parser = ApnealizerCsvParser()
         elif args.source == "shearwater":
