@@ -10,11 +10,23 @@ from depthviz.parsers.generic.generic_divelog_parser import (
 )
 
 
-class XmlParserError(DiveLogParserError):
+class DiveLogXmlParserError(DiveLogParserError):
     """Base class for exceptions in this module."""
 
 
-class XmlParser(DiveLogParser):
+class DiveLogXmlInvalidRootElementError(DiveLogXmlParserError):
+    """Exception raised for an invalid root element in the XML file."""
+
+
+class DiveLogXmlInvalidElementError(DiveLogXmlParserError):
+    """Exception raised for an invalid element in the XML file."""
+
+
+class DiveLogXmlFileContentUnreadableError(DiveLogXmlParserError):
+    """Exception raised for unreadable XML file content."""
+
+
+class DiveLogXmlParser(DiveLogParser):
     """
     A class to parse a XML file containing depth data.
     """
