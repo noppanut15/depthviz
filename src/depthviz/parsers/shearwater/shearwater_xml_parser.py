@@ -76,8 +76,15 @@ class ShearwaterXmlParser(DiveLogXmlParser):
             self.__water_density = WATER_DENSITY_SALT
         elif salinity == "fresh":
             self.__water_density = WATER_DENSITY_FRESH
+        elif salinity != "en13319":
+            raise ValueError(
+                "Invalid salinity setting: Must be 'fresh', 'en13319', or 'salt'"
+            )
 
     def __find_depth_meter(self, mbar_pressure: float, water_density: float) -> float:
+        """
+        Calculates the depth in meters based on the hydrostatic pressure.
+        """
         pascal_pressure = mbar_pressure * 100
         return pascal_pressure / (water_density * GRAVITY)
 

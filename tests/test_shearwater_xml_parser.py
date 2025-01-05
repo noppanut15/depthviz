@@ -340,3 +340,14 @@ class TestShearwaterXmlParser:
         with pytest.raises(DiveLogXmlInvalidElementError) as e:
             xml_parser.parse(file_path)
         assert str(e.value) == "Invalid XML: Dive log records not found"
+
+    def test_invalid_salinity(self) -> None:
+        """
+        Test parsing a XML file with invalid salinity.
+        """
+        with pytest.raises(ValueError) as e:
+            ShearwaterXmlParser(salinity="invalid")
+        assert (
+            str(e.value)
+            == "Invalid salinity setting: Must be 'fresh', 'en13319', or 'salt'"
+        )
