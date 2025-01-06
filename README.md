@@ -82,7 +82,10 @@ To determine the depth, `depthviz` uses the following approach:
 $$\text{Hydrostatic Pressure} = \text{Absolute Pressure} - \text{Atmospheric Pressure}$$
     *   Then, the **fluid pressure formula** is used to calculate the depth:\
 \
-$$P = \rho g h$$
+$$\[{
+P = \rho g h\\
+}\]
+$$
     
     * Where:
       - $` P `$ is the fluid pressure,
