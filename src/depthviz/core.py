@@ -5,6 +5,7 @@ Module to create a video that reports the depth in meters from an array input.
 import os.path
 from typing import Tuple
 from moviepy import TextClip, VideoClip, concatenate_videoclips
+from depthviz.logger import DepthVizProgessBarLogger
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -50,6 +51,9 @@ class DepthReportVideoCreator:
         self.align = align
         self.size = size
         self.final_video = None
+        self.progress_bar_logger = DepthVizProgessBarLogger(
+            description="Rendering", unit="f", color="#3982d8"
+        )
 
     def __clip_duration_in_seconds(
         self, current_pos: int, time_data: list[float]
@@ -134,7 +138,9 @@ class DepthReportVideoCreator:
                     raise VideoFormatError(
                         "Invalid file format: The file format must be .mp4"
                     )
-                self.final_video.write_videofile(path, fps=fps)
+                self.final_video.write_videofile(
+                    path, fps=fps, logger=self.progress_bar_logger
+                )
             else:
                 raise VideoNotRenderError(
                     "Cannot save video because it has not been rendered yet."
