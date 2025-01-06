@@ -31,37 +31,36 @@ pipx install depthviz
 
 **1. Download Your Data:**
 
-Export your dive log data from [Apnealizer](https://apnealizer.com/) in CSV format. 
-> [!NOTE]
-> We are currently working on adding support for direct logs from dive computers, so we don't just rely on Apnealizer. Stay tuned for updates!
+Export your dive log data from your dive computer or diving application. See the source options below for supported formats.
 
 **2. Generate the Overlay:**
 
 ```bash
-depthviz -i <input_file.csv> -s <source> -o <output_video.mp4>
+depthviz -i <input_file> -s <source> -o <output_video.mp4>
 ```
 
 **Arguments:**
 
-* `-i`, `--input <input_file.csv>`: Path to your file containing your dive log.
-* `-s`, `--source <source>`: Source of the dive computer data. Currently, only `apnealizer` is supported.
-* `-o`, `--output <output_video.mp4>`: Path or filename for the generated video with the depth overlay.
+* `-i`, `--input <input_file>`: Path to your file containing your dive log.
+* `-s`, `--source <source>`: Source of the dive computer data. See the table below for supported sources.
+* `-o`, `--output <output_video.mp4>`: Path or filename for the generated video with the depth overlay. The output file format must be `.mp4`.
 
 **Source Options:**
 
-| Source       | Description                                                                                    | File type | Development Status                                                                                                 |
-| ------------ | ---------------------------------------------------------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------ |
-| `apnealizer` | Data exported from [Apnealizer](https://apnealizer.com/), logging and analyzing application.   | CSV       | :white_check_mark: Supported                                                                                       |
-| `shearwater` | Data exported from [Shearwater](https://shearwater.com/pages/shearwater-cloud) dive computers. | XML       | :construction: Under development, not supported yet                                                                |
-| `garmin`     | Data exported from [Garmin](https://connect.garmin.com/) dive computers.                       | -         | :x: Not supported yet, [**sample data needed**](https://github.com/noppanut15/depthviz/issues/15) :rotating_light: |
-| `manual`     | Manually input the dive data, for those who don't have a dive computer.                        | -         | :x: Not supported yet                                                                                              |
+| Source       | Description                                                                                                                            | File type | Development Status                                                                                                 |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------ |
+| `apnealizer` | Data exported from [Apnealizer](https://apnealizer.com/), logging and analyzing application.                                           | CSV       | :white_check_mark: Supported                                                                                       |
+| `shearwater` | Data exported from [Shearwater](https://shearwater.com/pages/shearwater-cloud) dive computers.                                         | XML       | :white_check_mark: Supported                                                                                       |
+| `garmin`     | Data exported from [Garmin](https://connect.garmin.com/) dive computers.                                                               | -         | :x: Not supported yet, [**sample data needed**](https://github.com/noppanut15/depthviz/issues/15) :rotating_light: |
+| `suunto`     | Data exported from [Suunto](https://www.suunto.com/Support/faq-articles/dm5/how-do-i-import--export-dive-logs-to-dm5/) dive computers. | -         | :x: Not supported yet, [**sample data needed**](https://github.com/noppanut15/depthviz/issues/15) :rotating_light: |
+| `manual`     | Manually input the dive data, for those who don't have a dive computer.                                                                | -         | :construction: Under development, not supported yet                                                                |
 
 **Example**:
 
-Here's an example of using `depthviz` to generate a depth overlay video named `depth_tracking.mp4`, using the data from `my_dive.csv` exported from Apnealizer:
+Example of generating a depth overlay video named `depth_overlay.mp4` using data from `my_dive.xml` exported from Shearwater dive computers (source: `shearwater`).
 
 ```bash
-depthviz -i my_dive.csv -s apnealizer -o depth_tracking.mp4
+depthviz -i my_dive.xml -s shearwater -o depth_overlay.mp4
 ```
 
 **3. Integrate with Your Footage:**
