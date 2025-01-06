@@ -77,28 +77,26 @@ Dive computers typically record either depth directly or pressure data. If the d
 To determine the depth, `depthviz` uses the following approach:
 1.  **If the dive log contains depth data directly:** `depthviz` uses this data directly.
 2.  **If the dive log contains pressure data:**
-    *   First, the **hydrostatic pressure** is calculated by subtracting atmospheric pressure (collected during the surface) from the absolute pressure:
-    ```math
-    \text{Hydrostatic Pressure} = \text{Absolute Pressure} - \text{Atmospheric Pressure} 
-    ```
-    *   Then, the **fluid pressure formula** is used to calculate the depth:
-    ```math
-        P = \rho g h 
-    ```
+    *   First, the **hydrostatic pressure** is calculated by subtracting atmospheric pressure (collected during the surface) from the absolute pressure:\
+\
+$$\text{Hydrostatic Pressure} = \text{Absolute Pressure} - \text{Atmospheric Pressure}$$
+    *   Then, the **fluid pressure formula** is used to calculate the depth:\
+\
+$$P = \rho g h$$
+    
     * Where:
-        - $` P `$ is the fluid pressure,
-        - $` \rho `$ is the density of the fluid (water),
-        - $` g `$ is the acceleration due to gravity (9.80665 m/s²),
-        - $` h `$ is the height (or depth) of the fluid column (what we want to calculate).
+      - $` P `$ is the fluid pressure,
+      - $` \rho `$ is the density of the fluid (water),
+      - $` g `$ is the acceleration due to gravity (9.80665 m/s²),
+      - $` h `$ is the height (or depth) of the fluid column (what we want to calculate).
+    * Rearranging the formula to solve for depth ($` h `$):\
+\
+$$h = \frac{P}{\rho g}$$
 
-    * Rearranging the formula to solve for depth ($` h `$):
-  
-    ```math
-         h = \frac{P}{\rho g}
-    ```
-    Currently, `depthviz` uses a water density ($` \rho `$) according to the **EN13319 standard**, a European CE standard for dive computers, which assumes a water density of 1019.7 kg/m³.
 
-    The water density can vary depending on the type of water (e.g., freshwater, saltwater). Even different locations in the ocean can have varying densities. This variability can affect the accuracy of depth calculations. For more precise measurements, users may need to adjust the density value based on their specific diving environment. Especially for freshwater diving, the water density is lower than the standard value, which can lead to depth overestimation. We will add support for custom water density in future releases.
+Currently, `depthviz` uses a water density ($` \rho `$) according to the **EN13319 standard**, a European CE standard for dive computers, which assumes a water density of 1019.7 kg/m³.
+
+The water density can vary depending on the type of water (e.g., freshwater, saltwater). Even different locations in the ocean can have varying densities. This variability can affect the accuracy of depth calculations. For more precise measurements, users may need to adjust the density value based on their specific diving environment. Especially for freshwater diving, the water density is lower than the standard value, which can lead to depth overestimation. We will add support for custom water density in future releases.
     
 
 
