@@ -71,33 +71,44 @@ Import the generated overlay video into your preferred video editing software an
 ## How It Works
 `depthviz` works by parsing dive log data exported from various dive computers and generating an overlay video that displays depth information.
 
-The data collected by dive computers is actually in the form of absolute pressure, which includes both atmospheric pressure and hydrostatic pressure.
+Dive computers typically record either depth directly or pressure data. If the data is recorded as pressure, it is in the form of **absolute pressure**, which includes both atmospheric pressure and the pressure exerted by the water itself (hydrostatic pressure).
 
-To determine the depth, we use the hydrostatic pressure equation:
 
-\[ \text{Hydrostatic Pressure} = \text{Absolute Pressure} - \text{Atmospheric Pressure} \]
+To determine the depth, `depthviz` uses the following approach:
+1.  **If the dive log contains depth data directly:** `depthviz` uses this data directly.
+2.  **If the dive log contains pressure data:**
+    *   First, the **hydrostatic pressure** is calculated by subtracting atmospheric pressure (collected during the surface) from the absolute pressure:
+    
+    \[ \text{Hydrostatic Pressure} = \text{Absolute Pressure} - \text{Atmospheric Pressure} \]
 
-The hydrostatic pressure is then used to calculate the depth in meters. This calculation also involves the water density, which can vary depending on the type of water (freshwater, saltwater, etc.). Currently, `depthviz` uses water density according to the EN13319 standard, which is a European CE standard for dive computers. The EN13319 standard assumes a water density of 1019.7 kg/m³.
+    *   Then, the **fluid pressure formula** is used to calculate the depth:
+    \[ P = \rho g h \]
+
+        Where:
+        - \( P \) is the fluid pressure,
+        - \( \rho \) is the density of the fluid (water),
+        - \( g \) is the acceleration due to gravity (9.80665 m/s²),
+        - \( h \) is the height (or depth) of the fluid column (what we want to calculate).
+
+    * Rearranging the formula to solve for depth (\( h \)):
+    \[ h = \frac{P}{\rho g} \]
+
+    Currently, `depthviz` uses a water density (\( \rho \)) according to the **EN13319 standard**, a European CE standard for dive computers, which assumes a water density of 1019.7 kg/m³.
+
+    The water density can vary depending on the type of water (e.g., freshwater, saltwater). Even different locations in the ocean can have varying densities. This variability can affect the accuracy of depth calculations. For more precise measurements, users may need to adjust the density value based on their specific diving environment. Especially for freshwater diving, the water density is lower than the standard value, which can lead to depth overestimation. (We will add support for custom water density in future releases.)
+    
+
 
 > [!TIP]
-> The EN13319 standard is a European CE standard for dive computers, which ensures the accuracy and reliability of depth measurements. For more information, you can refer to [EN13319 standard](https://standards.iteh.ai/catalog/standards/cen/5d35e933-ca50-4d80-8c9d-631f5597b784/en-13319-2000).
-
-The fluid pressure formula is then used to understand the relationship between pressure, depth, and density in a fluid. The formula is:
-
-\[ P = \rho g h \]
-
-Where:
-- \( P \) is the fluid pressure,
-- \( \rho \) is the density of the fluid,
-- \( g \) is the acceleration due to gravity (9.80665 m/s²),
-- \( h \) is the height (or depth) of the fluid column.
-
-This formula helps in calculating the pressure exerted by a fluid at a given depth, which is essential for determining the depth from the pressure data recorded by dive computers.
+> The EN13319 standard ensures the accuracy and reliability of depth measurements in dive computers. For more information, you can refer to the [EN13319 standard](https://standards.iteh.ai/catalog/standards/cen/5d35e933-ca50-4d80-8c9d-631f5597b784/en-13319-2000).
 
 The steps involved in generating the depth overlay video are as follows:
-1. **Parse Dive Log Data**: The dive log data is parsed to extract time and depth information.
-2. **Calculate Depth**: The depth is calculated using the hydrostatic pressure equation and the EN13319 water density standard.
-3. **Generate Overlay Video**: An overlay video is generated that displays the calculated depth information at the corresponding times.
+
+1.  **Parse Dive Log Data**: The dive log data is parsed to extract time and either depth or pressure information.
+2.  **Calculate Depth (if necessary):** If the dive log contains pressure data, the depth is calculated using the hydrostatic pressure equation and the fluid pressure formula  with the EN13319 water density standard.
+3.  **Generate Overlay Video**: An overlay video is generated that displays the depth information at the corresponding times.
+
+
 
 
 ## Contribution
