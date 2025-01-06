@@ -13,6 +13,17 @@ from depthviz.parsers.apnealizer.csv_parser import ApnealizerCsvParser
 from depthviz.parsers.shearwater.shearwater_xml_parser import ShearwaterXmlParser
 from depthviz.core import DepthReportVideoCreator, DepthReportVideoCreatorError
 
+# Banner for the command line interface
+BLUE = "\033[94m"  # Blue ANSI escape code
+RESET = "\033[0m"  # Reset ANSI escape code
+BANNER = f"""
+     {BLUE}_,-._{RESET}
+    {BLUE}/ \\_/ \\{RESET}    {BLUE}d e p t h{RESET} v i z
+    {BLUE}>-(_)-<{RESET}
+    {BLUE}\\_/ \\_/{RESET}    {BLUE}~~~~~~~~~{RESET}~~~~~~
+      {BLUE}`-'{RESET}
+"""
+
 
 class DepthvizApplication:
     """
@@ -20,14 +31,6 @@ class DepthvizApplication:
     """
 
     def __init__(self) -> None:
-        self.banner = """
- #####  ###### #####  ##### #    # #    # # ###### 
- #    # #      #    #   #   #    # #    # #     #  
- #    # #####  #    #   #   ###### #    # #    #   
- #    # #      #####    #   #    # #    # #   #    
- #    # #      #        #   #    #  #  #  #  #     
- #####  ###### #        #   #    #   ##   # ###### 
-"""
         self.parser = argparse.ArgumentParser(
             prog="depthviz",
             description="Generate depth overlay videos from your dive log.",
@@ -73,7 +76,6 @@ class DepthvizApplication:
             print(e)
             return 1
 
-        print("===================================================")
         print(f"Video successfully created: {output_path}")
         return 0
 
@@ -81,14 +83,12 @@ class DepthvizApplication:
         """
         Main function for the depthviz command line interface.
         """
-        print(self.banner)
         if len(sys.argv) == 1:
             self.parser.print_help(sys.stderr)
             return 1
 
-        print("===================================================")
-
         args = self.parser.parse_args(sys.argv[1:])
+        print(BANNER)
 
         divelog_parser: DiveLogParser
         if args.source == "apnealizer":

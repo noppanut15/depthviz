@@ -58,6 +58,10 @@ exclude = [
 module = ["moviepy"]
 ignore_missing_imports = true
 
+[[tool.mypy.overrides]]
+module = ["proglog"]
+ignore_missing_imports = true
+
 [tool.pytest.ini_options]
 pythonpath = "src"
 testpaths = ["tests"]
