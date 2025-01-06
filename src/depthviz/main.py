@@ -14,7 +14,7 @@ from depthviz.parsers.shearwater.shearwater_xml_parser import ShearwaterXmlParse
 from depthviz.core import DepthReportVideoCreator, DepthReportVideoCreatorError
 
 # Banner for the command line interface
-BLUE = "\033[94m"  # Blue ANSI escape code
+BLUE = "\033[34m"  # Blue ANSI escape code
 RESET = "\033[0m"  # Reset ANSI escape code
 BANNER = f"""
      {BLUE}_,-._{RESET}
