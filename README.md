@@ -84,7 +84,7 @@ To determine the depth, `depthviz` uses the following approach:
          - $` \rho `$ is the density of the fluid (water),
          - $` g `$ is the acceleration due to gravity (9.80665 m/s²),
          - $` h `$ is the height (or depth) of the fluid column (what we want to calculate).
-    * Rearranging the formula to solve for depth ($` h `$):<br><br><p align="center"><img src="https://latex.codecogs.com/svg.image?\LARGE&space;$$h=\frac{P}{\rho&space;g}$$" title="$$h=\frac{P}{\rho g}$$" /></p>
+    * Rearranging the formula to solve for depth ($` h `$):<br><br><p align="center"><img src="https://latex.codecogs.com/svg.image?\LARGE&space;$$h=\frac{P}{\rho&space;g}$$" title="$$h=\frac{P}{\rho g}$$" /></p><br>
 
 Currently, `depthviz` uses a water density ($` \rho `$) according to the **EN13319 standard**, a European CE standard for dive computers, which assumes a water density of 1019.7 kg/m³.
 
