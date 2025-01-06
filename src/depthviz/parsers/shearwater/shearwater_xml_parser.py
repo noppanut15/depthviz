@@ -46,7 +46,7 @@ from depthviz.parsers.generic.xml.xml_parser import (
 
 # Constants related to the hydrostatic pressure calculation
 WATER_DENSITY_FRESH = 1000
-WATER_DENSITY_EN13319 = 1020
+WATER_DENSITY_EN13319 = 1019.7  # To be precise to the EN13319 standard
 WATER_DENSITY_SALT = 1030
 GRAVITY = 9.80665
 
