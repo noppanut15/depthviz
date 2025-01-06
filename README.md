@@ -77,25 +77,14 @@ Dive computers typically record either depth directly or pressure data. If the d
 To determine the depth, `depthviz` uses the following approach:
 1.  **If the dive log contains depth data directly:** `depthviz` uses this data directly.
 2.  **If the dive log contains pressure data:**
-    *   First, the **hydrostatic pressure** is calculated by subtracting atmospheric pressure (collected during the surface) from the absolute pressure:\
-\
-$$\text{Hydrostatic Pressure} = \text{Absolute Pressure} - \text{Atmospheric Pressure}$$
-    *   Then, the **fluid pressure formula** is used to calculate the depth:\
-\
-$$\[{
-P = \rho g h\\
-}\]
-$$
-    
-    * Where:
-      - $` P `$ is the fluid pressure,
-      - $` \rho `$ is the density of the fluid (water),
-      - $` g `$ is the acceleration due to gravity (9.80665 m/s²),
-      - $` h `$ is the height (or depth) of the fluid column (what we want to calculate).
-    * Rearranging the formula to solve for depth ($` h `$):\
-\
-$$h = \frac{P}{\rho g}$$
-
+    * First, the **hydrostatic pressure** is calculated by subtracting atmospheric pressure (collected during the surface) from the absolute pressure:<br><br><p align="center"><img src="https://latex.codecogs.com/svg.image?\large&space;\text{Hydrostatic&space;Pressure}=\text{Absolute&space;Pressure}-\text{Atmospheric&space;Pressure}" title="\text{Hydrostatic Pressure}=\text{Absolute Pressure}-\text{Atmospheric Pressure}" /></p><br>
+    * Then, the **fluid pressure formula** is used to calculate the depth:<br><br><p align="center"><img src="https://latex.codecogs.com/svg.image?\LARGE&space;&space;P=\rho&space;g&space;h" title=" P=\rho g h" /></p> 
+       Where:
+         - $` P `$ is the fluid pressure,
+         - $` \rho `$ is the density of the fluid (water),
+         - $` g `$ is the acceleration due to gravity (9.80665 m/s²),
+         - $` h `$ is the height (or depth) of the fluid column (what we want to calculate).
+    * Rearranging the formula to solve for depth ($` h `$):<br><br><p align="center"><img src="https://latex.codecogs.com/svg.image?\LARGE&space;$$h=\frac{P}{\rho&space;g}$$" title="$$h=\frac{P}{\rho g}$$" /></p><br>
 
 Currently, `depthviz` uses a water density ($` \rho `$) according to the **EN13319 standard**, a European CE standard for dive computers, which assumes a water density of 1019.7 kg/m³.
 
