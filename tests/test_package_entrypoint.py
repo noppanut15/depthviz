@@ -2,6 +2,8 @@
 Unit tests for the main entrypoint of the package.
 """
 
+import sys
+
 
 def test_main_entrypoint() -> None:
     """
@@ -12,5 +14,6 @@ def test_main_entrypoint() -> None:
     from depthviz.__main__ import run  # type: ignore
 
     # pylint: enable=import-outside-toplevel
+    sys.argv = ["depthviz"]
     ret_code = run()
     assert ret_code == 1

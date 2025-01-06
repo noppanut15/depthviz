@@ -5,8 +5,12 @@ This module provides the command line interface for the depthviz package.
 import sys
 import argparse
 from depthviz._version import __version__
+from depthviz.parsers.generic.generic_divelog_parser import (
+    DiveLogParser,
+    DiveLogParserError,
+)
 from depthviz.parsers.apnealizer.csv_parser import ApnealizerCsvParser
-from depthviz.parsers.generic.csv.csv_parser import CsvParser, CsvParserError
+from depthviz.parsers.shearwater.shearwater_xml_parser import ShearwaterXmlParser
 from depthviz.core import DepthReportVideoCreator, DepthReportVideoCreatorError
 
 
@@ -32,7 +36,7 @@ class DepthvizApplication:
         self.required_args.add_argument(
             "-i",
             "--input",
-            help="Path to the CSV file containing your dive log.",
+            help="Path to the file containing your dive log.",
             required=True,
         )
         self.required_args.add_argument(
@@ -40,7 +44,7 @@ class DepthvizApplication:
             "--source",
             help="Source where the dive log was downloaded from. \
                 This is required to correctly parse your data.",
-            choices=["apnealizer"],
+            choices=["apnealizer", "shearwater"],
             required=True,
         )
         self.required_args.add_argument(
@@ -53,16 +57,16 @@ class DepthvizApplication:
             version=f"%(prog)s version {__version__}",
         )
 
-    def create_video(self, divelog_parser: CsvParser, output_path: str) -> int:
+    def create_video(self, divelog_parser: DiveLogParser, output_path: str) -> int:
         """
         Create the depth overlay video.
         """
         try:
-            time_data_from_csv = divelog_parser.get_time_data()
-            depth_data_from_csv = divelog_parser.get_depth_data()
+            time_data_from_divelog = divelog_parser.get_time_data()
+            depth_data_from_divelog = divelog_parser.get_depth_data()
             depth_report_video_creator = DepthReportVideoCreator()
             depth_report_video_creator.render_depth_report_video(
-                time_data=time_data_from_csv, depth_data=depth_data_from_csv
+                time_data=time_data_from_divelog, depth_data=depth_data_from_divelog
             )
             depth_report_video_creator.save(output_path, fps=25)
         except DepthReportVideoCreatorError as e:
@@ -86,20 +90,22 @@ class DepthvizApplication:
 
         args = self.parser.parse_args(sys.argv[1:])
 
+        divelog_parser: DiveLogParser
         if args.source == "apnealizer":
-            # If source is Apnealizer, use the ApnealizerCsvParser
-            csv_parser = ApnealizerCsvParser()
-            try:
-                csv_parser.parse(file_path=args.input)
-            except CsvParserError as e:
-                print(e)
-                return 1
+            divelog_parser = ApnealizerCsvParser()
+        elif args.source == "shearwater":
+            divelog_parser = ShearwaterXmlParser()
+        else:
+            print(f"Source {args.source} not supported.")
+            return 1
 
-            return self.create_video(divelog_parser=csv_parser, output_path=args.output)
+        try:
+            divelog_parser.parse(file_path=args.input)
+        except DiveLogParserError as e:
+            print(e)
+            return 1
 
-        # Otherwise, print an error message
-        print(f"Source {args.source} not supported.")
-        return 1
+        return self.create_video(divelog_parser=divelog_parser, output_path=args.output)
 
 
 def run() -> int:

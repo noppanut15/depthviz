@@ -5,12 +5,15 @@ Unit tests for the ApnealizerCsvParser class.
 import os
 import pytest
 from depthviz.parsers.apnealizer.csv_parser import ApnealizerCsvParser
-from depthviz.parsers.generic.csv.csv_parser import (
-    InvalidHeaderError,
+from depthviz.parsers.generic.generic_divelog_parser import (
+    DiveLogFileNotFoundError,
     InvalidTimeValueError,
     InvalidDepthValueError,
     EmptyFileError,
-    CsvFileNotFoundError,
+)
+
+from depthviz.parsers.generic.csv.csv_parser import (
+    DiveLogCsvInvalidHeaderError,
 )
 
 
@@ -24,7 +27,9 @@ class TestApnealizerCsvParser:
         Test parsing a valid CSV file.
         """
         file_path = str(
-            request.path.parent.joinpath("data", "valid_depth_data_trimmed.csv")
+            request.path.parent.joinpath(
+                "data", "apnealizer", "valid_depth_data_trimmed.csv"
+            )
         )
         csv_parser = ApnealizerCsvParser()
         csv_parser.parse(file_path)
@@ -46,10 +51,12 @@ class TestApnealizerCsvParser:
         Test parsing a CSV file with an invalid header.
         """
         file_path = str(
-            request.path.parent.joinpath("data", "invalid_data_x_header.csv")
+            request.path.parent.joinpath(
+                "data", "apnealizer", "invalid_data_x_header.csv"
+            )
         )
         csv_parser = ApnealizerCsvParser()
-        with pytest.raises(InvalidHeaderError) as e:
+        with pytest.raises(DiveLogCsvInvalidHeaderError) as e:
             csv_parser.parse(file_path)
         assert str(e.value) == "Invalid CSV: Target header not found"
 
@@ -57,7 +64,9 @@ class TestApnealizerCsvParser:
         """
         Test parsing an empty CSV file.
         """
-        file_path = str(request.path.parent.joinpath("data", "empty_file.csv"))
+        file_path = str(
+            request.path.parent.joinpath("data", "apnealizer", "empty_file.csv")
+        )
         csv_parser = ApnealizerCsvParser()
         with pytest.raises(EmptyFileError) as e:
             csv_parser.parse(file_path)
@@ -70,7 +79,9 @@ class TestApnealizerCsvParser:
         Test parsing a CSV file with missing depth values.
         """
         file_path = str(
-            request.path.parent.joinpath("data", "invalid_data_x_depth.csv")
+            request.path.parent.joinpath(
+                "data", "apnealizer", "invalid_data_x_depth.csv"
+            )
         )
         csv_parser = ApnealizerCsvParser()
         with pytest.raises(InvalidDepthValueError) as e:
@@ -83,10 +94,12 @@ class TestApnealizerCsvParser:
         """
         Test parsing a missing CSV file.
         """
-        file_path = str(request.path.parent.joinpath("data", "missing_file_xyz.csv"))
+        file_path = str(
+            request.path.parent.joinpath("data", "apnealizer", "missing_file_xyz.csv")
+        )
         csv_parser = ApnealizerCsvParser()
         assert not os.path.exists(file_path)
-        with pytest.raises(CsvFileNotFoundError) as e:
+        with pytest.raises(DiveLogFileNotFoundError) as e:
             csv_parser.parse(file_path)
         assert str(e.value) == f"Invalid CSV: File not found: {file_path}"
 
@@ -97,7 +110,9 @@ class TestApnealizerCsvParser:
         Test parsing a CSV file with missing time values.
         """
         file_path = str(
-            request.path.parent.joinpath("data", "invalid_time_depth_mismatched.csv")
+            request.path.parent.joinpath(
+                "data", "apnealizer", "invalid_time_depth_mismatched.csv"
+            )
         )
         csv_parser = ApnealizerCsvParser()
         with pytest.raises(InvalidTimeValueError) as e:

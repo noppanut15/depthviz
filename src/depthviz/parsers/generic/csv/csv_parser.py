@@ -1,36 +1,24 @@
 """
-This module contains the CsvParser base class 
+This module contains the DiveLogCsvParser base class 
 which is used to parse a CSV file containing depth data.
 """
 
-from abc import ABC, abstractmethod
+from abc import abstractmethod
+from depthviz.parsers.generic.generic_divelog_parser import (
+    DiveLogParser,
+    DiveLogParserError,
+)
 
 
-class CsvParserError(Exception):
+class DiveLogCsvParserError(DiveLogParserError):
     """Base class for exceptions in this module."""
 
 
-class CsvFileNotFoundError(CsvParserError):
-    """Exception raised for file not found errors."""
-
-
-class InvalidHeaderError(CsvParserError):
+class DiveLogCsvInvalidHeaderError(DiveLogParserError):
     """Exception raised for missing target header errors."""
 
 
-class InvalidTimeValueError(CsvParserError):
-    """Exception raised for invalid time value errors."""
-
-
-class InvalidDepthValueError(CsvParserError):
-    """Exception raised for invalid depth value errors."""
-
-
-class EmptyFileError(CsvParserError):
-    """Exception raised for empty file errors."""
-
-
-class CsvParser(ABC):
+class DiveLogCsvParser(DiveLogParser):
     """
     A class to parse a CSV file containing depth data.
     """

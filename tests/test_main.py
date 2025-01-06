@@ -39,7 +39,9 @@ class TestMainCLI:
         Test the main function with arguments.
         """
 
-        input_path = request.path.parent / "data" / "valid_depth_data_trimmed.csv"
+        input_path = (
+            request.path.parent / "data" / "apnealizer" / "valid_depth_data_trimmed.csv"
+        )
         output_path = tmp_path / "test_main_with_args.mp4"
         sys.argv = [
             "main",
@@ -65,7 +67,9 @@ class TestMainCLI:
         Test the main function with an invalid CSV.
         """
 
-        input_path = request.path.parent / "data" / "invalid_data_x_header.csv"
+        input_path = (
+            request.path.parent / "data" / "apnealizer" / "invalid_data_x_header.csv"
+        )
         output_path = tmp_path / "test_main_with_invalid_csv.mp4"
         sys.argv = [
             "main",
@@ -91,7 +95,7 @@ class TestMainCLI:
         app.main()
         captured = capsys.readouterr()
         assert "usage: " in captured.err
-        assert "[-h] -i INPUT -s {apnealizer} -o OUTPUT [-v]" in captured.err
+        assert "[-h] -i INPUT -s {apnealizer,shearwater} -o OUTPUT [-v]" in captured.err
 
     def test_main_with_invalid_output_video_filetype(
         self,
@@ -103,7 +107,9 @@ class TestMainCLI:
         Test the main function with an invalid output video file type.
         """
 
-        input_path = request.path.parent / "data" / "valid_depth_data_trimmed.csv"
+        input_path = (
+            request.path.parent / "data" / "apnealizer" / "valid_depth_data_trimmed.csv"
+        )
         output_path = tmp_path / "invalid.mp3"
         sys.argv = [
             "main",
@@ -128,7 +134,9 @@ class TestMainCLI:
         """
         Test the main function with an invalid source.
         """
-        input_path = request.path.parent / "data" / "valid_depth_data_trimmed.csv"
+        input_path = (
+            request.path.parent / "data" / "apnealizer" / "valid_depth_data_trimmed.csv"
+        )
         output_path = tmp_path / "test_main_with_args.mp4"
         sys.argv = [
             "main",
@@ -173,3 +181,31 @@ class TestMainCLI:
         sys.argv = ["main"]
         ret_code = run()
         assert ret_code == 1
+
+    def test_main_with_args_shearwater(
+        self,
+        capsys: pytest.CaptureFixture[str],
+        tmp_path: pathlib.Path,
+        request: pytest.FixtureRequest,
+    ) -> None:
+        """
+        Test the main function with arguments for Shearwater.
+        """
+
+        input_path = (
+            request.path.parent / "data" / "shearwater" / "valid_depth_data_trimmed.xml"
+        )
+        output_path = tmp_path / "test_main_with_args_shearwater.mp4"
+        sys.argv = [
+            "main",
+            "-i",
+            str(input_path.as_posix()),
+            "-s",
+            "shearwater",
+            "-o",
+            str(output_path.as_posix()),
+        ]
+        app = DepthvizApplication()
+        app.main()
+        captured = capsys.readouterr()
+        assert f"Video successfully created: {output_path.as_posix()}" in captured.out
