@@ -1332,12 +1332,12 @@ class TestLinearInterpolation:
     # pylint: disable=too-many-arguments
     def test_linear_interpolation(
         self,
-        times,
-        depths,
-        fps,
-        expected_times,
-        expected_depths,
-    ):  # pylint: enable=too-many-arguments
+        times: list[float],
+        depths: list[float],
+        fps: int,
+        expected_times: list[float],
+        expected_depths: list[float],
+    ) -> None:  # pylint: enable=too-many-arguments
         """
         Test the linear_interpolation function.
         """
@@ -1367,10 +1367,10 @@ class TestLinearInterpolation:
     )
     def test_invalid_fps(
         self,
-        times,
-        depths,
-        fps,
-    ):
+        times: list[float],
+        depths: list[float],
+        fps: int,
+    ) -> None:
         """
         Test the linear_interpolation function with invalid fps.
         """
@@ -1381,10 +1381,10 @@ class TestLinearInterpolation:
     @pytest.mark.parametrize("times, depths, fps", [([0, 1, 2], [1, 3], 25)])
     def test_unequal_time_depth_list_length(
         self,
-        times,
-        depths,
-        fps,
-    ):
+        times: list[float],
+        depths: list[float],
+        fps: int,
+    ) -> None:
         """
         Test the linear_interpolation function with invalid input.
         """
@@ -1397,10 +1397,10 @@ class TestLinearInterpolation:
     @pytest.mark.parametrize("times, depths, fps", [(None, "XYZ", 25)])
     def test_invalid_input(
         self,
-        times,
-        depths,
-        fps,
-    ):
+        times: list[float],
+        depths: list[float],
+        fps: int,
+    ) -> None:
         """
         Test the linear_interpolation function with invalid input.
         """

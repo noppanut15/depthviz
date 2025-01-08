@@ -19,15 +19,15 @@ class LinearInterpolationDepth:
         fps: The target frame rate (frames per second).
     """
 
-    def __init__(self, times, depths, fps):
+    def __init__(self, times: list[float], depths: list[float], fps: int) -> None:
         self.__current_pos = 0
         self.times = times
         self.depths = depths
         self.fps = fps
-        self.__new_times = []
+        self.__new_times: list[float] = []
         self.__interpolated_depths = self.__interpolate_depth()
 
-    def __linear_interpolation(self, x, current_pos=0):
+    def __linear_interpolation(self, x: float, current_pos: int = 0) -> float:
         """
         A helper function to perform linear interpolation between two points.
         """
@@ -36,7 +36,7 @@ class LinearInterpolationDepth:
         t2, d2 = self.times[i + 1], self.depths[i + 1]
         return float(d1 + (x - t1) * (d2 - d1) / (t2 - t1))
 
-    def __interpolate_depth(self) -> dict:
+    def __interpolate_depth(self) -> list[float]:
         """
         Interpolates depth data to a given frame rate using linear interpolation.
         Original data points are retained at their correct times.
@@ -58,7 +58,7 @@ class LinearInterpolationDepth:
         if len(self.times) == 1:
             # If there is only one data point, return a constant depth for a second
             # (according to the fps)
-            self.__new_times = [list(range(self.fps))]
+            self.__new_times = [float(t) for t in range(self.fps)]
             return [self.depths[0] for _ in range(self.fps)]
 
         interpolated_depths = []
@@ -98,7 +98,7 @@ class LinearInterpolationDepth:
 
         return interpolated_depths
 
-    def get_interpolated_depths(self) -> list:
+    def get_interpolated_depths(self) -> list[float]:
         """
         Returns the interpolated depth data.
         Returns:
@@ -106,7 +106,7 @@ class LinearInterpolationDepth:
         """
         return self.__interpolated_depths
 
-    def get_interpolated_times(self) -> list:
+    def get_interpolated_times(self) -> list[float]:
         """
         Returns the interpolated time data.
         Returns:
