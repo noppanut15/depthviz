@@ -119,46 +119,46 @@ class LinearInterpolationDepth:
 # For future reference
 # ==============================================================================
 
-test_cases = [
-    ([0, 2, 5], [10, 20, 40], 1, 6),  # x falls between non-consecutive points
-    ([1, 5, 9], [10, 50, 90], 1, 9),  # another example with bigger gap
-    ([0, 10, 20], [0, 100, 200], 1, 21),
-    ([0, 1], [0, 1], 5, 10),
-    ([0, 1, 2, 3], [0, 1, 2, 3], 5, 20),
-    ([0, 1, 2, 3], [1, 3, 4, 6], 25, 100),  # Standard case
-    ([0, 1], [1, 3], 25, 50),  # Two points
-    ([0], [1], 25, 25),  # One point
-    ([0], [1], 5, 5),  # One point
-    ([0, 1, 2], [1, 3, 5], 25, 75),  # another standard case
-    ([0, 2], [1, 5], 25, 75),  # non-consecutive time
-    ([0, 0.5, 1], [0, 1, 2], 5, 10),  # non-integer time
-    ([0, 0.5, 1], [0, 1, 2], 25, 50),  # non-integer time
-    (
-        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-        [
-            1,
-            3,
-            4,
-            5,
-            6,
-            7,
-            9,
-            8,
-            7,
-            6,
-        ],
-        25,
-        250,
-    ),  # 10 seconds
-    ([0, 0.1, 0.2], [1, 2, 3], 25, 10),  # Time difference less than 1 second
-    ([0, 0.04], [1, 2], 25, 2),  # Time difference is exactly 2 frame
-    ([0, 0.08], [1, 2], 25, 4),  # Time difference is 4 frame
-    # ([0, 30, 60], [0, 30, 0], 25, 1525),
-]
+# test_cases = [
+#     ([0, 2, 5], [10, 20, 40], 1, 6),  # x falls between non-consecutive points
+#     ([1, 5, 9], [10, 50, 90], 1, 9),  # another example with bigger gap
+#     ([0, 10, 20], [0, 100, 200], 1, 21),
+#     ([0, 1], [0, 1], 5, 10),
+#     ([0, 1, 2, 3], [0, 1, 2, 3], 5, 20),
+#     ([0, 1, 2, 3], [1, 3, 4, 6], 25, 100),  # Standard case
+#     ([0, 1], [1, 3], 25, 50),  # Two points
+#     ([0], [1], 25, 25),  # One point
+#     ([0], [1], 5, 5),  # One point
+#     ([0, 1, 2], [1, 3, 5], 25, 75),  # another standard case
+#     ([0, 2], [1, 5], 25, 75),  # non-consecutive time
+#     ([0, 0.5, 1], [0, 1, 2], 5, 10),  # non-integer time
+#     ([0, 0.5, 1], [0, 1, 2], 25, 50),  # non-integer time
+#     (
+#         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+#         [
+#             1,
+#             3,
+#             4,
+#             5,
+#             6,
+#             7,
+#             9,
+#             8,
+#             7,
+#             6,
+#         ],
+#         25,
+#         250,
+#     ),  # 10 seconds
+#     ([0, 0.1, 0.2], [1, 2, 3], 25, 10),  # Time difference less than 1 second
+#     ([0, 0.04], [1, 2], 25, 2),  # Time difference is exactly 2 frame
+#     ([0, 0.08], [1, 2], 25, 4),  # Time difference is 4 frame
+#     # ([0, 30, 60], [0, 30, 0], 25, 1525),
+# ]
 
-if __name__ == "__main__":
-    for time, depth, fps, expected_len in test_cases:
-        handler = LinearInterpolationDepth(times=time, depths=depth, fps=fps)
-        new_times = handler.get_interpolated_times()
-        interpolated_depths = handler.get_interpolated_depths()
-        print(f"({time}, {depth}, {fps}, {new_times}, {interpolated_depths}),")
+# if __name__ == "__main__":
+#     for time, depth, fps, expected_len in test_cases:
+#         handler = LinearInterpolationDepth(times=time, depths=depth, fps=fps)
+#         new_times = handler.get_interpolated_times()
+#         interpolated_depths = handler.get_interpolated_depths()
+#         print(f"({time}, {depth}, {fps}, {new_times}, {interpolated_depths}),")
