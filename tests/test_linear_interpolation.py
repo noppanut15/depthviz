@@ -12,6 +12,7 @@ class TestLinearInterpolation:
     Test class for the LinearInterpolationDepth class.
     """
 
+    # pylint: disable=too-many-lines
     @pytest.mark.parametrize(
         "times, depths, fps, expected_times, expected_depths",
         [
