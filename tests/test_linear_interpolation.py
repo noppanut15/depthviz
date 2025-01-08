@@ -4,7 +4,10 @@ Unit tests for the linear_interpolation.
 
 import pytest
 
-from depthviz.optimizer.linear_interpolation import LinearInterpolationDepth
+from depthviz.optimizer.linear_interpolation import (
+    LinearInterpolationDepth,
+    LinearInterpolationDepthError,
+)
 
 
 class TestLinearInterpolation:
@@ -1341,3 +1344,66 @@ class TestLinearInterpolation:
         handler = LinearInterpolationDepth(times, depths, fps)
         assert handler.get_interpolated_times() == expected_times
         assert handler.get_interpolated_depths() == expected_depths
+
+    @pytest.mark.parametrize(
+        "times, depths, fps",
+        [
+            (
+                [
+                    0,
+                    1,
+                    2,
+                    3,
+                ],
+                [
+                    1,
+                    3,
+                    4,
+                    5,
+                ],
+                -2,
+            ),
+        ],
+    )
+    def test_invalid_fps(
+        self,
+        times,
+        depths,
+        fps,
+    ):
+        """
+        Test the linear_interpolation function with invalid fps.
+        """
+        with pytest.raises(LinearInterpolationDepthError) as e:
+            LinearInterpolationDepth(times, depths, fps)
+        assert str(e.value) == "Error: FPS must be positive."
+
+    @pytest.mark.parametrize("times, depths, fps", [([0, 1, 2], [1, 3], 25)])
+    def test_unequal_time_depth_list_length(
+        self,
+        times,
+        depths,
+        fps,
+    ):
+        """
+        Test the linear_interpolation function with invalid input.
+        """
+        with pytest.raises(LinearInterpolationDepthError) as e:
+            LinearInterpolationDepth(times, depths, fps)
+        assert (
+            str(e.value) == "Error: Times and depths lists must have the same length."
+        )
+
+    @pytest.mark.parametrize("times, depths, fps", [(None, "XYZ", 25)])
+    def test_invalid_input(
+        self,
+        times,
+        depths,
+        fps,
+    ):
+        """
+        Test the linear_interpolation function with invalid input.
+        """
+        with pytest.raises(LinearInterpolationDepthError) as e:
+            LinearInterpolationDepth(times, depths, fps)
+        assert str(e.value) == "Error: Input times and depths must be lists."
