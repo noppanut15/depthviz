@@ -44,6 +44,7 @@ class DepthReportVideoCreator:
         stroke_width: int = 2,
         align: str = "center",
         size: Tuple[int, int] = (640, 360),
+        fps: int = 25,
     ):
         self.font = font
         self.fontsize = fontsize
@@ -54,6 +55,7 @@ class DepthReportVideoCreator:
         self.stroke_width = stroke_width
         self.align = align
         self.size = size
+        self.fps = fps
         self.final_video = None
         self.progress_bar_logger = DepthVizProgessBarLogger(
             description="Rendering", unit="f", color="#3982d8"
@@ -91,10 +93,11 @@ class DepthReportVideoCreator:
         Returns:
             The processed video.
         """
+        # TODO: Add a progress bar to show the preprocessing progress
         # Interpolate the depth data
         try:
             interpolated_depth = LinearInterpolationDepth(
-                times=time_data, depths=depth_data, fps=25
+                times=time_data, depths=depth_data, fps=self.fps
             )
             interpolated_depths = interpolated_depth.get_interpolated_depths()
             interpolated_times = interpolated_depth.get_interpolated_times()
@@ -126,17 +129,16 @@ class DepthReportVideoCreator:
 
             # Concatenate all the clips into a single video
             self.final_video = concatenate_videoclips(clips)
-
+        # TODO: Add tests for the following exceptions
         except LinearInterpolationDepthError as e:
-            raise DepthReportVideoCreatorError(f"Interpolation Error: {e}") from e
+            raise DepthReportVideoCreatorError(f"Interpolation Error; ({e})") from e
 
-    def save(self, path: str, fps: int = 25) -> None:
+    def save(self, path: str) -> None:
         """
         Saves the video to a file.
 
         Args:
             path: The path to save the video (expected file format: .mp4).
-            fps: The frames per second of the video.
         """
         parent_dir = os.path.dirname(path)
         if parent_dir == "":
@@ -153,7 +155,7 @@ class DepthReportVideoCreator:
                         "Invalid file format: The file format must be .mp4"
                     )
                 self.final_video.write_videofile(
-                    path, fps=fps, logger=self.progress_bar_logger
+                    path, fps=self.fps, logger=self.progress_bar_logger
                 )
             else:
                 raise VideoNotRenderError(
