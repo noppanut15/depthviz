@@ -44,15 +44,24 @@ Export your dive log data from your dive computer or diving application. See the
 
 **2. Generate the Overlay:**
 
+In this step, you will use the `depthviz` to generate a video overlay that displays the depth information from your dive log.
+
 ```bash
 depthviz -i <input_file> -s <source> -o <output_video.mp4>
 ```
 
-**Arguments:**
+**Required Arguments:**
 
 * `-i`, `--input <input_file>`: Path to your file containing your dive log.
 * `-s`, `--source <source>`: Source of the dive computer data. See the table below for supported sources.
 * `-o`, `--output <output_video.mp4>`: Path or filename for the generated video with the depth overlay. The output file format must be `.mp4`.
+
+**Optional Arguments:**
+* `-d`, `--decimal-places <0-2>`: Number of decimal places to display in the depth overlay. Valid values are `0`, `1`, or `2`. (Default is `0`)
+  * Example:
+    - `0` decimal places: `-10m` (default)
+    - `1` decimal place: `-10.0m`
+    - `2` decimal places: `-10.00m`
 
 **Source Options:**
 
