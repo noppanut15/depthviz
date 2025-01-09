@@ -58,10 +58,8 @@ depthviz -i <input_file> -s <source> -o <output_video.mp4>
 
 **Optional Arguments:**
 * `-d`, `--decimal-places <0-2>`: Number of decimal places to display in the depth overlay. Valid values are `0`, `1`, or `2`. (Default is `0`)
-  * Example:
-    - `0` decimal places: `-10m` (default)
-    - `1` decimal place: `-10.0m`
-    - `2` decimal places: `-10.00m`
+
+<img src="https://raw.githubusercontent.com/noppanut15/depthviz/feat/decimal-places/assets/depth-decimal-places.gif" alt="decimal places comparison"/>
 
 **Source Options:**
 
