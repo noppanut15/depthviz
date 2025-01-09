@@ -3,13 +3,15 @@ Module to create a video that reports the depth in meters from an array input.
 """
 
 import os.path
-from typing import Tuple
+from typing import Tuple, cast
 from moviepy import TextClip, VideoClip, concatenate_videoclips
+from tqdm import tqdm
 from depthviz.logger import DepthVizProgessBarLogger
 from depthviz.optimizer.linear_interpolation import (
     LinearInterpolationDepth,
     LinearInterpolationDepthError,
 )
+
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -57,9 +59,11 @@ class DepthReportVideoCreator:
         self.size = size
         self.fps = fps
         self.final_video = None
-        self.progress_bar_logger = DepthVizProgessBarLogger(
-            description="Rendering", unit="f", color="#3982d8"
-        )
+        self.progress_bar_logger_config = {
+            "unit": "f",
+            "color": "#3982d8",
+            "ncols": 70,
+        }
 
     def __clip_duration_in_seconds(
         self, current_pos: int, time_data: list[float]
@@ -93,7 +97,6 @@ class DepthReportVideoCreator:
         Returns:
             The processed video.
         """
-        # TODO: Add a progress bar to show the preprocessing progress
         # Interpolate the depth data
         try:
             interpolated_depth = LinearInterpolationDepth(
@@ -101,11 +104,18 @@ class DepthReportVideoCreator:
             )
             interpolated_depths = interpolated_depth.get_interpolated_depths()
             interpolated_times = interpolated_depth.get_interpolated_times()
-
-            # Create a text clip for each depth value
+            # Create a text clip for each depth value and track the progress with a progress bar
             clips = []
             clip_count = len(interpolated_times)
-            for i in range(clip_count):
+            for i in tqdm(
+                iterable=range(clip_count),
+                desc="Rendering",
+                colour=str(self.progress_bar_logger_config["color"]),
+                unit=str(self.progress_bar_logger_config["unit"]),
+                ncols=cast(int, self.progress_bar_logger_config["ncols"]),
+                bar_format="{l_bar}{bar}| {n_fmt}/{total_fmt} ({remaining} remaining)",
+                leave=False,
+            ):
                 duration = self.__clip_duration_in_seconds(i, interpolated_times)
                 rounded_depth = round(interpolated_depths[i])
                 if rounded_depth == 0:
@@ -154,7 +164,14 @@ class DepthReportVideoCreator:
                         "Invalid file format: The file format must be .mp4"
                     )
                 self.final_video.write_videofile(
-                    path, fps=self.fps, logger=self.progress_bar_logger
+                    path,
+                    fps=self.fps,
+                    logger=DepthVizProgessBarLogger(
+                        description="Exporting",
+                        unit=self.progress_bar_logger_config["unit"],
+                        color=self.progress_bar_logger_config["color"],
+                        ncols=self.progress_bar_logger_config["ncols"],
+                    ),
                 )
             else:
                 raise VideoNotRenderError(
