@@ -67,11 +67,11 @@ class DepthvizApplication:
         try:
             time_data_from_divelog = divelog_parser.get_time_data()
             depth_data_from_divelog = divelog_parser.get_depth_data()
-            depth_report_video_creator = DepthReportVideoCreator()
+            depth_report_video_creator = DepthReportVideoCreator(fps=25)
             depth_report_video_creator.render_depth_report_video(
                 time_data=time_data_from_divelog, depth_data=depth_data_from_divelog
             )
-            depth_report_video_creator.save(output_path, fps=25)
+            depth_report_video_creator.save(output_path)
         except DepthReportVideoCreatorError as e:
             print(e)
             return 1

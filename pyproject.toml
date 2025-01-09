@@ -28,6 +28,7 @@ classifiers = [
 [tool.poetry.dependencies]
 python = "^3.9"
 moviepy = "2.1.1"
+types-tqdm = "^4.67.0.20241221"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "8.3.4"
