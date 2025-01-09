@@ -63,7 +63,7 @@ class LinearInterpolationDepth:
 
         interpolated_depths = []
         # Calculate the total number of frames
-        total_frames = int(math.ceil((self.times[-1] - self.times[0]) * self.fps))
+        total_frames = math.ceil((self.times[-1] - self.times[0]) * self.fps)
         # Generate a list of new time points for the interpolated depth data
         self.__new_times = [self.times[0] + (i / self.fps) for i in range(total_frames)]
 
@@ -87,10 +87,12 @@ class LinearInterpolationDepth:
 
         # If the total time is less than 1 second, double the length of the interpolated depth
         if self.times[-1] - self.times[0] <= 1:
-            expected_len = int(self.fps * (self.times[-1] - self.times[0])) * 2
+            expected_len = math.ceil(self.fps * (self.times[-1] - self.times[0])) * 2
         else:
             # Otherwise, add one more frame to the length of the interpolated depth
-            expected_len = int(self.fps * (self.times[-1] - self.times[0])) + self.fps
+            expected_len = (
+                math.ceil(self.fps * (self.times[-1] - self.times[0])) + self.fps
+            )
         # If the length of the interpolated depth is less than the expected length,
         # repeat the last depth value and time point
         for i in range(total_frames, expected_len):
@@ -153,6 +155,25 @@ class LinearInterpolationDepth:
 #     ([0, 0.1, 0.2], [1, 2, 3], 25, 10),  # Time difference less than 1 second
 #     ([0, 0.04], [1, 2], 25, 2),  # Time difference is exactly 2 frame
 #     ([0, 0.08], [1, 2], 25, 4),  # Time difference is 4 frame
+#     (
+#         [
+#             0.25,
+#             0.5,
+#             0.75,
+#             1.0,
+#             1.25,
+#             1.5,
+#             1.75,
+#             2.0,
+#             2.25,
+#             2.5,
+#             2.75,
+#             3.0,
+#         ],
+#         [0.1, 0.2, 0.3, 0.4, 0.5, 0.9, 1.3, 1.7, 2.1, 2.5, 2.9, 3.3],
+#         25,
+#         94,
+#     ),  # Standard case
 #     # ([0, 30, 60], [0, 30, 0], 25, 1525),
 # ]
 
@@ -161,4 +182,10 @@ class LinearInterpolationDepth:
 #         handler = LinearInterpolationDepth(times=time, depths=depth, fps=fps)
 #         new_times = handler.get_interpolated_times()
 #         interpolated_depths = handler.get_interpolated_depths()
+#         assert (
+#             len(interpolated_depths) == expected_len
+#         ), f"Expected {expected_len} but got {len(interpolated_depths)}"
+#         assert (
+#             len(new_times) == expected_len
+#         ), f"Expected {expected_len} but got {len(new_times)}"
 #         print(f"({time}, {depth}, {fps}, {new_times}, {interpolated_depths}),")
