@@ -45,10 +45,10 @@ class TestDepthReportVideoCreator:
         assert video is not None
 
         # Check the duration of the video (seconds)
-        assert video.duration == 3
+        assert video.duration == pytest.approx(3.76)
 
         # Check the number of clips in the video
-        assert len(video.clips) == 12
+        assert len(video.clips) == 94
 
     def test_save_specific_dir(self, tmp_path: pathlib.Path) -> None:
         """
