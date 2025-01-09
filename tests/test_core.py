@@ -4,6 +4,7 @@ Unit tests for the core module.
 
 import os.path
 import pathlib
+from typing import Any
 import pytest
 from depthviz.core import (
     DepthReportVideoCreator,
@@ -192,4 +193,69 @@ class TestDepthReportVideoCreator:
         assert (
             str(e.value)
             == "Interpolation Error; (Error: Times and depths lists must have the same length.)"
+        )
+
+    @pytest.mark.parametrize(
+        "decimal_places, expected_texts",
+        [
+            (0, ["0m", "0m", "0m", "-1m", "-2m", "-3343m"]),
+            (1, ["0.0m", "-0.1m", "-0.3m", "-1.3m", "-1.5m", "-3343.3m"]),
+            (2, ["0.00m", "-0.13m", "-0.27m", "-1.34m", "-1.54m", "-3343.32m"]),
+        ],
+    )
+    def test_render_depth_video_with_decimal_places(
+        self, decimal_places: int, expected_texts: list[str]
+    ) -> None:
+        """
+        Test the render_depth_report_video method with decimal places.
+        """
+        # Create a DepthReportVideoCreator instance
+        depth_report_video_creator = DepthReportVideoCreator(fps=1)
+
+        # Create a depth report video with decimal places
+        time_data = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
+        depth_data = [0.001, 0.13344, 0.26667, 1.345, 1.54444, 3343.32343]
+        depth_report_video_creator.render_depth_report_video(
+            time_data=time_data, depth_data=depth_data, decimal_places=decimal_places
+        )
+        video = depth_report_video_creator.get_video()
+
+        # Check the video is not None
+        assert video is not None
+
+        # Check the duration of the video (seconds)
+        assert video.duration == 6
+
+        # Check the number of clips in the video
+        assert len(video.clips) == 6
+
+        # Check the text of each clip in the video
+        video_clip_texts = [video.clips[i].text for i in range(len(video.clips))]
+        assert video_clip_texts == expected_texts
+
+    @pytest.mark.parametrize(
+        "decimal_places",
+        [-1, 3, 4, None, "string", 1.5, 0.5, 0.0],
+    )
+    def test_render_depth_video_with_invalid_decimal_places(
+        self, decimal_places: Any
+    ) -> None:
+        """
+        Test the render_depth_report_video method with invalid decimal places.
+        """
+        # Create a DepthReportVideoCreator instance
+        depth_report_video_creator = DepthReportVideoCreator(fps=1)
+
+        # Create a depth report video with invalid decimal places
+        time_data = [1.0, 2.0, 3.0]
+        depth_data = [0.1, 0.2, 0.3]
+        with pytest.raises(DepthReportVideoCreatorError) as e:
+            depth_report_video_creator.render_depth_report_video(
+                time_data=time_data,
+                depth_data=depth_data,
+                decimal_places=decimal_places,
+            )
+        assert (
+            str(e.value)
+            == "Invalid decimal places value; must be a number between 0 and 2."
         )
