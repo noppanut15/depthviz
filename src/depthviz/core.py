@@ -6,6 +6,10 @@ import os.path
 from typing import Tuple
 from moviepy import TextClip, VideoClip, concatenate_videoclips
 from depthviz.logger import DepthVizProgessBarLogger
+from depthviz.optimizer.linear_interpolation import (
+    LinearInterpolationDepth,
+    LinearInterpolationDepthError,
+)
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -87,34 +91,44 @@ class DepthReportVideoCreator:
         Returns:
             The processed video.
         """
-
-        # Create a text clip for each depth value
-        clips = []
-        clip_count = len(time_data)
-        for i in range(clip_count):
-            duration = self.__clip_duration_in_seconds(i, time_data)
-            rounded_depth = round(depth_data[i])
-            if rounded_depth == 0:
-                text = "0m"
-            else:
-                text = f"-{rounded_depth}m"
-            clip = TextClip(
-                text=text,
-                font=self.font,
-                font_size=self.fontsize,
-                interline=self.interline,
-                color=self.color,
-                bg_color=self.bg_color,
-                stroke_color=self.stroke_color,
-                stroke_width=self.stroke_width,
-                text_align=self.align,
-                size=self.size,
-                duration=duration,
+        # Interpolate the depth data
+        try:
+            interpolated_depth = LinearInterpolationDepth(
+                times=time_data, depths=depth_data, fps=25
             )
-            clips.append(clip)
+            interpolated_depths = interpolated_depth.get_interpolated_depths()
+            interpolated_times = interpolated_depth.get_interpolated_times()
 
-        # Concatenate all the clips into a single video
-        self.final_video = concatenate_videoclips(clips)
+            # Create a text clip for each depth value
+            clips = []
+            clip_count = len(interpolated_times)
+            for i in range(clip_count):
+                duration = self.__clip_duration_in_seconds(i, interpolated_times)
+                rounded_depth = round(interpolated_depths[i])
+                if rounded_depth == 0:
+                    text = "0m"
+                else:
+                    text = f"-{rounded_depth}m"
+                clip = TextClip(
+                    text=text,
+                    font=self.font,
+                    font_size=self.fontsize,
+                    interline=self.interline,
+                    color=self.color,
+                    bg_color=self.bg_color,
+                    stroke_color=self.stroke_color,
+                    stroke_width=self.stroke_width,
+                    text_align=self.align,
+                    size=self.size,
+                    duration=duration,
+                )
+                clips.append(clip)
+
+            # Concatenate all the clips into a single video
+            self.final_video = concatenate_videoclips(clips)
+
+        except LinearInterpolationDepthError as e:
+            raise DepthReportVideoCreatorError(f"Interpolation Error: {e}") from e
 
     def save(self, path: str, fps: int = 25) -> None:
         """
