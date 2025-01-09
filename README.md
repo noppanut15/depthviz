@@ -59,7 +59,7 @@ depthviz -i <input_file> -s <source> -o <output_video.mp4>
 **Optional Arguments:**
 * `-d`, `--decimal-places <0-2>`: Number of decimal places to display in the depth overlay. Valid values are `0`, `1`, or `2`. (Default is `0`)
 
-<p align="center"><img src="https://raw.githubusercontent.com/noppanut15/depthviz/feat/decimal-places/assets/depth-decimal-places.gif" alt="decimal places comparison"/></p>
+<p align="center"><img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/depth-decimal-places.gif" alt="decimal places comparison"/></p>
 
 > [!TIP]
 > The decimal places option allows you to customize the level of detail in the depth overlay. For example, setting `--decimal-places 1` will display the depth with one decimal place (e.g., `-12.5m`).
@@ -115,7 +115,7 @@ The water density can vary depending on the type of water (e.g., freshwater, sal
 
 3. **Fill in the Gaps**: Different dive computers have different sampling rates, and the data may not be recorded at regular intervals. If the dive log data contains gaps or missing values, `depthviz` uses **Linear Interpolation** to estimate the depth at those points. This method calculates the depth at each time point by interpolating between the two nearest known depth values recorded by the dive computer. This will help ensure a smooth and continuous depth profile in the overlay video.
 
-<p align="center"><img src="https://raw.githubusercontent.com/noppanut15/depthviz/feat/decimal-places/assets/linear-interpolation.png" alt="Linear Interpolation"/></p>
+<p align="center"><img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/linear-interpolation.png" alt="Linear Interpolation"/></p>
 
 > [!NOTE]
 > Learn more about the [Linear Interpolation](https://en.wikipedia.org/wiki/Linear_interpolation) method and how it is used to estimate values between two known depths.
