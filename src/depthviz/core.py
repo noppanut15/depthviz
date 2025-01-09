@@ -129,7 +129,6 @@ class DepthReportVideoCreator:
 
             # Concatenate all the clips into a single video
             self.final_video = concatenate_videoclips(clips)
-        # TODO: Add tests for the following exceptions
         except LinearInterpolationDepthError as e:
             raise DepthReportVideoCreatorError(f"Interpolation Error; ({e})") from e
 
