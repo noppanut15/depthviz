@@ -85,7 +85,7 @@ class DepthReportVideoCreator:
         return abs(time_data[current_pos + 1] - time_data[current_pos])
 
     def render_depth_report_video(
-        self, time_data: list[float], depth_data: list[float]
+        self, time_data: list[float], depth_data: list[float], decimal_places: int = 0
     ) -> None:
         """
         Creates a video that reports the depth in meters from an array input.
@@ -93,10 +93,20 @@ class DepthReportVideoCreator:
         Args:
             time_data: An array of time values in seconds.
             depth_data: An array of depth values in meters.
+            decimal_places: The number of decimal places to round the depth values to.
 
         Returns:
             The processed video.
         """
+        # Check the decimal places value
+        if (
+            not isinstance(decimal_places, int)
+            or decimal_places < 0
+            or decimal_places > 2
+        ):
+            raise DepthReportVideoCreatorError(
+                "Invalid decimal places value; must be a number between 0 and 2."
+            )
         # Interpolate the depth data
         try:
             interpolated_depth = LinearInterpolationDepth(
@@ -117,11 +127,19 @@ class DepthReportVideoCreator:
                 leave=False,
             ):
                 duration = self.__clip_duration_in_seconds(i, interpolated_times)
-                rounded_depth = round(interpolated_depths[i])
-                if rounded_depth == 0:
-                    text = "0m"
+                if decimal_places == 0:
+                    rounded_current_depth = round(interpolated_depths[i])
+                    if rounded_current_depth == 0:
+                        text = "0m"
+                    else:
+                        text = f"-{rounded_current_depth}m"
                 else:
-                    text = f"-{rounded_depth}m"
+                    current_depth = round(interpolated_depths[i], decimal_places)
+                    if current_depth == 0:
+                        text = f"{0:.{decimal_places}f}m"
+                    else:
+                        text = f"-{current_depth:.{decimal_places}f}m"
+
                 clip = TextClip(
                     text=text,
                     font=self.font,
