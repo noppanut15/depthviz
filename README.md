@@ -59,7 +59,11 @@ depthviz -i <input_file> -s <source> -o <output_video.mp4>
 **Optional Arguments:**
 * `-d`, `--decimal-places <0-2>`: Number of decimal places to display in the depth overlay. Valid values are `0`, `1`, or `2`. (Default is `0`)
 
-<img src="https://raw.githubusercontent.com/noppanut15/depthviz/feat/decimal-places/assets/depth-decimal-places.gif" alt="decimal places comparison"/>
+<p align="center"><img src="https://raw.githubusercontent.com/noppanut15/depthviz/feat/decimal-places/assets/depth-decimal-places.gif" alt="decimal places comparison"/></p>
+
+> [!NOTE]
+> The decimal places option allows you to customize the level of detail in the depth overlay. For example, setting `--decimal-places 1` will display the depth with one decimal place (e.g., `-12.5m`).
+
 
 **Source Options:**
 
@@ -109,11 +113,13 @@ The water density can vary depending on the type of water (e.g., freshwater, sal
 > [!NOTE]
 > The EN13319 standard ensures the accuracy and reliability of depth measurements in dive computers. For more information, you can refer to the [EN13319 standard](https://standards.iteh.ai/catalog/standards/cen/5d35e933-ca50-4d80-8c9d-631f5597b784/en-13319-2000).
 
-The steps involved in generating the depth overlay video are as follows:
+3. **Fill in the Gaps**: Different dive computers have different sampling rates, and the data may not be recorded at regular intervals. If the dive log data contains gaps or missing values, `depthviz` uses [Linear Interpolation](https://en.wikipedia.org/wiki/Linear_interpolation) to estimate the depth at those points. This method calculates the depth at each time point by interpolating between the two nearest known depth values recorded by the dive computer. This will help ensure a smooth and continuous depth profile in the overlay video.
 
-1.  **Parse Dive Log Data**: The dive log data is parsed to extract time and either depth or pressure information.
-2.  **Calculate Depth (if necessary):** If the dive log contains pressure data, the depth is calculated using the hydrostatic pressure equation and the fluid pressure formula  with the EN13319 water density standard.
-3.  **Generate Overlay Video**: An overlay video is generated that displays the depth information at the corresponding times.
+> [!NOTE]
+> Learn more about the [linear interpolation](https://en.wikipedia.org/wiki/Linear_interpolation) method and how it is used to estimate values between two known depths.
+
+4. **Generate Overlay Video**: An overlay video is rendered with the depth information displayed over time. The overlay video is then ready to be integrated with your original dive footage.
+
 
 ## Contribution
 
