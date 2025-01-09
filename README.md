@@ -120,7 +120,7 @@ The water density can vary depending on the type of water (e.g., freshwater, sal
 > [!NOTE]
 > Learn more about the [Linear Interpolation](https://en.wikipedia.org/wiki/Linear_interpolation) method and how it is used to estimate values between two known depths.
 
-1. **Generate Overlay Video**: An overlay video is rendered with the depth information displayed over time. The overlay video is then ready to be integrated with your original dive footage.
+4. **Generate Overlay Video**: The depth information from the linearly interpolated data is rendered into an overlay video, displaying the depth over time. This overlay video can then be integrated with your original dive footage.
 
 
 ## Contribution
