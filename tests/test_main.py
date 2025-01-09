@@ -95,7 +95,7 @@ class TestMainCLI:
         app.main()
         captured = capsys.readouterr()
         assert "usage: " in captured.err
-        assert "[-h] -i INPUT -s {apnealizer,shearwater} -o OUTPUT [-v]" in captured.err
+        assert "[-h] -i INPUT -s {apnealizer,shearwater} -o OUTPUT" in captured.err
 
     def test_main_with_invalid_output_video_filetype(
         self,

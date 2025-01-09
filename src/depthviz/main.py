@@ -35,6 +35,7 @@ class DepthvizApplication:
             prog="depthviz",
             description="Generate depth overlay videos from your dive log.",
         )
+        # REQUIRED ARGUMENTS
         self.required_args = self.parser.add_argument_group("required arguments")
         self.required_args.add_argument(
             "-i",
@@ -53,6 +54,14 @@ class DepthvizApplication:
         self.required_args.add_argument(
             "-o", "--output", help="Path or filename of the video file.", required=True
         )
+        # OPTIONAL ARGUMENTS
+        self.parser.add_argument(
+            "-d",
+            "--decimal-places",
+            help="Number of decimal places to round the depth. Valid values: 0, 1, 2. (default: 0)",
+            type=int,
+            default=0,
+        )
         self.parser.add_argument(
             "-v",
             "--version",
@@ -60,7 +69,9 @@ class DepthvizApplication:
             version=f"%(prog)s version {__version__}",
         )
 
-    def create_video(self, divelog_parser: DiveLogParser, output_path: str) -> int:
+    def create_video(
+        self, divelog_parser: DiveLogParser, output_path: str, decimal_places: int
+    ) -> int:
         """
         Create the depth overlay video.
         """
@@ -69,7 +80,9 @@ class DepthvizApplication:
             depth_data_from_divelog = divelog_parser.get_depth_data()
             depth_report_video_creator = DepthReportVideoCreator(fps=25)
             depth_report_video_creator.render_depth_report_video(
-                time_data=time_data_from_divelog, depth_data=depth_data_from_divelog
+                time_data=time_data_from_divelog,
+                depth_data=depth_data_from_divelog,
+                decimal_places=decimal_places,
             )
             depth_report_video_creator.save(output_path)
         except DepthReportVideoCreatorError as e:
@@ -105,7 +118,11 @@ class DepthvizApplication:
             print(e)
             return 1
 
-        return self.create_video(divelog_parser=divelog_parser, output_path=args.output)
+        return self.create_video(
+            divelog_parser=divelog_parser,
+            output_path=args.output,
+            decimal_places=args.decimal_places,
+        )
 
 
 def run() -> int:
