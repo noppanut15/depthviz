@@ -53,7 +53,8 @@ class ManualCsvParser(DiveLogCsvParser):
                             ) from e
                     else:
                         raise DiveLogCsvInvalidHeaderError(
-                            "Invalid CSV: Invalid headers in CSV file, make sure there are 'Time' and 'Depth' columns in the CSV file"
+                            "Invalid CSV: Invalid headers in CSV file, make sure there are \
+                                'Time' and 'Depth' columns in the CSV file"
                         )
             if not self.__depth_data or not self.__time_data:
                 raise EmptyFileError("Invalid CSV: File is empty")
