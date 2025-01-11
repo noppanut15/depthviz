@@ -36,7 +36,7 @@ pipx install depthviz
 
 ## Usage
 
-**1. Get Your Data:**
+**1. Download Your Data:**
 
 - **Option 1:** Export your dive log data from your dive computer or diving application. See the source options below for supported formats.
 
