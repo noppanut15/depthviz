@@ -2,10 +2,6 @@
 
 [![PyPI - Version](https://img.shields.io/pypi/v/depthviz)](https://pypi.org/project/depthviz/) [![License](https://img.shields.io/github/license/noppanut15/depthviz)](LICENSE) [![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/noppanut15/depthviz/deploy.yaml)](https://github.com/noppanut15/depthviz/actions) [![Coveralls](https://img.shields.io/coveralls/github/noppanut15/depthviz?logo=coveralls)](https://coveralls.io/github/noppanut15/depthviz) [![PyPI - Status](https://img.shields.io/pypi/status/depthviz)](https://pypi.org/project/depthviz/)
 
-
-> [!NOTE]
-> This project is in active development. Feel free to [open an issue](https://github.com/noppanut15/depthviz/issues) for any feedback or feature requests.
-
 **depthviz** makes it easy to add dynamic depth tracking into your freediving footage. It is a command-line tool for generating depth overlay videos from the data recorded by your dive computer. It processes your dive log and creates a video that visualizes the depth over time.
 
 ![depthviz DEMO](https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/demo-compressed-v2.gif)
@@ -67,13 +63,13 @@ depthviz -i <input_file> -s <source> -o <output_video.mp4>
 
 **Source Options:**
 
-| Source       | Description                                                                                                                            | File type | Development Status                                                                              |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------------- | --------- | ----------------------------------------------------------------------------------------------- |
-| `apnealizer` | Data exported from [Apnealizer](https://apnealizer.com/), logging and analyzing application.                                           | CSV       | :white_check_mark: Supported                                                                    |
-| `shearwater` | Data exported from [Shearwater](https://shearwater.com/pages/shearwater-cloud) dive computers.                                         | XML       | :white_check_mark: Supported                                                                    |
-| `garmin`     | Data exported from [Garmin](https://connect.garmin.com/) dive computers.                                                               | -         | :x: [**Sample Files Needed**](https://github.com/noppanut15/depthviz/issues/15) :rotating_light: |
-| `suunto`     | Data exported from [Suunto](https://www.suunto.com/Support/faq-articles/dm5/how-do-i-import--export-dive-logs-to-dm5/) dive computers. | -         | :x: [**Sample Files Needed**](https://github.com/noppanut15/depthviz/issues/15) :rotating_light: |
-| `manual`     | Manual input without a dive computer, see the [Manual Mode](#manual-mode-creating-depth-overlays-without-a-dive-computer) section below.     | CSV       | :white_check_mark: Supported                                                                    |
+|    Source    | Description                                                                                                                              | File type |                                     Development Status                                      |
+| :----------: | ---------------------------------------------------------------------------------------------------------------------------------------- | :-------: | :-----------------------------------------------------------------------------------------: |
+| `apnealizer` | Data exported from [Apnealizer](https://apnealizer.com/), logging and analyzing application.                                             |    CSV    |                                :white_check_mark: Supported                                 |
+| `shearwater` | Data exported from [Shearwater](https://shearwater.com/pages/shearwater-cloud) dive computers.                                           |    XML    |                                :white_check_mark: Supported                                 |
+|   `garmin`   | Data exported from [Garmin](https://connect.garmin.com/) dive computers.                                                                 |     -     | :x: [**Samples Needed**](https://github.com/noppanut15/depthviz/issues/15) :rotating_light: |
+|   `suunto`   | Data exported from [Suunto](https://www.suunto.com/Support/faq-articles/dm5/how-do-i-import--export-dive-logs-to-dm5/) dive computers.   |     -     | :x: [**Samples Needed**](https://github.com/noppanut15/depthviz/issues/15) :rotating_light: |
+|   `manual`   | Manual input without a dive computer, see the [Manual Mode](#manual-mode-creating-depth-overlays-without-a-dive-computer) section below. |    CSV    |                                :white_check_mark: Supported                                 |
 
 **Example**:
 
@@ -115,17 +111,17 @@ The input file for manual mode should be a CSV file with the following columns:
 
 Here is an example of a manual mode input file:
 
-| Time | Depth |
-| ---- | ----- |
-| 0    | 0     |
-| 6    | 5     |
-| 12   | 10    |
-| 19   | 15    |
-| 26   | 10    |
-| 33   | 5     |
-| 39   | 0     |
+| Time  | Depth |
+| :---: | :---: |
+|   0   |   0   |
+|   6   |   5   |
+|  12   |  10   |
+|  19   |  15   |
+|  26   |  10   |
+|  33   |   5   |
+|  39   |   0   |
 
-Download the template file [here](https://raw.githubusercontent.com/noppanut15/depthviz/feat/manual-mode/assets/manual-input-example.csv).
+Download the example input file [here](https://github.com/noppanut15/depthviz/blob/feat/manual-mode/assets/manual-input-example.csv).
 
 ## How It Works
 `depthviz` works by parsing dive log data exported from various dive computers (or manually inputting dive data) and generating an overlay video that displays depth information.
@@ -185,4 +181,3 @@ This project provides a CycloneDX Software Bill of Materials (SBOM) in JSON form
 ## Contact
 
 For any inquiries, please [open an issue](https://github.com/noppanut15/depthviz/issues) or contact the maintainer at [noppanut.connect@gmail.com](mailto:noppanut.connect@gmail.com).
-
