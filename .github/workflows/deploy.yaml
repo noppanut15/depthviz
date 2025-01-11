@@ -67,8 +67,8 @@ jobs:
       python-version: "3.10"
       poetry-version: "1.8.5"
     environment:
-      name: pypi-test
-      url: https://test.pypi.org/p/depthviz
+      name: pypi
+      url: https://pypi.org/p/depthviz
     permissions:
       id-token: write  # This permission is mandatory for trusted publishing on PyPI
       contents: write  # This permission is for publishing the release on GitHub
@@ -96,8 +96,6 @@ jobs:
           poetry build
       - name: Publish the package to PyPI 🎉
         uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          repository-url: https://test.pypi.org/legacy/
       - name: Create release and add artifacts 🚀
         uses: softprops/action-gh-release@v2
         with:
