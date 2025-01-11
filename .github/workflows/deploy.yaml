@@ -66,6 +66,12 @@ jobs:
     env:
       python-version: "3.10"
       poetry-version: "1.8.5"
+    environment:
+      name: pypi
+      url: https://pypi.org/p/depthviz
+    permissions:
+      id-token: write  # This permission is mandatory for trusted publishing on PyPI
+      contents: write  # This permission is for publishing the release on GitHub
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
@@ -85,10 +91,11 @@ jobs:
       - name: Generate CycloneDX SBOM artifacts 📃
         run: |
           poetry run cyclonedx-py poetry --all-extras --of JSON -o depthviz-${{ github.ref_name }}.cyclonedx.json
-      - name: Build and publish package to PyPI 🎉
+      - name: Build the package 📦
         run: |
-          poetry config pypi-token.pypi ${{ secrets.PYPI_API_TOKEN }}
-          poetry publish --build --skip-existing
+          poetry build
+      - name: Publish the package to PyPI 🎉
+        uses: pypa/gh-action-pypi-publish@release/v1
       - name: Create release and add artifacts 🚀
         uses: softprops/action-gh-release@v2
         with:
@@ -97,7 +104,7 @@ jobs:
             dist/*.whl
             depthviz-${{ github.ref_name }}.cyclonedx.json
           draft: false
-          prerelease: false
+          prerelease: ${{ startsWith(github.ref, 'refs/tags') && (contains(github.ref_name, 'dev') || contains(github.ref_name, 'a') || contains(github.ref_name, 'b') || contains(github.ref_name, 'rc')) }}
           tag_name: ${{ github.ref_name }}
           name: ${{ github.ref_name }}
           generate_release_notes: true
