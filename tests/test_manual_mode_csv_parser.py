@@ -68,7 +68,10 @@ class TestManualCsvParser:
         csv_parser = ManualCsvParser()
         with pytest.raises(DiveLogCsvInvalidHeaderError) as e:
             csv_parser.parse(file_path)
-        assert str(e.value) == "Invalid CSV: Target header not found"
+        assert (
+            str(e.value)
+            == "Invalid CSV: Invalid headers in CSV file, make sure there are 'Time' and 'Depth' columns in the CSV file"
+        )
 
     def test_parse_empty_csv(self, request: pytest.FixtureRequest) -> None:
         """
@@ -94,7 +97,7 @@ class TestManualCsvParser:
         csv_parser = ManualCsvParser()
         with pytest.raises(InvalidDepthValueError) as e:
             csv_parser.parse(file_path)
-        assert str(e.value) == "Invalid CSV: Invalid depth values"
+        assert str(e.value) == "Invalid CSV: Invalid depth values at row 2"
 
     def test_parse_invalid_csv_missing_file(
         self, request: pytest.FixtureRequest
@@ -125,4 +128,4 @@ class TestManualCsvParser:
         csv_parser = ManualCsvParser()
         with pytest.raises(InvalidTimeValueError) as e:
             csv_parser.parse(file_path)
-        assert str(e.value) == "Invalid CSV: Invalid time values"
+        assert str(e.value) == "Invalid CSV: Invalid time value at row 11"

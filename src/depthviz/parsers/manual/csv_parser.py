@@ -35,23 +35,25 @@ class ManualCsvParser(DiveLogCsvParser):
         try:
             with open(file_path, "r", encoding="utf-8") as file:
                 reader = csv.DictReader(file, delimiter=",")
-                for row in reader:
+                for i, row in enumerate(reader):
+                    # The row in the CSV file
+                    excel_row = i + 2
                     if "Time" in row and "Depth" in row:
                         try:
                             self.__time_data.append(float(row["Time"]))
                         except ValueError as e:
                             raise InvalidTimeValueError(
-                                "Invalid CSV: Invalid time values"
+                                f"Invalid CSV: Invalid time value at row {excel_row}"
                             ) from e
                         try:
                             self.__depth_data.append(float(row["Depth"]))
                         except ValueError as e:
                             raise InvalidDepthValueError(
-                                "Invalid CSV: Invalid depth values"
+                                f"Invalid CSV: Invalid depth values at row {excel_row}"
                             ) from e
                     else:
                         raise DiveLogCsvInvalidHeaderError(
-                            "Invalid CSV: Target header not found"
+                            "Invalid CSV: Invalid headers in CSV file, make sure there are 'Time' and 'Depth' columns in the CSV file"
                         )
             if not self.__depth_data or not self.__time_data:
                 raise EmptyFileError("Invalid CSV: File is empty")
