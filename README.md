@@ -63,13 +63,13 @@ depthviz -i <input_file> -s <source> -o <output_video.mp4>
 
 **Source Options:**
 
-|    Source    | Description                                                                                                                   | File type | Development Status                                                                          |
-| :----------: | ----------------------------------------------------------------------------------------------------------------------------- | :-------: | ------------------------------------------------------------------------------------------- |
-| `apnealizer` | Data from [Apnealizer](https://apnealizer.com/) application.                                                                  |    CSV    | :white_check_mark: Supported                                                                |
-| `shearwater` | Data from [Shearwater](https://shearwater.com/pages/shearwater-cloud) dive computers.                                         |    XML    | :white_check_mark: Supported                                                                |
-|   `garmin`   | Data from [Garmin](https://connect.garmin.com/) dive computers.                                                               |     -     | :x: [**Samples Needed**](https://github.com/noppanut15/depthviz/issues/15) :rotating_light: |
-|   `suunto`   | Data from [Suunto](https://www.suunto.com/Support/faq-articles/dm5/how-do-i-import--export-dive-logs-to-dm5/) dive computers. |     -     | :x: [**Samples Needed**](https://github.com/noppanut15/depthviz/issues/15) :rotating_light: |
-|   `manual`   | [Manual input](#manual-mode-creating-depth-overlays-without-a-dive-computer) without a dive computer.                         |    CSV    | :white_check_mark: Supported                                                                |
+|    Source    | Description                                                                                                                                         | File type | Development Status                                                                          |
+| :----------: | --------------------------------------------------------------------------------------------------------------------------------------------------- | :-------: | ------------------------------------------------------------------------------------------- |
+| `apnealizer` | Data from [Apnealizer](https://apnealizer.com/) application.                                                                                        |    CSV    | :white_check_mark: Supported                                                                |
+| `shearwater` | Data from [Shearwater](https://shearwater.com/pages/shearwater-cloud) dive computers.                                                               |    XML    | :white_check_mark: Supported                                                                |
+|   `garmin`   | Data from [Garmin](https://connect.garmin.com/) dive computers.                                                                                     |     -     | :x: [**Samples Needed**](https://github.com/noppanut15/depthviz/issues/15) :rotating_light: |
+|   `suunto`   | Data from [Suunto](https://www.suunto.com/Support/faq-articles/dm5/how-do-i-import--export-dive-logs-to-dm5/) dive computers.                       |     -     | :x: [**Samples Needed**](https://github.com/noppanut15/depthviz/issues/15) :rotating_light: |
+|   `manual`   | Manual input without a dive computer. See the [Manual Mode](#manual-mode-creating-depth-overlays-without-a-dive-computer) section for more details. |    CSV    | :white_check_mark: Supported                                                                |
 
 **Example**:
 
