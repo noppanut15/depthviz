@@ -96,7 +96,7 @@ depthviz -i <manual_input.csv> -s manual -o <output_video.mp4>
 Freediving ropes with **depth markers** can help you record your dive profile manually. Use the depth markers in your footage as reference points to manually record your dive profile. Simply note the time and depth at each marker point to create your dive log.
 
 
-| ![Example of a Freediving Rope with Depth Markers](https://raw.githubusercontent.com/noppanut15/depthviz/feat/manual-mode/assets/marked-rope-example.png) |
+| ![Example of a Freediving Rope with Depth Markers](https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/marked-rope-example.png) |
 | :-------------------------------------------------------------------------------------------------------------------------------------------------------: |
 |     *Example of a [Freediving Rope](https://2bfreeequipment.com/shop/2-b-free-freediving-rope-superstatic-marked-with-stopper/) with depth markers.*      |
 
@@ -121,7 +121,7 @@ Here is an example of a manual mode input file:
 |  33   |   5   |
 |  39   |   0   |
 
-Download the example input file [here](https://github.com/noppanut15/depthviz/blob/feat/manual-mode/assets/manual-input-example.csv).
+Download the example input file [here](https://github.com/noppanut15/depthviz/blob/main/assets/manual-input-example.csv).
 
 ## How It Works
 `depthviz` works by parsing dive log data exported from various dive computers (or manually inputting dive data) and generating an overlay video that displays depth information.
