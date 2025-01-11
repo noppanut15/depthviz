@@ -71,7 +71,7 @@ depthviz -i <input_file> -s <source> -o <output_video.mp4>
 | `shearwater` | Data exported from [Shearwater](https://shearwater.com/pages/shearwater-cloud) dive computers.                                         | XML       | :white_check_mark: Supported                                                                    |
 | `garmin`     | Data exported from [Garmin](https://connect.garmin.com/) dive computers.                                                               | -         | :x: [**Sample data needed**](https://github.com/noppanut15/depthviz/issues/15) :rotating_light: |
 | `suunto`     | Data exported from [Suunto](https://www.suunto.com/Support/faq-articles/dm5/how-do-i-import--export-dive-logs-to-dm5/) dive computers. | -         | :x: [**Sample data needed**](https://github.com/noppanut15/depthviz/issues/15) :rotating_light: |
-| `manual`     | Manually input the dive data, for those who don't have a dive computer.                                                                | CSV       | :white_check_mark: Supported                                                                    |
+| `manual`     | Manual input without a dive computer, see the [Manual Mode](#manual-mode-creating-depth-overlays-without-a-dive-computer) section below.     | CSV       | :white_check_mark: Supported                                                                    |
 
 **Example**:
 
