@@ -125,7 +125,7 @@ Here is an example of a manual mode input file:
 | 33   | 5     |
 | 39   | 0     |
 
-Download the template file <a href="https://raw.githubusercontent.com/noppanut15/depthviz/feat/manual-mode/assets/manual-input-example.csv" title="download" download>here</a>.
+Download the template file [here](https://raw.githubusercontent.com/noppanut15/depthviz/feat/manual-mode/assets/manual-input-example.csv).
 
 ## How It Works
 `depthviz` works by parsing dive log data exported from various dive computers (or manually inputting dive data) and generating an overlay video that displays depth information.
