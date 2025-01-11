@@ -95,7 +95,9 @@ class TestMainCLI:
         app.main()
         captured = capsys.readouterr()
         assert "usage: " in captured.err
-        assert "[-h] -i INPUT -s {apnealizer,shearwater} -o OUTPUT" in captured.err
+        assert (
+            "[-h] -i INPUT -s {apnealizer,shearwater,manual} -o OUTPUT" in captured.err
+        )
 
     def test_main_with_invalid_output_video_filetype(
         self,
@@ -202,6 +204,34 @@ class TestMainCLI:
             str(input_path.as_posix()),
             "-s",
             "shearwater",
+            "-o",
+            str(output_path.as_posix()),
+        ]
+        app = DepthvizApplication()
+        app.main()
+        captured = capsys.readouterr()
+        assert f"Video successfully created: {output_path.as_posix()}" in captured.out
+
+    def test_main_with_args_manual_mode(
+        self,
+        capsys: pytest.CaptureFixture[str],
+        tmp_path: pathlib.Path,
+        request: pytest.FixtureRequest,
+    ) -> None:
+        """
+        Test the main function with arguments for manual mode.
+        """
+
+        input_path = (
+            request.path.parent / "data" / "manual" / "valid_depth_data_trimmed.csv"
+        )
+        output_path = tmp_path / "test_main_with_args_manual_mode.mp4"
+        sys.argv = [
+            "main",
+            "-i",
+            str(input_path.as_posix()),
+            "-s",
+            "manual",
             "-o",
             str(output_path.as_posix()),
         ]

@@ -34,27 +34,13 @@ class TestManualCsvParser:
         csv_parser = ManualCsvParser()
         csv_parser.parse(file_path)
         assert csv_parser.get_depth_data() == [
-            0.76,
-            1.22,
-            2.58,
-            3.25,
-            3.14,
-            3.68,
+            0.0,
             5.0,
-            6.31,
-            6.27,
-            6.76,
+            0.0,
         ]
         assert csv_parser.get_time_data() == [
-            1.0,
-            2.0,
-            3.0,
-            4.0,
+            0.0,
             5.0,
-            6.0,
-            7.0,
-            8.0,
-            9.0,
             10.0,
         ]
 
