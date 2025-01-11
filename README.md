@@ -184,5 +184,5 @@ This project provides a CycloneDX Software Bill of Materials (SBOM) in JSON form
 
 ## Contact
 
-For any inquiries, please [open an issue](https://github.com/noppanut15/depthviz/issues). We'd love to hear from you!
+For any inquiries, please [open an issue](https://github.com/noppanut15/depthviz/issues) or contact the maintainer at [noppanut.connect@gmail.com](mailto:noppanut.connect@gmail.com).
 
