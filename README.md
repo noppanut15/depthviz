@@ -92,6 +92,7 @@ Import the generated overlay video into your preferred video editing software an
 
 **No Dive Computer? No Problem!** You can still create a depth overlay video by **manually inputting your dive log** using the `manual` source option.
 
+**Example**:
 ```bash
 depthviz -i <manual_input.csv> -s manual -o <output_video.mp4>
 ```
@@ -124,14 +125,7 @@ Here is an example of a manual mode input file:
 | 33   | 5     |
 | 39   | 0     |
 
-Download the template file [here](https://raw.githubusercontent.com/noppanut15/depthviz/feat/manual-mode/assets/manual-input-example.csv).
-
-
-**Manual Mode Usage:**
-
-```bash
-depthviz -i <manual_input.csv> -s manual -o <output_video.mp4>
-```
+Download the template file <a href="https://raw.githubusercontent.com/noppanut15/depthviz/feat/manual-mode/assets/manual-input-example.csv" title="download" download>here</a>.
 
 ## How It Works
 `depthviz` works by parsing dive log data exported from various dive computers (or manually inputting dive data) and generating an overlay video that displays depth information.
