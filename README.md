@@ -67,13 +67,13 @@ depthviz -i <input_file> -s <source> -o <output_video.mp4>
 
 **Source Options:**
 
-| Source       | Description                                                                                                                            | File type | Development Status                                                                                                 |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------ |
-| `apnealizer` | Data exported from [Apnealizer](https://apnealizer.com/), logging and analyzing application.                                           | CSV       | :white_check_mark: Supported                                                                                       |
-| `shearwater` | Data exported from [Shearwater](https://shearwater.com/pages/shearwater-cloud) dive computers.                                         | XML       | :white_check_mark: Supported                                                                                       |
+| Source       | Description                                                                                                                            | File type | Development Status                                                                              |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------- | --------- | ----------------------------------------------------------------------------------------------- |
+| `apnealizer` | Data exported from [Apnealizer](https://apnealizer.com/), logging and analyzing application.                                           | CSV       | :white_check_mark: Supported                                                                    |
+| `shearwater` | Data exported from [Shearwater](https://shearwater.com/pages/shearwater-cloud) dive computers.                                         | XML       | :white_check_mark: Supported                                                                    |
 | `garmin`     | Data exported from [Garmin](https://connect.garmin.com/) dive computers.                                                               | -         | :x: [**Sample data needed**](https://github.com/noppanut15/depthviz/issues/15) :rotating_light: |
 | `suunto`     | Data exported from [Suunto](https://www.suunto.com/Support/faq-articles/dm5/how-do-i-import--export-dive-logs-to-dm5/) dive computers. | -         | :x: [**Sample data needed**](https://github.com/noppanut15/depthviz/issues/15) :rotating_light: |
-| `manual`     | Manually input the dive data, for those who don't have a dive computer.                                                                | -         | :construction: Under development                                                                |
+| `manual`     | Manually input the dive data, for those who don't have a dive computer.                                                                | CSV       | :white_check_mark: Supported                                                                    |
 
 **Example**:
 
@@ -88,8 +88,53 @@ depthviz -i my_dive.xml -s shearwater -o depth_overlay.mp4
 Import the generated overlay video into your preferred video editing software and combine it with your original dive footage. Adjust the blending and position of the overlay to suit your video style. 
 > [Watch this tutorial](https://www.youtube.com/watch?v=ZggKrWk98Ag) on how to import an overlay video in CapCut Desktop.
 
+## Manual Mode: Creating Depth Overlays Without a Dive Computer
+
+**No Dive Computer? No Problem!** You can still create a depth overlay video by **manually inputting your dive log** using the `manual` source option.
+
+```bash
+depthviz -i <manual_input.csv> -s manual -o <output_video.mp4>
+```
+
+Freediving ropes with **depth markers** can help you record your dive profile manually. Use the depth markers in your footage as reference points to manually record your dive profile. Simply note the time and depth at each marker point to create your dive log.
+
+
+| ![Example of a Freediving Rope with Depth Markers](https://raw.githubusercontent.com/noppanut15/depthviz/feat/manual-mode/assets/marked-rope-example.png) |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|     *Example of a [Freediving Rope](https://2bfreeequipment.com/shop/2-b-free-freediving-rope-superstatic-marked-with-stopper/) with depth markers.*      |
+
+**Manual Mode Input File Format:**
+
+The input file for manual mode should be a CSV file with the following columns:
+
+* `Time`: The time in seconds (e.g., `0`, `1`, `2`, ...).
+* `Depth`: The depth in meters (e.g., `10`, `9`, `8`, ...).
+
+**You don't need to record the depth at every second.** Record the depth at each time point where a depth marker is visible in your footage. `depthviz` will calculate the depth at the missing time points.
+
+Here is an example of a manual mode input file:
+
+| Time | Depth |
+| ---- | ----- |
+| 0    | 0     |
+| 6    | 5     |
+| 12   | 10    |
+| 19   | 15    |
+| 26   | 10    |
+| 33   | 5     |
+| 39   | 0     |
+
+Download the template file [here](https://raw.githubusercontent.com/noppanut15/depthviz/feat/manual-mode/assets/manual-input-example.csv).
+
+
+**Manual Mode Usage:**
+
+```bash
+depthviz -i <manual_input.csv> -s manual -o <output_video.mp4>
+```
+
 ## How It Works
-`depthviz` works by parsing dive log data exported from various dive computers and generating an overlay video that displays depth information.
+`depthviz` works by parsing dive log data exported from various dive computers (or manually inputting dive data) and generating an overlay video that displays depth information.
 
 Dive computers typically record either depth directly or pressure data. If the data is recorded as pressure, it is in the form of **absolute pressure**, which includes both atmospheric pressure and the pressure exerted by the water itself (hydrostatic pressure).
 
