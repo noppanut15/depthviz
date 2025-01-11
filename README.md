@@ -36,13 +36,15 @@ pipx install depthviz
 
 ## Usage
 
-**1. Download Your Data:**
+**1. Get Your Data:**
 
-Export your dive log data from your dive computer or diving application. See the source options below for supported formats.
+- **Option 1:** Export your dive log data from your dive computer or diving application. See the source options below for supported formats.
+
+- **Option 2:** If you don't have a dive computer, you can manually input your dive log data using the `manual` source option. See the [Manual Mode](#manual-mode-creating-depth-overlays-without-a-dive-computer) section for more details.
 
 **2. Generate the Overlay:**
 
-In this step, you will use the `depthviz` to generate a video overlay that displays the depth information from your dive log.
+Use `depthviz` to generate a depth overlay video from your dive log.
 
 ```bash
 depthviz -i <input_file> -s <source> -o <output_video.mp4>
@@ -60,7 +62,7 @@ depthviz -i <input_file> -s <source> -o <output_video.mp4>
 <p align="center"><img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/depth-decimal-places-5s-trimmed.gif" alt="decimal places comparison"/></p>
 
 > [!TIP]
-> The decimal places option allows you to customize the level of detail in the depth overlay. For example, setting `--decimal-places 1` will display the depth with one decimal place (e.g., `-12.5m`).
+> Use the `--decimal-places` option to control the precision of the depth display (e.g., `--decimal-places 1` displays depths like `-12.5m`)
 
 
 **Source Options:**
@@ -69,8 +71,8 @@ depthviz -i <input_file> -s <source> -o <output_video.mp4>
 | ------------ | -------------------------------------------------------------------------------------------------------------------------------------- | --------- | ----------------------------------------------------------------------------------------------- |
 | `apnealizer` | Data exported from [Apnealizer](https://apnealizer.com/), logging and analyzing application.                                           | CSV       | :white_check_mark: Supported                                                                    |
 | `shearwater` | Data exported from [Shearwater](https://shearwater.com/pages/shearwater-cloud) dive computers.                                         | XML       | :white_check_mark: Supported                                                                    |
-| `garmin`     | Data exported from [Garmin](https://connect.garmin.com/) dive computers.                                                               | -         | :x: [**Sample data needed**](https://github.com/noppanut15/depthviz/issues/15) :rotating_light: |
-| `suunto`     | Data exported from [Suunto](https://www.suunto.com/Support/faq-articles/dm5/how-do-i-import--export-dive-logs-to-dm5/) dive computers. | -         | :x: [**Sample data needed**](https://github.com/noppanut15/depthviz/issues/15) :rotating_light: |
+| `garmin`     | Data exported from [Garmin](https://connect.garmin.com/) dive computers.                                                               | -         | :x: [**Sample Files Needed**](https://github.com/noppanut15/depthviz/issues/15) :rotating_light: |
+| `suunto`     | Data exported from [Suunto](https://www.suunto.com/Support/faq-articles/dm5/how-do-i-import--export-dive-logs-to-dm5/) dive computers. | -         | :x: [**Sample Files Needed**](https://github.com/noppanut15/depthviz/issues/15) :rotating_light: |
 | `manual`     | Manual input without a dive computer, see the [Manual Mode](#manual-mode-creating-depth-overlays-without-a-dive-computer) section below.     | CSV       | :white_check_mark: Supported                                                                    |
 
 **Example**:
@@ -109,7 +111,7 @@ The input file for manual mode should be a CSV file with the following columns:
 * `Time`: The time in seconds (e.g., `0`, `1`, `2`, ...).
 * `Depth`: The depth in meters (e.g., `10`, `9`, `8`, ...).
 
-**You don't need to record the depth at every second.** Record the depth at each time point where a depth marker is visible in your footage. `depthviz` will calculate the depth at the missing time points.
+**You don't need to record the depth at every second.** Record the depth at each time point where a depth marker is visible in your footage. `depthviz` will interpolate the depth values between the recorded points to create a smooth depth profile.
 
 Here is an example of a manual mode input file:
 
@@ -157,7 +159,7 @@ The water density can vary depending on the type of water (e.g., freshwater, sal
 > [!NOTE]
 > Learn more about the [Linear Interpolation](https://en.wikipedia.org/wiki/Linear_interpolation) method and how it is used to estimate values between two known depths.
 
-4. **Generate Overlay Video**: The depth information from the linearly interpolated data is rendered into an overlay video, displaying the depth over time. This overlay video can then be integrated with your original dive footage.
+4. **Generate Overlay Video**: The depth information from the linearly interpolated data is rendered into an overlay video, displaying the depth over time. This overlay can then be combined with your original dive footage in your video editor.
 
 
 ## Contribution
