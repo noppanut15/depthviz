@@ -64,6 +64,11 @@ class DepthvizApplication:
             default=0,
         )
         self.parser.add_argument(
+            "--no-minus",
+            help="Hide the minus sign for depth values.",
+            action="store_true",
+        )
+        self.parser.add_argument(
             "-v",
             "--version",
             action="version",
@@ -71,7 +76,11 @@ class DepthvizApplication:
         )
 
     def create_video(
-        self, divelog_parser: DiveLogParser, output_path: str, decimal_places: int
+        self,
+        divelog_parser: DiveLogParser,
+        output_path: str,
+        decimal_places: int,
+        no_minus: bool = False,
     ) -> int:
         """
         Create the depth overlay video.
@@ -84,6 +93,7 @@ class DepthvizApplication:
                 time_data=time_data_from_divelog,
                 depth_data=depth_data_from_divelog,
                 decimal_places=decimal_places,
+                minus_sign=not no_minus,
             )
             depth_report_video_creator.save(output_path)
         except DepthReportVideoCreatorError as e:
@@ -125,6 +135,7 @@ class DepthvizApplication:
             divelog_parser=divelog_parser,
             output_path=args.output,
             decimal_places=args.decimal_places,
+            no_minus=args.no_minus,
         )
 
 
