@@ -53,6 +53,7 @@ depthviz -i <input_file> -s <source> -o <output_video.mp4>
 * `-o`, `--output <output_video.mp4>`: Path or filename for the generated video with the depth overlay. The output file format must be `.mp4`.
 
 **Optional Arguments:**
+* `--no-minus`: Hide the minus sign for depth values (e.g., display `10m` instead of `-10m`).
 * `-d`, `--decimal-places <0-2>`: Number of decimal places to display in the depth overlay. Valid values are `0`, `1`, or `2`. (Default is `0`)
 
 <p align="center"><img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/depth-decimal-places-5s-trimmed.gif" alt="decimal places comparison"/></p>
@@ -96,9 +97,9 @@ depthviz -i <manual_input.csv> -s manual -o <output_video.mp4>
 Freediving ropes with **depth markers** can help you record your dive profile manually. Use the depth markers in your footage as reference points to manually record your dive profile. Simply note the time and depth at each marker point to create your dive log.
 
 
-| ![Example of a Freediving Rope with Depth Markers](https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/marked-rope-example.png) |
-| :-------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|     *Example of a [Freediving Rope](https://2bfreeequipment.com/shop/2-b-free-freediving-rope-superstatic-marked-with-stopper/) with depth markers.*      |
+|  ![Example of a Freediving Rope with Depth Markers](https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/marked-rope-example.png)   |
+| :----------------------------------------------------------------------------------------------------------------------------------------------: |
+| *Example of a [Freediving Rope](https://2bfreeequipment.com/shop/2-b-free-freediving-rope-superstatic-marked-with-stopper/) with depth markers.* |
 
 **Manual Mode Input File Format:**
 

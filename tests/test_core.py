@@ -259,3 +259,47 @@ class TestDepthReportVideoCreator:
             str(e.value)
             == "Invalid decimal places value; must be a number between 0 and 2."
         )
+
+    @pytest.mark.parametrize(
+        "minus_sign, decimal_places, expected_texts",
+        [
+            (True, 0, ["0m", "0m", "0m", "-1m", "-2m", "-3343m"]),
+            (False, 0, ["0m", "0m", "0m", "1m", "2m", "3343m"]),
+            (True, 1, ["-0.1m", "-0.2m", "-0.3m", "-1.2m", "-2.0m", "-3343.3m"]),
+            (False, 1, ["0.1m", "0.2m", "0.3m", "1.2m", "2.0m", "3343.3m"]),
+            (True, 2, ["-0.10m", "-0.20m", "-0.30m", "-1.23m", "-2.00m", "-3343.33m"]),
+            (False, 2, ["0.10m", "0.20m", "0.30m", "1.23m", "2.00m", "3343.33m"]),
+        ],
+    )
+    def test_render_depth_video_with_no_minus_sign_option(
+        self, minus_sign: bool, decimal_places: int, expected_texts: list[str]
+    ) -> None:
+        """
+        Test the render_depth_report_video method with no minus option.
+        """
+        # Create a DepthReportVideoCreator instance
+        depth_report_video_creator = DepthReportVideoCreator(fps=1)
+
+        # Create a depth report video with no minus option
+        time_data = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
+        depth_data = [0.1, 0.2, 0.3, 1.233, 2.0, 3343.33]
+        depth_report_video_creator.render_depth_report_video(
+            time_data=time_data,
+            depth_data=depth_data,
+            decimal_places=decimal_places,
+            minus_sign=minus_sign,
+        )
+        video = depth_report_video_creator.get_video()
+
+        # Check the video is not None
+        assert video is not None
+
+        # Check the duration of the video (seconds)
+        assert video.duration == 6
+
+        # Check the number of clips in the video
+        assert len(video.clips) == 6
+
+        # Check the text of each clip in the video
+        video_clip_texts = [video.clips[i].text for i in range(len(video.clips))]
+        assert video_clip_texts == expected_texts
