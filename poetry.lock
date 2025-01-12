@@ -253,6 +253,17 @@ files = [
 ]
 
 [[package]]
+name = "garmin-fit-sdk"
+version = "21.158.0"
+description = "Garmin FIT Python SDK"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "garmin-fit-sdk-21.158.0.tar.gz", hash = "sha256:6352ad9ccb5b90336b88fc8000d3a04ff9ae5b0fa622586eba7dd2c76bc7a7d9"},
+    {file = "garmin_fit_sdk-21.158.0-py2.py3-none-any.whl", hash = "sha256:9d225b18cba45f61de965dd4d9bd4835271baa16357099ca1a18644cf2420c33"},
+]
+
+[[package]]
 name = "idna"
 version = "3.10"
 description = "Internationalized Domain Names in Applications (IDNA)"
@@ -1414,4 +1425,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "6c362c2dd02e1353af279c57fd014876536133d83699f447e6fbbcb410a0f531"
+content-hash = "c1840938d479a4df26e3e6b69f7a334d17451f63fb0a0c8a23f9b496ba1ba68d"
