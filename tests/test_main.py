@@ -166,6 +166,9 @@ class TestMainCLI:
         def mock_parse_args(  # type: ignore
             *args,  # pylint: disable=unused-argument
         ) -> argparse.Namespace:
+            """
+            The mock function for overriding the parse_args function to inject nonexistent source.
+            """
             return argparse.Namespace(
                 input="test.csv", source=mock_source, output="test.mp4"
             )

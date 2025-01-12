@@ -12,6 +12,9 @@ def test_depthviz_progress_bar_logger(monkeypatch: pytest.MonkeyPatch) -> None:
     """
 
     def mock_close_tqdm_bar(bar_mock: str) -> None:
+        """
+        The mock function for overriding the close_tqdm_bar function to not actually close the bar.
+        """
         print(f"Closing bar: {bar_mock}")
         raise SystemExit()
 
