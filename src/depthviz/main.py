@@ -15,14 +15,12 @@ from depthviz.parsers.manual.csv_parser import ManualCsvParser
 from depthviz.core import DepthReportVideoCreator, DepthReportVideoCreatorError
 
 # Banner for the command line interface
-BLUE = "\033[34m"  # Blue ANSI escape code
-RESET = "\033[0m"  # Reset ANSI escape code
-BANNER = f"""
-     {BLUE}_,-._{RESET}
-    {BLUE}/ \\_/ \\{RESET}    {BLUE}d e p t h{RESET} v i z
-    {BLUE}>-(_)-<{RESET}
-    {BLUE}\\_/ \\_/{RESET}    {BLUE}~~~~~~~~~{RESET}~~~~~~
-      {BLUE}`-'{RESET}
+BANNER = """
+     _,-._
+    / \\_/ \\    d e p t h v i z
+    >-(_)-<
+    \\_/ \\_/    ~~~~~~~~~~~~~~~
+      `-'
 """
 
 
