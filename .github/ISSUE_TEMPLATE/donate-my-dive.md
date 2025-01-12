@@ -1,6 +1,6 @@
 ---
-name: Dive Computer Support Request
-about: Request support for a specific dive computer's file export format.
+name: Donate My Dive
+about: Donate your dive data to help us add support for your dive computer.
 title: 'Dive Computer: Support for [Your Dive Computer Brand] [Your Dive Computer
   Model]'
 labels: dive-computer-support, enhancement

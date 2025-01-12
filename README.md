@@ -165,9 +165,11 @@ We welcome contributions to the `depthviz` project! If you have any ideas for im
 
 ## Help Us Expand Dive Computer Support!
 
-**Missing your dive computer?** Help us add support! [Submit a Dive Computer Support Request](https://github.com/noppanut15/depthviz/issues) issue with your dive log file and export source.
+**Missing your dive computer?** Help us add support! If you have a dive computer that is not currently supported by `depthviz`, you can help us by donating a sample dive log file exported from your device. 
 
-By providing this information, you'll be helping us understand the specific format of your dive computer's exported data. This allows us to implement the necessary parsing logic and add support for your device in a future release.
+This will allow us to analyze the data format and implement the necessary parsing logic to add support for your device.
+
+[![Donate My Dive](https://img.shields.io/badge/Donate%20My%20Dive-Click%20Here-blue)](https://github.com/noppanut15/depthviz/issues)
 
 
 ## License
