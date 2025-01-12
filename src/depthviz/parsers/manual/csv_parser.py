@@ -49,7 +49,8 @@ class ManualCsvParser(DiveLogCsvParser):
                             depth_value = float(row["Depth"])
                             if depth_value < 0:
                                 raise InvalidDepthValueError(
-                                    f"Invalid CSV: Invalid depth value at row {excel_row}, the value must be positive"
+                                    f"Invalid CSV: Invalid depth value at row {excel_row}, \
+the value must be positive"
                                 )
                             self.__depth_data.append(depth_value)
                         except ValueError as e:
