@@ -134,3 +134,22 @@ class TestManualCsvParser:
             str(e.value)
             == "Invalid CSV: Invalid depth value at row 3, the value must be positive"
         )
+
+    def test_parse_invalid_csv_negative_time(
+        self, request: pytest.FixtureRequest
+    ) -> None:
+        """
+        Test parsing a CSV file with negative time values.
+        """
+        file_path = str(
+            request.path.parent.joinpath(
+                "data", "manual", "invalid_data_negative_time.csv"
+            )
+        )
+        csv_parser = ManualCsvParser()
+        with pytest.raises(InvalidTimeValueError) as e:
+            csv_parser.parse(file_path)
+        assert (
+            str(e.value)
+            == "Invalid CSV: Invalid time value at row 4, the value must be positive"
+        )

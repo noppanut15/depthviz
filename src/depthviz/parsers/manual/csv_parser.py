@@ -40,7 +40,13 @@ class ManualCsvParser(DiveLogCsvParser):
                     excel_row = i + 2
                     if "Time" in row and "Depth" in row:
                         try:
-                            self.__time_data.append(float(row["Time"]))
+                            time_value = float(row["Time"])
+                            if time_value < 0:
+                                raise InvalidTimeValueError(
+                                    f"Invalid CSV: Invalid time value at row {excel_row}, \
+the value must be positive"
+                                )
+                            self.__time_data.append(time_value)
                         except ValueError as e:
                             raise InvalidTimeValueError(
                                 f"Invalid CSV: Invalid time value at row {excel_row}"
