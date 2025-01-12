@@ -85,7 +85,11 @@ class DepthReportVideoCreator:
         return abs(time_data[current_pos + 1] - time_data[current_pos])
 
     def render_depth_report_video(
-        self, time_data: list[float], depth_data: list[float], decimal_places: int = 0
+        self,
+        time_data: list[float],
+        depth_data: list[float],
+        decimal_places: int = 0,
+        minus_sign: bool = True,
     ) -> None:
         """
         Creates a video that reports the depth in meters from an array input.
@@ -94,6 +98,7 @@ class DepthReportVideoCreator:
             time_data: An array of time values in seconds.
             depth_data: An array of depth values in meters.
             decimal_places: The number of decimal places to round the depth values to.
+            minus_sign: A boolean value to determine if the minus sign should be displayed.
 
         Returns:
             The processed video.
@@ -132,13 +137,13 @@ class DepthReportVideoCreator:
                     if rounded_current_depth == 0:
                         text = "0m"
                     else:
-                        text = f"-{rounded_current_depth}m"
+                        text = f"{'-' if minus_sign else ''}{rounded_current_depth}m"
                 else:
                     current_depth = round(interpolated_depths[i], decimal_places)
                     if current_depth == 0:
                         text = f"{0:.{decimal_places}f}m"
                     else:
-                        text = f"-{current_depth:.{decimal_places}f}m"
+                        text = f"{'-' if minus_sign else ''}{current_depth:.{decimal_places}f}m"
 
                 clip = TextClip(
                     text=text,
