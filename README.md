@@ -174,8 +174,8 @@ This project provides a CycloneDX Software Bill of Materials (SBOM) in JSON form
 
 ## Like depthviz?
 
-Please give us a shiny ![star](https://img.shields.io/github/stars/noppanut15/depthviz
-) and share `depthviz` with your freediving community! :star:
+Please give us a shiny [![star](https://img.shields.io/github/stars/noppanut15/depthviz
+)](https://github.com/noppanut15/depthviz) and share `depthviz` with your freediving community! :star:
 
 ## Contact
 
