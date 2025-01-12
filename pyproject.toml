@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "depthviz"
 version = "0.0.0"
-description = "Python CLI tool for generating depth tracking overlays for your freediving footage from exported dive computer logs."
+description = "Generate depth tracking overlays for freediving videos using exported dive computer logs."
 authors = ["Noppanut Ploywong <noppanut.connect@gmail.com>"]
 license = "Apache-2.0"
 readme = "README.md"
@@ -9,7 +9,7 @@ packages = [{ include = "depthviz", from = "src" }]
 repository = "https://github.com/noppanut15/depthviz"
 keywords = ["freediving", "dive", "video", "overlay", "depth", "dive-computer", "dive-log"]
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 4 - Beta",
     "License :: OSI Approved :: Apache Software License",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
