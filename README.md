@@ -12,7 +12,7 @@ This allows you to create more informative and engaging dive videos, enriching t
 > For performance freedivers, you can incorporate `depthviz` into your dive analysis. By visualizing your dive profile, you can identify areas for improvement and track your progress over time.
 
 
-## Installation
+## 🛠️ Installation
 
 **Prerequisites:**
 
@@ -25,13 +25,13 @@ This allows you to create more informative and engaging dive videos, enriching t
 pipx install depthviz
 ```
 
-## Usage
+## 🚀 Usage
 
 **1. Download Your Data:**
 
 - **Option 1:** Export your dive log data from your dive computer or diving application. See the source options below for supported formats.
 
-- **Option 2:** If you don't have a dive computer, you can manually input your dive log data using the `manual` source option. See the [Manual Mode](#manual-mode-creating-depth-overlays-without-a-dive-computer) section for more details.
+- **Option 2:** If you don't have a dive computer, you can manually input your dive log data using the `manual` source option. See the [Manual Mode](#️-manual-mode-creating-depth-overlays-without-a-dive-computer) section for more details.
 
 **2. Generate the Overlay:**
 
@@ -59,13 +59,13 @@ depthviz -i <input_file> -s <source> -o <output_video.mp4>
 
 **Source Options:**
 
-|    Source    | Description                                                                                                                                         | File type | Development Status                                                                          |
-| :----------: | --------------------------------------------------------------------------------------------------------------------------------------------------- | :-------: | ------------------------------------------------------------------------------------------- |
-| `apnealizer` | Data from [Apnealizer](https://apnealizer.com/) application.                                                                                        |    CSV    | :white_check_mark: Supported                                                                |
-| `shearwater` | Data from [Shearwater](https://shearwater.com/pages/shearwater-cloud) dive computers.                                                               |    XML    | :white_check_mark: Supported                                                                |
-|   `garmin`   | Data from [Garmin](https://connect.garmin.com/) dive computers.                                                                                     |     -     | :x: [**Samples Needed**](https://github.com/noppanut15/depthviz/issues/15) :rotating_light: |
-|   `suunto`   | Data from [Suunto](https://www.suunto.com/Support/faq-articles/dm5/how-do-i-import--export-dive-logs-to-dm5/) dive computers.                       |     -     | :x: [**Samples Needed**](https://github.com/noppanut15/depthviz/issues/15) :rotating_light: |
-|   `manual`   | Manual input without a dive computer. See the [Manual Mode](#manual-mode-creating-depth-overlays-without-a-dive-computer) section for more details. |    CSV    | :white_check_mark: Supported                                                                |
+|    Source    | Description                                                                                                                                          | File type | Development Status                                                                          |
+| :----------: | ---------------------------------------------------------------------------------------------------------------------------------------------------- | :-------: | ------------------------------------------------------------------------------------------- |
+| `apnealizer` | Data from [Apnealizer](https://apnealizer.com/) application.                                                                                         |    CSV    | :white_check_mark: Supported                                                                |
+| `shearwater` | Data from [Shearwater](https://shearwater.com/pages/shearwater-cloud) dive computers.                                                                |    XML    | :white_check_mark: Supported                                                                |
+|   `garmin`   | Data from [Garmin](https://connect.garmin.com/) dive computers.                                                                                      |    FIT    | :construction: Under Development                                                            |
+|   `suunto`   | Data from [Suunto](https://www.suunto.com/Support/faq-articles/dm5/how-do-i-import--export-dive-logs-to-dm5/) dive computers.                        |     -     | :x: [**Samples Needed**](https://github.com/noppanut15/depthviz/issues/15) :rotating_light: |
+|   `manual`   | Manual input without a dive computer. See the [Manual Mode](#️-manual-mode-creating-depth-overlays-without-a-dive-computer) section for more details. |    CSV    | :white_check_mark: Supported                                                                |
 
 **Example**:
 
@@ -80,7 +80,7 @@ depthviz -i my_dive.xml -s shearwater -o depth_overlay.mp4
 Import the generated overlay video into your preferred video editing software and combine it with your original dive footage. Adjust the blending and position of the overlay to suit your video style. 
 > [Watch this tutorial](https://www.youtube.com/watch?v=ZggKrWk98Ag) on how to import an overlay video in CapCut Desktop.
 
-## Manual Mode: Creating Depth Overlays Without a Dive Computer
+## ⚙️ Manual Mode: Creating Depth Overlays Without a Dive Computer
 
 **No Dive Computer? No Problem!** You can still create a depth overlay video by **manually inputting your dive log** using the `manual` source option.
 
@@ -119,7 +119,7 @@ Here is an example of a manual mode input file:
 
 Download the example input file [here](https://github.com/noppanut15/depthviz/blob/main/assets/manual-input-example.csv).
 
-## How It Works
+## 🧠 How It Works
 `depthviz` works by parsing dive log data exported from various dive computers (or manually inputting dive data) and generating an overlay video that displays depth information.
 
 Dive computers typically record either depth directly or pressure data. If the data is recorded as pressure, it is in the form of **absolute pressure**, which includes both atmospheric pressure and the pressure exerted by the water itself (hydrostatic pressure).
@@ -154,29 +154,29 @@ The water density can vary depending on the type of water (e.g., freshwater, sal
 4. **Generate Overlay Video**: The depth information from the linearly interpolated data is rendered into an overlay video, displaying the depth over time. This overlay can then be combined with your original dive footage in your video editor.
 
 
-## Contribution
+## 🌱 Contribution
 
 We welcome contributions to the `depthviz` project! If you have any ideas for improvement, bug fixes, or feature suggestions, feel free to [open an issue](https://github.com/noppanut15/depthviz/issues) to discuss or [submit a pull request](https://github.com/noppanut15/depthviz/pulls).
 
-## Help Us Expand Dive Computer Support!
+## ⌚ Help Us Expand Dive Computer Support!
 
 **Missing your dive computer?** Help us add support! If you have a dive computer that is not currently supported by `depthviz`, you can help us by donating a sample dive log file exported from your device. This will allow us to analyze the data format and implement the necessary parsing logic to add support for your device.
 
 To share your dive data, please follow the detailed instructions in our "[**Donate My Dive**](https://github.com/noppanut15/depthviz/issues/15)" guide.
 
-## License
+## ⚖️ License
 
 This project is licensed under the Apache License 2.0. See the [LICENSE](LICENSE) file for details.
 
-## CycloneDX SBOM
+## 📦 CycloneDX SBOM
 
 This project provides a CycloneDX Software Bill of Materials (SBOM) in JSON format. The SBOM is generated by the [GitHub Actions workflow](.github/workflows/deploy.yaml) and is available as an artifact for each release. The SBOM is generated using the [cyclonedx-python](https://github.com/CycloneDX/cyclonedx-python) library.
 
-## Like depthviz?
+## 🌟 Like depthviz?
 
-Please give us a shiny ![star](https://img.shields.io/github/stars/noppanut15/depthviz
-) and share `depthviz` with your freediving community! :star:
+Please give us a shiny [![star](https://img.shields.io/github/stars/noppanut15/depthviz
+)](https://github.com/noppanut15/depthviz) and share `depthviz` with your freediving community! :star:
 
-## Contact
+## 📬 Contact
 
 For any inquiries, please [open an issue](https://github.com/noppanut15/depthviz/issues) or contact the maintainer at [noppanut.connect@gmail.com](mailto:noppanut.connect@gmail.com).
