@@ -31,7 +31,7 @@ pipx install depthviz
 
 - **Option 1:** Export your dive log data from your dive computer or diving application. See the source options below for supported formats.
 
-- **Option 2:** If you don't have a dive computer, you can manually input your dive log data using the `manual` source option. See the [Manual Mode](#manual-mode-creating-depth-overlays-without-a-dive-computer) section for more details.
+- **Option 2:** If you don't have a dive computer, you can manually input your dive log data using the `manual` source option. See the [Manual Mode](#️-manual-mode-creating-depth-overlays-without-a-dive-computer) section for more details.
 
 **2. Generate the Overlay:**
 
