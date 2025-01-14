@@ -28,7 +28,6 @@ class GarminFitParser(DiveLogFitParser):
 
         # Select the dive to be parsed (in case of multiple dives in FIT file)
         self.__selected_dive_idx = selected_dive_idx
-        # TODO: Add a check to see if the selected dive index is valid
 
     def parse(self, file_path: str) -> None:
         """
