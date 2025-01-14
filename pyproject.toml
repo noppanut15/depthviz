@@ -64,6 +64,10 @@ ignore_missing_imports = true
 module = ["proglog"]
 ignore_missing_imports = true
 
+[[tool.mypy.overrides]]
+module = ["garmin_fit_sdk"]
+ignore_missing_imports = true
+
 [tool.pytest.ini_options]
 pythonpath = "src"
 testpaths = ["tests"]
