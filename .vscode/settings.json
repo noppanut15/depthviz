@@ -1,6 +1,7 @@
 {
     "python.testing.pytestArgs": [
-        "."
+        ".", 
+        "--cov=src/",
     ],
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true,
