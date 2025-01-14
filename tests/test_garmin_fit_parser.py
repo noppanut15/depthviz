@@ -2,8 +2,8 @@
 Unit tests for the GarminFitParser class.
 """
 
-import pytest
 from typing import Any, Union
+import pytest
 from garmin_fit_sdk import Stream, Decoder
 from depthviz.parsers.garmin.fit_parser import GarminFitParser
 from depthviz.parsers.generic.fit.fit_parser import (
