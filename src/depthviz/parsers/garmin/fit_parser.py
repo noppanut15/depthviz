@@ -49,7 +49,9 @@ class GarminFitParser(DiveLogFitParser):
             file_id_mesgs = messages.get("file_id_mesgs", [])
             file_type = file_id_mesgs[0].get("type")
         except (TypeError, IndexError) as e:
-            raise DiveLogFitInvalidFitFileError(f"Invalid FIT file: {file_path}") from e
+            raise DiveLogFitInvalidFitFileError(
+                f"Invalid FIT file: {file_path}, cannot identify FIT type."
+            ) from e
 
         if file_type != "activity":
             raise DiveLogFitInvalidFitFileTypeError(

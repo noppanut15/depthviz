@@ -1104,10 +1104,13 @@ class TestGarminFitParser:
 
         fit_parser = GarminFitParser()
         monkeypatch.setattr(Stream, "from_file", self._mock_stream_from_file)
+        monkeypatch.setattr(Decoder, "__init__", self._mock_decoder_init)
         monkeypatch.setattr(Decoder, "read", mock_decoder_read)
         with pytest.raises(DiveLogFitInvalidFitFileError) as e:
             fit_parser.parse(file_path)
-        assert str(e.value) == f"Invalid FIT file: {file_path}"
+        assert (
+            str(e.value) == f"Invalid FIT file: {file_path}, cannot identify FIT type."
+        )
 
     def test_parse_invalid_fit_wrong_file_type(
         self, monkeypatch: pytest.MonkeyPatch
