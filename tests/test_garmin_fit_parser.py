@@ -3,6 +3,7 @@ Unit tests for the GarminFitParser class.
 """
 
 from typing import Any, Union
+from unittest.mock import patch, MagicMock
 import pytest
 from garmin_fit_sdk import Stream, Decoder
 from depthviz.parsers.garmin.fit_parser import GarminFitParser
@@ -1171,18 +1172,57 @@ class TestGarminFitParser:
             == f"Invalid FIT file: {file_path} does not contain any dive data"
         )
 
-    def test_invalid_dive_idx(self, request: pytest.FixtureRequest) -> None:
+    @patch("builtins.input", return_value="3")
+    def test_invalid_dive_idx(
+        self, mock_input: MagicMock, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
         """
         Test parsing a FIT file with an invalid dive index.
         """
-        file_path = str(
-            request.path.parent.joinpath("data", "garmin", "11211432883_ACTIVITY.fit")
-        )
 
-        fit_parser = GarminFitParser(selected_dive_idx=2)
+        def mock_decoder_read(
+            *args: Union[str, bool],
+            **kwargs: Union[str, bool],
+        ) -> tuple[dict[str, list[Any]], list[Any]]:
+            """
+            A mock function for the Decoder.read method.
+            """
+            return {
+                "file_id_mesgs": [{"type": "activity"}],
+                "dive_summary_mesgs": [
+                    {
+                        "bottom_time": 10,
+                        "reference_mesg": "lap",
+                        "reference_index": 0,
+                    },
+                    {
+                        "bottom_time": 12,
+                        "reference_mesg": "lap",
+                        "reference_index": 1,
+                    },
+                ],
+                "lap_mesgs": [
+                    {
+                        "start_time": 0,
+                    },
+                    {
+                        "start_time": 55,
+                    },
+                ],
+                "record_mesgs": [],
+            }, []
+
+        file_path = "mock"
+
+        fit_parser = GarminFitParser()
+        monkeypatch.setattr(Stream, "from_file", self._mock_stream_from_file)
+        monkeypatch.setattr(Decoder, "__init__", self._mock_decoder_init)
+        monkeypatch.setattr(Decoder, "read", mock_decoder_read)
+
         with pytest.raises(DiveLogFitDiveNotFoundError) as e:
             fit_parser.parse(file_path)
-        assert str(e.value) == "Invalid Dive Index: 2 is not a valid dive index"
+        assert str(e.value) == "Invalid Dive: Please enter a number between 1 and 2"
+        assert mock_input.call_count == 1
 
     def test_empty_record_mesgs(self, monkeypatch: pytest.MonkeyPatch) -> None:
         """
@@ -1215,7 +1255,7 @@ class TestGarminFitParser:
 
         file_path = "mock"
 
-        fit_parser = GarminFitParser()
+        fit_parser = GarminFitParser(selected_dive_idx=0)
         monkeypatch.setattr(Stream, "from_file", self._mock_stream_from_file)
         monkeypatch.setattr(Decoder, "__init__", self._mock_decoder_init)
         monkeypatch.setattr(Decoder, "read", mock_decoder_read)
@@ -1236,3 +1276,111 @@ class TestGarminFitParser:
         with pytest.raises(DiveLogFileNotFoundError) as e:
             fit_parser.parse(file_path)
         assert str(e.value) == f"File not found: {file_path}"
+
+    def test_select_dive_single_dive(self) -> None:
+        """
+        Test selecting a dive from a FIT file with a single dive.
+        """
+        dive_summary = [
+            {
+                "start_time": 0,
+                "end_time": 60,
+                "max_depth": 30.0,
+                "avg_depth": 20.0,
+                "bottom_time": 60,
+            }
+        ]
+        fit_parser = GarminFitParser()
+        assert fit_parser.select_dive(dive_summary) == 0
+
+    def test_convert_time(self) -> None:
+        """
+        Test converting time from a FIT file to a human-readable format.
+        """
+        fit_epoch_time = 1054147458
+        fit_parser = GarminFitParser()
+        assert (
+            fit_parser.convert_fit_epoch_to_datetime(fit_epoch_time)
+            == "2023-05-27 18:44:18 (GMT)"
+        )
+
+    @patch("builtins.input", return_value="2")
+    def test_select_dive_multiple_dives(
+        self,
+        mock_input: MagicMock,
+        capsys: pytest.CaptureFixture[str],
+    ) -> None:
+        """
+        Test selecting a dive from a FIT file with multiple dives.
+        This test uses the mock_input fixture to simulate user input.
+
+        The output should be:
+        Multiple dives found in the FIT file. Please select a dive to import:
+        [1]: Dive 1: Start Time: 2023-05-27 19:10:00 (GMT), Max Depth: 30m, Bottom Time: 60s
+        [2]: Dive 2: Start Time: 2023-05-27 19:11:00 (GMT), Max Depth: 20m, Bottom Time: 59s
+        """
+        dive_summary = [
+            {
+                "start_time": 1054149000,
+                "end_time": 1054149060,
+                "max_depth": 30.0,
+                "avg_depth": 20.0,
+                "bottom_time": 60,
+            },
+            {
+                "start_time": 1054149060,
+                "end_time": 1054149119,
+                "max_depth": 20.0,
+                "avg_depth": 10.0,
+                "bottom_time": 59,
+            },
+        ]
+        fit_parser = GarminFitParser()
+        user_select_idx = fit_parser.select_dive(dive_summary)
+        expected_idx = int(mock_input.return_value) - 1
+        assert user_select_idx == expected_idx
+
+        captured = capsys.readouterr()
+        assert "Multiple dives found in the FIT file" in captured.out
+        assert (
+            "[1]: Dive 1: Start Time: 2023-05-27 19:10:00 (GMT), Max Depth: 30m, Bottom Time: 60s"
+            in captured.out
+        )
+        assert (
+            "[2]: Dive 2: Start Time: 2023-05-27 19:11:00 (GMT), Max Depth: 20m, Bottom Time: 59s"
+            in captured.out
+        )
+        assert mock_input.call_count == 1
+
+    @patch("builtins.input", return_value="xxx")
+    def test_select_invalid_dive(
+        self,
+        mock_input: MagicMock,
+    ) -> None:
+        """
+        Test selecting an invalid dive index.
+        """
+        dive_summary = [
+            {
+                "start_time": 1054149000,
+                "end_time": 1054149060,
+                "max_depth": 30.0,
+                "avg_depth": 20.0,
+                "bottom_time": 60,
+            },
+            {
+                "start_time": 1054149060,
+                "end_time": 1054149119,
+                "max_depth": 20.0,
+                "avg_depth": 10.0,
+                "bottom_time": 59,
+            },
+        ]
+        fit_parser = GarminFitParser()
+        with pytest.raises(DiveLogFitDiveNotFoundError) as e:
+            fit_parser.select_dive(dive_summary)
+        assert (
+            str(e.value)
+            == f"Invalid Dive: Please enter a number between 1 and {len(dive_summary)}"
+        )
+        assert mock_input.call_count == 1

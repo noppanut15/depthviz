@@ -4,7 +4,8 @@ which is used to parse a Garmin FIT file from Garmin Connect
 """
 
 import math
-from typing import cast
+from typing import cast, Union
+from datetime import datetime, timezone
 from garmin_fit_sdk import Decoder, Stream
 
 from depthviz.parsers.generic.generic_divelog_parser import DiveLogFileNotFoundError
@@ -21,13 +22,54 @@ class GarminFitParser(DiveLogFitParser):
     A class to parse a FIT file containing depth data.
     """
 
-    def __init__(self, selected_dive_idx: int = 0) -> None:
+    def __init__(self, selected_dive_idx: int = -1) -> None:
         self.__time_data: list[float] = []
         self.__depth_data: list[float] = []
         self.__margin_start_time = 2
 
         # Select the dive to be parsed (in case of multiple dives in FIT file)
         self.__selected_dive_idx = selected_dive_idx
+
+    def convert_fit_epoch_to_datetime(self, fit_epoch: int) -> str:
+        """
+        A method to convert the epoch time in the FIT file to a human-readable datetime string.
+        """
+        epoch = fit_epoch + 631065600
+        return datetime.fromtimestamp(epoch, timezone.utc).strftime(
+            "%Y-%m-%d %H:%M:%S (GMT)"
+        )
+
+    def select_dive(self, dive_summary: list[dict[str, Union[int, float]]]) -> int:
+        """
+        A method to prompt the user to select a dive from the FIT file,
+        if there are multiple dives in the file.
+        """
+        if len(dive_summary) == 1:
+            return 0
+        print("Multiple dives found in the FIT file. Please select a dive to import:")
+        for idx, dive in enumerate(dive_summary):
+            start_time = self.convert_fit_epoch_to_datetime(
+                cast(int, dive.get("start_time"))
+            )
+            print(
+                f"[{idx + 1}]: Dive {idx + 1}: Start Time: {start_time}, "
+                f"Max Depth: {dive.get('max_depth')}m, Bottom Time: {dive.get('bottom_time')}s"
+            )
+        try:
+            selected_dive_idx = (
+                int(input(f"Enter the dive number to import [1-{len(dive_summary)}]: "))
+                - 1
+            )
+        except ValueError as e:
+            raise DiveLogFitDiveNotFoundError(
+                f"Invalid Dive: Please enter a number between 1 and {len(dive_summary)}"
+            ) from e
+
+        if selected_dive_idx >= len(dive_summary) or selected_dive_idx < 0:
+            raise DiveLogFitDiveNotFoundError(
+                f"Invalid Dive: Please enter a number between 1 and {len(dive_summary)}"
+            )
+        return selected_dive_idx
 
     def parse(self, file_path: str) -> None:
         """
@@ -83,13 +125,9 @@ class GarminFitParser(DiveLogFitParser):
                 f"Invalid FIT file: {file_path} does not contain any dive data"
             )
 
-        if (
-            self.__selected_dive_idx >= len(dive_summary)
-            or self.__selected_dive_idx < 0
-        ):
-            raise DiveLogFitDiveNotFoundError(
-                f"Invalid Dive Index: {self.__selected_dive_idx} is not a valid dive index"
-            )
+        # A prompt to select the dive if there are multiple dives in the FIT file
+        if self.__selected_dive_idx == -1:
+            self.__selected_dive_idx = self.select_dive(dive_summary)
 
         records = messages.get("record_mesgs", [])
         first_timestamp = None
