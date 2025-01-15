@@ -65,6 +65,7 @@ class GarminFitParser(DiveLogFitParser):
                 )
                 - 1
             )
+            print()
         except ValueError as e:
             raise DiveLogFitDiveNotFoundError(
                 f"Invalid Dive: Please enter a number between 1 and {len(dive_summary)}"
