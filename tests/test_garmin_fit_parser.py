@@ -1192,11 +1192,13 @@ class TestGarminFitParser:
                 "dive_summary_mesgs": [
                     {
                         "bottom_time": 10,
+                        "max_depth": 30.0,
                         "reference_mesg": "lap",
                         "reference_index": 0,
                     },
                     {
                         "bottom_time": 12,
+                        "max_depth": 30.0,
                         "reference_mesg": "lap",
                         "reference_index": 1,
                     },
@@ -1316,8 +1318,8 @@ class TestGarminFitParser:
 
         The output should be:
         Multiple dives found in the FIT file. Please select a dive to import:
-        [1]: Dive 1: Start Time: 2023-05-27 19:10:00 (GMT), Max Depth: 30m, Bottom Time: 60s
-        [2]: Dive 2: Start Time: 2023-05-27 19:11:00 (GMT), Max Depth: 20m, Bottom Time: 59s
+        [1]: Dive 1: Start Time: 2023-05-27 19:10:00 (GMT), Max Depth: 30.0m, Bottom Time: 60.0s
+        [2]: Dive 2: Start Time: 2023-05-27 19:11:00 (GMT), Max Depth: 20.0m, Bottom Time: 59.0s
         """
         dive_summary = [
             {
@@ -1343,11 +1345,11 @@ class TestGarminFitParser:
         captured = capsys.readouterr()
         assert "Multiple dives found in the FIT file" in captured.out
         assert (
-            "[1]: Dive 1: Start Time: 2023-05-27 19:10:00 (GMT), Max Depth: 30m, Bottom Time: 60s"
+            "[1]: Dive 1: Start Time: 2023-05-27 19:10:00 (GMT), Max Depth: 30.0m, Bottom Time: 60.0s"
             in captured.out
         )
         assert (
-            "[2]: Dive 2: Start Time: 2023-05-27 19:11:00 (GMT), Max Depth: 20m, Bottom Time: 59s"
+            "[2]: Dive 2: Start Time: 2023-05-27 19:11:00 (GMT), Max Depth: 20.0m, Bottom Time: 59.0s"
             in captured.out
         )
         assert mock_input.call_count == 1

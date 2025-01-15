@@ -46,18 +46,23 @@ class GarminFitParser(DiveLogFitParser):
         """
         if len(dive_summary) == 1:
             return 0
-        print("Multiple dives found in the FIT file. Please select a dive to import:")
+        print("Multiple dives found in the FIT file. Please select a dive to import:\n")
         for idx, dive in enumerate(dive_summary):
             start_time = self.convert_fit_epoch_to_datetime(
                 cast(int, dive.get("start_time"))
             )
             print(
                 f"[{idx + 1}]: Dive {idx + 1}: Start Time: {start_time}, "
-                f"Max Depth: {dive.get('max_depth')}m, Bottom Time: {dive.get('bottom_time')}s"
+                f"Max Depth: {cast(float, dive.get('max_depth')):.1f}m, "
+                f"Bottom Time: {cast(float, dive.get('bottom_time')):.1f}s"
             )
         try:
             selected_dive_idx = (
-                int(input(f"Enter the dive number to import [1-{len(dive_summary)}]: "))
+                int(
+                    input(
+                        f"\nEnter the dive number to import [1-{len(dive_summary)}]: "
+                    )
+                )
                 - 1
             )
         except ValueError as e:
