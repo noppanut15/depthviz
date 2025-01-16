@@ -10,11 +10,11 @@ Follow these steps to export a diving activity from the Garmin Connect website:
 
 4. Select the name of the diving session you would like to export.
    
-   <img src="../assets/garmin_activity_cursor_click.gif" alt="GIF showing the mouse clicking on the activity name in Garmin Connect" width="350">
+   <img src="../assets/garmin_activity_cursor_click.gif" alt="GIF showing the mouse clicking on the activity name in Garmin Connect" width="400">
 
 5. Select the settings gear in the top right corner.
 
-   <img src="../assets/garmin_export_fit_cursor_click.gif" alt="GIF showing the mouse clicking on the settings gear and click Export File in Garmin Connect" width="350">
+   <img src="../assets/garmin_export_fit_cursor_click.gif" alt="GIF showing the mouse clicking on the settings gear and click Export File in Garmin Connect" width="400">
 
 6. Select "**Export File**" from the drop-down menu. The file will then begin to download.
 
