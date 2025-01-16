@@ -11,6 +11,7 @@ from depthviz.parsers.generic.generic_divelog_parser import (
 )
 from depthviz.parsers.apnealizer.csv_parser import ApnealizerCsvParser
 from depthviz.parsers.shearwater.shearwater_xml_parser import ShearwaterXmlParser
+from depthviz.parsers.garmin.fit_parser import GarminFitParser
 from depthviz.parsers.manual.csv_parser import ManualCsvParser
 from depthviz.core import DepthReportVideoCreator, DepthReportVideoCreatorError
 
@@ -47,7 +48,7 @@ class DepthvizApplication:
             "--source",
             help="Source where the dive log was downloaded from. \
                 This is required to correctly parse your data.",
-            choices=["apnealizer", "shearwater", "manual"],
+            choices=["apnealizer", "shearwater", "garmin", "manual"],
             required=True,
         )
         self.required_args.add_argument(
@@ -110,6 +111,9 @@ class DepthvizApplication:
             return 1
 
         args = self.parser.parse_args(sys.argv[1:])
+
+        # TODO: Add a check for the output file extension, decimal places, etc.
+
         print(BANNER)
 
         divelog_parser: DiveLogParser
@@ -117,6 +121,8 @@ class DepthvizApplication:
             divelog_parser = ApnealizerCsvParser()
         elif args.source == "shearwater":
             divelog_parser = ShearwaterXmlParser()
+        elif args.source == "garmin":
+            divelog_parser = GarminFitParser()
         elif args.source == "manual":
             divelog_parser = ManualCsvParser()
         else:
