@@ -9,6 +9,8 @@ from typing import Any
 from unittest import mock
 import pytest
 from depthviz.main import DepthvizApplication, run
+from depthviz.parsers.generic.generic_divelog_parser import DiveLogParser
+from depthviz.core import DepthReportVideoCreatorError
 
 
 class TestMainCLI:
@@ -136,7 +138,9 @@ class TestMainCLI:
         app = DepthvizApplication()
         app.main()
         captured = capsys.readouterr()
-        assert "Invalid file format" in captured.out
+        assert (
+            "Invalid output file extension. Please provide a .mp4 file." in captured.out
+        )
 
     def test_main_with_invalid_source(
         self,
@@ -179,7 +183,10 @@ class TestMainCLI:
             The mock function for overriding the parse_args function to inject nonexistent source.
             """
             return argparse.Namespace(
-                input="test.csv", source=mock_source, output="test.mp4"
+                input="test.csv",
+                source=mock_source,
+                output="test.mp4",
+                decimal_places=0,
             )
 
         monkeypatch.setattr(argparse.ArgumentParser, "parse_args", mock_parse_args)
@@ -322,3 +329,108 @@ class TestMainCLI:
             decimal_places=0,
             no_minus=False,
         )
+
+    @pytest.mark.parametrize(
+        "decimal_places, output, expected_is_valid, expected_output_message",
+        [
+            (0, "test.mp4", True, ""),
+            (1, "test.mp4", True, ""),
+            (2, "test.mp4", True, ""),
+            (
+                3,
+                "test.mp4",
+                False,
+                "Invalid value for decimal places. Valid values: 0, 1, 2.",
+            ),
+            (
+                -1,
+                "test.mp4",
+                False,
+                "Invalid value for decimal places. Valid values: 0, 1, 2.",
+            ),
+            (
+                0,
+                "test.mp3",
+                False,
+                "Invalid output file extension. Please provide a .mp4 file.",
+            ),
+            (
+                0,
+                "xx",
+                False,
+                "Invalid output file extension. Please provide a .mp4 file.",
+            ),
+        ],
+    )
+    def test_is_user_input_valid(
+        self,
+        decimal_places: int,
+        output: str,
+        expected_is_valid: bool,
+        expected_output_message: str,
+        capsys: pytest.CaptureFixture[str],
+    ) -> None:
+        """
+        Test the is_user_input_valid method.
+        """
+        app = DepthvizApplication()
+        args = argparse.Namespace(decimal_places=decimal_places, output=output)
+        is_valid = app.is_user_input_valid(args)
+        output_message, _ = capsys.readouterr()
+        assert is_valid is expected_is_valid
+        assert output_message.strip() == expected_output_message
+
+    @mock.patch("depthviz.main.DepthReportVideoCreator.save")
+    @mock.patch("depthviz.main.DepthReportVideoCreator.render_depth_report_video")
+    @mock.patch("depthviz.main.DepthReportVideoCreator")
+    def test_create_video_failure(
+        self,
+        mock_depth_report_video_creator: mock.Mock,
+        mock_render_depth_report_video: mock.Mock,
+        mock_save: mock.Mock,
+        capsys: pytest.CaptureFixture[str],
+    ) -> None:
+        """
+        Test the create_video method for failure in video creation.
+        """
+        # Create an instance of the main application.
+        app = DepthvizApplication()
+
+        # Mock the DiveLogParser class and its methods.
+        divelog_parser = mock.Mock(spec=DiveLogParser)
+        divelog_parser.get_time_data = mock.Mock(return_value=[0, 1, 2, 3])
+        divelog_parser.get_depth_data = mock.Mock(return_value=[0.0, 1.5, 2.0])
+
+        # Mock the DepthReportVideoCreator class and its methods.
+        mock_depth_report_video_creator.return_value = mock_depth_report_video_creator
+        mock_render_depth_report_video.side_effect = DepthReportVideoCreatorError(
+            "Error rendering video"
+        )
+
+        # Call the create_video method with the mocked objects.
+        output_path = "test.mp4"
+        decimal_places = 2
+        no_minus = False
+
+        ret_code = app.create_video(
+            divelog_parser=divelog_parser,
+            output_path=output_path,
+            decimal_places=decimal_places,
+            no_minus=no_minus,
+        )
+
+        # Check the return code and the captured output.
+        assert ret_code == 1
+        captured = capsys.readouterr()
+        assert "Error rendering video" in captured.out
+
+        # Check the method calls.
+        divelog_parser.get_time_data.assert_called_once()
+        divelog_parser.get_depth_data.assert_called_once()
+        mock_render_depth_report_video.assert_called_once_with(
+            time_data=[0, 1, 2, 3],
+            depth_data=[0.0, 1.5, 2.0],
+            decimal_places=decimal_places,
+            minus_sign=True,
+        )
+        mock_save.assert_not_called()
