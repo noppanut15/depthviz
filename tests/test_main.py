@@ -19,8 +19,8 @@ class TestMainCLI:
     def _mock_depthviz_create_video(
         self,
         output_path: str,
-        *args: Any,
-        **kwargs: Any,
+        *_args: Any,
+        **_kwargs: Any,
     ) -> None:
         """
         Mock the DepthvizApplication create_video method.
@@ -174,9 +174,7 @@ class TestMainCLI:
         """
         mock_source = "random-stuff"
 
-        def mock_parse_args(  # type: ignore
-            *args,  # pylint: disable=unused-argument
-        ) -> argparse.Namespace:
+        def mock_parse_args(*_args: Any, **_kwargs: Any) -> argparse.Namespace:
             """
             The mock function for overriding the parse_args function to inject nonexistent source.
             """

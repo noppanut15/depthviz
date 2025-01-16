@@ -1093,8 +1093,8 @@ class TestGarminFitParser:
         """
 
         def mock_decoder_read(
-            *args: Union[str, bool],
-            **kwargs: Union[str, bool],
+            *_args: Union[str, bool],
+            **_kwargs: Union[str, bool],
         ) -> tuple[dict[str, list[Any]], list[Any]]:
             """
             A mock function for the Decoder.read method.
@@ -1121,8 +1121,8 @@ class TestGarminFitParser:
         """
 
         def mock_decoder_read(
-            *args: Union[str, bool],
-            **kwargs: Union[str, bool],
+            *_args: Union[str, bool],
+            **_kwargs: Union[str, bool],
         ) -> tuple[dict[str, list[Any]], list[Any]]:
             """
             A mock function for the Decoder.read method.
@@ -1148,8 +1148,8 @@ class TestGarminFitParser:
         """
 
         def mock_decoder_read(
-            *args: Union[str, bool],
-            **kwargs: Union[str, bool],
+            *_args: Union[str, bool],
+            **_kwargs: Union[str, bool],
         ) -> tuple[dict[str, list[Any]], list[Any]]:
             """
             A mock function for the Decoder.read method.
@@ -1181,8 +1181,8 @@ class TestGarminFitParser:
         """
 
         def mock_decoder_read(
-            *args: Union[str, bool],
-            **kwargs: Union[str, bool],
+            *_args: Union[str, bool],
+            **_kwargs: Union[str, bool],
         ) -> tuple[dict[str, list[Any]], list[Any]]:
             """
             A mock function for the Decoder.read method.
@@ -1232,8 +1232,8 @@ class TestGarminFitParser:
         """
 
         def mock_decoder_read(
-            *args: Union[str, bool],
-            **kwargs: Union[str, bool],
+            *_args: Union[str, bool],
+            **_kwargs: Union[str, bool],
         ) -> tuple[dict[str, list[Any]], list[Any]]:
             """
             A mock function for the Decoder.read method.
