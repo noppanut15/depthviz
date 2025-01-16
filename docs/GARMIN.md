@@ -19,7 +19,7 @@ Follow these steps to export a diving activity from the Garmin Connect website:
 6. Select "**Export File**" from the drop-down menu. The file will then begin to download.
 
 > [!IMPORTANT]
-> If you get a `.zip` file, extract the `.fit` file from the `.zip` file.
+> If you get a `.zip` file, please extract the `.fit` file from the `.zip` file.
 
 
 ## Additional Resources
