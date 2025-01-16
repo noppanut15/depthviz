@@ -1345,12 +1345,12 @@ class TestGarminFitParser:
         captured = capsys.readouterr()
         assert "Multiple dives found in the FIT file" in captured.out
         assert (
-            "[1]: Dive 1: Start Time: 2023-05-27 19:10:00 (GMT), Max Depth: 30.0m, Bottom Time: 60.0s"
-            in captured.out
+            "[1]: Dive 1: Start Time: 2023-05-27 19:10:00 (GMT), "
+            "Max Depth: 30.0m, Bottom Time: 60.0s" in captured.out
         )
         assert (
-            "[2]: Dive 2: Start Time: 2023-05-27 19:11:00 (GMT), Max Depth: 20.0m, Bottom Time: 59.0s"
-            in captured.out
+            "[2]: Dive 2: Start Time: 2023-05-27 19:11:00 (GMT), "
+            "Max Depth: 20.0m, Bottom Time: 59.0s" in captured.out
         )
         assert mock_input.call_count == 1
 
