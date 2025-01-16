@@ -11,6 +11,7 @@ from depthviz.parsers.generic.generic_divelog_parser import (
 )
 from depthviz.parsers.apnealizer.csv_parser import ApnealizerCsvParser
 from depthviz.parsers.shearwater.shearwater_xml_parser import ShearwaterXmlParser
+from depthviz.parsers.garmin.fit_parser import GarminFitParser
 from depthviz.parsers.manual.csv_parser import ManualCsvParser
 from depthviz.core import DepthReportVideoCreator, DepthReportVideoCreatorError
 
@@ -47,7 +48,7 @@ class DepthvizApplication:
             "--source",
             help="Source where the dive log was downloaded from. \
                 This is required to correctly parse your data.",
-            choices=["apnealizer", "shearwater", "manual"],
+            choices=["apnealizer", "shearwater", "garmin", "manual"],
             required=True,
         )
         self.required_args.add_argument(
@@ -101,6 +102,20 @@ class DepthvizApplication:
         print(f"Video successfully created: {output_path}")
         return 0
 
+    def is_user_input_valid(self, args: argparse.Namespace) -> bool:
+        """
+        Check if the user input is valid.
+        """
+        if args.decimal_places not in [0, 1, 2]:
+            print("Invalid value for decimal places. Valid values: 0, 1, 2.")
+            return False
+
+        if args.output[-4:] != ".mp4":
+            print("Invalid output file extension. Please provide a .mp4 file.")
+            return False
+
+        return True
+
     def main(self) -> int:
         """
         Main function for the depthviz command line interface.
@@ -110,13 +125,21 @@ class DepthvizApplication:
             return 1
 
         args = self.parser.parse_args(sys.argv[1:])
+
         print(BANNER)
+
+        # Check if the user input is valid before analyzing the dive log
+        # This is to avoid long processing times for invalid input
+        if not self.is_user_input_valid(args):
+            return 1
 
         divelog_parser: DiveLogParser
         if args.source == "apnealizer":
             divelog_parser = ApnealizerCsvParser()
         elif args.source == "shearwater":
             divelog_parser = ShearwaterXmlParser()
+        elif args.source == "garmin":
+            divelog_parser = GarminFitParser()
         elif args.source == "manual":
             divelog_parser = ManualCsvParser()
         else:

@@ -43,8 +43,8 @@ class ManualCsvParser(DiveLogCsvParser):
                             time_value = float(row["Time"])
                             if time_value < 0:
                                 raise InvalidTimeValueError(
-                                    f"Invalid CSV: Invalid time value at row {excel_row}, \
-the value must be positive"
+                                    f"Invalid CSV: Invalid time value at row {excel_row}, "
+                                    "the value must be positive"
                                 )
                             self.__time_data.append(time_value)
                         except ValueError as e:
@@ -55,8 +55,8 @@ the value must be positive"
                             depth_value = float(row["Depth"])
                             if depth_value < 0:
                                 raise InvalidDepthValueError(
-                                    f"Invalid CSV: Invalid depth value at row {excel_row}, \
-the value must be positive"
+                                    f"Invalid CSV: Invalid depth value at row {excel_row}, "
+                                    "the value must be positive"
                                 )
                             self.__depth_data.append(depth_value)
                         except ValueError as e:
@@ -65,8 +65,8 @@ the value must be positive"
                             ) from e
                     else:
                         raise DiveLogCsvInvalidHeaderError(
-                            "Invalid CSV: Invalid headers in CSV file, make sure \
-there are 'Time' and 'Depth' columns in the CSV file"
+                            "Invalid CSV: Invalid headers in CSV file, make sure "
+                            "there are 'Time' and 'Depth' columns in the CSV file"
                         )
             if not self.__depth_data or not self.__time_data:
                 raise EmptyFileError("Invalid CSV: File is empty")
