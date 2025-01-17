@@ -251,10 +251,10 @@ class SuuntoFitParser(DiveLogFitParser):
             self.__time_data.append(time)
             self.__depth_data.append(depth)
 
-        if not self.__time_data or not self.__depth_data:
-            raise DiveLogFitDiveNotFoundError(
-                f"Invalid Dive Data: Dive data not found in FIT file: {file_path}"
-            )
+        # if not self.__time_data or not self.__depth_data:
+        #     raise DiveLogFitDiveNotFoundError(
+        #         f"Invalid Dive Data: Dive data not found in FIT file: {file_path}"
+        #     )
 
     def get_time_data(self) -> list[float]:
         """

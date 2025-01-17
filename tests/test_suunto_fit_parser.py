@@ -829,3 +829,37 @@ class TestSuuntoFitParser:
             str(e.value)
             == "Invalid FIT file: You must import Suunto Dive Computer data, not 'garmin'"
         )
+
+    def test_empty_record_mesgs(self, monkeypatch: pytest.MonkeyPatch) -> None:
+        """
+        Test parsing a FIT file with empty record_mesgs.
+        """
+
+        def mock_decoder_read(
+            *_args: Union[str, bool],
+            **_kwargs: Union[str, bool],
+        ) -> tuple[dict[str, list[Any]], list[Any]]:
+            """
+            A mock function for the Decoder.read method.
+            """
+            return {
+                "file_id_mesgs": [{"type": "activity", "manufacturer": "suunto"}],
+                "record_mesgs": [
+                    {"timestamp": 0, "depth": 0.0},
+                    {"timestamp": 1, "depth": 3.0},
+                    {"timestamp": 2, "depth": 0.0},
+                ],
+            }, []
+
+        file_path = "mock"
+
+        fit_parser = SuuntoFitParser(selected_dive_idx=0)
+        monkeypatch.setattr(Stream, "from_file", self._mock_stream_from_file)
+        monkeypatch.setattr(Decoder, "__init__", self._mock_decoder_init)
+        monkeypatch.setattr(Decoder, "read", mock_decoder_read)
+        with pytest.raises(DiveLogFitDiveNotFoundError) as e:
+            fit_parser.parse(file_path)
+        assert (
+            str(e.value)
+            == "Invalid FIT file: does not contain any dive data deeper than 3m."
+        )
