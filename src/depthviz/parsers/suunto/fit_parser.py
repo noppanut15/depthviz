@@ -3,7 +3,6 @@ This module contains the SuuntoFitParser class
 which is used to parse a Suunto FIT file from Suunto App
 """
 
-import math
 from typing import cast, Union
 from datetime import datetime, timezone
 from garmin_fit_sdk import Decoder, Stream
@@ -15,10 +14,10 @@ from depthviz.parsers.generic.fit.fit_parser import (
     DiveLogFitInvalidFitFileTypeError,
     DiveLogFitDiveNotFoundError,
 )
-from pprint import pprint
 
 # Constants
 CUT_OFF_DEPTH = 1.5  # The depth which the dive is considered to have started or ended
+LOWEST_MAX_DEPTH = 3  # The minimum depth for a dive to be considered valid
 
 
 class SuuntoFitParser(DiveLogFitParser):
@@ -32,6 +31,20 @@ class SuuntoFitParser(DiveLogFitParser):
 
         # Select the dive to be parsed (in case of multiple dives in FIT file)
         self.__selected_dive_idx = selected_dive_idx
+
+        # Internal variables for extracting dive logs
+        self.__current_dive = None
+        self.__descended = False
+        self.__ascended = False
+
+    def __reset_dive_state(self):
+        """
+        A method to reset the internal state of the dive extraction process.
+        This is used to reset the state when a new dive is detected.
+        """
+        self.__current_dive = None
+        self.__descended = False
+        self.__ascended = False
 
     def convert_fit_epoch_to_datetime(self, fit_epoch: int) -> str:
         """
@@ -84,17 +97,25 @@ class SuuntoFitParser(DiveLogFitParser):
         """
         A method to parse a Suunto FIT file containing depth data.
         """
+        messages = self.__read_fit_file(file_path)
+        self.__validate_fit_file(messages, file_path)
+        dive_summary = self.__extract_dive_logs(messages)
+        self.__parse_selected_dive(dive_summary, file_path)
+
+    def __read_fit_file(self, file_path: str):
         try:
             stream = Stream.from_file(file_path)
             decoder = Decoder(stream)
             messages, errors = decoder.read(convert_datetimes_to_dates=False)
             if errors:
                 raise errors[0]
+            return messages
         except RuntimeError as e:
             raise DiveLogFitInvalidFitFileError(f"Invalid FIT file: {file_path}") from e
         except FileNotFoundError as e:
             raise DiveLogFileNotFoundError(f"File not found: {file_path}") from e
 
+    def __validate_fit_file(self, messages, file_path: str):
         try:
             file_id_mesgs = messages.get("file_id_mesgs", [])
             file_type = file_id_mesgs[0].get("type")
@@ -114,66 +135,71 @@ class SuuntoFitParser(DiveLogFitParser):
                 f"Invalid FIT file: You must import Suunto Dive Computer data, not '{manufacturer}'"
             )
 
+    def __extract_dive_logs(self, messages):
         dive_summary = []
-
+        raw_extracted_dive_logs = []
         records = messages.get("record_mesgs", [])
 
-        raw_extracted_dive_logs = []
-        current_dive = None
+        # Used for comparing the depth values to detect the start and end of a dive
         previous_depth = 0
         previous_record = None
-        descending = False
-        ascending = False
 
         for record in records:
             timestamp = record.get("timestamp")
             depth = record.get("depth")
 
             if depth > 0:
-                if current_dive is None:
-                    current_dive = {
+                if self.__current_dive is None:
+                    self.__current_dive = {
                         "data": [],
                         "max_depth": 0,
                     }
+                    # Add the previous record that has been cut off to the current dive
                     if previous_record is not None:
-                        current_dive["data"].append(
+                        self.__current_dive["data"].append(
                             {
                                 "timestamp": previous_record.get("timestamp"),
                                 "depth": previous_record.get("depth"),
                             }
                         )
-                    raw_extracted_dive_logs.append(current_dive)
+                    raw_extracted_dive_logs.append(self.__current_dive)
 
+                # Detect the start and end of a dive
+                # It will not intervene with the data if the depth is more than the CUT_OFF_DEPTH
                 if depth > CUT_OFF_DEPTH:
-                    descending = True
-                if descending and depth < CUT_OFF_DEPTH:
-                    ascending = True
+                    self.__descended = True
+                if self.__descended and depth < CUT_OFF_DEPTH:
+                    self.__ascended = True
 
-                if not descending and depth < previous_depth:
-                    current_dive = None
-                    descending = False
-                    ascending = False
-                if descending and ascending and depth > previous_depth:
-                    current_dive = None
-                    descending = False
-                    ascending = False
+                # Reset the dive state if:
+                # 1. Diver descends and ascends without reaching the CUT_OFF_DEPTH
+                # 2. After ascending past the CUT_OFF_DEPTH, the diver descends again
+                # This is to filter out surface intervals and multiple dives in the same file
+                if not self.__descended and depth < previous_depth:
+                    self.__reset_dive_state()
+                if self.__descended and self.__ascended and depth > previous_depth:
+                    self.__reset_dive_state()
 
-                if current_dive is not None:
-                    current_dive["data"].append(
+                # Add the depth data to the current dive if it passes the checks (not getting reset)
+                if self.__current_dive is not None:
+                    self.__current_dive["data"].append(
                         {"timestamp": timestamp, "depth": depth}
                     )
-                    current_dive["max_depth"] = max(current_dive["max_depth"], depth)
+                    self.__current_dive["max_depth"] = max(
+                        self.__current_dive["max_depth"], depth
+                    )
 
+                # Save the previous depth for comparison
                 previous_depth = depth
             else:
-                current_dive = None
-                descending = False
-                ascending = False
+                # Reset the dive state if the depth is 0
+                self.__reset_dive_state()
+            # Save the previous record for adding to the next dive if it is cut off but valid
             previous_record = record
 
-        # Dive Summary
+        # Dive summary contains the dive logs that are deeper than LOWEST_MAX_DEPTH
         for log in raw_extracted_dive_logs:
-            if log["max_depth"] > 3:
+            if log["max_depth"] > LOWEST_MAX_DEPTH:
                 start_time = log["data"][0]["timestamp"]
                 end_time = log["data"][-1]["timestamp"]
                 max_depth = log["max_depth"]
@@ -189,9 +215,12 @@ class SuuntoFitParser(DiveLogFitParser):
                 )
         if not dive_summary:
             raise DiveLogFitDiveNotFoundError(
-                f"Invalid FIT file: {file_path} does not contain any dive data deeper than 3m."
+                f"Invalid FIT file: does not contain any dive data \
+                    deeper than {LOWEST_MAX_DEPTH}m."
             )
+        return dive_summary
 
+    def __parse_selected_dive(self, dive_summary, file_path: str):
         # TODO: A prompt to select the dive if there are multiple dives in the FIT file
         #         # A prompt to select the dive if there are multiple dives in the FIT file
         #         if self.__selected_dive_idx == -1:
