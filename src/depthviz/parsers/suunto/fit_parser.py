@@ -224,8 +224,8 @@ class SuuntoFitParser(DiveLogFitParser):
                 )
         if not dive_summary:
             raise DiveLogFitDiveNotFoundError(
-                f"Invalid FIT file: does not contain any dive data \
-                    deeper than {LOWEST_MAX_DEPTH}m."
+                "Invalid FIT file: does not contain any dive data "
+                f"deeper than {LOWEST_MAX_DEPTH}m."
             )
         return dive_summary
 
