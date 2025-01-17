@@ -710,3 +710,19 @@ class TestSuuntoFitParser:
         fit_parser.parse(file_path)
         assert fit_parser.get_time_data() == expected_time_data
         assert fit_parser.get_depth_data() == expected_depth_data
+
+    def test_parse_invalid_fit(
+        self,
+        request: pytest.FixtureRequest,
+    ) -> None:
+        """
+        Test parsing an invalid FIT file.
+        """
+        file_path = str(
+            request.path.parent.joinpath("data", "suunto", "invalid_file.fit")
+        )
+        fit_parser = SuuntoFitParser()
+
+        with pytest.raises(DiveLogFitInvalidFitFileError) as e:
+            fit_parser.parse(file_path)
+        assert str(e.value) == f"Invalid FIT file: {file_path}"
