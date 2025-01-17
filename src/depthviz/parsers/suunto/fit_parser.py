@@ -33,16 +33,16 @@ class SuuntoFitParser(DiveLogFitParser):
         self.__selected_dive_idx = selected_dive_idx
 
         # Internal variables for extracting dive logs
-        self.__current_dive = None
-        self.__descended = False
-        self.__ascended = False
+        self.__current_dive: dict[str, Any] = {}
+        self.__descended: bool = False
+        self.__ascended: bool = False
 
     def __reset_dive_state(self) -> None:
         """
         A method to reset the internal state of the dive extraction process.
         This is used to reset the state when a new dive is detected.
         """
-        self.__current_dive = None
+        self.__current_dive = {}
         self.__descended = False
         self.__ascended = False
 
@@ -162,7 +162,8 @@ class SuuntoFitParser(DiveLogFitParser):
             depth = record.get("depth")
 
             if depth > 0:
-                if self.__current_dive is None:
+                # Create a new dive log if the depth is greater than 0 and the current dive is None
+                if not self.__current_dive:
                     self.__current_dive = {
                         "data": [],
                         "max_depth": 0,
@@ -194,7 +195,7 @@ class SuuntoFitParser(DiveLogFitParser):
                     self.__reset_dive_state()
 
                 # Add the depth data to the current dive if it passes the checks (not getting reset)
-                if self.__current_dive is not None:
+                if self.__current_dive:
                     self.__current_dive["data"].append(
                         {"timestamp": timestamp, "depth": depth}
                     )
