@@ -59,13 +59,13 @@ depthviz -i <input_file> -s <source> -o <output_video.mp4>
 
 **Source Options:**
 
-|    Source    | Description                                                                                                                                          | File type | Status |
-| :----------: | ---------------------------------------------------------------------------------------------------------------------------------------------------- | :-------: | :----: |
-| `apnealizer` | Data from [Apnealizer](https://apnealizer.com/) application.                                                                                         |    CSV    |   ✅    |
-| `shearwater` | Data from [Shearwater](https://shearwater.com/pages/shearwater-cloud) dive computers.                                                                |    XML    |   ✅    |
-|   `garmin`   | Data from [Garmin](https://github.com/noppanut15/depthviz/blob/main/docs/GARMIN.md) dive computers.                                                  |    FIT    |   ✅    |
-|   `suunto`   | Data from [Suunto](https://www.suunto.com/Support/faq-articles/suunto-app/what-type-of-files-can-i-export-from-the-suunto-app/) dive computers.      |    FIT    |   ✅    |
-|   `manual`   | Manual input without a dive computer. See the [Manual Mode](#️-manual-mode-creating-depth-overlays-without-a-dive-computer) section for more details. |    CSV    |   ✅    |
+|    Source    | Description                                                                                                                                     | File type | Status |
+| :----------: | ----------------------------------------------------------------------------------------------------------------------------------------------- | :-------: | :----: |
+| `apnealizer` | Data from [Apnealizer](https://apnealizer.com/) application.                                                                                    |    CSV    |   ✅    |
+| `shearwater` | Data from [Shearwater](https://shearwater.com/pages/shearwater-cloud) dive computers.                                                           |    XML    |   ✅    |
+|   `garmin`   | Data from [Garmin](https://github.com/noppanut15/depthviz/blob/main/docs/GARMIN.md) dive computers.                                             |    FIT    |   ✅    |
+|   `suunto`   | Data from [Suunto](https://www.suunto.com/Support/faq-articles/suunto-app/what-type-of-files-can-i-export-from-the-suunto-app/) dive computers. |    FIT    |   ✅    |
+|   `manual`   | Manual depth input. See the [No Dive Computer?](#-no-dive-computer) section for more details.                                                   |    CSV    |   ✅    |
 
 **Example**:
 
@@ -80,9 +80,9 @@ depthviz -i 123456_ACTIVITY.fit -s garmin -o depth_overlay.mp4
 Import the generated overlay video into your preferred video editing software and combine it with your original dive footage. Adjust the blending and position of the overlay to suit your video style. 
 > [Watch this tutorial](https://www.youtube.com/watch?v=ZggKrWk98Ag) on how to import an overlay video in CapCut Desktop.
 
-# ⚙️ Manual Mode: Creating Depth Overlays Without a Dive Computer
+# 🚫 No Dive Computer?
 
-**No Dive Computer? No Problem!** You can still create a depth overlay video by **manually inputting your dive log** using the `manual` source option.
+**No Dive Computer, No Problem!** You can still create a depth overlay video by **manually inputting your dive log** using the `manual` source option.
 
 **Example**:
 ```bash
