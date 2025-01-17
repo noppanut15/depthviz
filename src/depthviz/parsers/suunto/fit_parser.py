@@ -17,6 +17,9 @@ from depthviz.parsers.generic.fit.fit_parser import (
 )
 from pprint import pprint
 
+# Constants
+CUT_OFF_DEPTH = 1.5  # The depth which the dive is considered to have started or ended
+
 
 class SuuntoFitParser(DiveLogFitParser):
     """
@@ -141,9 +144,9 @@ class SuuntoFitParser(DiveLogFitParser):
                         )
                     raw_extracted_dive_logs.append(current_dive)
 
-                if depth > 1.5:
+                if depth > CUT_OFF_DEPTH:
                     descending = True
-                if descending and depth < 1.5:
+                if descending and depth < CUT_OFF_DEPTH:
                     ascending = True
 
                 if not descending and depth < previous_depth:
