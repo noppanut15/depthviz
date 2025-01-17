@@ -55,43 +55,43 @@ class SuuntoFitParser(DiveLogFitParser):
             "%Y-%m-%d %H:%M:%S (GMT)"
         )
 
-    #     def select_dive(self, dive_summary: list[dict[str, Union[int, float]]]) -> int:
-    #         """
-    #         A method to prompt the user to select a dive from the FIT file,
-    #         if there are multiple dives in the file.
-    #         """
-    #         if len(dive_summary) == 1:
-    #             return 0
-    #         print("Multiple dives found in the FIT file. Please select a dive to import:\n")
-    #         for idx, dive in enumerate(dive_summary):
-    #             start_time = self.convert_fit_epoch_to_datetime(
-    #                 cast(int, dive.get("start_time"))
-    #             )
-    #             print(
-    #                 f"[{idx + 1}]: Dive {idx + 1}: Start Time: {start_time}, "
-    #                 f"Max Depth: {cast(float, dive.get('max_depth')):.1f}m, "
-    #                 f"Bottom Time: {cast(float, dive.get('bottom_time')):.1f}s"
-    #             )
-    #         try:
-    #             selected_dive_idx = (
-    #                 int(
-    #                     input(
-    #                         f"\nEnter the dive number to import [1-{len(dive_summary)}]: "
-    #                     )
-    #                 )
-    #                 - 1
-    #             )
-    #             print()
-    #         except ValueError as e:
-    #             raise DiveLogFitDiveNotFoundError(
-    #                 f"Invalid Dive: Please enter a number between 1 and {len(dive_summary)}"
-    #             ) from e
+    def select_dive(self, dive_summary: list[dict[str, Union[int, float]]]) -> int:
+        """
+        A method to prompt the user to select a dive from the FIT file,
+        if there are multiple dives in the file.
+        """
+        if len(dive_summary) == 1:
+            return 0
+        print("Multiple dives found in the FIT file. Please select a dive to import:\n")
+        for idx, dive in enumerate(dive_summary):
+            start_time = self.convert_fit_epoch_to_datetime(
+                cast(int, dive.get("start_time"))
+            )
+            print(
+                f"[{idx + 1}]: Dive {idx + 1}: Start Time: {start_time}, "
+                f"Max Depth: {cast(float, dive.get('max_depth')):.1f}m, "
+                f"Bottom Time: {cast(float, dive.get('bottom_time')):.1f}s"
+            )
+        try:
+            selected_dive_idx = (
+                int(
+                    input(
+                        f"\nEnter the dive number to import [1-{len(dive_summary)}]: "
+                    )
+                )
+                - 1
+            )
+            print()
+        except ValueError as e:
+            raise DiveLogFitDiveNotFoundError(
+                f"Invalid Dive: Please enter a number between 1 and {len(dive_summary)}"
+            ) from e
 
-    #         if selected_dive_idx >= len(dive_summary) or selected_dive_idx < 0:
-    #             raise DiveLogFitDiveNotFoundError(
-    #                 f"Invalid Dive: Please enter a number between 1 and {len(dive_summary)}"
-    #             )
-    #         return selected_dive_idx
+        if selected_dive_idx >= len(dive_summary) or selected_dive_idx < 0:
+            raise DiveLogFitDiveNotFoundError(
+                f"Invalid Dive: Please enter a number between 1 and {len(dive_summary)}"
+            )
+        return selected_dive_idx
 
     def parse(self, file_path: str) -> None:
         """
@@ -234,10 +234,9 @@ class SuuntoFitParser(DiveLogFitParser):
         A method to parse the selected dive from the dive summary
         and save them as time and depth data.
         """
-        # TODO: A prompt to select the dive if there are multiple dives in the FIT file
-        #         # A prompt to select the dive if there are multiple dives in the FIT file
-        #         if self.__selected_dive_idx == -1:
-        #             self.__selected_dive_idx = self.select_dive(dive_summary)
+        # A prompt to select the dive if there are multiple dives in the FIT file
+        if self.__selected_dive_idx == -1:
+            self.__selected_dive_idx = self.select_dive(dive_summary)
 
         # Parse the depth data for the selected dive
         records = dive_summary[self.__selected_dive_idx].get("raw_data", [])
@@ -251,10 +250,10 @@ class SuuntoFitParser(DiveLogFitParser):
             self.__time_data.append(time)
             self.__depth_data.append(depth)
 
-        # if not self.__time_data or not self.__depth_data:
-        #     raise DiveLogFitDiveNotFoundError(
-        #         f"Invalid Dive Data: Dive data not found in FIT file: {file_path}"
-        #     )
+        if not self.__time_data or not self.__depth_data:
+            raise DiveLogFitDiveNotFoundError(
+                f"Invalid Dive Data: Dive data not found in FIT file: {file_path}"
+            )
 
     def get_time_data(self) -> list[float]:
         """

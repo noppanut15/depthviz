@@ -863,3 +863,194 @@ class TestSuuntoFitParser:
             str(e.value)
             == "Invalid FIT file: does not contain any dive data deeper than 3m."
         )
+
+    def test_file_not_found(self) -> None:
+        """
+        Test parsing a FIT file that does not exist.
+        """
+        file_path = "invalid_file_path"
+
+        fit_parser = SuuntoFitParser()
+        with pytest.raises(DiveLogFileNotFoundError) as e:
+            fit_parser.parse(file_path)
+        assert str(e.value) == f"File not found: {file_path}"
+
+    def test_parse_selected_dive_no_data(self) -> None:
+        """
+        Test selecting a dive with no data.
+        """
+        parser = SuuntoFitParser(selected_dive_idx=0)
+        dive_summary = [
+            {
+                "raw_data": [],
+                "start_time": 1000,
+                "end_time": 1020,
+                "max_depth": 15,
+                "bottom_time": 20,
+            }
+        ]
+        with pytest.raises(DiveLogFitDiveNotFoundError) as e:
+            # pylint: disable=protected-access
+            parser._SuuntoFitParser__parse_selected_dive(dive_summary, "dummy_path")
+            # pylint: enable=protected-access
+        assert (
+            str(e.value)
+            == "Invalid Dive Data: Dive data not found in FIT file: dummy_path"
+        )
+
+    def test_select_dive_single_dive(self) -> None:
+        """
+        Test selecting a dive from a FIT file with a single dive.
+        """
+        dive_summary = [
+            {
+                "raw_data": [],
+                "start_time": 1054149000,
+                "end_time": 1054149060,
+                "max_depth": 30.0,
+                "bottom_time": 60,
+            }
+        ]
+        fit_parser = SuuntoFitParser()
+        assert fit_parser.select_dive(dive_summary) == 0
+
+    def test_convert_time(self) -> None:
+        """
+        Test converting time from a FIT file to a human-readable format.
+        """
+        fit_epoch_time = 1098021928  # 2024-10-16T14:05:28.000Z
+        fit_parser = SuuntoFitParser()
+        assert (
+            fit_parser.convert_fit_epoch_to_datetime(fit_epoch_time)
+            == "2024-10-16 14:05:28 (GMT)"
+        )
+
+    @patch("builtins.input", return_value="2")
+    def test_select_dive_multiple_dives(
+        self,
+        mock_input: MagicMock,
+        capsys: pytest.CaptureFixture[str],
+    ) -> None:
+        """
+        Test selecting a dive from a FIT file with multiple dives.
+        This test uses the mock_input fixture to simulate user input.
+
+        The output should be:
+        Multiple dives found in the FIT file. Please select a dive to import:
+        [1]: Dive 1: Start Time: 2023-05-27 19:10:00 (GMT), Max Depth: 30.0m, Bottom Time: 60.0s
+        [2]: Dive 2: Start Time: 2023-05-27 19:11:00 (GMT), Max Depth: 20.0m, Bottom Time: 59.0s
+        """
+        dive_summary = [
+            {
+                "raw_data": [],
+                "start_time": 1054149000,
+                "end_time": 1054149060,
+                "max_depth": 30.0,
+                "bottom_time": 60,
+            },
+            {
+                "raw_data": [],
+                "start_time": 1054149060,
+                "end_time": 1054149119,
+                "max_depth": 20.0,
+                "bottom_time": 59,
+            },
+        ]
+        fit_parser = SuuntoFitParser()
+        user_select_idx = fit_parser.select_dive(dive_summary)
+        expected_idx = int(mock_input.return_value) - 1
+        assert user_select_idx == expected_idx
+
+        captured = capsys.readouterr()
+        assert "Multiple dives found in the FIT file" in captured.out
+        assert (
+            "[1]: Dive 1: Start Time: 2023-05-27 19:10:00 (GMT), "
+            "Max Depth: 30.0m, Bottom Time: 60.0s" in captured.out
+        )
+        assert (
+            "[2]: Dive 2: Start Time: 2023-05-27 19:11:00 (GMT), "
+            "Max Depth: 20.0m, Bottom Time: 59.0s" in captured.out
+        )
+        assert mock_input.call_count == 1
+
+    @patch("builtins.input", return_value="xxx")
+    def test_select_invalid_dive_non_number(
+        self,
+        mock_input: MagicMock,
+    ) -> None:
+        """
+        Test selecting an invalid dive index.
+        """
+        dive_summary = [
+            {
+                "raw_data": [],
+                "start_time": 1054149000,
+                "end_time": 1054149060,
+                "max_depth": 30.0,
+                "bottom_time": 60,
+            },
+            {
+                "raw_data": [],
+                "start_time": 1054149060,
+                "end_time": 1054149119,
+                "max_depth": 20.0,
+                "bottom_time": 59,
+            },
+        ]
+        fit_parser = SuuntoFitParser()
+        with pytest.raises(DiveLogFitDiveNotFoundError) as e:
+            fit_parser.select_dive(dive_summary)
+        assert (
+            str(e.value)
+            == f"Invalid Dive: Please enter a number between 1 and {len(dive_summary)}"
+        )
+        assert mock_input.call_count == 1
+
+    @patch("builtins.input", return_value="3")
+    def test_select_invalid_dive_idx(
+        self, mock_input: MagicMock, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """
+        Test parsing a FIT file with an invalid dive index.
+        """
+
+        def mock_decoder_read(
+            *_args: Union[str, bool],
+            **_kwargs: Union[str, bool],
+        ) -> tuple[dict[str, list[Any]], list[Any]]:
+            """
+            A mock function for the Decoder.read method.
+            """
+            return {
+                "file_id_mesgs": [{"type": "activity", "manufacturer": "suunto"}],
+                "record_mesgs": [
+                    {"timestamp": 0, "depth": 0.0},
+                    {"timestamp": 1, "depth": 1.0},
+                    {"timestamp": 2, "depth": 2.0},
+                    {"timestamp": 3, "depth": 3.0},
+                    {"timestamp": 4, "depth": 4.0},
+                    {"timestamp": 5, "depth": 3.0},
+                    {"timestamp": 6, "depth": 1.0},
+                    {"timestamp": 7, "depth": 0.0},
+                    {"timestamp": 8, "depth": 1.0},
+                    {"timestamp": 9, "depth": 2.0},
+                    {"timestamp": 10, "depth": 3.0},
+                    {"timestamp": 11, "depth": 4.0},
+                    {"timestamp": 12, "depth": 3.0},
+                    {"timestamp": 13, "depth": 2.0},
+                    {"timestamp": 14, "depth": 1.0},
+                    {"timestamp": 15, "depth": 0.0},
+                ],
+            }, []
+
+        file_path = "mock"
+
+        fit_parser = SuuntoFitParser()
+        monkeypatch.setattr(Stream, "from_file", self._mock_stream_from_file)
+        monkeypatch.setattr(Decoder, "__init__", self._mock_decoder_init)
+        monkeypatch.setattr(Decoder, "read", mock_decoder_read)
+
+        with pytest.raises(DiveLogFitDiveNotFoundError) as e:
+            fit_parser.parse(file_path)
+        assert str(e.value) == "Invalid Dive: Please enter a number between 1 and 2"
+        assert mock_input.call_count == 1
