@@ -103,6 +103,9 @@ class SuuntoFitParser(DiveLogFitParser):
         self.__parse_selected_dive(dive_summary, file_path)
 
     def __read_fit_file(self, file_path: str):
+        """
+        A method to read the FIT file and extract the messages from it.
+        """
         try:
             stream = Stream.from_file(file_path)
             decoder = Decoder(stream)
@@ -116,6 +119,9 @@ class SuuntoFitParser(DiveLogFitParser):
             raise DiveLogFileNotFoundError(f"File not found: {file_path}") from e
 
     def __validate_fit_file(self, messages, file_path: str):
+        """
+        A method to validate the FIT file by checking the FIT type and manufacturer.
+        """
         try:
             file_id_mesgs = messages.get("file_id_mesgs", [])
             file_type = file_id_mesgs[0].get("type")
@@ -136,6 +142,9 @@ class SuuntoFitParser(DiveLogFitParser):
             )
 
     def __extract_dive_logs(self, messages):
+        """
+        A method to extract the dive logs from the records in the FIT file.
+        """
         dive_summary = []
         raw_extracted_dive_logs = []
         records = messages.get("record_mesgs", [])
@@ -221,6 +230,10 @@ class SuuntoFitParser(DiveLogFitParser):
         return dive_summary
 
     def __parse_selected_dive(self, dive_summary, file_path: str):
+        """
+        A method to parse the selected dive from the dive summary
+        and save them as time and depth data.
+        """
         # TODO: A prompt to select the dive if there are multiple dives in the FIT file
         #         # A prompt to select the dive if there are multiple dives in the FIT file
         #         if self.__selected_dive_idx == -1:
