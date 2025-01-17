@@ -22,6 +22,20 @@ class TestSuuntoFitParser:
     Test class for the SuuntoFitParser
     """
 
+    def _mock_stream_from_file(self, _: Any) -> None:
+        """
+        A mock function for the Stream.from_file method.
+        """
+
+    def _mock_decoder_init(
+        self,
+        *args: Union[str, bool],
+        **kwargs: Union[str, bool],
+    ) -> None:
+        """
+        A mock function for the Decoder.__init__ method.
+        """
+
     @pytest.mark.parametrize(
         "file_path, selected_dive_idx, expected_time_data, expected_depth_data",
         [
@@ -726,3 +740,32 @@ class TestSuuntoFitParser:
         with pytest.raises(DiveLogFitInvalidFitFileError) as e:
             fit_parser.parse(file_path)
         assert str(e.value) == f"Invalid FIT file: {file_path}"
+
+    def test_parse_invalid_fit_no_file_id_mesgs(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """
+        Test parsing a FIT file with no file_id_mesgs.
+        """
+
+        def mock_decoder_read(
+            *_args: Union[str, bool],
+            **_kwargs: Union[str, bool],
+        ) -> tuple[dict[str, list[Any]], list[Any]]:
+            """
+            A mock function for the Decoder.read method.
+            """
+            return {"file_id_mesgs": []}, []
+
+        file_path = "mock"
+
+        fit_parser = SuuntoFitParser()
+        monkeypatch.setattr(Stream, "from_file", self._mock_stream_from_file)
+        monkeypatch.setattr(Decoder, "__init__", self._mock_decoder_init)
+        monkeypatch.setattr(Decoder, "read", mock_decoder_read)
+        with pytest.raises(DiveLogFitInvalidFitFileError) as e:
+            fit_parser.parse(file_path)
+        assert (
+            str(e.value)
+            == f"Invalid FIT file: {file_path}, cannot identify FIT type and manufacturer."
+        )
