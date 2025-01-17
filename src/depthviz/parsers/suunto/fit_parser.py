@@ -95,9 +95,10 @@ class SuuntoFitParser(DiveLogFitParser):
         try:
             file_id_mesgs = messages.get("file_id_mesgs", [])
             file_type = file_id_mesgs[0].get("type")
+            manufacturer = file_id_mesgs[0].get("manufacturer")
         except (TypeError, IndexError) as e:
             raise DiveLogFitInvalidFitFileError(
-                f"Invalid FIT file: {file_path}, cannot identify FIT type."
+                f"Invalid FIT file: {file_path}, cannot identify FIT type and manufacturer."
             ) from e
 
         if file_type != "activity":
@@ -105,8 +106,10 @@ class SuuntoFitParser(DiveLogFitParser):
                 f"Invalid FIT file type: You must import 'activity', not '{file_type}'"
             )
 
-        # TODO: Check if the file is from Suunto Dive Computer
-        manufacturer = messages.get("file_id_mesgs")[0].get("manufacturer")
+        if manufacturer != "suunto":
+            raise DiveLogFitInvalidFitFileTypeError(
+                f"Invalid FIT file: You must import Suunto Dive Computer data, not '{manufacturer}'"
+            )
 
         dive_summary = []
 
