@@ -59,13 +59,13 @@ depthviz -i <input_file> -s <source> -o <output_video.mp4>
 
 **Source Options:**
 
-|    Source    | Description                                                                                                                                          | File type | Development Status                                                                          |
-| :----------: | ---------------------------------------------------------------------------------------------------------------------------------------------------- | :-------: | ------------------------------------------------------------------------------------------- |
-| `apnealizer` | Data from [Apnealizer](https://apnealizer.com/) application.                                                                                         |    CSV    | :white_check_mark: Supported                                                                |
-| `shearwater` | Data from [Shearwater](https://shearwater.com/pages/shearwater-cloud) dive computers.                                                                |    XML    | :white_check_mark: Supported                                                                |
-|   `garmin`   | Data from [Garmin](https://github.com/noppanut15/depthviz/blob/main/docs/GARMIN.md) dive computers.                                                                                      |    FIT    | :white_check_mark: Supported                                                            |
-|   `suunto`   | Data from [Suunto](https://www.suunto.com/Support/faq-articles/dm5/how-do-i-import--export-dive-logs-to-dm5/) dive computers.                        |     -     | :warning: [Pending](https://github.com/noppanut15/depthviz/issues/15) |
-|   `manual`   | Manual input without a dive computer. See the [Manual Mode](#️-manual-mode-creating-depth-overlays-without-a-dive-computer) section for more details. |    CSV    | :white_check_mark: Supported                                                                |
+|    Source    | Description                                                                                                                                          | File type | Development Status |
+| :----------: | ---------------------------------------------------------------------------------------------------------------------------------------------------- | :-------: | ------------------ |
+| `apnealizer` | Data from [Apnealizer](https://apnealizer.com/) application.                                                                                         |    CSV    | ✅ Supported        |
+| `shearwater` | Data from [Shearwater](https://shearwater.com/pages/shearwater-cloud) dive computers.                                                                |    XML    | ✅ Supported        |
+|   `garmin`   | Data from [Garmin](https://github.com/noppanut15/depthviz/blob/main/docs/GARMIN.md) dive computers.                                                  |    FIT    | ✅ Supported        |
+|   `suunto`   | Data from [Suunto](https://www.suunto.com/Support/faq-articles/suunto-app/what-type-of-files-can-i-export-from-the-suunto-app/) dive computers.      |    FIT    | ✅ Supported        |
+|   `manual`   | Manual input without a dive computer. See the [Manual Mode](#️-manual-mode-creating-depth-overlays-without-a-dive-computer) section for more details. |    CSV    | ✅ Supported        |
 
 **Example**:
 
