@@ -69,10 +69,10 @@ depthviz -i <input_file> -s <source> -o <output_video.mp4>
 
 **Example**:
 
-Example of generating a depth overlay video named `depth_overlay.mp4` using data from `my_dive.xml` exported from Shearwater dive computers (source: `shearwater`).
+Example of generating a depth overlay video named `depth_overlay.mp4` using data from `123456_ACTIVITY.fit` exported from [Garmin Connect](https://github.com/noppanut15/depthviz/blob/main/docs/GARMIN.md) (source: `garmin`).
 
 ```bash
-depthviz -i my_dive.xml -s shearwater -o depth_overlay.mp4
+depthviz -i 123456_ACTIVITY.fit -s garmin -o depth_overlay.mp4
 ```
 
 **3. Integrate with Your Footage:**
