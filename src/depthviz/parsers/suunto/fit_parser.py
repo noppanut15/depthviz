@@ -79,7 +79,7 @@ class SuuntoFitParser(DiveLogFitParser):
 
     def parse(self, file_path: str) -> None:
         """
-        A method to parse a FIT file containing depth data.
+        A method to parse a Suunto FIT file containing depth data.
         """
         try:
             stream = Stream.from_file(file_path)
