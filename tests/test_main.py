@@ -110,7 +110,10 @@ class TestMainCLI:
         app.main()
         captured = capsys.readouterr()
         assert "usage: " in captured.err
-        assert "[-h] -i INPUT -s {apnealizer,shearwater,garmin,manual}" in captured.err
+        assert (
+            "[-h] -i INPUT -s {apnealizer,shearwater,garmin,suunto,manual"
+            in captured.err
+        )
 
     def test_main_with_invalid_output_video_filetype(
         self,
@@ -434,3 +437,45 @@ class TestMainCLI:
             minus_sign=True,
         )
         mock_save.assert_not_called()
+
+    @mock.patch("depthviz.main.DepthvizApplication.create_video")
+    @mock.patch("depthviz.parsers.suunto.fit_parser.SuuntoFitParser.parse")
+    def test_main_with_args_suunto(
+        self,
+        mock_parse: mock.MagicMock,
+        mock_create_video: mock.MagicMock,
+        capsys: pytest.CaptureFixture[str],
+        tmp_path: pathlib.Path,
+    ) -> None:
+        """
+        Test the main function with arguments for Suunto.
+        """
+
+        input_path = tmp_path / "mock.fit"
+        output_path = tmp_path / "test_main_with_args_suunto.mp4"
+        sys.argv = [
+            "main",
+            "-i",
+            str(input_path.as_posix()),
+            "-s",
+            "suunto",
+            "-o",
+            str(output_path.as_posix()),
+        ]
+        app = DepthvizApplication()
+
+        # Mock the Suunto FIT parser parse method.
+        mock_parse.side_effect = mock.Mock()
+        # Mock the create_video method.
+        mock_create_video.side_effect = self._mock_depthviz_create_video
+        app.main()
+        captured = capsys.readouterr()
+
+        assert f"Video successfully created: {output_path.as_posix()}" in captured.out
+        mock_parse.assert_called_once_with(file_path=input_path.as_posix())
+        mock_create_video.assert_called_once_with(
+            divelog_parser=mock.ANY,
+            output_path=output_path.as_posix(),
+            decimal_places=0,
+            no_minus=False,
+        )

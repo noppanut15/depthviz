@@ -59,20 +59,20 @@ depthviz -i <input_file> -s <source> -o <output_video.mp4>
 
 **Source Options:**
 
-|    Source    | Description                                                                                                                                          | File type | Development Status                                                                          |
-| :----------: | ---------------------------------------------------------------------------------------------------------------------------------------------------- | :-------: | ------------------------------------------------------------------------------------------- |
-| `apnealizer` | Data from [Apnealizer](https://apnealizer.com/) application.                                                                                         |    CSV    | :white_check_mark: Supported                                                                |
-| `shearwater` | Data from [Shearwater](https://shearwater.com/pages/shearwater-cloud) dive computers.                                                                |    XML    | :white_check_mark: Supported                                                                |
-|   `garmin`   | Data from [Garmin](https://github.com/noppanut15/depthviz/blob/main/docs/GARMIN.md) dive computers.                                                                                      |    FIT    | :white_check_mark: Supported                                                            |
-|   `suunto`   | Data from [Suunto](https://www.suunto.com/Support/faq-articles/dm5/how-do-i-import--export-dive-logs-to-dm5/) dive computers.                        |     -     | :warning: [Pending](https://github.com/noppanut15/depthviz/issues/15) |
-|   `manual`   | Manual input without a dive computer. See the [Manual Mode](#️-manual-mode-creating-depth-overlays-without-a-dive-computer) section for more details. |    CSV    | :white_check_mark: Supported                                                                |
+|    Source    | Description                                                                                                                                          | File type | Status |
+| :----------: | ---------------------------------------------------------------------------------------------------------------------------------------------------- | :-------: | :----: |
+| `apnealizer` | Data from [Apnealizer](https://apnealizer.com/) application.                                                                                         |    CSV    |   ✅    |
+| `shearwater` | Data from [Shearwater](https://shearwater.com/pages/shearwater-cloud) dive computers.                                                                |    XML    |   ✅    |
+|   `garmin`   | Data from [Garmin](https://github.com/noppanut15/depthviz/blob/main/docs/GARMIN.md) dive computers.                                                  |    FIT    |   ✅    |
+|   `suunto`   | Data from [Suunto](https://www.suunto.com/Support/faq-articles/suunto-app/what-type-of-files-can-i-export-from-the-suunto-app/) dive computers.      |    FIT    |   ✅    |
+|   `manual`   | Manual input without a dive computer. See the [Manual Mode](#️-manual-mode-creating-depth-overlays-without-a-dive-computer) section for more details. |    CSV    |   ✅    |
 
 **Example**:
 
-Example of generating a depth overlay video named `depth_overlay.mp4` using data from `my_dive.xml` exported from Shearwater dive computers (source: `shearwater`).
+Example of generating a depth overlay video named `depth_overlay.mp4` using data from `123456_ACTIVITY.fit` exported from [Garmin Connect](https://github.com/noppanut15/depthviz/blob/main/docs/GARMIN.md) (source: `garmin`).
 
 ```bash
-depthviz -i my_dive.xml -s shearwater -o depth_overlay.mp4
+depthviz -i 123456_ACTIVITY.fit -s garmin -o depth_overlay.mp4
 ```
 
 **3. Integrate with Your Footage:**
@@ -146,7 +146,7 @@ The water density can vary depending on the type of water (e.g., freshwater, sal
 
 3. **Fill in the Gaps**: Different dive computers have different sampling rates, and the data may not be recorded at regular intervals. If the dive log data contains gaps or missing values, `depthviz` uses **Linear Interpolation** to estimate the depth at those points. This method calculates the depth at each time point by interpolating between the two nearest known depth values recorded by the dive computer. This will help ensure a smooth and continuous depth profile in the overlay video.
 
-<p align="center"><img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/linear-interpolation.png" alt="Linear Interpolation"/></p>
+<p align="center"><img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/linear-interpolation.png" width="750" alt="Linear Interpolation"/></p>
 
 > [!NOTE]
 > Learn more about the [Linear Interpolation](https://en.wikipedia.org/wiki/Linear_interpolation) method and how it is used to estimate values between two known depths.
