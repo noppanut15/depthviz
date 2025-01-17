@@ -875,29 +875,6 @@ class TestSuuntoFitParser:
             fit_parser.parse(file_path)
         assert str(e.value) == f"File not found: {file_path}"
 
-    def test_parse_selected_dive_no_data(self) -> None:
-        """
-        Test selecting a dive with no data.
-        """
-        parser = SuuntoFitParser(selected_dive_idx=0)
-        dive_summary = [
-            {
-                "raw_data": [],
-                "start_time": 1000,
-                "end_time": 1020,
-                "max_depth": 15,
-                "bottom_time": 20,
-            }
-        ]
-        with pytest.raises(DiveLogFitDiveNotFoundError) as e:
-            # pylint: disable=protected-access
-            parser._SuuntoFitParser__parse_selected_dive(dive_summary, "dummy_path")
-            # pylint: enable=protected-access
-        assert (
-            str(e.value)
-            == "Invalid Dive Data: Dive data not found in FIT file: dummy_path"
-        )
-
     def test_select_dive_single_dive(self) -> None:
         """
         Test selecting a dive from a FIT file with a single dive.

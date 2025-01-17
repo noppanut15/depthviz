@@ -102,7 +102,7 @@ class SuuntoFitParser(DiveLogFitParser):
         messages = self.__read_fit_file(file_path)
         self.__validate_fit_file(messages, file_path)
         dive_summary = self.__extract_dive_logs(messages)
-        self.__parse_selected_dive(dive_summary, file_path)
+        self.__parse_selected_dive(dive_summary)
 
     def __read_fit_file(self, file_path: str) -> dict[str, Any]:
         """
@@ -234,9 +234,7 @@ class SuuntoFitParser(DiveLogFitParser):
             )
         return dive_summary
 
-    def __parse_selected_dive(
-        self, dive_summary: list[dict[str, Any]], file_path: str
-    ) -> None:
+    def __parse_selected_dive(self, dive_summary: list[dict[str, Any]]) -> None:
         """
         A method to parse the selected dive from the dive summary
         and save them as time and depth data.
@@ -256,11 +254,6 @@ class SuuntoFitParser(DiveLogFitParser):
             depth = record.get("depth")
             self.__time_data.append(time)
             self.__depth_data.append(depth)
-
-        if not self.__time_data or not self.__depth_data:
-            raise DiveLogFitDiveNotFoundError(
-                f"Invalid Dive Data: Dive data not found in FIT file: {file_path}"
-            )
 
     def get_time_data(self) -> list[float]:
         """
