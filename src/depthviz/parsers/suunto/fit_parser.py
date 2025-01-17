@@ -169,7 +169,6 @@ class SuuntoFitParser(DiveLogFitParser):
             previous_record = record
 
         # Dive Summary
-        i = 0
         for log in raw_extracted_dive_logs:
             if log["max_depth"] > 3:
                 start_time = log["data"][0]["timestamp"]
