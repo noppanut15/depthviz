@@ -769,3 +769,63 @@ class TestSuuntoFitParser:
             str(e.value)
             == f"Invalid FIT file: {file_path}, cannot identify FIT type and manufacturer."
         )
+
+    def test_parse_invalid_fit_wrong_file_type(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """
+        Test parsing a FIT file with the wrong file type.
+        """
+
+        def mock_decoder_read(
+            *_args: Union[str, bool],
+            **_kwargs: Union[str, bool],
+        ) -> tuple[dict[str, list[Any]], list[Any]]:
+            """
+            A mock function for the Decoder.read method.
+            """
+            return {"file_id_mesgs": [{"type": "workout"}]}, []
+
+        file_path = "mock"
+
+        fit_parser = SuuntoFitParser()
+        monkeypatch.setattr(Stream, "from_file", self._mock_stream_from_file)
+        monkeypatch.setattr(Decoder, "__init__", self._mock_decoder_init)
+        monkeypatch.setattr(Decoder, "read", mock_decoder_read)
+        with pytest.raises(DiveLogFitInvalidFitFileTypeError) as e:
+            fit_parser.parse(file_path)
+        assert (
+            str(e.value)
+            == "Invalid FIT file type: You must import 'activity', not 'workout'"
+        )
+
+    def test_parse_invalid_fit_wrong_manufacturer(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """
+        Test parsing a FIT file with the wrong manufacturer.
+        """
+
+        def mock_decoder_read(
+            *_args: Union[str, bool],
+            **_kwargs: Union[str, bool],
+        ) -> tuple[dict[str, list[Any]], list[Any]]:
+            """
+            A mock function for the Decoder.read method.
+            """
+            return {
+                "file_id_mesgs": [{"type": "activity", "manufacturer": "garmin"}]
+            }, []
+
+        file_path = "mock"
+
+        fit_parser = SuuntoFitParser()
+        monkeypatch.setattr(Stream, "from_file", self._mock_stream_from_file)
+        monkeypatch.setattr(Decoder, "__init__", self._mock_decoder_init)
+        monkeypatch.setattr(Decoder, "read", mock_decoder_read)
+        with pytest.raises(DiveLogFitInvalidFitFileTypeError) as e:
+            fit_parser.parse(file_path)
+        assert (
+            str(e.value)
+            == "Invalid FIT file: You must import Suunto Dive Computer data, not 'garmin'"
+        )
