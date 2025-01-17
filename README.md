@@ -78,7 +78,8 @@ depthviz -i 123456_ACTIVITY.fit -s garmin -o depth_overlay.mp4
 ## 3. Integrate with Your Footage
 
 Import the generated overlay video into your preferred video editing software and combine it with your original dive footage. Adjust the blending and position of the overlay to suit your video style. 
-> [Watch this tutorial](https://www.youtube.com/watch?v=ZggKrWk98Ag) on how to import an overlay video in CapCut Desktop.
+> [!TIP]
+> [Watch this short tutorial](https://www.youtube.com/watch?v=ZggKrWk98Ag) on how to import an overlay video in CapCut Desktop.
 
 # 🚫 No Dive Computer?
 
