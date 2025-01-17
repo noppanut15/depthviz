@@ -115,9 +115,8 @@ class SuuntoFitParser(DiveLogFitParser):
 
         records = messages.get("record_mesgs", [])
 
-        dive_logs = []
+        raw_extracted_dive_logs = []
         current_dive = None
-        dive_number = 0
         previous_depth = 0
         previous_record = None
         descending = False
@@ -130,7 +129,6 @@ class SuuntoFitParser(DiveLogFitParser):
             if depth > 0:
                 if current_dive is None:
                     current_dive = {
-                        "dive_number": dive_number,
                         "data": [],
                         "max_depth": 0,
                     }
@@ -141,8 +139,7 @@ class SuuntoFitParser(DiveLogFitParser):
                                 "depth": previous_record.get("depth"),
                             }
                         )
-                    dive_logs.append(current_dive)
-                    dive_number += 1
+                    raw_extracted_dive_logs.append(current_dive)
 
                 if depth > 1.5:
                     descending = True
@@ -173,7 +170,7 @@ class SuuntoFitParser(DiveLogFitParser):
 
         # Dive Summary
         i = 0
-        for log in dive_logs:
+        for log in raw_extracted_dive_logs:
             if log["max_depth"] > 3:
                 start_time = log["data"][0]["timestamp"]
                 end_time = log["data"][-1]["timestamp"]
