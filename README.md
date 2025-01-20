@@ -33,9 +33,8 @@ pipx install depthviz
 
 ## 1. Download Your Data
 
-- **Option 1:** Export your dive log data from your dive computer or diving application. See the source options below for supported formats.
-
-- **Option 2:** If you don't have a dive computer, you can manually input your dive log data using the `manual` source option. See the [No Dive Computer?](#-no-dive-computer) section for more details.
+- **✅ If you have a dive computer:**<br>Export your dive log from your dive computer or diving application. See the [source options table](#source-options) for supported formats.
+- **🚫 If you don't have a dive computer:**<br>Record your dive profile manually using depth markers in your footage. See the [No Dive Computer?](#-no-dive-computer) section for more details.
 
 ## 2. Generate the Overlay
 
@@ -47,8 +46,8 @@ depthviz -i <input_file> -s <source> -o <output_video.mp4>
 
 **Required Arguments:**
 
-* `-i`, `--input <input_file>`: Path to your file containing your dive log.
-* `-s`, `--source <source>`: Source of the dive computer data. See the table below for supported sources.
+* `-i`, `--input <input_file>`: Path to your dive log file.
+* `-s`, `--source <source>`: Source of the data. See the table below for supported sources.
 * `-o`, `--output <output_video.mp4>`: Path or filename for the generated video with the depth overlay. The output file format must be `.mp4`.
 
 **Optional Arguments:**
@@ -61,7 +60,7 @@ depthviz -i <input_file> -s <source> -o <output_video.mp4>
 > Use the `--decimal-places` option to control the precision of the depth display (e.g., `--decimal-places 1` displays depths like `-12.5m`)
 
 
-**Source Options:**
+### Source Options
 
 |    Source    | Description                                                                                                                                     | File type | Status |
 | :----------: | ----------------------------------------------------------------------------------------------------------------------------------------------- | :-------: | :----: |
@@ -110,7 +109,10 @@ The input file for manual mode should be a CSV file with the following columns:
 * `Time`: The time in seconds (e.g., `0`, `1`, `2`, ...).
 * `Depth`: The depth in meters (e.g., `10`, `9`, `8`, ...).
 
-**You don't need to record the depth at every second.** Record the depth at each time point where a depth marker is visible in your footage. `depthviz` will interpolate the depth values between the recorded points to create a smooth depth profile.
+**You don't need to record the depth at every second.** Record the depth at each time point where a depth marker is visible in your footage. `depthviz` will interpolate the depth values between the recorded points to create a smooth depth profile. 
+
+> [!TIP]
+> To quickly generate a basic depth overlay, you can record just three points: **the start** (0m), **the maximum depth**, and **the end** (0m). `depthviz` will handle the rest! For more complex dives (e.g., dives with significant variations in descent/ascent rate or bottom time), more data points are recommended.
 
 Here is an example of a manual mode input file:
 
