@@ -109,7 +109,10 @@ The input file for manual mode should be a CSV file with the following columns:
 * `Time`: The time in seconds (e.g., `0`, `1`, `2`, ...).
 * `Depth`: The depth in meters (e.g., `10`, `9`, `8`, ...).
 
-**You don't need to record the depth at every second.** Record the depth at each time point where a depth marker is visible in your footage. `depthviz` will interpolate the depth values between the recorded points to create a smooth depth profile.
+**You don't need to record the depth at every second.** Record the depth at each time point where a depth marker is visible in your footage. `depthviz` will interpolate the depth values between the recorded points to create a smooth depth profile. 
+
+> [!NOTE]
+> You can even record just the starting point (0m), the maximum depth, and the end point of your dive (0m) and let `depthviz` fill in the gaps!
 
 Here is an example of a manual mode input file:
 
