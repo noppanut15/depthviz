@@ -1,4 +1,4 @@
-## depthviz: Transform your dive footage with depth tracking
+## depthviz: Transform your freediving footage with depth tracking
 
 * Original Author: 
     * [Noppanut Ploywong](https://github.com/noppanut15)
