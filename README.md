@@ -33,10 +33,8 @@ pipx install depthviz
 
 ## 1. Download Your Data
 
-- **✅ If you have a dive computer:**
-    Export your dive log from your dive computer or diving application. See the [source options table](#source-options) for supported formats.
-- **🚫 If you don't have a dive computer:**
-    Record your dive profile manually using depth markers in your footage. See the [No Dive Computer?](#-no-dive-computer) section for more details.
+- **✅ If you have a dive computer:**<br>Export your dive log from your dive computer or diving application. See the [source options table](#source-options) for supported formats.
+- **🚫 If you don't have a dive computer:**<br>Record your dive profile manually using depth markers in your footage. See the [No Dive Computer?](#-no-dive-computer) section for more details.
 
 ## 2. Generate the Overlay
 
