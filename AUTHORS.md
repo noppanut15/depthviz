@@ -25,8 +25,6 @@
 
 **coverage**: Ned Batchelder and [other contributors](https://github.com/nedbat/coveragepy/blob/master/CONTRIBUTORS.txt).
 
-**cyclonedx-bom**: CycloneDX and [other contributors](https://github.com/CycloneDX/cyclonedx-python/graphs/contributors).
-
 
 ## Contributors
 
