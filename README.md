@@ -33,9 +33,10 @@ pipx install depthviz
 
 ## 1. Download Your Data
 
-- **Option 1:** Export your dive log data from your dive computer or diving application. See the [source options table](#source-options) for supported formats.
-
-- **Option 2:** If you don't have a dive computer, you can manually input your dive log data using the `manual` source option. See the [No Dive Computer?](#-no-dive-computer) section for more details.
+- **✅ If you have a dive computer:**
+    Export your dive log from your dive computer or diving application. See the [source options table](#source-options) for supported formats.
+- **🚫 If you don't have a dive computer:**
+    Record your dive profile manually using depth markers in your footage. See the [No Dive Computer?](#-no-dive-computer) section for more details.
 
 ## 2. Generate the Overlay
 
@@ -47,8 +48,8 @@ depthviz -i <input_file> -s <source> -o <output_video.mp4>
 
 **Required Arguments:**
 
-* `-i`, `--input <input_file>`: Path to your file containing your dive log.
-* `-s`, `--source <source>`: Source of the dive computer data. See the table below for supported sources.
+* `-i`, `--input <input_file>`: Path to your dive log file.
+* `-s`, `--source <source>`: Source of the data. See the table below for supported sources.
 * `-o`, `--output <output_video.mp4>`: Path or filename for the generated video with the depth overlay. The output file format must be `.mp4`.
 
 **Optional Arguments:**
