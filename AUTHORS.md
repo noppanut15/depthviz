@@ -9,6 +9,8 @@
 
 **MoviePy**: Zulko and [other contributors](https://github.com/Zulko/moviepy/graphs/contributors).
 
+**FIT Python SDK**: Garmin and [other contributors](https://github.com/garmin/fit-python-sdk/graphs/contributors).
+
 **Open Sans font**: Steve Matteson and [other contributors](https://github.com/googlefonts/opensans/graphs/contributors).
 
 ## Test dependencies
