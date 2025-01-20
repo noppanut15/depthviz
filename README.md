@@ -61,7 +61,7 @@ depthviz -i <input_file> -s <source> -o <output_video.mp4>
 > Use the `--decimal-places` option to control the precision of the depth display (e.g., `--decimal-places 1` displays depths like `-12.5m`)
 
 
-### Source Options:
+### Source Options
 
 |    Source    | Description                                                                                                                                     | File type | Status |
 | :----------: | ----------------------------------------------------------------------------------------------------------------------------------------------- | :-------: | :----: |
