@@ -33,7 +33,7 @@ pipx install depthviz
 
 ## 1. Download Your Data
 
-- **Option 1:** Export your dive log data from your dive computer or diving application. See the source options below for supported formats.
+- **Option 1:** Export your dive log data from your dive computer or diving application. See the [source options table](#source-options) for supported formats.
 
 - **Option 2:** If you don't have a dive computer, you can manually input your dive log data using the `manual` source option. See the [No Dive Computer?](#-no-dive-computer) section for more details.
 
@@ -61,7 +61,7 @@ depthviz -i <input_file> -s <source> -o <output_video.mp4>
 > Use the `--decimal-places` option to control the precision of the depth display (e.g., `--decimal-places 1` displays depths like `-12.5m`)
 
 
-**Source Options:**
+#### Source Options:
 
 |    Source    | Description                                                                                                                                     | File type | Status |
 | :----------: | ----------------------------------------------------------------------------------------------------------------------------------------------- | :-------: | :----: |
