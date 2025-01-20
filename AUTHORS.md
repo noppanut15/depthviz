@@ -33,6 +33,7 @@
 If your code or changes are here, but you are not mentioned, please open an issue. We appreciate your contributions!
 
 * [Noppanut Ploywong](https://github.com/noppanut15)
+* [Sigrun Eis](https://www.instagram.com/mesapholis/)
 * [Your name here 🙂]
 
 ---
