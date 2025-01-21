@@ -35,9 +35,6 @@ class DepthReportVideoCreator:
 
     def __init__(
         self,
-        font: str = os.path.abspath(
-            os.path.join(BASE_DIR, "assets/fonts/Open_Sans/static/OpenSans-Bold.ttf")
-        ),
         fontsize: int = 100,
         interline: int = -20,
         color: str = "white",
@@ -48,7 +45,9 @@ class DepthReportVideoCreator:
         size: Tuple[int, int] = (640, 360),
         fps: int = 25,
     ):
-        self.font = font
+        self.font: str = os.path.abspath(
+            os.path.join(BASE_DIR, "assets/fonts/Open_Sans/static/OpenSans-Bold.ttf")
+        )
         self.fontsize = fontsize
         self.interline = interline
         self.color = color
@@ -145,26 +144,20 @@ class DepthReportVideoCreator:
                     else:
                         text = f"{'-' if minus_sign else ''}{current_depth:.{decimal_places}f}m"
 
-                try:
-                    clip = TextClip(
-                        text=text,
-                        font=self.font,
-                        font_size=self.fontsize,
-                        interline=self.interline,
-                        color=self.color,
-                        bg_color=self.bg_color,
-                        stroke_color=self.stroke_color,
-                        stroke_width=self.stroke_width,
-                        text_align=self.align,
-                        size=self.size,
-                        duration=duration,
-                    )
-                    clips.append(clip)
-                except ValueError as e:
-                    # Raise an error if the text clip cannot be created (e.g., invalid font)
-                    raise DepthReportVideoCreatorError(
-                        f"Error creating text clip\n{e}"
-                    ) from e
+                clip = TextClip(
+                    text=text,
+                    font=self.font,
+                    font_size=self.fontsize,
+                    interline=self.interline,
+                    color=self.color,
+                    bg_color=self.bg_color,
+                    stroke_color=self.stroke_color,
+                    stroke_width=self.stroke_width,
+                    text_align=self.align,
+                    size=self.size,
+                    duration=duration,
+                )
+                clips.append(clip)
 
             # Concatenate all the clips into a single video
             self.final_video = concatenate_videoclips(clips)
@@ -217,3 +210,32 @@ class DepthReportVideoCreator:
             The processed video.
         """
         return self.final_video
+
+    def set_font(self, font: str) -> None:
+        """
+        Sets the font for the text clip (for user-defined fonts).
+
+        Args:
+            font: The font file path.
+        """
+        # Check if the font file exists
+        if not os.path.exists(font):
+            raise DepthReportVideoCreatorError(f"Font file not found: {font}")
+
+        # Check if the font file is a file
+        if not os.path.isfile(font):
+            raise DepthReportVideoCreatorError(
+                f"Font you provided is not a file: {font}"
+            )
+
+        # Check if the font file is a valid font file
+        try:
+            TextClip(font=font, text="Test", font_size=1)
+        except ValueError as e:
+            raise DepthReportVideoCreatorError(
+                f"Error loading font file: {font}, "
+                "make sure it's a valid font file (TrueType or OpenType font)."
+            ) from e
+
+        # Set the font
+        self.font = font
