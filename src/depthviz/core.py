@@ -145,20 +145,26 @@ class DepthReportVideoCreator:
                     else:
                         text = f"{'-' if minus_sign else ''}{current_depth:.{decimal_places}f}m"
 
-                clip = TextClip(
-                    text=text,
-                    font=self.font,
-                    font_size=self.fontsize,
-                    interline=self.interline,
-                    color=self.color,
-                    bg_color=self.bg_color,
-                    stroke_color=self.stroke_color,
-                    stroke_width=self.stroke_width,
-                    text_align=self.align,
-                    size=self.size,
-                    duration=duration,
-                )
-                clips.append(clip)
+                try:
+                    clip = TextClip(
+                        text=text,
+                        font=self.font,
+                        font_size=self.fontsize,
+                        interline=self.interline,
+                        color=self.color,
+                        bg_color=self.bg_color,
+                        stroke_color=self.stroke_color,
+                        stroke_width=self.stroke_width,
+                        text_align=self.align,
+                        size=self.size,
+                        duration=duration,
+                    )
+                    clips.append(clip)
+                except ValueError as e:
+                    # Raise an error if the text clip cannot be created (e.g., invalid font)
+                    raise DepthReportVideoCreatorError(
+                        f"Error creating text clip\n{e}"
+                    ) from e
 
             # Concatenate all the clips into a single video
             self.final_video = concatenate_videoclips(clips)
