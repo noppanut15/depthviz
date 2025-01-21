@@ -51,8 +51,9 @@ depthviz -i <input_file> -s <source> -o <output_video.mp4>
 * `-o`, `--output <output_video.mp4>`: Path or filename for the generated video with the depth overlay. The output file format must be `.mp4`.
 
 **Optional Arguments:**
-* `--no-minus`: Hide the minus sign for depth values (e.g., display `10m` instead of `-10m`).
 * `-d`, `--decimal-places <0-2>`: Number of decimal places to display in the depth overlay. Valid values are `0`, `1`, or `2`. (Default is `0`)
+* `--no-minus`: Hide the minus sign for depth values (e.g., display `10m` instead of `-10m`).
+* `--font <font_file>`: Path to a custom font file for the overlay text.
 
 <p align="center"><img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/depth-decimal-places-5s-trimmed.gif" alt="decimal places comparison"/></p>
 
