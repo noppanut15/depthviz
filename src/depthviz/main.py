@@ -68,6 +68,11 @@ class DepthvizApplication:
             default=0,
         )
         self.parser.add_argument(
+            "--no-minus",
+            help="Hide the minus sign for depth values.",
+            action="store_true",
+        )
+        self.parser.add_argument(
             "--font", help="Path to the font file.", type=str, default=DEFAULT_FONT
         )
         self.parser.add_argument(
@@ -77,10 +82,12 @@ class DepthvizApplication:
             default="black",
         )
         self.parser.add_argument(
-            "--no-minus",
-            help="Hide the minus sign for depth values.",
-            action="store_true",
+            "--stroke-width",
+            help="Width of the stroke around the text in pixels. (default: 2)",
+            type=int,
+            default=2,
         )
+
         self.parser.add_argument(
             "-v",
             "--version",
@@ -96,6 +103,7 @@ class DepthvizApplication:
         font: str,
         no_minus: bool = False,
         bg_color: str = "black",
+        stroke_width: int = 2,
     ) -> int:
         """
         Create the depth overlay video.
@@ -104,7 +112,7 @@ class DepthvizApplication:
             time_data_from_divelog = divelog_parser.get_time_data()
             depth_data_from_divelog = divelog_parser.get_depth_data()
             depth_report_video_creator = DepthReportVideoCreator(
-                fps=25, font=font, bg_color=bg_color
+                fps=25, font=font, bg_color=bg_color, stroke_width=stroke_width
             )
             depth_report_video_creator.render_depth_report_video(
                 time_data=time_data_from_divelog,
@@ -179,6 +187,7 @@ class DepthvizApplication:
             no_minus=args.no_minus,
             font=args.font,
             bg_color=args.bg_color,
+            stroke_width=args.stroke_width,
         )
 
 

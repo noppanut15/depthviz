@@ -393,3 +393,30 @@ class TestDepthReportVideoCreator:
             _ = DepthReportVideoCreator(fps=1, bg_color=bg_color)
 
         assert "Invalid background color: " in str(e.value)
+
+    @pytest.mark.parametrize(
+        "stroke_width",
+        [1, 2, 3],
+    )
+    def test_render_depth_report_video_with_stroke_width(
+        self, stroke_width: int
+    ) -> None:
+        """
+        Test the render_depth_report_video method with a stroke width.
+        """
+        _ = DepthReportVideoCreator(fps=1, stroke_width=stroke_width)
+
+    @pytest.mark.parametrize(
+        "stroke_width",
+        [-1, "", "a"],
+    )
+    def test_render_depth_report_video_with_invalid_stroke_width(
+        self, stroke_width: Any
+    ) -> None:
+        """
+        Test the render_depth_report_video method with an invalid stroke width.
+        """
+        with pytest.raises(DepthReportVideoCreatorError) as e:
+            _ = DepthReportVideoCreator(fps=1, stroke_width=stroke_width)
+
+        assert "Invalid stroke width; must be a positive number." in str(e.value)

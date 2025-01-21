@@ -333,6 +333,7 @@ class TestMainCLI:
             no_minus=False,
             font=DEFAULT_FONT,
             bg_color="black",
+            stroke_width=2,
         )
 
     @pytest.mark.parametrize(
@@ -483,6 +484,7 @@ class TestMainCLI:
             no_minus=False,
             font=DEFAULT_FONT,
             bg_color="black",
+            stroke_width=2,
         )
 
     def test_main_with_args_font(
@@ -542,6 +544,38 @@ class TestMainCLI:
             str(output_path.as_posix()),
             "--bg-color",
             "green",
+        ]
+        app = DepthvizApplication()
+        app.main()
+        captured = capsys.readouterr()
+        assert f"Video successfully created: {output_path.as_posix()}" in captured.out
+
+    def test_main_with_args_stroke_width(
+        self,
+        capsys: pytest.CaptureFixture[str],
+        tmp_path: pathlib.Path,
+        request: pytest.FixtureRequest,
+    ) -> None:
+        """
+        Test the main function with arguments for stroke width.
+        """
+
+        input_path = (
+            request.path.parent / "data" / "apnealizer" / "valid_depth_data_trimmed.csv"
+        )
+        output_path = tmp_path / "test_main_with_args_stroke_width.mp4"
+        sys.argv = [
+            "main",
+            "-i",
+            str(input_path.as_posix()),
+            "-s",
+            "apnealizer",
+            "-o",
+            str(output_path.as_posix()),
+            "--bg-color",
+            "green",  # This makes the stroke color visible for testing
+            "--stroke-width",
+            "12",
         ]
         app = DepthvizApplication()
         app.main()
