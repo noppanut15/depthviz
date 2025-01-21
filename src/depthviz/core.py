@@ -68,9 +68,13 @@ class DepthReportVideoCreator:
 
         # Validate the font file
         self.__font_validate()
-
         # Validate the background color
         self.__bg_color_validate()
+        # Validate the stroke width
+        if not isinstance(stroke_width, int) or stroke_width < 0:
+            raise DepthReportVideoCreatorError(
+                "Invalid stroke width; must be a positive number."
+            )
 
     def __clip_duration_in_seconds(
         self, current_pos: int, time_data: list[float]
