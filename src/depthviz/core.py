@@ -35,6 +35,9 @@ class DepthReportVideoCreator:
 
     def __init__(
         self,
+        font: str = os.path.abspath(
+            os.path.join(BASE_DIR, "assets/fonts/Open_Sans/static/OpenSans-Bold.ttf")
+        ),
         fontsize: int = 100,
         interline: int = -20,
         color: str = "white",
@@ -45,9 +48,7 @@ class DepthReportVideoCreator:
         size: Tuple[int, int] = (640, 360),
         fps: int = 25,
     ):
-        self.font: str = os.path.abspath(
-            os.path.join(BASE_DIR, "assets/fonts/Open_Sans/static/OpenSans-Bold.ttf")
-        )
+        self.font = font
         self.fontsize = fontsize
         self.interline = interline
         self.color = color
@@ -63,6 +64,9 @@ class DepthReportVideoCreator:
             "color": "#3982d8",
             "ncols": 70,
         }
+
+        # Validate the font file
+        self.__font_validate()
 
     def __clip_duration_in_seconds(
         self, current_pos: int, time_data: list[float]
@@ -211,31 +215,28 @@ class DepthReportVideoCreator:
         """
         return self.final_video
 
-    def set_font(self, font: str) -> None:
+    def __font_validate(self) -> None:
         """
-        Sets the font for the text clip (for user-defined fonts).
+        Validates the font file.
 
         Args:
             font: The font file path.
         """
         # Check if the font file exists
-        if not os.path.exists(font):
-            raise DepthReportVideoCreatorError(f"Font file not found: {font}")
+        if not os.path.exists(self.font):
+            raise DepthReportVideoCreatorError(f"Font file not found: {self.font}")
 
         # Check if the font file is a file
-        if not os.path.isfile(font):
+        if not os.path.isfile(self.font):
             raise DepthReportVideoCreatorError(
-                f"Font you provided is not a file: {font}"
+                f"Font you provided is not a file: {self.font}"
             )
 
         # Check if the font file is a valid font file
         try:
-            TextClip(font=font, text="Test", font_size=1)
+            TextClip(font=self.font, text="Test", font_size=1)
         except ValueError as e:
             raise DepthReportVideoCreatorError(
-                f"Error loading font file: {font}, "
+                f"Error loading font file: {self.font}, "
                 "make sure it's a valid font file (TrueType or OpenType font)."
             ) from e
-
-        # Set the font
-        self.font = font

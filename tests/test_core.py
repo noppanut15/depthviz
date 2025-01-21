@@ -318,10 +318,7 @@ class TestDepthReportVideoCreator:
         )
 
         # Create a DepthReportVideoCreator instance
-        depth_report_video_creator = DepthReportVideoCreator(fps=1)
-
-        # Set a user font
-        depth_report_video_creator.set_font(file_path)
+        depth_report_video_creator = DepthReportVideoCreator(fps=1, font=file_path)
 
         # Create a depth report video with a user font
         time_data = [0.0, 1.0, 2.0, 3.0]
@@ -362,10 +359,8 @@ class TestDepthReportVideoCreator:
 
         file_path = str(request.path.parent.joinpath("data", "assets", "fonts", font))
 
-        # Create a DepthReportVideoCreator instance
-        depth_report_video_creator = DepthReportVideoCreator(fps=1)
-
         with pytest.raises(DepthReportVideoCreatorError) as e:
-            # Set a user font
-            depth_report_video_creator.set_font(file_path)
+            # Create a DepthReportVideoCreator instance
+            _ = DepthReportVideoCreator(fps=1, font=file_path)
+
         assert f"{expected_error_prefix}{file_path}" in str(e.value)
