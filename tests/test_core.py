@@ -364,3 +364,32 @@ class TestDepthReportVideoCreator:
             _ = DepthReportVideoCreator(fps=1, font=file_path)
 
         assert f"{expected_error_prefix}{file_path}" in str(e.value)
+
+    @pytest.mark.parametrize(
+        "bg_color",
+        [
+            "#000000",
+            "black",
+            "green",
+        ],
+    )
+    def test_render_depth_report_video_with_bg_color(self, bg_color: str) -> None:
+        """
+        Test the render_depth_report_video method with a background color.
+        """
+        _ = DepthReportVideoCreator(fps=1, bg_color=bg_color)
+
+    @pytest.mark.parametrize(
+        "bg_color",
+        ["#00000", "blackk", "greenn", ""],
+    )
+    def test_render_depth_report_video_with_invalid_bg_color(
+        self, bg_color: str
+    ) -> None:
+        """
+        Test the render_depth_report_video method with an invalid background color.
+        """
+        with pytest.raises(DepthReportVideoCreatorError) as e:
+            _ = DepthReportVideoCreator(fps=1, bg_color=bg_color)
+
+        assert "Invalid background color: " in str(e.value)

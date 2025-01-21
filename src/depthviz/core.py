@@ -69,6 +69,9 @@ class DepthReportVideoCreator:
         # Validate the font file
         self.__font_validate()
 
+        # Validate the background color
+        self.__bg_color_validate()
+
     def __clip_duration_in_seconds(
         self, current_pos: int, time_data: list[float]
     ) -> float:
@@ -240,4 +243,21 @@ class DepthReportVideoCreator:
             raise DepthReportVideoCreatorError(
                 f"Error loading font file: {self.font}, "
                 "make sure it's a valid font file (TrueType or OpenType font)."
+            ) from e
+
+    def __bg_color_validate(self) -> None:
+        """
+        Validates the background color.
+        """
+        # Check if the background color is a valid color
+        try:
+            TextClip(
+                text="Test",
+                font=self.font,
+                font_size=self.fontsize,
+                bg_color=self.bg_color,
+            )
+        except ValueError as e:
+            raise DepthReportVideoCreatorError(
+                f"Invalid background color: {self.bg_color}"
             ) from e

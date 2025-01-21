@@ -332,6 +332,7 @@ class TestMainCLI:
             decimal_places=0,
             no_minus=False,
             font=DEFAULT_FONT,
+            bg_color="black",
         )
 
     @pytest.mark.parametrize(
@@ -481,6 +482,7 @@ class TestMainCLI:
             decimal_places=0,
             no_minus=False,
             font=DEFAULT_FONT,
+            bg_color="black",
         )
 
     def test_main_with_args_font(
@@ -510,6 +512,36 @@ class TestMainCLI:
             str(output_path.as_posix()),
             "--font",
             str(font_path.as_posix()),
+        ]
+        app = DepthvizApplication()
+        app.main()
+        captured = capsys.readouterr()
+        assert f"Video successfully created: {output_path.as_posix()}" in captured.out
+
+    def test_main_with_args_bg_color(
+        self,
+        capsys: pytest.CaptureFixture[str],
+        tmp_path: pathlib.Path,
+        request: pytest.FixtureRequest,
+    ) -> None:
+        """
+        Test the main function with arguments for background color.
+        """
+
+        input_path = (
+            request.path.parent / "data" / "apnealizer" / "valid_depth_data_trimmed.csv"
+        )
+        output_path = tmp_path / "test_main_with_args_bg_color.mp4"
+        sys.argv = [
+            "main",
+            "-i",
+            str(input_path.as_posix()),
+            "-s",
+            "apnealizer",
+            "-o",
+            str(output_path.as_posix()),
+            "--bg-color",
+            "green",
         ]
         app = DepthvizApplication()
         app.main()
