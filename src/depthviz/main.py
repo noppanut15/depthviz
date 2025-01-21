@@ -14,7 +14,11 @@ from depthviz.parsers.shearwater.shearwater_xml_parser import ShearwaterXmlParse
 from depthviz.parsers.garmin.fit_parser import GarminFitParser
 from depthviz.parsers.suunto.fit_parser import SuuntoFitParser
 from depthviz.parsers.manual.csv_parser import ManualCsvParser
-from depthviz.core import DepthReportVideoCreator, DepthReportVideoCreatorError
+from depthviz.core import (
+    DepthReportVideoCreator,
+    DepthReportVideoCreatorError,
+    DEFAULT_FONT,
+)
 
 # Banner for the command line interface
 BANNER = """
@@ -64,6 +68,9 @@ class DepthvizApplication:
             default=0,
         )
         self.parser.add_argument(
+            "--font", help="Path to the font file.", type=str, default=DEFAULT_FONT
+        ),
+        self.parser.add_argument(
             "--no-minus",
             help="Hide the minus sign for depth values.",
             action="store_true",
@@ -80,6 +87,7 @@ class DepthvizApplication:
         divelog_parser: DiveLogParser,
         output_path: str,
         decimal_places: int,
+        font: str,
         no_minus: bool = False,
     ) -> int:
         """
@@ -88,7 +96,7 @@ class DepthvizApplication:
         try:
             time_data_from_divelog = divelog_parser.get_time_data()
             depth_data_from_divelog = divelog_parser.get_depth_data()
-            depth_report_video_creator = DepthReportVideoCreator(fps=25)
+            depth_report_video_creator = DepthReportVideoCreator(fps=25, font=font)
             depth_report_video_creator.render_depth_report_video(
                 time_data=time_data_from_divelog,
                 depth_data=depth_data_from_divelog,
@@ -160,6 +168,7 @@ class DepthvizApplication:
             output_path=args.output,
             decimal_places=args.decimal_places,
             no_minus=args.no_minus,
+            font=args.font,
         )
 
 
