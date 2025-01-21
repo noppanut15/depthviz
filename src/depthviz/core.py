@@ -14,6 +14,9 @@ from depthviz.optimizer.linear_interpolation import (
 
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DEFAULT_FONT = os.path.abspath(
+    os.path.join(BASE_DIR, "assets/fonts/Open_Sans/static/OpenSans-Bold.ttf")
+)
 
 
 class DepthReportVideoCreatorError(Exception):
@@ -35,9 +38,7 @@ class DepthReportVideoCreator:
 
     def __init__(
         self,
-        font: str = os.path.abspath(
-            os.path.join(BASE_DIR, "assets/fonts/Open_Sans/static/OpenSans-Bold.ttf")
-        ),
+        font: str = DEFAULT_FONT,
         fontsize: int = 100,
         interline: int = -20,
         color: str = "white",
