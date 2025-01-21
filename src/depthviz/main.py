@@ -69,7 +69,7 @@ class DepthvizApplication:
         )
         self.parser.add_argument(
             "--font", help="Path to the font file.", type=str, default=DEFAULT_FONT
-        ),
+        )
         self.parser.add_argument(
             "--no-minus",
             help="Hide the minus sign for depth values.",
