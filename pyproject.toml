@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "depthviz"
 version = "0.0.0"
-description = "Generate depth tracking overlays for freediving videos using exported dive computer logs."
+description = "Automate depth tracking for your freediving videos: Works with or without dive computers."
 authors = ["Noppanut Ploywong <noppanut.connect@gmail.com>"]
 license = "Apache-2.0"
 readme = "README.md"
