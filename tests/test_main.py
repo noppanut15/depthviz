@@ -333,6 +333,7 @@ class TestMainCLI:
             no_minus=False,
             font=DEFAULT_FONT,
             bg_color="black",
+            stroke_width=2,
         )
 
     @pytest.mark.parametrize(
@@ -483,6 +484,7 @@ class TestMainCLI:
             no_minus=False,
             font=DEFAULT_FONT,
             bg_color="black",
+            stroke_width=2,
         )
 
     def test_main_with_args_font(
