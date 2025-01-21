@@ -14,6 +14,9 @@ from depthviz.optimizer.linear_interpolation import (
 
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DEFAULT_FONT = os.path.abspath(
+    os.path.join(BASE_DIR, "assets/fonts/Open_Sans/static/OpenSans-Bold.ttf")
+)
 
 
 class DepthReportVideoCreatorError(Exception):
@@ -35,9 +38,7 @@ class DepthReportVideoCreator:
 
     def __init__(
         self,
-        font: str = os.path.abspath(
-            os.path.join(BASE_DIR, "assets/fonts/Open_Sans/static/OpenSans-Bold.ttf")
-        ),
+        font: str = DEFAULT_FONT,
         fontsize: int = 100,
         interline: int = -20,
         color: str = "white",
@@ -64,6 +65,16 @@ class DepthReportVideoCreator:
             "color": "#3982d8",
             "ncols": 70,
         }
+
+        # Validate the font file
+        self.__font_validate()
+        # Validate the background color
+        self.__bg_color_validate()
+        # Validate the stroke width
+        if not isinstance(stroke_width, int) or stroke_width < 0:
+            raise DepthReportVideoCreatorError(
+                "Invalid stroke width; must be a positive number."
+            )
 
     def __clip_duration_in_seconds(
         self, current_pos: int, time_data: list[float]
@@ -211,3 +222,46 @@ class DepthReportVideoCreator:
             The processed video.
         """
         return self.final_video
+
+    def __font_validate(self) -> None:
+        """
+        Validates the font file.
+
+        Args:
+            font: The font file path.
+        """
+        # Check if the font file exists
+        if not os.path.exists(self.font):
+            raise DepthReportVideoCreatorError(f"Font file not found: {self.font}")
+
+        # Check if the font file is a file
+        if not os.path.isfile(self.font):
+            raise DepthReportVideoCreatorError(
+                f"Font you provided is not a file: {self.font}"
+            )
+
+        # Check if the font file is a valid font file
+        try:
+            TextClip(font=self.font, text="Test", font_size=1)
+        except ValueError as e:
+            raise DepthReportVideoCreatorError(
+                f"Error loading font file: {self.font}, "
+                "make sure it's a valid font file (TrueType or OpenType font)."
+            ) from e
+
+    def __bg_color_validate(self) -> None:
+        """
+        Validates the background color.
+        """
+        # Check if the background color is a valid color
+        try:
+            TextClip(
+                text="Test",
+                font=self.font,
+                font_size=self.fontsize,
+                bg_color=self.bg_color,
+            )
+        except ValueError as e:
+            raise DepthReportVideoCreatorError(
+                f"Invalid background color: {self.bg_color}"
+            ) from e

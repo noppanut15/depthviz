@@ -14,7 +14,11 @@ from depthviz.parsers.shearwater.shearwater_xml_parser import ShearwaterXmlParse
 from depthviz.parsers.garmin.fit_parser import GarminFitParser
 from depthviz.parsers.suunto.fit_parser import SuuntoFitParser
 from depthviz.parsers.manual.csv_parser import ManualCsvParser
-from depthviz.core import DepthReportVideoCreator, DepthReportVideoCreatorError
+from depthviz.core import (
+    DepthReportVideoCreator,
+    DepthReportVideoCreatorError,
+    DEFAULT_FONT,
+)
 
 # Banner for the command line interface
 BANNER = """
@@ -69,6 +73,22 @@ class DepthvizApplication:
             action="store_true",
         )
         self.parser.add_argument(
+            "--font", help="Path to the font file.", type=str, default=DEFAULT_FONT
+        )
+        self.parser.add_argument(
+            "--bg-color",
+            help="Background color of the video. (default: black)",
+            type=str,
+            default="black",
+        )
+        self.parser.add_argument(
+            "--stroke-width",
+            help="Width of the stroke around the text in pixels. (default: 2)",
+            type=int,
+            default=2,
+        )
+
+        self.parser.add_argument(
             "-v",
             "--version",
             action="version",
@@ -80,7 +100,10 @@ class DepthvizApplication:
         divelog_parser: DiveLogParser,
         output_path: str,
         decimal_places: int,
+        font: str,
         no_minus: bool = False,
+        bg_color: str = "black",
+        stroke_width: int = 2,
     ) -> int:
         """
         Create the depth overlay video.
@@ -88,7 +111,9 @@ class DepthvizApplication:
         try:
             time_data_from_divelog = divelog_parser.get_time_data()
             depth_data_from_divelog = divelog_parser.get_depth_data()
-            depth_report_video_creator = DepthReportVideoCreator(fps=25)
+            depth_report_video_creator = DepthReportVideoCreator(
+                fps=25, font=font, bg_color=bg_color, stroke_width=stroke_width
+            )
             depth_report_video_creator.render_depth_report_video(
                 time_data=time_data_from_divelog,
                 depth_data=depth_data_from_divelog,
@@ -160,6 +185,9 @@ class DepthvizApplication:
             output_path=args.output,
             decimal_places=args.decimal_places,
             no_minus=args.no_minus,
+            font=args.font,
+            bg_color=args.bg_color,
+            stroke_width=args.stroke_width,
         )
 
 

@@ -303,3 +303,120 @@ class TestDepthReportVideoCreator:
         # Check the text of each clip in the video
         video_clip_texts = [video.clips[i].text for i in range(len(video.clips))]
         assert video_clip_texts == expected_texts
+
+    def test_render_depth_report_video_with_user_font(
+        self, request: pytest.FixtureRequest
+    ) -> None:
+        """
+        Test the render_depth_report_video method with a user-specified font.
+        """
+
+        file_path = str(
+            request.path.parent.joinpath(
+                "data", "assets", "fonts", "OpenSans-Regular.ttf"
+            )
+        )
+
+        # Create a DepthReportVideoCreator instance
+        depth_report_video_creator = DepthReportVideoCreator(fps=1, font=file_path)
+
+        # Create a depth report video with a user font
+        time_data = [0.0, 1.0, 2.0, 3.0]
+        depth_data = [0.0, 1.0, 2.0, 3.0]
+        depth_report_video_creator.render_depth_report_video(
+            time_data=time_data, depth_data=depth_data
+        )
+
+        # Check the video is not None
+        video = depth_report_video_creator.get_video()
+        assert video is not None
+
+        # Check the duration of the video (seconds)
+        assert video.duration == 4
+
+        # Check the number of clips in the video
+        assert len(video.clips) == 4
+
+        # Check the text of each clip in the video
+        video_clip_texts = [video.clips[i].text for i in range(len(video.clips))]
+        assert video_clip_texts == ["0m", "-1m", "-2m", "-3m"]
+
+    @pytest.mark.parametrize(
+        "font, expected_error_prefix",
+        [
+            ("nonexistent.ttf", "Font file not found: "),
+            ("", "Font you provided is not a file: "),
+            ("invalid_font.ttf", "Error loading font file: "),
+            ("invalid_font_filetype.txt", "Error loading font file: "),
+        ],
+    )
+    def test_render_depth_report_video_with_user_font_invalid_file(
+        self, request: pytest.FixtureRequest, font: str, expected_error_prefix: str
+    ) -> None:
+        """
+        Test the render_depth_report_video method with a user-specified font.
+        """
+
+        file_path = str(request.path.parent.joinpath("data", "assets", "fonts", font))
+
+        with pytest.raises(DepthReportVideoCreatorError) as e:
+            # Create a DepthReportVideoCreator instance
+            _ = DepthReportVideoCreator(fps=1, font=file_path)
+
+        assert f"{expected_error_prefix}{file_path}" in str(e.value)
+
+    @pytest.mark.parametrize(
+        "bg_color",
+        [
+            "#000000",
+            "black",
+            "green",
+        ],
+    )
+    def test_render_depth_report_video_with_bg_color(self, bg_color: str) -> None:
+        """
+        Test the render_depth_report_video method with a background color.
+        """
+        _ = DepthReportVideoCreator(fps=1, bg_color=bg_color)
+
+    @pytest.mark.parametrize(
+        "bg_color",
+        ["#00000", "blackk", "greenn", ""],
+    )
+    def test_render_depth_report_video_with_invalid_bg_color(
+        self, bg_color: str
+    ) -> None:
+        """
+        Test the render_depth_report_video method with an invalid background color.
+        """
+        with pytest.raises(DepthReportVideoCreatorError) as e:
+            _ = DepthReportVideoCreator(fps=1, bg_color=bg_color)
+
+        assert "Invalid background color: " in str(e.value)
+
+    @pytest.mark.parametrize(
+        "stroke_width",
+        [1, 2, 3],
+    )
+    def test_render_depth_report_video_with_stroke_width(
+        self, stroke_width: int
+    ) -> None:
+        """
+        Test the render_depth_report_video method with a stroke width.
+        """
+        _ = DepthReportVideoCreator(fps=1, stroke_width=stroke_width)
+
+    @pytest.mark.parametrize(
+        "stroke_width",
+        [-1, "", "a"],
+    )
+    def test_render_depth_report_video_with_invalid_stroke_width(
+        self, stroke_width: Any
+    ) -> None:
+        """
+        Test the render_depth_report_video method with an invalid stroke width.
+        """
+        with pytest.raises(DepthReportVideoCreatorError) as e:
+            _ = DepthReportVideoCreator(fps=1, stroke_width=stroke_width)
+
+        assert "Invalid stroke width; must be a positive number." in str(e.value)

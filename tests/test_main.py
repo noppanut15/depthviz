@@ -10,7 +10,7 @@ from unittest import mock
 import pytest
 from depthviz.main import DepthvizApplication, run
 from depthviz.parsers.generic.generic_divelog_parser import DiveLogParser
-from depthviz.core import DepthReportVideoCreatorError
+from depthviz.core import DepthReportVideoCreatorError, DEFAULT_FONT
 
 
 class TestMainCLI:
@@ -331,6 +331,9 @@ class TestMainCLI:
             output_path=output_path.as_posix(),
             decimal_places=0,
             no_minus=False,
+            font=DEFAULT_FONT,
+            bg_color="black",
+            stroke_width=2,
         )
 
     @pytest.mark.parametrize(
@@ -420,6 +423,7 @@ class TestMainCLI:
             output_path=output_path,
             decimal_places=decimal_places,
             no_minus=no_minus,
+            font=DEFAULT_FONT,
         )
 
         # Check the return code and the captured output.
@@ -478,4 +482,102 @@ class TestMainCLI:
             output_path=output_path.as_posix(),
             decimal_places=0,
             no_minus=False,
+            font=DEFAULT_FONT,
+            bg_color="black",
+            stroke_width=2,
         )
+
+    def test_main_with_args_font(
+        self,
+        capsys: pytest.CaptureFixture[str],
+        tmp_path: pathlib.Path,
+        request: pytest.FixtureRequest,
+    ) -> None:
+        """
+        Test the main function with arguments for font.
+        """
+
+        input_path = (
+            request.path.parent / "data" / "apnealizer" / "valid_depth_data_trimmed.csv"
+        )
+        output_path = tmp_path / "test_main_with_args_font.mp4"
+        font_path = (
+            request.path.parent / "data" / "assets" / "fonts" / "OpenSans-Regular.ttf"
+        )
+        sys.argv = [
+            "main",
+            "-i",
+            str(input_path.as_posix()),
+            "-s",
+            "apnealizer",
+            "-o",
+            str(output_path.as_posix()),
+            "--font",
+            str(font_path.as_posix()),
+        ]
+        app = DepthvizApplication()
+        app.main()
+        captured = capsys.readouterr()
+        assert f"Video successfully created: {output_path.as_posix()}" in captured.out
+
+    def test_main_with_args_bg_color(
+        self,
+        capsys: pytest.CaptureFixture[str],
+        tmp_path: pathlib.Path,
+        request: pytest.FixtureRequest,
+    ) -> None:
+        """
+        Test the main function with arguments for background color.
+        """
+
+        input_path = (
+            request.path.parent / "data" / "apnealizer" / "valid_depth_data_trimmed.csv"
+        )
+        output_path = tmp_path / "test_main_with_args_bg_color.mp4"
+        sys.argv = [
+            "main",
+            "-i",
+            str(input_path.as_posix()),
+            "-s",
+            "apnealizer",
+            "-o",
+            str(output_path.as_posix()),
+            "--bg-color",
+            "green",
+        ]
+        app = DepthvizApplication()
+        app.main()
+        captured = capsys.readouterr()
+        assert f"Video successfully created: {output_path.as_posix()}" in captured.out
+
+    def test_main_with_args_stroke_width(
+        self,
+        capsys: pytest.CaptureFixture[str],
+        tmp_path: pathlib.Path,
+        request: pytest.FixtureRequest,
+    ) -> None:
+        """
+        Test the main function with arguments for stroke width.
+        """
+
+        input_path = (
+            request.path.parent / "data" / "apnealizer" / "valid_depth_data_trimmed.csv"
+        )
+        output_path = tmp_path / "test_main_with_args_stroke_width.mp4"
+        sys.argv = [
+            "main",
+            "-i",
+            str(input_path.as_posix()),
+            "-s",
+            "apnealizer",
+            "-o",
+            str(output_path.as_posix()),
+            "--bg-color",
+            "green",  # This makes the stroke color visible for testing
+            "--stroke-width",
+            "12",
+        ]
+        app = DepthvizApplication()
+        app.main()
+        captured = capsys.readouterr()
+        assert f"Video successfully created: {output_path.as_posix()}" in captured.out
