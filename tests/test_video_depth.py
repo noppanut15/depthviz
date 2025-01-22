@@ -1,5 +1,5 @@
 """
-Unit tests for the core module.
+Unit tests for the depth module.
 """
 
 import os.path
