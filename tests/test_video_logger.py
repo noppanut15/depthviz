@@ -3,7 +3,7 @@ Unit tests for the progress bar logger class.
 """
 
 import pytest
-from depthviz.logger import DepthVizProgessBarLogger
+from depthviz.video.logger import DepthVizProgessBarLogger
 
 
 def test_depthviz_progress_bar_logger(monkeypatch: pytest.MonkeyPatch) -> None:

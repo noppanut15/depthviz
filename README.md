@@ -56,7 +56,8 @@ depthviz -i <input_file> -s <source> -o <output_video.mp4>
 * `--font <font_file>`: Path to a custom font file for the text.
 * `--bg-color <color>`: Background color (e.g., `green`, `'#000000'`). (Default: `black`)
   > 💡 You can use this option to set the background color to match your video editor's [chroma key](https://en.wikipedia.org/wiki/Chroma_key) color, if needed. (e.g., `--bg-color green`)
-* `--stroke-width <0,1,2,...>`: Width of the stroke around the text in pixels. (Default: `2`)
+* `--stroke-width <0,1,2,...>`: Width of the stroke around the text in pixels. (Default: `5`)
+* `--time`: Create a time overlay video. This option generates another video that displays the time elapsed during the dive.
 
 <p align="center"><img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/depth-decimal-places-5s-trimmed.gif" alt="decimal places comparison"/></p>
 
