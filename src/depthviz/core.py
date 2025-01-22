@@ -17,6 +17,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DEFAULT_FONT = os.path.abspath(
     os.path.join(BASE_DIR, "assets/fonts/Open_Sans/static/OpenSans-Bold.ttf")
 )
+DEFAULT_VIDEO_SIZE = (960, 540)
 
 
 class DepthReportVideoCreatorError(Exception):
@@ -39,7 +40,6 @@ class DepthReportVideoCreator:
     def __init__(
         self,
         font: str = DEFAULT_FONT,
-        fontsize: int = 100,
         interline: int = -20,
         color: str = "white",
         bg_color: str = "black",
@@ -47,10 +47,13 @@ class DepthReportVideoCreator:
         stroke_width: int = 2,
         align: str = "center",
         size: Tuple[int, int] = (640, 360),
+        bitrate: str = "5000k",
         fps: int = 25,
     ):
         self.font = font
-        self.fontsize = fontsize
+        self.fontsize = int(
+            size[1] * 100 / 360
+        )  # 100 is the default font size for 640x360 resolution
         self.interline = interline
         self.color = color
         self.bg_color = bg_color
@@ -58,6 +61,7 @@ class DepthReportVideoCreator:
         self.stroke_width = stroke_width
         self.align = align
         self.size = size
+        self.bitrate = bitrate
         self.fps = fps
         self.final_video = None
         self.progress_bar_logger_config = {
@@ -200,6 +204,7 @@ class DepthReportVideoCreator:
                 self.final_video.write_videofile(
                     path,
                     fps=self.fps,
+                    bitrate=self.bitrate,
                     logger=DepthVizProgessBarLogger(
                         description="Exporting",
                         unit=self.progress_bar_logger_config["unit"],
