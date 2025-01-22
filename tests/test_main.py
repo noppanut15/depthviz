@@ -13,6 +13,7 @@ from depthviz.parsers.generic.generic_divelog_parser import DiveLogParser
 from depthviz.video.video_creator import (
     OverlayVideoCreatorError,
     DEFAULT_FONT,
+    DEFAULT_STROKE_WIDTH,
 )
 from depthviz.video.time import TimeReportVideoCreatorError
 
@@ -354,7 +355,7 @@ class TestMainCLI:
             no_minus=False,
             font=DEFAULT_FONT,
             bg_color="black",
-            stroke_width=2,
+            stroke_width=DEFAULT_STROKE_WIDTH,
         )
 
     @pytest.mark.parametrize(
@@ -508,7 +509,7 @@ class TestMainCLI:
             no_minus=False,
             font=DEFAULT_FONT,
             bg_color="black",
-            stroke_width=2,
+            stroke_width=DEFAULT_STROKE_WIDTH,
         )
 
     def test_main_with_args_font(

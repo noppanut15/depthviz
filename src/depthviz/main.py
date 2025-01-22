@@ -87,9 +87,10 @@ class DepthvizApplication:
         )
         self.parser.add_argument(
             "--stroke-width",
-            help="Width of the stroke around the text in pixels. (default: 2)",
+            help="Width of the stroke around the text in pixels. "
+            f"(default: {DEFAULT_STROKE_WIDTH})",
             type=int,
-            default=2,
+            default=DEFAULT_STROKE_WIDTH,
         )
         self.parser.add_argument(
             "--time", help="Create a time overlay video.", action="store_true"

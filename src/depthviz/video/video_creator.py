@@ -16,7 +16,7 @@ DEFAULT_FONT = os.path.abspath(
 DEFAULT_VIDEO_SIZE = (960, 540)
 DEFAULT_VIDEO_SIZE_FOR_TESTING = (640, 360)
 DEFAULT_BG_COLOR = "black"
-DEFAULT_STROKE_WIDTH = 2
+DEFAULT_STROKE_WIDTH = 5
 
 
 class OverlayVideoCreatorError(Exception):
