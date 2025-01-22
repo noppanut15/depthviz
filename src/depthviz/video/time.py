@@ -3,6 +3,7 @@ Module to create a timer video.
 """
 
 import math
+from typing import Union
 from moviepy import VideoClip
 from depthviz.video.video_creator import (
     OverlayVideoCreator,
@@ -74,7 +75,7 @@ class TimeReportVideoCreator(OverlayVideoCreator):
             raise TimeReportVideoCreatorError("The time data contains negative values.")
 
         # Create a list of time frames
-        time_frame_list = []
+        time_frame_list: list[dict[str, Union[str, float]]] = []
         start = 0
         end = math.ceil(time_data[-1] - time_data[0])
         for time in range(start, end + 1):
@@ -95,7 +96,7 @@ class TimeReportVideoCreator(OverlayVideoCreator):
             path: The path to save the video to.
         """
         # Add a suffix `_time` to the file name
-        path = path.split(".")
-        path[-2] += "_time"
-        path = ".".join(path)
+        path_split = path.split(".")
+        path_split[-2] += "_time"
+        path = ".".join(path_split)
         super().save(video=video, path=path, progress_bar_desc=progress_bar_desc)
