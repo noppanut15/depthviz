@@ -6,12 +6,12 @@ import os.path
 import pathlib
 from typing import Any
 import pytest
-from depthviz.core import (
-    DepthReportVideoCreator,
+from depthviz.video.video_creator import (
     VideoNotRenderError,
     VideoFormatError,
-    DepthReportVideoCreatorError,
+    OverlayVideoCreatorError,
 )
+from depthviz.video.depth import DepthReportVideoCreator, DepthReportVideoCreatorError
 
 
 class TestDepthReportVideoCreator:
@@ -42,10 +42,9 @@ class TestDepthReportVideoCreator:
             3.0,
         ]
         depth_data = [0.1, 0.2, 0.3, 0.4, 0.5, 0.9, 1.3, 1.7, 2.1, 2.5, 2.9, 3.3]
-        depth_report_video_creator.render_depth_report_video(
+        video = depth_report_video_creator.render_depth_report_video(
             time_data=time_data, depth_data=depth_data
         )
-        video = depth_report_video_creator.get_video()
 
         # Check the video is not None
         assert video is not None
@@ -66,13 +65,13 @@ class TestDepthReportVideoCreator:
         # Create a depth report video
         time_data = [1.0, 2.0, 3.0]
         depth_data = [0.1, 0.2, 0.3]
-        depth_report_video_creator.render_depth_report_video(
+        video = depth_report_video_creator.render_depth_report_video(
             time_data=time_data, depth_data=depth_data
         )
 
         # Save the video to a file in directory tmp_path
         path = tmp_path / "test_depth_report_video.mp4"
-        depth_report_video_creator.save(path=path.as_posix())
+        depth_report_video_creator.save(video=video, path=path.as_posix())
 
         assert path.exists()
         assert path.stat().st_size > 0
@@ -88,13 +87,13 @@ class TestDepthReportVideoCreator:
         # Create a depth report video
         time_data = [0.25, 0.5, 0.75, 1.0]
         depth_data = [0.0, 1.0, 2.0, 3.0]
-        depth_report_video_creator.render_depth_report_video(
+        video = depth_report_video_creator.render_depth_report_video(
             time_data=time_data, depth_data=depth_data
         )
 
         # Save the video to a file in the current directory
         path = ".depth_overlay.mp4"
-        depth_report_video_creator.save(path=path)
+        depth_report_video_creator.save(video=video, path=path)
 
         assert os.path.exists(".depth_overlay.mp4")
 
@@ -108,14 +107,14 @@ class TestDepthReportVideoCreator:
         # Create a depth report video
         time_data = [1.0, 2.0, 3.0]
         depth_data = [0.1, 0.2, 0.3]
-        depth_report_video_creator.render_depth_report_video(
+        video = depth_report_video_creator.render_depth_report_video(
             time_data=time_data, depth_data=depth_data
         )
 
         # Save the video to a nonexistent path
         wrong_path = tmp_path / "non_existent_dir" / "test_depth_report_video.mp4"
         with pytest.raises(FileNotFoundError) as e:
-            depth_report_video_creator.save(wrong_path.as_posix())
+            depth_report_video_creator.save(video=video, path=wrong_path.as_posix())
         assert str(e.value) == f"Parent directory does not exist: {wrong_path.parent}"
 
     def test_save_without_file_name(self, tmp_path: pathlib.Path) -> None:
@@ -128,14 +127,14 @@ class TestDepthReportVideoCreator:
         # Create a depth report video
         time_data = [1.0, 2.0, 3.0]
         depth_data = [0.1, 0.2, 0.3]
-        depth_report_video_creator.render_depth_report_video(
+        video = depth_report_video_creator.render_depth_report_video(
             time_data=time_data, depth_data=depth_data
         )
 
         # Save the video to a file without a file name
         wrong_path = tmp_path
         with pytest.raises(NameError) as e:
-            depth_report_video_creator.save(wrong_path.as_posix())
+            depth_report_video_creator.save(video=video, path=wrong_path.as_posix())
         assert (
             str(e.value)
             == f"{wrong_path} is a directory, please add a file name to the path. \
@@ -148,11 +147,11 @@ class TestDepthReportVideoCreator:
         """
         # Create a DepthReportVideoCreator instance
         depth_report_video_creator = DepthReportVideoCreator(fps=1)
-
+        video = None
         # Save the video to a file without rendering it
         path = tmp_path / "test_depth_report_video.mp4"
         with pytest.raises(VideoNotRenderError) as e:
-            depth_report_video_creator.save(path=path.as_posix())
+            depth_report_video_creator.save(video=video, path=path.as_posix())
         assert str(e.value) == "Cannot save video because it has not been rendered yet."
 
     def test_save_video_wrong_format(self, tmp_path: pathlib.Path) -> None:
@@ -165,14 +164,14 @@ class TestDepthReportVideoCreator:
         # Create a depth report video
         time_data = [1.0, 2.0, 3.0]
         depth_data = [0.1, 0.2, 0.3]
-        depth_report_video_creator.render_depth_report_video(
+        video = depth_report_video_creator.render_depth_report_video(
             time_data=time_data, depth_data=depth_data
         )
 
         # Save the video to a file with a wrong file format
         wrong_path = tmp_path / "test_depth_report_video.avi"
         with pytest.raises(VideoFormatError) as e:
-            depth_report_video_creator.save(wrong_path.as_posix())
+            depth_report_video_creator.save(video=video, path=wrong_path.as_posix())
         assert str(e.value) == "Invalid file format: The file format must be .mp4"
 
     def test_render_depth_video_with_invalid_input(self) -> None:
@@ -187,7 +186,7 @@ class TestDepthReportVideoCreator:
         time_data = [0.1, 0.2, 0.3]
         depth_data = [0.1, 0.2]
         with pytest.raises(DepthReportVideoCreatorError) as e:
-            depth_report_video_creator.render_depth_report_video(
+            _ = depth_report_video_creator.render_depth_report_video(
                 time_data=time_data, depth_data=depth_data
             )
         assert (
@@ -215,10 +214,9 @@ class TestDepthReportVideoCreator:
         # Create a depth report video with decimal places
         time_data = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
         depth_data = [0.001, 0.13344, 0.26667, 1.345, 1.54444, 3343.32343]
-        depth_report_video_creator.render_depth_report_video(
+        video = depth_report_video_creator.render_depth_report_video(
             time_data=time_data, depth_data=depth_data, decimal_places=decimal_places
         )
-        video = depth_report_video_creator.get_video()
 
         # Check the video is not None
         assert video is not None
@@ -250,7 +248,7 @@ class TestDepthReportVideoCreator:
         time_data = [1.0, 2.0, 3.0]
         depth_data = [0.1, 0.2, 0.3]
         with pytest.raises(DepthReportVideoCreatorError) as e:
-            depth_report_video_creator.render_depth_report_video(
+            _ = depth_report_video_creator.render_depth_report_video(
                 time_data=time_data,
                 depth_data=depth_data,
                 decimal_places=decimal_places,
@@ -283,13 +281,12 @@ class TestDepthReportVideoCreator:
         # Create a depth report video with no minus option
         time_data = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
         depth_data = [0.1, 0.2, 0.3, 1.233, 2.0, 3343.33]
-        depth_report_video_creator.render_depth_report_video(
+        video = depth_report_video_creator.render_depth_report_video(
             time_data=time_data,
             depth_data=depth_data,
             decimal_places=decimal_places,
             minus_sign=minus_sign,
         )
-        video = depth_report_video_creator.get_video()
 
         # Check the video is not None
         assert video is not None
@@ -323,12 +320,11 @@ class TestDepthReportVideoCreator:
         # Create a depth report video with a user font
         time_data = [0.0, 1.0, 2.0, 3.0]
         depth_data = [0.0, 1.0, 2.0, 3.0]
-        depth_report_video_creator.render_depth_report_video(
+        video = depth_report_video_creator.render_depth_report_video(
             time_data=time_data, depth_data=depth_data
         )
 
         # Check the video is not None
-        video = depth_report_video_creator.get_video()
         assert video is not None
 
         # Check the duration of the video (seconds)
@@ -359,7 +355,7 @@ class TestDepthReportVideoCreator:
 
         file_path = str(request.path.parent.joinpath("data", "assets", "fonts", font))
 
-        with pytest.raises(DepthReportVideoCreatorError) as e:
+        with pytest.raises(OverlayVideoCreatorError) as e:
             # Create a DepthReportVideoCreator instance
             _ = DepthReportVideoCreator(fps=1, font=file_path)
 
@@ -389,7 +385,7 @@ class TestDepthReportVideoCreator:
         """
         Test the render_depth_report_video method with an invalid background color.
         """
-        with pytest.raises(DepthReportVideoCreatorError) as e:
+        with pytest.raises(OverlayVideoCreatorError) as e:
             _ = DepthReportVideoCreator(fps=1, bg_color=bg_color)
 
         assert "Invalid background color: " in str(e.value)
@@ -416,7 +412,7 @@ class TestDepthReportVideoCreator:
         """
         Test the render_depth_report_video method with an invalid stroke width.
         """
-        with pytest.raises(DepthReportVideoCreatorError) as e:
+        with pytest.raises(OverlayVideoCreatorError) as e:
             _ = DepthReportVideoCreator(fps=1, stroke_width=stroke_width)
 
         assert "Invalid stroke width; must be a positive number." in str(e.value)

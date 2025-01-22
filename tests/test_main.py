@@ -10,7 +10,10 @@ from unittest import mock
 import pytest
 from depthviz.main import DepthvizApplication, run
 from depthviz.parsers.generic.generic_divelog_parser import DiveLogParser
-from depthviz.core import DepthReportVideoCreatorError, DEFAULT_FONT
+from depthviz.video.video_creator import (
+    OverlayVideoCreatorError,
+    DEFAULT_FONT,
+)
 
 
 # Mock the DEFAULT_VIDEO_SIZE constant to lower the resolution for faster tests.
@@ -411,7 +414,7 @@ class TestMainCLI:
 
         # Mock the DepthReportVideoCreator class and its methods.
         mock_depth_report_video_creator.return_value = mock_depth_report_video_creator
-        mock_render_depth_report_video.side_effect = DepthReportVideoCreatorError(
+        mock_render_depth_report_video.side_effect = OverlayVideoCreatorError(
             "Error rendering video"
         )
 

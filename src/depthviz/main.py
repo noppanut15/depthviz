@@ -14,12 +14,12 @@ from depthviz.parsers.shearwater.shearwater_xml_parser import ShearwaterXmlParse
 from depthviz.parsers.garmin.fit_parser import GarminFitParser
 from depthviz.parsers.suunto.fit_parser import SuuntoFitParser
 from depthviz.parsers.manual.csv_parser import ManualCsvParser
-from depthviz.core import (
-    DepthReportVideoCreator,
-    DepthReportVideoCreatorError,
+from depthviz.video.video_creator import (
+    OverlayVideoCreatorError,
     DEFAULT_FONT,
     DEFAULT_VIDEO_SIZE,
 )
+from depthviz.video.depth import DepthReportVideoCreator
 
 # Banner for the command line interface
 BANNER = """
@@ -119,14 +119,14 @@ class DepthvizApplication:
                 stroke_width=stroke_width,
                 size=DEFAULT_VIDEO_SIZE,
             )
-            depth_report_video_creator.render_depth_report_video(
+            video = depth_report_video_creator.render_depth_report_video(
                 time_data=time_data_from_divelog,
                 depth_data=depth_data_from_divelog,
                 decimal_places=decimal_places,
                 minus_sign=not no_minus,
             )
-            depth_report_video_creator.save(output_path)
-        except DepthReportVideoCreatorError as e:
+            depth_report_video_creator.save(video=video, path=output_path)
+        except OverlayVideoCreatorError as e:
             print(e)
             return 1
 
