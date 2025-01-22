@@ -14,6 +14,7 @@ from depthviz.video.video_creator import (
     OverlayVideoCreatorError,
     DEFAULT_FONT,
 )
+from depthviz.video.time import TimeReportVideoCreatorError
 
 
 # Mock the DEFAULT_VIDEO_SIZE constant to lower the resolution for faster tests.
@@ -616,3 +617,55 @@ class TestMainCLI:
         captured = capsys.readouterr()
         assert f"Video successfully created: {output_path.as_posix()}" in captured.out
         assert (tmp_path / "FIM36m_time.mp4").exists()
+
+    @mock.patch("depthviz.main.TimeReportVideoCreator.save")
+    @mock.patch("depthviz.main.TimeReportVideoCreator.render_time_report_video")
+    @mock.patch("depthviz.main.TimeReportVideoCreator")
+    def test_create_time_video_failure(
+        self,
+        mock_time_report_video_creator: mock.Mock,
+        mock_render_time_report_video: mock.Mock,
+        mock_save: mock.Mock,
+        capsys: pytest.CaptureFixture[str],
+    ) -> None:
+        """
+        Test the create_time_video method for failure in video creation.
+        """
+        # Create an instance of the main application.
+        app = DepthvizApplication()
+
+        # Mock the DiveLogParser class and its methods.
+        divelog_parser = mock.Mock(spec=DiveLogParser)
+        divelog_parser.get_time_data = mock.Mock(return_value=[0, -1, 2, 3])
+
+        # Mock the TimeReportVideoCreator class and its methods.
+        mock_time_report_video_creator.return_value = mock_time_report_video_creator
+        mock_render_time_report_video.side_effect = TimeReportVideoCreatorError(
+            "The time data contains negative values."
+        )
+
+        # Call the create_time_video method with the mocked objects.
+        output_path = "test.mp4"
+
+        ret_code = app.create_time_video(
+            divelog_parser=divelog_parser,
+            output_path=output_path,
+            font=DEFAULT_FONT,
+        )
+
+        # Check the return code and the captured output.
+        assert ret_code == 1
+        captured = capsys.readouterr()
+        assert "The time data contains negative values." in captured.out
+
+        # Check the exception type whether it is compatible with the expected exception.
+        assert isinstance(
+            mock_render_time_report_video.side_effect, OverlayVideoCreatorError
+        )
+
+        # Check the method calls.
+        divelog_parser.get_time_data.assert_called_once()
+        mock_render_time_report_video.assert_called_once_with(
+            time_data=[0, -1, 2, 3],
+        )
+        mock_save.assert_not_called()
