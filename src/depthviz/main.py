@@ -18,6 +18,7 @@ from depthviz.core import (
     DepthReportVideoCreator,
     DepthReportVideoCreatorError,
     DEFAULT_FONT,
+    DEFAULT_VIDEO_SIZE,
 )
 
 # Banner for the command line interface
@@ -112,7 +113,11 @@ class DepthvizApplication:
             time_data_from_divelog = divelog_parser.get_time_data()
             depth_data_from_divelog = divelog_parser.get_depth_data()
             depth_report_video_creator = DepthReportVideoCreator(
-                fps=25, font=font, bg_color=bg_color, stroke_width=stroke_width
+                fps=25,
+                font=font,
+                bg_color=bg_color,
+                stroke_width=stroke_width,
+                size=DEFAULT_VIDEO_SIZE,
             )
             depth_report_video_creator.render_depth_report_video(
                 time_data=time_data_from_divelog,
