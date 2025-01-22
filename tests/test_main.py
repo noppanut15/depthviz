@@ -13,6 +13,8 @@ from depthviz.parsers.generic.generic_divelog_parser import DiveLogParser
 from depthviz.core import DepthReportVideoCreatorError, DEFAULT_FONT
 
 
+# Mock the DEFAULT_VIDEO_SIZE constant to lower the resolution for faster tests.
+@mock.patch("depthviz.main.DEFAULT_VIDEO_SIZE", (640, 360))
 class TestMainCLI:
     """
     Test suite for the main CLI.
