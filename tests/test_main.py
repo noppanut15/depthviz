@@ -33,7 +33,7 @@ class TestMainCLI:
         """
         Mock the DepthvizApplication create_depth_video method.
         """
-        print(f"Video successfully created: {output_path}")
+        print(f"Depth video successfully created: {output_path}")
 
     def test_main(self, capsys: pytest.CaptureFixture[str]) -> None:
         """
@@ -76,7 +76,10 @@ class TestMainCLI:
         app = DepthvizApplication()
         app.main()
         captured = capsys.readouterr()
-        assert f"Video successfully created: {output_path.as_posix()}" in captured.out
+        assert (
+            f"Depth video successfully created: {output_path.as_posix()}"
+            in captured.out
+        )
 
     def test_main_with_invalid_csv(
         self,
@@ -238,7 +241,10 @@ class TestMainCLI:
         app = DepthvizApplication()
         app.main()
         captured = capsys.readouterr()
-        assert f"Video successfully created: {output_path.as_posix()}" in captured.out
+        assert (
+            f"Depth video successfully created: {output_path.as_posix()}"
+            in captured.out
+        )
 
     def test_main_with_args_manual_mode(
         self,
@@ -266,7 +272,10 @@ class TestMainCLI:
         app = DepthvizApplication()
         app.main()
         captured = capsys.readouterr()
-        assert f"Video successfully created: {output_path.as_posix()}" in captured.out
+        assert (
+            f"Depth video successfully created: {output_path.as_posix()}"
+            in captured.out
+        )
 
     def test_main_with_args_no_minus_option(
         self,
@@ -295,7 +304,10 @@ class TestMainCLI:
         app = DepthvizApplication()
         app.main()
         captured = capsys.readouterr()
-        assert f"Video successfully created: {output_path.as_posix()}" in captured.out
+        assert (
+            f"Depth video successfully created: {output_path.as_posix()}"
+            in captured.out
+        )
 
     @mock.patch("depthviz.main.DepthvizApplication.create_depth_video")
     @mock.patch("depthviz.parsers.garmin.fit_parser.GarminFitParser.parse")
@@ -330,7 +342,10 @@ class TestMainCLI:
         app.main()
         captured = capsys.readouterr()
 
-        assert f"Video successfully created: {output_path.as_posix()}" in captured.out
+        assert (
+            f"Depth video successfully created: {output_path.as_posix()}"
+            in captured.out
+        )
         mock_parse.assert_called_once_with(file_path=input_path.as_posix())
         mock_create_depth_video.assert_called_once_with(
             divelog_parser=mock.ANY,
@@ -481,7 +496,10 @@ class TestMainCLI:
         app.main()
         captured = capsys.readouterr()
 
-        assert f"Video successfully created: {output_path.as_posix()}" in captured.out
+        assert (
+            f"Depth video successfully created: {output_path.as_posix()}"
+            in captured.out
+        )
         mock_parse.assert_called_once_with(file_path=input_path.as_posix())
         mock_create_depth_video.assert_called_once_with(
             divelog_parser=mock.ANY,
@@ -524,7 +542,10 @@ class TestMainCLI:
         app = DepthvizApplication()
         app.main()
         captured = capsys.readouterr()
-        assert f"Video successfully created: {output_path.as_posix()}" in captured.out
+        assert (
+            f"Depth video successfully created: {output_path.as_posix()}"
+            in captured.out
+        )
 
     def test_main_with_args_bg_color(
         self,
@@ -554,7 +575,10 @@ class TestMainCLI:
         app = DepthvizApplication()
         app.main()
         captured = capsys.readouterr()
-        assert f"Video successfully created: {output_path.as_posix()}" in captured.out
+        assert (
+            f"Depth video successfully created: {output_path.as_posix()}"
+            in captured.out
+        )
 
     def test_main_with_args_stroke_width(
         self,
@@ -586,7 +610,10 @@ class TestMainCLI:
         app = DepthvizApplication()
         app.main()
         captured = capsys.readouterr()
-        assert f"Video successfully created: {output_path.as_posix()}" in captured.out
+        assert (
+            f"Depth video successfully created: {output_path.as_posix()}"
+            in captured.out
+        )
 
     def test_main_with_args_time_video(
         self,
@@ -602,6 +629,7 @@ class TestMainCLI:
             request.path.parent / "data" / "apnealizer" / "valid_depth_data_trimmed.csv"
         )
         output_path = tmp_path / "FIM36m.mp4"
+        time_output_path = tmp_path / "FIM36m_time.mp4"
         sys.argv = [
             "main",
             "-i",
@@ -615,8 +643,11 @@ class TestMainCLI:
         app = DepthvizApplication()
         app.main()
         captured = capsys.readouterr()
-        assert f"Video successfully created: {output_path.as_posix()}" in captured.out
-        assert (tmp_path / "FIM36m_time.mp4").exists()
+        assert (
+            f"Time video successfully created: {time_output_path.as_posix()}"
+            in captured.out
+        )
+        assert time_output_path.exists()
 
     @mock.patch("depthviz.main.TimeReportVideoCreator.save")
     @mock.patch("depthviz.main.TimeReportVideoCreator.render_time_report_video")

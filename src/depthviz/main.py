@@ -135,7 +135,7 @@ class DepthvizApplication:
             print(e)
             return 1
 
-        print(f"Video successfully created: {output_path}")
+        print(f"Depth video successfully created: {output_path}")
         return 0
 
     def create_time_video(
@@ -165,7 +165,10 @@ class DepthvizApplication:
             print(e)
             return 1
 
-        print(f"Video successfully created: {output_path}")
+        print(
+            "Time video successfully created: "
+            f"{time_report_video_creator.to_time_output_path(output_path)}"
+        )
         return 0
 
     def is_user_input_valid(self, args: argparse.Namespace) -> bool:

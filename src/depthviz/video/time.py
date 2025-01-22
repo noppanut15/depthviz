@@ -36,6 +36,7 @@ class TimeReportVideoCreator(OverlayVideoCreator):
             bg_color=bg_color,
             stroke_width=stroke_width,
             size=size,
+            # TODO: Set the frame rate to 4 fps
             fps=1,  # Set the frame rate to 1 fps
         )
 
@@ -85,6 +86,20 @@ class TimeReportVideoCreator(OverlayVideoCreator):
         full_video = super().render_text_video(time_frame_list)
         return full_video
 
+    def to_time_output_path(self, path: str) -> str:
+        """
+        Convert a video path to a time output path by adding a suffix `_time`.
+
+        Args:
+            path: The video path.
+
+        Returns:
+            The time output path.
+        """
+        path_split = path.split(".")
+        path_split[-2] += "_time"
+        return ".".join(path_split)
+
     def save(
         self, video: VideoClip, path: str, progress_bar_desc: str = "Exporting"
     ) -> None:
@@ -96,7 +111,5 @@ class TimeReportVideoCreator(OverlayVideoCreator):
             path: The path to save the video to.
         """
         # Add a suffix `_time` to the file name
-        path_split = path.split(".")
-        path_split[-2] += "_time"
-        path = ".".join(path_split)
+        path = self.to_time_output_path(path)
         super().save(video=video, path=path, progress_bar_desc=progress_bar_desc)
