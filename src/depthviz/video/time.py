@@ -36,8 +36,7 @@ class TimeReportVideoCreator(OverlayVideoCreator):
             bg_color=bg_color,
             stroke_width=stroke_width,
             size=size,
-            # TODO: Set the frame rate to 4 fps
-            fps=1,  # Set the frame rate to 1 fps
+            fps=4,  # Set the frame rate to 4 fps
         )
 
     def _convert_time_to_text(self, time: float) -> str:
@@ -80,9 +79,10 @@ class TimeReportVideoCreator(OverlayVideoCreator):
         start = 0
         end = math.ceil(time_data[-1] - time_data[0])
         for time in range(start, end + 1):
-            time_frame_list.append(
-                {"text": self._convert_time_to_text(time), "duration": 1}
-            )
+            for _ in range(self.fps):
+                time_frame_list.append(
+                    {"text": self._convert_time_to_text(time), "duration": 1 / self.fps}
+                )
         full_video = super().render_text_video(time_frame_list)
         return full_video
 
