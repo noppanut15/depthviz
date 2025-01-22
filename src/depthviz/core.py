@@ -52,8 +52,8 @@ class DepthReportVideoCreator:
     ):
         self.font = font
         self.fontsize = int(
-            size[1] * 100 / 360
-        )  # 100 is the default font size for 640x360 resolution
+            size[1] * 120 / 360
+        )  # 120 is the default font size for 640x360 resolution
         self.interline = interline
         self.color = color
         self.bg_color = bg_color
