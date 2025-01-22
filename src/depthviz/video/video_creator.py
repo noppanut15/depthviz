@@ -8,12 +8,15 @@ from moviepy import TextClip, VideoClip, concatenate_videoclips
 from tqdm import tqdm
 from depthviz.video.logger import DepthVizProgessBarLogger
 
-
+# Default values
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DEFAULT_FONT = os.path.abspath(
     os.path.join(BASE_DIR, "../assets/fonts/Open_Sans/static/OpenSans-Bold.ttf")
 )
 DEFAULT_VIDEO_SIZE = (960, 540)
+DEFAULT_VIDEO_SIZE_FOR_TESTING = (640, 360)
+DEFAULT_BG_COLOR = "black"
+DEFAULT_STROKE_WIDTH = 2
 
 
 class OverlayVideoCreatorError(Exception):
@@ -38,11 +41,11 @@ class OverlayVideoCreator:
         font: str = DEFAULT_FONT,
         interline: int = -20,
         color: str = "white",
-        bg_color: str = "black",
+        bg_color: str = DEFAULT_BG_COLOR,
         stroke_color: str = "black",
-        stroke_width: int = 2,
+        stroke_width: int = DEFAULT_STROKE_WIDTH,
         align: str = "center",
-        size: Tuple[int, int] = (640, 360),
+        size: Tuple[int, int] = DEFAULT_VIDEO_SIZE_FOR_TESTING,
         bitrate: str = "5000k",
         fps: int = 25,
     ):

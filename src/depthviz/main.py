@@ -18,8 +18,11 @@ from depthviz.video.video_creator import (
     OverlayVideoCreatorError,
     DEFAULT_FONT,
     DEFAULT_VIDEO_SIZE,
+    DEFAULT_BG_COLOR,
+    DEFAULT_STROKE_WIDTH,
 )
 from depthviz.video.depth import DepthReportVideoCreator
+from depthviz.video.time import TimeReportVideoCreator
 
 # Banner for the command line interface
 BANNER = """
@@ -78,9 +81,9 @@ class DepthvizApplication:
         )
         self.parser.add_argument(
             "--bg-color",
-            help="Background color of the video. (default: black)",
+            help=f"Background color of the video. (default: {DEFAULT_BG_COLOR})",
             type=str,
-            default="black",
+            default=DEFAULT_BG_COLOR,
         )
         self.parser.add_argument(
             "--stroke-width",
@@ -88,7 +91,9 @@ class DepthvizApplication:
             type=int,
             default=2,
         )
-
+        self.parser.add_argument(
+            "--time", help="Create a time overlay video.", action="store_true"
+        )
         self.parser.add_argument(
             "-v",
             "--version",
@@ -96,15 +101,15 @@ class DepthvizApplication:
             version=f"%(prog)s version {__version__}",
         )
 
-    def create_video(
+    def create_depth_video(
         self,
         divelog_parser: DiveLogParser,
         output_path: str,
         decimal_places: int,
         font: str,
         no_minus: bool = False,
-        bg_color: str = "black",
-        stroke_width: int = 2,
+        bg_color: str = DEFAULT_BG_COLOR,
+        stroke_width: int = DEFAULT_STROKE_WIDTH,
     ) -> int:
         """
         Create the depth overlay video.
@@ -126,6 +131,36 @@ class DepthvizApplication:
                 minus_sign=not no_minus,
             )
             depth_report_video_creator.save(video=video, path=output_path)
+        except OverlayVideoCreatorError as e:
+            print(e)
+            return 1
+
+        print(f"Video successfully created: {output_path}")
+        return 0
+
+    def create_time_video(
+        self,
+        divelog_parser: DiveLogParser,
+        output_path: str,
+        font: str,
+        bg_color: str = DEFAULT_BG_COLOR,
+        stroke_width: int = DEFAULT_STROKE_WIDTH,
+    ) -> int:
+        """
+        Create the time overlay video.
+        """
+        try:
+            time_data_from_divelog = divelog_parser.get_time_data()
+            time_report_video_creator = TimeReportVideoCreator(
+                font=font,
+                bg_color=bg_color,
+                stroke_width=stroke_width,
+                size=DEFAULT_VIDEO_SIZE,
+            )
+            video = time_report_video_creator.render_time_report_video(
+                time_data=time_data_from_divelog
+            )
+            time_report_video_creator.save(video=video, path=output_path)
         except OverlayVideoCreatorError as e:
             print(e)
             return 1
@@ -185,7 +220,7 @@ class DepthvizApplication:
             print(e)
             return 1
 
-        return self.create_video(
+        ret_code = self.create_depth_video(
             divelog_parser=divelog_parser,
             output_path=args.output,
             decimal_places=args.decimal_places,
@@ -194,6 +229,22 @@ class DepthvizApplication:
             bg_color=args.bg_color,
             stroke_width=args.stroke_width,
         )
+
+        # Exit if the depth overlay video creation failed
+        if ret_code != 0:
+            return ret_code
+
+        # Create a time overlay video
+        if args.time:
+            ret_code = self.create_time_video(
+                divelog_parser=divelog_parser,
+                output_path=args.output,
+                font=args.font,
+                bg_color=args.bg_color,
+                stroke_width=args.stroke_width,
+            )
+
+        return ret_code
 
 
 def run() -> int:

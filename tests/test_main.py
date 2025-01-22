@@ -23,14 +23,14 @@ class TestMainCLI:
     Test suite for the main CLI.
     """
 
-    def _mock_depthviz_create_video(
+    def _mock_depthviz_create_depth_video(
         self,
         output_path: str,
         *_args: Any,
         **_kwargs: Any,
     ) -> None:
         """
-        Mock the DepthvizApplication create_video method.
+        Mock the DepthvizApplication create_depth_video method.
         """
         print(f"Video successfully created: {output_path}")
 
@@ -296,12 +296,12 @@ class TestMainCLI:
         captured = capsys.readouterr()
         assert f"Video successfully created: {output_path.as_posix()}" in captured.out
 
-    @mock.patch("depthviz.main.DepthvizApplication.create_video")
+    @mock.patch("depthviz.main.DepthvizApplication.create_depth_video")
     @mock.patch("depthviz.parsers.garmin.fit_parser.GarminFitParser.parse")
     def test_main_with_args_garmin(
         self,
         mock_parse: mock.MagicMock,
-        mock_create_video: mock.MagicMock,
+        mock_create_depth_video: mock.MagicMock,
         capsys: pytest.CaptureFixture[str],
         tmp_path: pathlib.Path,
     ) -> None:
@@ -324,14 +324,14 @@ class TestMainCLI:
 
         # Mock the Garmin FIT parser parse method.
         mock_parse.side_effect = mock.Mock()
-        # Mock the create_video method.
-        mock_create_video.side_effect = self._mock_depthviz_create_video
+        # Mock the create_depth_video method.
+        mock_create_depth_video.side_effect = self._mock_depthviz_create_depth_video
         app.main()
         captured = capsys.readouterr()
 
         assert f"Video successfully created: {output_path.as_posix()}" in captured.out
         mock_parse.assert_called_once_with(file_path=input_path.as_posix())
-        mock_create_video.assert_called_once_with(
+        mock_create_depth_video.assert_called_once_with(
             divelog_parser=mock.ANY,
             output_path=output_path.as_posix(),
             decimal_places=0,
@@ -394,7 +394,7 @@ class TestMainCLI:
     @mock.patch("depthviz.main.DepthReportVideoCreator.save")
     @mock.patch("depthviz.main.DepthReportVideoCreator.render_depth_report_video")
     @mock.patch("depthviz.main.DepthReportVideoCreator")
-    def test_create_video_failure(
+    def test_create_depth_video_failure(
         self,
         mock_depth_report_video_creator: mock.Mock,
         mock_render_depth_report_video: mock.Mock,
@@ -402,7 +402,7 @@ class TestMainCLI:
         capsys: pytest.CaptureFixture[str],
     ) -> None:
         """
-        Test the create_video method for failure in video creation.
+        Test the create_depth_video method for failure in video creation.
         """
         # Create an instance of the main application.
         app = DepthvizApplication()
@@ -418,12 +418,12 @@ class TestMainCLI:
             "Error rendering video"
         )
 
-        # Call the create_video method with the mocked objects.
+        # Call the create_depth_video method with the mocked objects.
         output_path = "test.mp4"
         decimal_places = 2
         no_minus = False
 
-        ret_code = app.create_video(
+        ret_code = app.create_depth_video(
             divelog_parser=divelog_parser,
             output_path=output_path,
             decimal_places=decimal_places,
@@ -447,12 +447,12 @@ class TestMainCLI:
         )
         mock_save.assert_not_called()
 
-    @mock.patch("depthviz.main.DepthvizApplication.create_video")
+    @mock.patch("depthviz.main.DepthvizApplication.create_depth_video")
     @mock.patch("depthviz.parsers.suunto.fit_parser.SuuntoFitParser.parse")
     def test_main_with_args_suunto(
         self,
         mock_parse: mock.MagicMock,
-        mock_create_video: mock.MagicMock,
+        mock_create_depth_video: mock.MagicMock,
         capsys: pytest.CaptureFixture[str],
         tmp_path: pathlib.Path,
     ) -> None:
@@ -475,14 +475,14 @@ class TestMainCLI:
 
         # Mock the Suunto FIT parser parse method.
         mock_parse.side_effect = mock.Mock()
-        # Mock the create_video method.
-        mock_create_video.side_effect = self._mock_depthviz_create_video
+        # Mock the create_depth_video method.
+        mock_create_depth_video.side_effect = self._mock_depthviz_create_depth_video
         app.main()
         captured = capsys.readouterr()
 
         assert f"Video successfully created: {output_path.as_posix()}" in captured.out
         mock_parse.assert_called_once_with(file_path=input_path.as_posix())
-        mock_create_video.assert_called_once_with(
+        mock_create_depth_video.assert_called_once_with(
             divelog_parser=mock.ANY,
             output_path=output_path.as_posix(),
             decimal_places=0,
@@ -586,3 +586,33 @@ class TestMainCLI:
         app.main()
         captured = capsys.readouterr()
         assert f"Video successfully created: {output_path.as_posix()}" in captured.out
+
+    def test_main_with_args_time_video(
+        self,
+        capsys: pytest.CaptureFixture[str],
+        tmp_path: pathlib.Path,
+        request: pytest.FixtureRequest,
+    ) -> None:
+        """
+        Test the main function with arguments for time overlay video.
+        """
+
+        input_path = (
+            request.path.parent / "data" / "apnealizer" / "valid_depth_data_trimmed.csv"
+        )
+        output_path = tmp_path / "FIM36m.mp4"
+        sys.argv = [
+            "main",
+            "-i",
+            str(input_path.as_posix()),
+            "-s",
+            "apnealizer",
+            "-o",
+            str(output_path.as_posix()),
+            "--time",
+        ]
+        app = DepthvizApplication()
+        app.main()
+        captured = capsys.readouterr()
+        assert f"Video successfully created: {output_path.as_posix()}" in captured.out
+        assert (tmp_path / "FIM36m_time.mp4").exists()
