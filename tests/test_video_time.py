@@ -2,15 +2,7 @@
 Unit tests for the depth module.
 """
 
-import os.path
-import pathlib
-from typing import Any
 import pytest
-from depthviz.video.video_creator import (
-    VideoNotRenderError,
-    VideoFormatError,
-    OverlayVideoCreatorError,
-)
 from depthviz.video.time import TimeReportVideoCreator, TimeReportVideoCreatorError
 
 
