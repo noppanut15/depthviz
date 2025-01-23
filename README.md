@@ -45,6 +45,22 @@ depthviz -i <input_file> -s <source> -o <output_video.mp4>
 ```
 
 **Required Arguments:**
+| Option | Short | Values | Default | Description |
+| ------ | ----- | ------ | ------- | ----------- |
+| `--input` | `-i` | File path | | Path to your dive log file. |
+| `--source` | `-s` | See [source options](#source-options) | | Source of the data. |
+| `--output` | `-o` | File path | | Path or filename for the generated video. File format must be `.mp4`. |
+
+**Optional Arguments:**
+| Option | Short | Values | Default | Description |
+| ------ | ----- | ------ | ------- | ----------- |
+| `--decimal-places` | `-d` | `0-2` | `0` | Number of decimal places to display in the depth overlay. |
+| `--no-minus` | | | | Hide the minus sign for depth values (e.g., display `10m` instead of `-10m`). |
+| `--font` | | File path | [Default font](https://fonts.google.com/specimen/Open+Sans) | Path to a custom font file for the text. |
+| `--bg-color` | | Color name or hex | `black` | Background color (e.g., `green`, `'#000000'`). |
+| `--stroke-width` | | Positive integer | `5` | Width of the stroke around the text in pixels. |
+| `--time` | | | | Create a time overlay video. |
+<!-- **Required Arguments:**
 
 * `-i`, `--input <input_file>`: Path to your dive log file.
 * `-s`, `--source <source>`: Source of the data. See the table below for supported sources.
@@ -57,7 +73,7 @@ depthviz -i <input_file> -s <source> -o <output_video.mp4>
 * `--bg-color <color>`: Background color (e.g., `green`, `'#000000'`). (Default: `black`)
   > 💡 You can use this option to set the background color to match your video editor's [chroma key](https://en.wikipedia.org/wiki/Chroma_key) color, if needed. (e.g., `--bg-color green`)
 * `--stroke-width <0,1,2,...>`: Width of the stroke around the text in pixels. (Default: `5`)
-* `--time`: Create a time overlay video. This option generates another video that displays the time elapsed during the dive.
+* `--time`: Create a time overlay video. This option generates another video that displays the time elapsed during the dive. -->
 
 <p align="center"><img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/depth-decimal-places-5s-trimmed.gif" alt="decimal places comparison"/></p>
 
