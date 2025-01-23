@@ -45,21 +45,21 @@ depthviz -i <input_file> -s <source> -o <output_video.mp4>
 ```
 
 **Required Arguments:**
-| Option     | Short | Values                                | Description                                                           |
-| ---------- | ----- | ------------------------------------- | --------------------------------------------------------------------- |
-| `--input`  | `-i`  | File path                             | Path to your dive log file.                                           |
-| `--source` | `-s`  | See [source options](#source-options) | Source of the data.                                                   |
-| `--output` | `-o`  | File path                             | Path or filename for the generated video. File format must be `.mp4`. |
+| &nbsp;&nbsp;&nbsp;Option&nbsp;&nbsp;&nbsp; | Short | Values                                | Description                                                           |
+| ------------------------------------------ | ----- | ------------------------------------- | --------------------------------------------------------------------- |
+| `--input`                                  | `-i`  | File path                             | Path to your dive log file.                                           |
+| `--source`                                 | `-s`  | See [source options](#source-options) | Source of the data.                                                   |
+| `--output`                                 | `-o`  | File path                             | Path or filename for the generated video. File format must be `.mp4`. |
 
 **Optional Arguments:**
-| Option                   | Values            | Default                                                     | Description                                                                   |
-| ------------------------ | ----------------- | ----------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| `-d`, `--decimal-places` | `0-2`             | `0`                                                         | Number of decimal places to display in the depth overlay.                     |
-| `--no-minus`             | -                 | -                                                           | Hide the minus sign for depth values (e.g., display `10m` instead of `-10m`). |
-| `--font`                 | File path         | [Default font](https://fonts.google.com/specimen/Open+Sans) | Path to a custom font file for the text.                                      |
-| `--bg-color`             | Color name or hex | `black`                                                     | Background color (e.g., `green`, `'#000000'`).                                |
-| `--stroke-width`         | Positive integer  | `5`                                                         | Width of the stroke around the text in pixels.                                |
-| `--time`                 | -                 | -                                                           | Create a time overlay video.                                                  |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Option&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Values            | Default                                                     | Description                                                                   |
+| ------------------------------------------------------------------------------------------------------------------------------------------ | ----------------- | ----------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `-d`, <br/>`--decimal-places`                                                                                                              | `0-2`             | `0`                                                         | Number of decimal places to display in the depth overlay.                     |
+| `--no-minus`                                                                                                                               | -                 | -                                                           | Hide the minus sign for depth values (e.g., display `10m` instead of `-10m`). |
+| `--font`                                                                                                                                   | File path         | [Default font](https://fonts.google.com/specimen/Open+Sans) | Path to a custom font file for the text.                                      |
+| `--bg-color`                                                                                                                               | Color name or hex | `black`                                                     | Background color (e.g., `green`, `'#000000'`).                                |
+| `--stroke-width`                                                                                                                           | Positive integer  | `5`                                                         | Width of the stroke around the text in pixels.                                |
+| `--time`                                                                                                                                   | -                 | -                                                           | Create a time overlay video.                                                  |
 <!-- **Required Arguments:**
 
 * `-i`, `--input <input_file>`: Path to your dive log file.
