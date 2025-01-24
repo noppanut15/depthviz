@@ -10,7 +10,7 @@
 
 **&searr;&nbsp;&nbsp;Quick Links&nbsp;&nbsp;&swarr;**
 
-[Installation](#️-installation) • [Usage](#-usage) • [How It Works](#-how-it-works) • [Contribution](#-contribution) • [License](#️-license) • [Contact](#-contact)
+[Installation](#️-installation) • [Usage](#-usage) • [No Dive Computer?](#-no-dive-computer) • [How It Works](#-how-it-works) • [Contribution](#-contribution) • [License](#️-license) • [Contact](#-contact)
 
 **&searr;&nbsp;&nbsp;Share the project's link to your friends&nbsp;&nbsp;&swarr;**
 
