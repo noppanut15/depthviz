@@ -127,9 +127,9 @@ depthviz -i 123456_ACTIVITY.fit -s garmin -o depth_overlay.mp4
 
 #### Additional Options for Time Overlay
 
-You can also generate a time overlay video as a separate video that displays the time elapsed during the dive. It will be exported in the same directory as the depth overlay video.
-
 <p align="center"><img src="./assets/time-overlay-cropped.gif" alt="time overlay demo" width="400"/></p>
+
+You can also generate a time overlay video as a separate video that displays the time elapsed during the dive. It will be exported in the same directory as the depth overlay video.
 
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Option&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Values | Description                  |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------ | ---------------------------- |
