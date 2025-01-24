@@ -19,6 +19,7 @@
 
 ![depthviz DEMO](https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/demo-compressed-v2.gif)
 
+---
 ## ✨ Features
 
 * 100% **free** and **open-source** — made with ❤️ by freedivers.
@@ -42,6 +43,8 @@
 [&nwarr; Back to top](#readme-top)
 
 </div>
+
+---
 
 ## 🌟 Like depthviz?
 
