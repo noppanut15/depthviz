@@ -78,7 +78,7 @@ pipx install depthviz
 
 ### 1. Download Your Data
 
-- **✅ If you have a dive computer:**<br>Export your dive log from your dive computer or diving application. See the [source options table](#source-options) for supported formats.
+- **✅ If you have a dive computer:**<br>Export your dive log from your dive computer or diving application. See the [Data Source](#data-source) for supported formats.
 - **🚫 If you don't have a dive computer:**<br>Record your dive profile manually using depth markers in your footage. See the [No Dive Computer?](#-no-dive-computer) section for more details.
 
 ### 2. Generate the Overlay
@@ -88,14 +88,13 @@ Use `depthviz` to generate a depth overlay video from your dive log.
 ```bash
 depthviz -i <input_file> -s <source> -o <output_video.mp4>
 ```
-
 | &nbsp;&nbsp;&nbsp;&nbsp;Option&nbsp;&nbsp;&nbsp;&nbsp; | Short | Values                                                               | Description                                                                      |
 | ------------------------------------------------------ | ----- | -------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `--input`                                              | `-i`  | File path                                                            | Path to your dive log file.                                                      |
-| `--source`                                             | `-s`  | `apnealizer`,<br>`shearwater`,<br>`garmin`,<br>`suunto`,<br>`manual` | Source of the data.<br>(See [source options](#source-options) for more details.) |
+| `--source`                                             | `-s`  | `apnealizer`,<br>`shearwater`,<br>`garmin`,<br>`suunto`,<br>`manual` | Source of the data.<br>(See the [Data Source](#data-source) for more details.) |
 | `--output`                                             | `-o`  | File path                                                            | Path or filename for the generated video. File format must be `.mp4`.            |
 
-#### Source Options
+#### Data Source
 
 |    Source    | Description                                                                                                                                                                                                                                                   | File type |
 | :----------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------: |
@@ -113,7 +112,7 @@ Example of generating a depth overlay video named `depth_overlay.mp4` using data
 depthviz -i 123456_ACTIVITY.fit -s garmin -o depth_overlay.mp4
 ```
 
-### Styling Options
+### Advanced Options
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Option&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Values            | Default                                                     | Description                                                                   |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------- | ----------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `-d`, <br/>`--decimal-places`                                                                                                                          | `0-2`             | `0`                                                         | Number of decimal places to display in the depth overlay.                     |
@@ -121,7 +120,19 @@ depthviz -i 123456_ACTIVITY.fit -s garmin -o depth_overlay.mp4
 | `--font`                                                                                                                                               | File path         | [Default font](https://fonts.google.com/specimen/Open+Sans) | Path to a custom font file for the text.                                      |
 | `--bg-color`                                                                                                                                           | Color name or hex | `black`                                                     | Background color (e.g., `green`, `'#000000'`).                                |
 | `--stroke-width`                                                                                                                                       | Positive integer  | `5`                                                         | Width of the stroke around the text in pixels.                                |
-| `--time`                                                                                                                                               | -                 | -                                                           | Create a time overlay video.                                                  |
+
+<p align="center"><img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/depth-decimal-places-5s-trimmed.gif" alt="decimal places comparison"/></p>
+
+> [!TIP]
+> Use the `--decimal-places` option to control the precision of the depth display (e.g., `--decimal-places 1` displays depths like `-12.5m`)
+
+
+### Additional Overlay Videos
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Option&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Values | Description                  |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------ | ---------------------------- |
+| `--time`                                                                                                                                               | -      | Create a time overlay video. |
+
+
 <!-- **Required Arguments:**
 
 * `-i`, `--input <input_file>`: Path to your dive log file.
@@ -136,11 +147,6 @@ depthviz -i 123456_ACTIVITY.fit -s garmin -o depth_overlay.mp4
   > 💡 You can use this option to set the background color to match your video editor's [chroma key](https://en.wikipedia.org/wiki/Chroma_key) color, if needed. (e.g., `--bg-color green`)
 * `--stroke-width <0,1,2,...>`: Width of the stroke around the text in pixels. (Default: `5`)
 * `--time`: Create a time overlay video. This option generates another video that displays the time elapsed during the dive. -->
-
-<p align="center"><img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/depth-decimal-places-5s-trimmed.gif" alt="decimal places comparison"/></p>
-
-> [!TIP]
-> Use the `--decimal-places` option to control the precision of the depth display (e.g., `--decimal-places 1` displays depths like `-12.5m`)
 
 
 
