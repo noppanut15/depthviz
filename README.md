@@ -34,9 +34,14 @@
 * Linear interpolation to fill in gaps in the dive log data for a **smooth depth profile**.
 * Provides **SBOM** (Software Bill of Materials) for transparency and security.
 
-
 > [!TIP]
 > For performance freedivers, you can incorporate `depthviz` into your dive analysis. By visualizing your dive profile, you can identify areas for improvement and track your progress over time.
+
+<div align="right">
+
+[&nwarr; Back to top](#readme-top)
+
+</div>
 
 ## 🌟 Like depthviz?
 
