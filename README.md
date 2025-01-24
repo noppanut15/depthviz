@@ -10,7 +10,7 @@
 
 **&searr;&nbsp;&nbsp;Quick Links&nbsp;&nbsp;&swarr;**
 
-[Installation](#️-installation) • [Usage](#-usage) • [No Dive Computer?](#-no-dive-computer) • [How It Works](#-how-it-works) • [Contribution](#-contribution) • [License](#️-license) • [Contact](#-contact)
+[Installation](#️-installation) • [Features](#-features) • [Usage](#-usage) • [No Dive Computer?](#-no-dive-computer) • [How It Works](#-how-it-works) • [Contribution](#-contribution) • [License](#️-license) • [Contact](#-contact)
 
 **&searr;&nbsp;&nbsp;Share the project's link to your friends&nbsp;&nbsp;&swarr;**
 
@@ -21,18 +21,18 @@
 
 ## ✨ Features
 
-* 100% **free** and **open-source** made with ❤️ by freedivers.
-* For **all freedivers**, as you can use `depthviz` **with** or **without** a dive computer.
-* Cross-platform and multi-architecture allows **successful running** on any GNU/Linux distros, Microsoft Windows and Apple macOS.
-* Do not require professional video editing skills, easy to use with **only a single command**.
-* Do not need high-end video editing software. You can use `depthviz` with **free** video editors like [CapCut](https://www.capcut.com/), for example.
-* **Automatically** generates a depth overlay video from your dive log data.
-* Generates the **time** overlay as a separate video to display the time elapsed during the dive.
+* 100% **free** and **open-source** — made with ❤️ by freedivers.
+* For **all freedivers**, **with** or **without** a dive computer.
+* Cross-platform support for **Windows**, **macOS**, and **Linux**.
+* Easy to use with **only a single command**, no professional video editing skills required.
 * Supports various dive computer data formats, including **Apnealizer**, **Shearwater**, **Garmin**, and **Suunto**.
 * Supports **manual input** for dives **without** a dive computer.
-* **Customizable options**, such as decimal places, font, background color, stroke width, etc.
+* **Customizable options**, such as decimal places, font, background colors and more to match your video style.
+* Works with **free** video editors like [CapCut](https://www.capcut.com/), no high-end software needed.
+* **Automatically** generates a depth overlay video from your dive log data.
+* Generates the **time** overlay as a separate video to display the time elapsed during the dive.
 * Linear interpolation to fill in gaps in the dive log data for a **smooth depth profile**.
-* Provides **SBOM** (Software Bill of Materials)  for transparency and security.
+* Provides **SBOM** (Software Bill of Materials) for transparency and security.
 
 
 > [!TIP]
