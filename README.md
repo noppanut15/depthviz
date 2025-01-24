@@ -119,6 +119,22 @@ depthviz -i 123456_ACTIVITY.fit -s garmin -o depth_overlay.mp4
 | `--bg-color`                                                                                                                                           | Color name or hex | `black`                                                     | Background color (e.g., `green`, `'#000000'`).                                |
 | `--stroke-width`                                                                                                                                       | Positive integer  | `5`                                                         | Width of the stroke around the text in pixels.                                |
 
+
+<details><summary><strong>Example Command with Advanced Options</strong></summary><br>
+
+Example of generating a depth overlay video named `mydive.mp4` using data from `123456_ACTIVITY.fit` exported from [Garmin Connect](https://github.com/noppanut15/depthviz/blob/main/docs/GARMIN.md):
+- The depth values will be displayed with **one** decimal place.
+- The minus sign will be **hidden**.
+- The background color will be set to **green**.
+- A **custom font** file at `~/Downloads/font.ttf` will be used for the text.
+
+```bash
+depthviz -i 123456_ACTIVITY.fit -s garmin -o mydive.mp4 --decimal-places 1 --no-minus --bg-color green --font ~/Downloads/font.ttf
+```
+---
+</details>
+<br>
+
 <p align="center"><img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/depth-decimal-places-5s-trimmed.gif" alt="decimal places comparison"/></p>
 
 > [!TIP]
@@ -143,6 +159,8 @@ Example of generating a depth overlay video named `mydive.mp4` and a time overla
 depthviz -i 123456_ACTIVITY.fit -s garmin -o mydive.mp4 --time
 ```
 The time overlay video will be automatically generated and saved in the same directory as the depth overlay video with the filename `mydive_time.mp4`.
+
+---
 
 </details>
 
