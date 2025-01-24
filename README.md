@@ -55,6 +55,8 @@ Please give us a shiny [![star](https://img.shields.io/github/stars/noppanut15/d
 
 </div>
 
+---
+
 ## 🛠️ Installation
 
 **Prerequisites:**
@@ -74,14 +76,16 @@ pipx install depthviz
 
 </div>
 
+---
+
 ## 🚀 Usage
 
-### 1. Download Your Data
+### Step 1: Download Your Data
 
 - **✅ If you have a dive computer:**<br>Export your dive log from your dive computer or diving application. See the [Data Source](#data-source) for supported formats.
 - **🚫 If you don't have a dive computer:**<br>Record your dive profile manually using depth markers in your footage. See the [No Dive Computer?](#-no-dive-computer) section for more details.
 
-### 2. Generate the Overlay
+### Step 2: Generate the Overlay
 
 Use `depthviz` to generate a depth overlay video from your dive log.
 
@@ -112,7 +116,7 @@ Example of generating a depth overlay video named `depth_overlay.mp4` using data
 depthviz -i 123456_ACTIVITY.fit -s garmin -o depth_overlay.mp4
 ```
 
-### Advanced Options
+#### Advanced Options
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Option&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Values            | Default                                                     | Description                                                                   |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------- | ----------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `-d`, <br/>`--decimal-places`                                                                                                                          | `0-2`             | `0`                                                         | Number of decimal places to display in the depth overlay.                     |
@@ -127,7 +131,7 @@ depthviz -i 123456_ACTIVITY.fit -s garmin -o depth_overlay.mp4
 > Use the `--decimal-places` option to control the precision of the depth display (e.g., `--decimal-places 1` displays depths like `-12.5m`)
 
 
-### Additional Overlay Videos
+#### Additional Overlay Videos
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Option&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Values | Description                  |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------ | ---------------------------- |
 | `--time`                                                                                                                                               | -      | Create a time overlay video. |
@@ -150,7 +154,7 @@ depthviz -i 123456_ACTIVITY.fit -s garmin -o depth_overlay.mp4
 
 
 
-### 3. Integrate with Your Footage
+### Step 3: Integrate with Your Footage
 
 Import the generated **depth overlay** video and **time overlay** video (if used) into your preferred video editing software. Combine them with your original dive footage. Adjust the blending mode, chroma keying (if necessary), and position of the overlays to suit your video style.
 
@@ -161,6 +165,8 @@ Import the generated **depth overlay** video and **time overlay** video (if used
 [&nwarr; Back to top](#readme-top)
 
 </div>
+
+---
 
 ## 🚫 No Dive Computer?
 
@@ -210,6 +216,8 @@ Download the example input file [here](https://github.com/noppanut15/depthviz/bl
 
 </div>
 
+---
+
 ## 🧠 How It Works
 `depthviz` works by parsing dive log data exported from various dive computers (or manually inputting dive data) and generating an overlay video that displays depth information.
 
@@ -250,6 +258,8 @@ The water density can vary depending on the type of water (e.g., freshwater, sal
 
 </div>
 
+---
+
 ## 🌱 Contribution
 
 We welcome contributions to the `depthviz` project! If you have any ideas for improvement, bug fixes, or feature suggestions, feel free to [open an issue](https://github.com/noppanut15/depthviz/issues) to discuss or [submit a pull request](https://github.com/noppanut15/depthviz/pulls).
@@ -259,6 +269,8 @@ We welcome contributions to the `depthviz` project! If you have any ideas for im
 [&nwarr; Back to top](#readme-top)
 
 </div>
+
+---
 
 ## ⌚ Help Us Expand Dive Computer Support!
 
@@ -272,6 +284,8 @@ To share your dive data, please follow the detailed instructions in our "[**Dona
 
 </div>
 
+---
+
 ## ⚖️ License
 
 This project is licensed under the Apache License 2.0. See the [LICENSE](https://github.com/noppanut15/depthviz/blob/main/LICENSE) file for details.
@@ -282,6 +296,8 @@ This project is licensed under the Apache License 2.0. See the [LICENSE](https:/
 
 </div>
 
+---
+
 ## 📦 CycloneDX SBOM
 
 This project provides a CycloneDX Software Bill of Materials (SBOM) in JSON format. The SBOM is generated by the [GitHub Actions workflow](https://github.com/noppanut15/depthviz/blob/main/.github/workflows/deploy.yaml) and is available as an artifact for each release. The SBOM is generated using the [cyclonedx-python](https://github.com/CycloneDX/cyclonedx-python) library.
@@ -291,6 +307,8 @@ This project provides a CycloneDX Software Bill of Materials (SBOM) in JSON form
 [&nwarr; Back to top](#readme-top)
 
 </div>
+
+---
 
 ## 📬 Contact
 
