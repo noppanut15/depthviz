@@ -26,7 +26,6 @@
 * Cross-platform support for **Windows**, **macOS**, and **Linux**.
 * Easy to use with **only a single command**.
 * Supports various dive computer data formats, including **Apnealizer**, **Shearwater**, **Garmin**, and **Suunto**.
-* Supports **manual input** for dives **without** a dive computer.
 * **Customizable display** with options for decimal places, font, background color, and stroke width.
 * Works with **free** video editors like [CapCut](https://www.capcut.com/) and much more, no high-end software needed.
 * **Automatically** generates a depth overlay video from your dive log data.
