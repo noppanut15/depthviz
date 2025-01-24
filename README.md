@@ -90,13 +90,31 @@ depthviz -i <input_file> -s <source> -o <output_video.mp4>
 ```
 
 **Required Arguments:**
-| &nbsp;&nbsp;&nbsp;&nbsp;Option&nbsp;&nbsp;&nbsp;&nbsp; | Short | Values                                | Description                                                           |
-| ------------------------------------------------------ | ----- | ------------------------------------- | --------------------------------------------------------------------- |
-| `--input`                                              | `-i`  | File path                             | Path to your dive log file.                                           |
-| `--source`                                             | `-s`  | See [source options](#source-options) | Source of the data.                                                   |
-| `--output`                                             | `-o`  | File path                             | Path or filename for the generated video. File format must be `.mp4`. |
+| &nbsp;&nbsp;&nbsp;&nbsp;Option&nbsp;&nbsp;&nbsp;&nbsp; | Short | Values                                                               | Description                                                                      |
+| ------------------------------------------------------ | ----- | -------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `--input`                                              | `-i`  | File path                                                            | Path to your dive log file.                                                      |
+| `--source`                                             | `-s`  | `apnealizer`,<br>`shearwater`,<br>`garmin`,<br>`suunto`,<br>`manual` | Source of the data.<br>(See [source options](#source-options) for more details.) |
+| `--output`                                             | `-o`  | File path                                                            | Path or filename for the generated video. File format must be `.mp4`.            |
 
-**Optional Arguments:**
+### Source Options
+
+|    Source    | Description                                                                                                                                     | File type | 
+| :----------: | ----------------------------------------------------------------------------------------------------------------------------------------------- | :-------: | 
+| `apnealizer` | Data from [Apnealizer](https://apnealizer.com/) application.|    CSV    |  
+| `shearwater` | Data from [Shearwater](https://shearwater.com/pages/shearwater-cloud) dive computers.                                                           |    XML    |  
+|   `garmin`   | Data from [Garmin](https://github.com/noppanut15/depthviz/blob/main/docs/GARMIN.md) dive computers. <br> [![How to][how_to_img]](https://github.com/noppanut15/depthviz/blob/main/docs/GARMIN.md)                                            |    FIT    |  
+|   `suunto`   | Data from [Suunto](https://www.suunto.com/Support/faq-articles/suunto-app/what-type-of-files-can-i-export-from-the-suunto-app/) dive computers. <br> [![How to][how_to_img]](https://www.suunto.com/Support/faq-articles/suunto-app/what-type-of-files-can-i-export-from-the-suunto-app/) |    FIT    |  
+|   `manual`   | Manual depth input without a dive computer. <br> [![How to][how_to_img]](#-no-dive-computer)                       |    CSV    |  
+
+**Example**:
+
+Example of generating a depth overlay video named `depth_overlay.mp4` using data from `123456_ACTIVITY.fit` exported from [Garmin Connect](https://github.com/noppanut15/depthviz/blob/main/docs/GARMIN.md) (source: `garmin`).
+
+```bash
+depthviz -i 123456_ACTIVITY.fit -s garmin -o depth_overlay.mp4
+```
+
+### Styling Options
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Option&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Values            | Default                                                     | Description                                                                   |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------- | ----------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `-d`, <br/>`--decimal-places`                                                                                                                          | `0-2`             | `0`                                                         | Number of decimal places to display in the depth overlay.                     |
@@ -126,23 +144,6 @@ depthviz -i <input_file> -s <source> -o <output_video.mp4>
 > Use the `--decimal-places` option to control the precision of the depth display (e.g., `--decimal-places 1` displays depths like `-12.5m`)
 
 
-### Source Options
-
-|    Source    | Description                                                                                                                                     | File type | Status |
-| :----------: | ----------------------------------------------------------------------------------------------------------------------------------------------- | :-------: | :----: |
-| `apnealizer` | Data from [Apnealizer](https://apnealizer.com/) application.                                                                                    |    CSV    |   ✅    |
-| `shearwater` | Data from [Shearwater](https://shearwater.com/pages/shearwater-cloud) dive computers.                                                           |    XML    |   ✅    |
-|   `garmin`   | Data from [Garmin](https://github.com/noppanut15/depthviz/blob/main/docs/GARMIN.md) dive computers.                                             |    FIT    |   ✅    |
-|   `suunto`   | Data from [Suunto](https://www.suunto.com/Support/faq-articles/suunto-app/what-type-of-files-can-i-export-from-the-suunto-app/) dive computers. |    FIT    |   ✅    |
-|   `manual`   | Manual depth input. See the [No Dive Computer?](#-no-dive-computer) section for more details.                                                   |    CSV    |   ✅    |
-
-**Example**:
-
-Example of generating a depth overlay video named `depth_overlay.mp4` using data from `123456_ACTIVITY.fit` exported from [Garmin Connect](https://github.com/noppanut15/depthviz/blob/main/docs/GARMIN.md) (source: `garmin`).
-
-```bash
-depthviz -i 123456_ACTIVITY.fit -s garmin -o depth_overlay.mp4
-```
 
 ### 3. Integrate with Your Footage
 
@@ -319,3 +320,6 @@ For any inquiries, please [open an issue](https://github.com/noppanut15/depthviz
 [whatsapp_share_img]: https://img.shields.io/badge/whatsapp-black?style=for-the-badge&logo=whatsapp
 [reddit_share_img]: https://img.shields.io/badge/reddit-black?style=for-the-badge&logo=reddit
 [facebook_share_img]: https://img.shields.io/badge/facebook-black?style=for-the-badge&logo=facebook
+
+<!-- Help -->
+[how_to_img]: https://img.shields.io/badge/how%20to-blue?style=flat-square&logo=gitbook&logoColor=white
