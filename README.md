@@ -123,14 +123,17 @@ depthviz -i 123456_ACTIVITY.fit -s garmin -o depth_overlay.mp4
 <details><summary><strong>Example Command with Advanced Options</strong></summary><br>
 
 Example of generating a depth overlay video named `mydive.mp4` using data from `123456_ACTIVITY.fit` exported from [Garmin Connect](https://github.com/noppanut15/depthviz/blob/main/docs/GARMIN.md):
+
+```bash
+depthviz -i 123456_ACTIVITY.fit -s garmin -o mydive.mp4 --decimal-places 1 --no-minus --bg-color green --font ~/Downloads/font.ttf
+```
+
 - The depth values will be displayed with **one** decimal place.
 - The minus sign will be **hidden**.
 - The background color will be set to **green**.
 - A **custom font** file at `~/Downloads/font.ttf` will be used for the text.
 
-```bash
-depthviz -i 123456_ACTIVITY.fit -s garmin -o mydive.mp4 --decimal-places 1 --no-minus --bg-color green --font ~/Downloads/font.ttf
-```
+
 ---
 </details>
 <br>
