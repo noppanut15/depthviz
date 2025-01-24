@@ -22,14 +22,13 @@
 ---
 ## ✨ Features
 
-* 100% **free** and **open-source** — made with ❤️ by freedivers.
-* For **all freedivers**, **with** or **without** a dive computer.
+* 100% **free** and **open-source** — made with ❤️ by freedivers for **all freedivers**, **with** or **without** a dive computer.
 * Cross-platform support for **Windows**, **macOS**, and **Linux**.
-* Easy to use with **only a single command**, no professional video editing skills required.
+* Easy to use with **only a single command**.
 * Supports various dive computer data formats, including **Apnealizer**, **Shearwater**, **Garmin**, and **Suunto**.
 * Supports **manual input** for dives **without** a dive computer.
-* **Customizable options**, such as decimal places, font, background colors and more to match your video style.
-* Works with **free** video editors like [CapCut](https://www.capcut.com/), no high-end software needed.
+* **Customizable display** with options for decimal places, font, background color, and stroke width.
+* Works with **free** video editors like [CapCut](https://www.capcut.com/) and much more, no high-end software needed.
 * **Automatically** generates a depth overlay video from your dive log data.
 * Generates the **time** overlay as a separate video to display the time elapsed during the dive.
 * Linear interpolation to fill in gaps in the dive log data for a **smooth depth profile**.
