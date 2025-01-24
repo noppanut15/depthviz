@@ -6,15 +6,11 @@
 
 *A CLI tool that creates heads-up displays <br>for your **freediving videos**, <br>automatically tracking **depth** and **time** <br>from dive computer logs or manual records.*
 
-[![PyPI - Version](https://img.shields.io/pypi/v/depthviz?label=version&logo=pypi&logoColor=white)](https://pypi.org/project/depthviz/) [![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/noppanut15/depthviz/deploy.yaml?logo=github)](https://github.com/noppanut15/depthviz/actions) [![Coveralls](https://img.shields.io/coveralls/github/noppanut15/depthviz?logo=coveralls)](https://coveralls.io/github/noppanut15/depthviz) [![PyPI - Status](https://img.shields.io/pypi/status/depthviz?logo=pypi&logoColor=white)](https://pypi.org/project/depthviz/) [![PyPI Downloads](https://static.pepy.tech/badge/depthviz)](https://pepy.tech/projects/depthviz)
+[![PyPI - Version][version_badge_img]][version_badge_url] [![GitHub Actions Workflow Status][build_badge_img]][build_badge_url] [![Coveralls][coverage_badge_img]][coverage_badge_url] [![PyPI - Status][pypi_status_img]][pypi_status_url] [![PyPI Downloads][download_badge_img]][download_badge_url]
 
 **&searr;&nbsp;&nbsp;Share the project's link to your friends&nbsp;&nbsp;&swarr;**
 
-[![Share on X][x_share_img]][x_share_url]
-[![Share on Facebook][facebook_share_img]][facebook_share_url]
-[![Share on Telegram][telegram_share_img]][telegram_share_url]
-[![Share on WhatsApp][whatsapp_share_img]][whatsapp_share_url]
-[![Share on Reddit][reddit_share_img]][reddit_share_url]
+[![Share on X][x_share_img]][x_share_url] [![Share on Facebook][facebook_share_img]][facebook_share_url] [![Share on Telegram][telegram_share_img]][telegram_share_url] [![Share on WhatsApp][whatsapp_share_img]][whatsapp_share_url] [![Share on Reddit][reddit_share_img]][reddit_share_url]
 </div>
 
 
@@ -221,6 +217,18 @@ This project provides a CycloneDX Software Bill of Materials (SBOM) in JSON form
 
 For any inquiries, please [open an issue](https://github.com/noppanut15/depthviz/issues) or contact the maintainer at [noppanut.connect@gmail.com](mailto:noppanut.connect@gmail.com).
 
+
+<!-- Badge links -->
+[version_badge_img]: https://img.shields.io/pypi/v/depthviz?label=version&logo=pypi&logoColor=white
+[build_badge_img]: https://img.shields.io/github/actions/workflow/status/noppanut15/depthviz/deploy.yaml?logo=github
+[coverage_badge_img]: https://img.shields.io/coveralls/github/noppanut15/depthviz?logo=coveralls
+[pypi_status_img]: https://img.shields.io/pypi/status/depthviz?logo=pypi&logoColor=white
+[download_badge_img]: https://static.pepy.tech/badge/depthviz
+[version_badge_url]: https://pypi.org/project/depthviz/
+[build_badge_url]: https://github.com/noppanut15/depthviz/actions
+[coverage_badge_url]: https://coveralls.io/github/noppanut15/depthviz
+[pypi_status_url]: https://pypi.org/project/depthviz/
+[download_badge_url]: https://pepy.tech/projects/depthviz
 
 <!-- Social links -->
 [x_share_url]: https://x.com/intent/tweet?hashtags=depth%2Cfreediving%2Chud&text=A%20CLI%20tool%20that%20creates%20heads-up%20displays%20for%20your%20freediving%20videos%2C%20automatically%20tracking%20depth%20and%20time%20from%20dive%20computer%20logs%20or%20manual%20records.&url=https%3A%2F%2Fgithub.com%2Fnoppanut15%2Fdepthviz
