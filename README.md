@@ -17,11 +17,23 @@
 [![Share on X][x_share_img]][x_share_url] [![Share on Facebook][facebook_share_img]][facebook_share_url] [![Share on Telegram][telegram_share_img]][telegram_share_url] [![Share on WhatsApp][whatsapp_share_img]][whatsapp_share_url] [![Share on Reddit][reddit_share_img]][reddit_share_url]
 </div>
 
-
-
 ![depthviz DEMO](https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/demo-compressed-v2.gif)
 
-This allows you to create more informative and engaging dive videos, enriching the storytelling experience for both yourself and your audience. [Click here to watch a sample video.](https://www.instagram.com/p/DAWI3jvy6Or/)
+## ✨ Features
+
+* 100% **free** and **open-source** made with ❤️ by freedivers.
+* For **all freedivers**, as you can use `depthviz` **with** or **without** a dive computer.
+* Cross-platform and multi-architecture allows **successful running** on any GNU/Linux distros, Microsoft Windows and Apple macOS.
+* Do not require professional video editing skills, easy to use with **only a single command**.
+* Do not need high-end video editing software. You can use `depthviz` with **free** video editors like [CapCut](https://www.capcut.com/), for example.
+* **Automatically** generates a depth overlay video from your dive log data.
+* Generates the **time** overlay as a separate video to display the time elapsed during the dive.
+* Supports various dive computer data formats, including **Apnealizer**, **Shearwater**, **Garmin**, and **Suunto**.
+* Supports **manual input** for dives **without** a dive computer.
+* **Customizable options**, such as decimal places, font, background color, stroke width, etc.
+* Linear interpolation to fill in gaps in the dive log data for a **smooth depth profile**.
+* Provides **SBOM** (Software Bill of Materials)  for transparency and security.
+
 
 > [!TIP]
 > For performance freedivers, you can incorporate `depthviz` into your dive analysis. By visualizing your dive profile, you can identify areas for improvement and track your progress over time.
