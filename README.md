@@ -286,7 +286,7 @@ We welcome contributions to the `depthviz` project! If you have any ideas for im
 
 **Missing your dive computer?** Help us add support! If you have a dive computer that is not currently supported by `depthviz`, you can help us by donating a sample dive log file exported from your device. This will allow us to analyze the data format and implement the necessary parsing logic to add support for your device.
 
-To share your dive data, please follow the detailed instructions in our "[**Donate My Dive**](https://github.com/noppanut15/depthviz/issues/15)" guide.
+To share your dive data, please follow the detailed instructions in our [**Donate My Dive**](https://github.com/noppanut15/depthviz/issues/15) guide.
 
 <div align="right">
 
