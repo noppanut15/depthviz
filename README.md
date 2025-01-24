@@ -102,7 +102,7 @@ depthviz -i <input_file> -s <source> -o <output_video.mp4>
 |   `suunto`   | Data from **Suunto** dive computers. <br> [![Get log][get_log_img]](https://www.suunto.com/suunto-app/suunto-app-2022/)  [![How to][how_to_img]](https://www.suunto.com/Support/faq-articles/suunto-app/what-type-of-files-can-i-export-from-the-suunto-app/) |    FIT    |
 |   `manual`   | Manual depth input without a dive computer. <br> [![How to][how_to_img]](#-no-dive-computer)                                                                                                                                                                  |    CSV    |
 
-**Example**:
+**Example Command**:
 
 Example of generating a depth overlay video named `depth_overlay.mp4` using data from `123456_ACTIVITY.fit` exported from [Garmin Connect](https://github.com/noppanut15/depthviz/blob/main/docs/GARMIN.md).
 
@@ -135,7 +135,7 @@ You can also generate a time overlay video as a separate video that displays the
 | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------ | ---------------------------- |
 | `--time`                                                                                                                                               | -      | Create a time overlay video. |
 
-<details><summary><strong>Example with Time Overlay</strong></summary><br>
+<details><summary><strong>Example Command</strong></summary><br>
 
 Example of generating a depth overlay video named `mydive.mp4` and a time overlay video using data from `123456_ACTIVITY.fit` exported from [Garmin Connect](https://github.com/noppanut15/depthviz/blob/main/docs/GARMIN.md).
 
@@ -177,11 +177,11 @@ Import the generated **depth overlay** video and **time overlay** video (if used
 
 ## 🚫 No Dive Computer?
 
-**No Dive Computer, No Problem!** You can still create a depth overlay video by **manually inputting your dive log** using the `manual` source option.
+**No Dive Computer, No Problem!** You can still create a depth overlay video by **manually inputting your dive log** using the `-s manual` source option.
 
-**Example**:
+**Example Command**:
 ```bash
-depthviz -i <manual_input.csv> -s manual -o <output_video.mp4>
+depthviz -i manual_input.csv -s manual -o output_video.mp4
 ```
 
 Freediving ropes with **depth markers** can help you record your dive profile manually. Use the depth markers in your footage as reference points to manually record your dive profile. Simply note the time and depth at each marker point to create your dive log.
