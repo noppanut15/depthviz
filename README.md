@@ -321,4 +321,4 @@ For any inquiries, please [open an issue](https://github.com/noppanut15/depthviz
 [facebook_share_img]: https://img.shields.io/badge/facebook-black?style=for-the-badge&logo=facebook
 
 <!-- Help -->
-[how_to_img]: https://img.shields.io/badge/how%20to-blue?style=flat-square&logo=gitbook&logoColor=white
+[how_to_img]: https://img.shields.io/badge/how%20to-1974D2?style=flat-square&logo=gitbook&logoColor=white
