@@ -1,22 +1,58 @@
-# depthviz: Transform your freediving footage with depth tracking
+<div align="center">
+  <a href="#">
+  <img src="./assets/logo/depthviz-temp-logo.png" width="300" alt="depthviz logo"/>
+  </a>
+  <a name="readme-top"></a>
 
-[![PyPI - Version](https://img.shields.io/pypi/v/depthviz?label=version&logo=pypi&logoColor=white)](https://pypi.org/project/depthviz/) [![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/noppanut15/depthviz/deploy.yaml?logo=github)](https://github.com/noppanut15/depthviz/actions) [![Coveralls](https://img.shields.io/coveralls/github/noppanut15/depthviz?logo=coveralls)](https://coveralls.io/github/noppanut15/depthviz) [![PyPI - Status](https://img.shields.io/pypi/status/depthviz?logo=pypi&logoColor=white)](https://pypi.org/project/depthviz/) [![PyPI Downloads](https://static.pepy.tech/badge/depthviz)](https://pepy.tech/projects/depthviz)
+*A CLI tool that creates heads-up displays <br>for your **freediving videos**, <br>automatically tracking **depth** and **time** <br>from your **dive computer logs** or **manual input**.*
 
-**depthviz** makes it easy to add dynamic depth tracking into your freediving footage. It is a command-line tool for generating depth overlay videos from the data recorded by your dive computer. It processes your dive log and creates a video that visualizes the depth over time.
+[![PyPI - Version][version_badge_img]][version_badge_url] [![GitHub Actions Workflow Status][build_badge_img]][build_badge_url] [![Coveralls][coverage_badge_img]][coverage_badge_url] [![PyPI - Status][pypi_status_img]][pypi_status_url] [![PyPI Downloads][download_badge_img]][download_badge_url]
+
+**&searr;&nbsp;&nbsp;Quick Links&nbsp;&nbsp;&swarr;**
+
+[Features](#-features) • [Installation](#️-installation) • [Usage](#-usage) • [No Dive Computer?](#-no-dive-computer) • [How It Works](#-how-it-works) • [Contribution](#-contribution) • [License](#️-license) • [Contact](#-contact)
+
+**&searr;&nbsp;&nbsp;Share the project's link to your friends&nbsp;&nbsp;&swarr;**
+
+[![Share on X][x_share_img]][x_share_url] [![Share on Facebook][facebook_share_img]][facebook_share_url] [![Share on Telegram][telegram_share_img]][telegram_share_url] [![Share on WhatsApp][whatsapp_share_img]][whatsapp_share_url] [![Share on Reddit][reddit_share_img]][reddit_share_url]
+</div>
 
 ![depthviz DEMO](https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/demo-compressed-v2.gif)
 
-This allows you to create more informative and engaging dive videos, enriching the storytelling experience for both yourself and your audience. [Click here to watch a sample video.](https://www.instagram.com/p/DAWI3jvy6Or/)
+---
+## ✨ Features
 
+* 100% **free** and **open-source** — made with ❤️ by freedivers for **all freedivers**, **with** or **without** a dive computer.
+* Cross-platform support for **Windows**, **macOS**, and **Linux**.
+* Supports various dive computer data formats, including **Apnealizer**, **Shearwater**, **Garmin**, and **Suunto**.
+* **Customizable display** with options for decimal places, font, background color, and stroke width.
+* Works with **free** video editors like [CapCut](https://www.capcut.com/) and much more, no high-end software needed.
+* **Automatically** generates a depth overlay video from your dive log data.
+* Generates the **time** overlay as a separate video to display the time elapsed during the dive.
+* Linear interpolation to fill in gaps in the dive log data for a **smooth depth profile**.
 > [!TIP]
 > For performance freedivers, you can incorporate `depthviz` into your dive analysis. By visualizing your dive profile, you can identify areas for improvement and track your progress over time.
 
-# 🌟 Like depthviz?
+<div align="right">
+
+[&nwarr; Back to top](#readme-top)
+
+</div>
+
+---
+
+## 🌟 Like depthviz?
 
 Please give us a shiny [![star](https://img.shields.io/github/stars/noppanut15/depthviz
 )](https://github.com/noppanut15/depthviz) and share `depthviz` with your freediving community! ⭐️
 
-# 🛠️ Installation
+<div align="right">
+
+[&nwarr; Back to top](#readme-top)
+
+</div>
+
+## 🛠️ Installation
 
 **Prerequisites:**
 
@@ -29,35 +65,79 @@ Please give us a shiny [![star](https://img.shields.io/github/stars/noppanut15/d
 pipx install depthviz
 ```
 
-# 🚀 Usage
+<div align="right">
 
-## 1. Download Your Data
+[&nwarr; Back to top](#readme-top)
 
-- **✅ If you have a dive computer:**<br>Export your dive log from your dive computer or diving application. See the [source options table](#source-options) for supported formats.
+</div>
+
+## 🚀 Usage
+
+### Step 1: Download Your Data
+
+- **✅ If you have a dive computer:**<br>Export your dive log from your dive computer or diving application. See the [Data Source](#data-source) for supported formats.
 - **🚫 If you don't have a dive computer:**<br>Record your dive profile manually using depth markers in your footage. See the [No Dive Computer?](#-no-dive-computer) section for more details.
 
-## 2. Generate the Overlay
+### Step 2: Generate the Overlay
 
 Use `depthviz` to generate a depth overlay video from your dive log.
 
 ```bash
 depthviz -i <input_file> -s <source> -o <output_video.mp4>
 ```
+| &nbsp;&nbsp;&nbsp;&nbsp;Option&nbsp;&nbsp;&nbsp;&nbsp; | Short | Values                                                               | Description                                                                    |
+| ------------------------------------------------------ | ----- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| `--input`                                              | `-i`  | File path                                                            | Path to your dive log file.                                                    |
+| `--source`                                             | `-s`  | `apnealizer`,<br>`shearwater`,<br>`garmin`,<br>`suunto`,<br>`manual` | Source of the data.<br>(See the [Data Source](#data-source) for more details.) |
+| `--output`                                             | `-o`  | File path                                                            | Path or filename for the generated video. File format must be `.mp4`.          |
 
-**Required Arguments:**
+#### Data Source
 
-* `-i`, `--input <input_file>`: Path to your dive log file.
-* `-s`, `--source <source>`: Source of the data. See the table below for supported sources.
-* `-o`, `--output <output_video.mp4>`: Path or filename for the generated video with the depth overlay. The output file format must be `.mp4`.
+|    Source    | Description                                                                                                                                                                                                                                                   | File type |
+| :----------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------: |
+| `apnealizer` | Data from **Apnealizer** application. <br> [![Get log][get_log_img]](https://apnealizer.com/)                                                                                                                                                                 |    CSV    |
+| `shearwater` | Data from **Shearwater** dive computers. <br> [![Get log][get_log_img]](https://shearwater.com/pages/shearwater-cloud)                                                                                                                                        |    XML    |
+|   `garmin`   | Data from **Garmin** dive computers. <br> [![Get log][get_log_img]](https://connect.garmin.com/signin/) [![How to][how_to_img]](https://github.com/noppanut15/depthviz/blob/main/docs/GARMIN.md)                                                              |    FIT    |
+|   `suunto`   | Data from **Suunto** dive computers. <br> [![Get log][get_log_img]](https://www.suunto.com/suunto-app/suunto-app-2022/)  [![How to][how_to_img]](https://www.suunto.com/Support/faq-articles/suunto-app/what-type-of-files-can-i-export-from-the-suunto-app/) |    FIT    |
+|   `manual`   | Manual depth input without a dive computer. <br> [![How to][how_to_img]](#-no-dive-computer)                                                                                                                                                                  |    CSV    |
 
-**Optional Arguments:**
-* `-d`, `--decimal-places <0-2>`: Number of decimal places to display in the depth overlay. Valid values are `0`, `1`, or `2`. (Default: `0`)
-* `--no-minus`: Hide the minus sign for depth values (e.g., display `10m` instead of `-10m`).
-* `--font <font_file>`: Path to a custom font file for the text.
-* `--bg-color <color>`: Background color (e.g., `green`, `'#000000'`). (Default: `black`)
-  > 💡 You can use this option to set the background color to match your video editor's [chroma key](https://en.wikipedia.org/wiki/Chroma_key) color, if needed. (e.g., `--bg-color green`)
-* `--stroke-width <0,1,2,...>`: Width of the stroke around the text in pixels. (Default: `5`)
-* `--time`: Create a time overlay video. This option generates another video that displays the time elapsed during the dive.
+<details><summary><strong>Example Command</strong></summary><br>
+
+Example of generating a depth overlay video named `depth_overlay.mp4` using data from `123456_ACTIVITY.fit` exported from [Garmin Connect](https://github.com/noppanut15/depthviz/blob/main/docs/GARMIN.md).
+
+```bash
+depthviz -i 123456_ACTIVITY.fit -s garmin -o depth_overlay.mp4
+```
+
+</details>
+
+#### Advanced Options
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Option&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Values            | Default                                                     | Description                                                                   |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------- | ----------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `-d`, <br/>`--decimal-places`                                                                                                                          | `0-2`             | `0`                                                         | Number of decimal places to display in the depth overlay.                     |
+| `--no-minus`                                                                                                                                           | -                 | -                                                           | Hide the minus sign for depth values (e.g., display `10m` instead of `-10m`). |
+| `--font`                                                                                                                                               | File path         | [Default font](https://fonts.google.com/specimen/Open+Sans) | Path to a custom font file for the text.                                      |
+| `--bg-color`                                                                                                                                           | Color name or hex | `black`                                                     | Background color (e.g., `green`, `'#000000'`).                                |
+| `--stroke-width`                                                                                                                                       | Positive integer  | `5`                                                         | Width of the stroke around the text in pixels.                                |
+
+
+<details><summary><strong>Example Command with Advanced Options</strong></summary><br>
+
+Example of generating a depth overlay video named `mydive.mp4` using data from `123456_ACTIVITY.fit` exported from [Garmin Connect](https://github.com/noppanut15/depthviz/blob/main/docs/GARMIN.md):
+
+```bash
+depthviz -i 123456_ACTIVITY.fit -s garmin -o mydive.mp4 --decimal-places 1 --no-minus --bg-color green --font ~/Downloads/font.ttf
+```
+
+- The depth values will be displayed with **one** decimal place.
+- The minus sign will be **hidden**.
+- The background color will be set to **green**.
+- A **custom font** file at `~/Downloads/font.ttf` will be used for the text.
+
+
+---
+</details>
+<br>
 
 <p align="center"><img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/depth-decimal-places-5s-trimmed.gif" alt="decimal places comparison"/></p>
 
@@ -65,39 +145,52 @@ depthviz -i <input_file> -s <source> -o <output_video.mp4>
 > Use the `--decimal-places` option to control the precision of the depth display (e.g., `--decimal-places 1` displays depths like `-12.5m`)
 
 
-### Source Options
+#### Additional Options for Time Overlay
 
-|    Source    | Description                                                                                                                                     | File type | Status |
-| :----------: | ----------------------------------------------------------------------------------------------------------------------------------------------- | :-------: | :----: |
-| `apnealizer` | Data from [Apnealizer](https://apnealizer.com/) application.                                                                                    |    CSV    |   ✅    |
-| `shearwater` | Data from [Shearwater](https://shearwater.com/pages/shearwater-cloud) dive computers.                                                           |    XML    |   ✅    |
-|   `garmin`   | Data from [Garmin](https://github.com/noppanut15/depthviz/blob/main/docs/GARMIN.md) dive computers.                                             |    FIT    |   ✅    |
-|   `suunto`   | Data from [Suunto](https://www.suunto.com/Support/faq-articles/suunto-app/what-type-of-files-can-i-export-from-the-suunto-app/) dive computers. |    FIT    |   ✅    |
-|   `manual`   | Manual depth input. See the [No Dive Computer?](#-no-dive-computer) section for more details.                                                   |    CSV    |   ✅    |
+<p align="center"><img src="./assets/time-overlay-cropped.gif" alt="time overlay demo" width="400"/></p>
 
-**Example**:
+You can also generate a time overlay video as a separate video that displays the time elapsed during the dive. It will be exported in the same directory as the depth overlay video.
 
-Example of generating a depth overlay video named `depth_overlay.mp4` using data from `123456_ACTIVITY.fit` exported from [Garmin Connect](https://github.com/noppanut15/depthviz/blob/main/docs/GARMIN.md) (source: `garmin`).
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Option&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Values | Description                  |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------ | ---------------------------- |
+| `--time`                                                                                                                                               | -      | Create a time overlay video. |
+
+<details><summary><strong>Example Command with Time Overlay</strong></summary><br>
+
+Example of generating a depth overlay video named `mydive.mp4` and a time overlay video using data from `123456_ACTIVITY.fit` exported from [Garmin Connect](https://github.com/noppanut15/depthviz/blob/main/docs/GARMIN.md).
 
 ```bash
-depthviz -i 123456_ACTIVITY.fit -s garmin -o depth_overlay.mp4
+depthviz -i 123456_ACTIVITY.fit -s garmin -o mydive.mp4 --time
 ```
+The time overlay video will be automatically generated and saved in the same directory as the depth overlay video with the filename `mydive_time.mp4`.
 
-## 3. Integrate with Your Footage
+---
 
-Import the generated overlay video into your preferred video editing software and combine it with your original dive footage. Adjust the blending and position of the overlay to suit your video style. 
+</details>
+
+
+### Step 3: Integrate with Your Footage
+
+Import the generated **depth overlay** video and **time overlay** video (if used) into your preferred video editing software. Combine them with your original dive footage. Remove the background color if needed. Adjust position of the overlays to suit your video style.
 
 > [Watch this short tutorial](https://www.youtube.com/watch?v=ZggKrWk98Ag) on how to import an overlay video in CapCut Desktop.
 
-<br>
+> [!TIP]
+> **Chroma Keying**: If you want to remove the background color from the overlay video, you can use the [chroma key](https://en.wikipedia.org/wiki/Chroma_key) effect in your video editor. You can use the `--bg-color` option to set the background color to match your video editor's chroma key color. `--bg-color green` is a common choice.
 
-# 🚫 No Dive Computer?
+<div align="right">
 
-**No Dive Computer, No Problem!** You can still create a depth overlay video by **manually inputting your dive log** using the `manual` source option.
+[&nwarr; Back to top](#readme-top)
 
-**Example**:
+</div>
+
+## 🚫 No Dive Computer?
+
+**No Dive Computer, No Problem!** You can still create a depth overlay video by **manually inputting your dive log** using the `-s manual` source option.
+
+**Example Command**:
 ```bash
-depthviz -i <manual_input.csv> -s manual -o <output_video.mp4>
+depthviz -i manual_input.csv -s manual -o output_video.mp4
 ```
 
 Freediving ropes with **depth markers** can help you record your dive profile manually. Use the depth markers in your footage as reference points to manually record your dive profile. Simply note the time and depth at each marker point to create your dive log.
@@ -133,7 +226,13 @@ Here is an example of a manual mode input file:
 
 Download the example input file [here](https://github.com/noppanut15/depthviz/blob/main/assets/manual-input-example.csv).
 
-# 🧠 How It Works
+<div align="right">
+
+[&nwarr; Back to top](#readme-top)
+
+</div>
+
+## 🧠 How It Works
 `depthviz` works by parsing dive log data exported from various dive computers (or manually inputting dive data) and generating an overlay video that displays depth information.
 
 Dive computers typically record either depth directly or pressure data. If the data is recorded as pressure, it is in the form of **absolute pressure**, which includes both atmospheric pressure and the pressure exerted by the water itself (hydrostatic pressure).
@@ -167,25 +266,88 @@ The water density can vary depending on the type of water (e.g., freshwater, sal
 
 4. **Generate Overlay Video**: The depth information from the linearly interpolated data is rendered into an overlay video, displaying the depth over time. This overlay can then be combined with your original dive footage in your video editor.
 
+<div align="right">
 
-# 🌱 Contribution
+[&nwarr; Back to top](#readme-top)
+
+</div>
+
+## 🌱 Contribution
 
 We welcome contributions to the `depthviz` project! If you have any ideas for improvement, bug fixes, or feature suggestions, feel free to [open an issue](https://github.com/noppanut15/depthviz/issues) to discuss or [submit a pull request](https://github.com/noppanut15/depthviz/pulls).
+
+<div align="right">
+
+[&nwarr; Back to top](#readme-top)
+
+</div>
 
 ## ⌚ Help Us Expand Dive Computer Support!
 
 **Missing your dive computer?** Help us add support! If you have a dive computer that is not currently supported by `depthviz`, you can help us by donating a sample dive log file exported from your device. This will allow us to analyze the data format and implement the necessary parsing logic to add support for your device.
 
-To share your dive data, please follow the detailed instructions in our "[**Donate My Dive**](https://github.com/noppanut15/depthviz/issues/15)" guide.
+To share your dive data, please follow the detailed instructions in our [**Donate My Dive**](https://github.com/noppanut15/depthviz/issues/15) guide.
+
+<div align="right">
+
+[&nwarr; Back to top](#readme-top)
+
+</div>
 
 ## ⚖️ License
 
 This project is licensed under the Apache License 2.0. See the [LICENSE](https://github.com/noppanut15/depthviz/blob/main/LICENSE) file for details.
 
+<div align="right">
+
+[&nwarr; Back to top](#readme-top)
+
+</div>
+
 ## 📦 CycloneDX SBOM
 
 This project provides a CycloneDX Software Bill of Materials (SBOM) in JSON format. The SBOM is generated by the [GitHub Actions workflow](https://github.com/noppanut15/depthviz/blob/main/.github/workflows/deploy.yaml) and is available as an artifact for each release. The SBOM is generated using the [cyclonedx-python](https://github.com/CycloneDX/cyclonedx-python) library.
 
+<div align="right">
+
+[&nwarr; Back to top](#readme-top)
+
+</div>
+
 ## 📬 Contact
 
 For any inquiries, please [open an issue](https://github.com/noppanut15/depthviz/issues) or contact the maintainer at [noppanut.connect@gmail.com](mailto:noppanut.connect@gmail.com).
+
+<div align="right">
+
+[&nwarr; Back to top](#readme-top)
+
+</div>
+
+<!-- Badge links -->
+[version_badge_img]: https://img.shields.io/pypi/v/depthviz?label=version&logo=pypi&logoColor=white
+[build_badge_img]: https://img.shields.io/github/actions/workflow/status/noppanut15/depthviz/deploy.yaml?logo=github
+[coverage_badge_img]: https://img.shields.io/coveralls/github/noppanut15/depthviz?logo=coveralls
+[pypi_status_img]: https://img.shields.io/pypi/status/depthviz?logo=pypi&logoColor=white
+[download_badge_img]: https://static.pepy.tech/badge/depthviz
+[version_badge_url]: https://pypi.org/project/depthviz/
+[build_badge_url]: https://github.com/noppanut15/depthviz/actions
+[coverage_badge_url]: https://coveralls.io/github/noppanut15/depthviz
+[pypi_status_url]: https://pypi.org/project/depthviz/
+[download_badge_url]: https://pepy.tech/projects/depthviz
+
+<!-- Social links -->
+[x_share_url]: https://x.com/intent/tweet?hashtags=depth%2Cfreediving%2Chud&text=A%20CLI%20tool%20that%20creates%20heads-up%20displays%20for%20your%20freediving%20videos%2C%20automatically%20tracking%20depth%20and%20time%20from%20dive%20computer%20logs%20or%20manual%20records.&url=https%3A%2F%2Fgithub.com%2Fnoppanut15%2Fdepthviz
+[telegram_share_url]: https://t.me/share/url?url=https%3A//github.com/noppanut15/depthviz&text=A%20CLI%20tool%20that%20creates%20heads-up%20displays%20for%20your%20freediving%20videos,%20automatically%20tracking%20depth%20and%20time%20from%20dive%20computer%20logs%20or%20manual%20records.
+[whatsapp_share_url]: https://api.whatsapp.com/send?text=A%20CLI%20tool%20that%20creates%20heads-up%20displays%20for%20your%20freediving%20videos%2C%20automatically%20tracking%20depth%20and%20time%20from%20dive%20computer%20logs%20or%20manual%20records.%20https%3A%2F%2Fgithub.com%2Fnoppanut15%2Fdepthviz
+[reddit_share_url]: https://www.reddit.com/submit?url=https%3A%2F%2Fgithub.com%2Fnoppanut15%2Fdepthviz&title=A%20CLI%20tool%20that%20creates%20heads-up%20displays%20for%20your%20freediving%20videos%2C%20automatically%20tracking%20depth%20and%20time%20from%20dive%20computer%20logs%20or%20manual%20records.%20%23depth%20%23freediving
+[facebook_share_url]: https://www.facebook.com/sharer/sharer.php?u=https%3A//github.com/noppanut15/depthviz
+[x_share_img]: https://img.shields.io/badge/x_(twitter)-black?style=for-the-badge&logo=x
+[telegram_share_img]: https://img.shields.io/badge/telegram-black?style=for-the-badge&logo=telegram
+[whatsapp_share_img]: https://img.shields.io/badge/whatsapp-black?style=for-the-badge&logo=whatsapp
+[reddit_share_img]: https://img.shields.io/badge/reddit-black?style=for-the-badge&logo=reddit
+[facebook_share_img]: https://img.shields.io/badge/facebook-black?style=for-the-badge&logo=facebook
+
+<!-- Help -->
+[how_to_img]: https://img.shields.io/badge/How%20to-1974D2?style=flat-square&logo=gitbook&logoColor=white
+[get_log_img]: https://img.shields.io/badge/Get%20log-1974D2?style=flat-square&logo=transmission&logoColor=white
