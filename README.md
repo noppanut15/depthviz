@@ -1,8 +1,23 @@
-# depthviz: Transform your freediving footage with depth tracking
+<div align="center">
+  <a href="#">
+  <img src="./assets/logo/depthviz-temp-logo.png" width="300" alt="depthviz logo"/>
+  </a>
+  <a name="readme-top"></a>
+
+A CLI tool that creates heads-up displays for your **freediving videos**, <br>automatically tracking **depth** and **time** from dive computer logs or manual records.
 
 [![PyPI - Version](https://img.shields.io/pypi/v/depthviz?label=version&logo=pypi&logoColor=white)](https://pypi.org/project/depthviz/) [![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/noppanut15/depthviz/deploy.yaml?logo=github)](https://github.com/noppanut15/depthviz/actions) [![Coveralls](https://img.shields.io/coveralls/github/noppanut15/depthviz?logo=coveralls)](https://coveralls.io/github/noppanut15/depthviz) [![PyPI - Status](https://img.shields.io/pypi/status/depthviz?logo=pypi&logoColor=white)](https://pypi.org/project/depthviz/) [![PyPI Downloads](https://static.pepy.tech/badge/depthviz)](https://pepy.tech/projects/depthviz)
 
-**depthviz** makes it easy to add dynamic depth tracking into your freediving footage. It is a command-line tool for generating depth overlay videos from the data recorded by your dive computer. It processes your dive log and creates a video that visualizes the depth over time.
+**&searr;&nbsp;&nbsp;Share the project's link to your friends&nbsp;&nbsp;&swarr;**
+
+[![Share on X][x_share_img]][x_share_url]
+[![Share on Facebook][facebook_share_img]][facebook_share_url]
+[![Share on Telegram][telegram_share_img]][telegram_share_url]
+[![Share on WhatsApp][whatsapp_share_img]][whatsapp_share_url]
+[![Share on Reddit][reddit_share_img]][reddit_share_url]
+</div>
+
+
 
 ![depthviz DEMO](https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/demo-compressed-v2.gif)
 
@@ -205,3 +220,16 @@ This project provides a CycloneDX Software Bill of Materials (SBOM) in JSON form
 ## 📬 Contact
 
 For any inquiries, please [open an issue](https://github.com/noppanut15/depthviz/issues) or contact the maintainer at [noppanut.connect@gmail.com](mailto:noppanut.connect@gmail.com).
+
+
+<!-- Social links -->
+[x_share_url]: https://x.com/intent/tweet?hashtags=depth%2Cfreediving%2Chud&text=A%20CLI%20tool%20that%20creates%20heads-up%20displays%20for%20your%20freediving%20videos%2C%20automatically%20tracking%20depth%20and%20time%20from%20dive%20computer%20logs%20or%20manual%20records.&url=https%3A%2F%2Fgithub.com%2Fnoppanut15%2Fdepthviz
+[telegram_share_url]: https://t.me/share/url?url=https%3A//github.com/noppanut15/depthviz&text=A%20CLI%20tool%20that%20creates%20heads-up%20displays%20for%20your%20freediving%20videos,%20automatically%20tracking%20depth%20and%20time%20from%20dive%20computer%20logs%20or%20manual%20records.
+[whatsapp_share_url]: https://api.whatsapp.com/send?text=A%20CLI%20tool%20that%20creates%20heads-up%20displays%20for%20your%20freediving%20videos%2C%20automatically%20tracking%20depth%20and%20time%20from%20dive%20computer%20logs%20or%20manual%20records.%20https%3A%2F%2Fgithub.com%2Fnoppanut15%2Fdepthviz
+[reddit_share_url]: https://www.reddit.com/submit?url=https%3A%2F%2Fgithub.com%2Fnoppanut15%2Fdepthviz&title=A%20CLI%20tool%20that%20creates%20heads-up%20displays%20for%20your%20freediving%20videos%2C%20automatically%20tracking%20depth%20and%20time%20from%20dive%20computer%20logs%20or%20manual%20records.%20%23depth%20%23freediving
+[facebook_share_url]: https://www.facebook.com/sharer/sharer.php?u=https%3A//github.com/noppanut15/depthviz
+[x_share_img]: https://img.shields.io/badge/x_(twitter)-black?style=for-the-badge&logo=x
+[telegram_share_img]: https://img.shields.io/badge/telegram-black?style=for-the-badge&logo=telegram
+[whatsapp_share_img]: https://img.shields.io/badge/whatsapp-black?style=for-the-badge&logo=whatsapp
+[reddit_share_img]: https://img.shields.io/badge/reddit-black?style=for-the-badge&logo=reddit
+[facebook_share_img]: https://img.shields.io/badge/facebook-black?style=for-the-badge&logo=facebook
