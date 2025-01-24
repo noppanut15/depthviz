@@ -97,13 +97,13 @@ depthviz -i <input_file> -s <source> -o <output_video.mp4>
 
 #### Source Options
 
-|    Source    | Description                                                                                                                                                                                                                                                                               | File type |
-| :----------: | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------: |
-| `apnealizer` | Data from [Apnealizer](https://apnealizer.com/) application.                                                                                                                                                                                                                              |    CSV    |
-| `shearwater` | Data from [Shearwater](https://shearwater.com/pages/shearwater-cloud) dive computers.                                                                                                                                                                                                     |    XML    |
-|   `garmin`   | Data from [Garmin](https://github.com/noppanut15/depthviz/blob/main/docs/GARMIN.md) dive computers. <br> [![How to][how_to_img]](https://github.com/noppanut15/depthviz/blob/main/docs/GARMIN.md)                                                                                         |    FIT    |
-|   `suunto`   | Data from [Suunto](https://www.suunto.com/Support/faq-articles/suunto-app/what-type-of-files-can-i-export-from-the-suunto-app/) dive computers. <br> [![How to][how_to_img]](https://www.suunto.com/Support/faq-articles/suunto-app/what-type-of-files-can-i-export-from-the-suunto-app/) |    FIT    |
-|   `manual`   | Manual depth input without a dive computer. <br> [![How to][how_to_img]](#-no-dive-computer)                                                                                                                                                                                              |    CSV    |
+|    Source    | Description                                                                                                                                                                                                                                                   | File type |
+| :----------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------: |
+| `apnealizer` | Data from **Apnealizer** application. <br> [![Get log][get_log_img]](https://apnealizer.com/)                                                                                                                                                                 |    CSV    |
+| `shearwater` | Data from **Shearwater** dive computers. <br> [![Get log][get_log_img]](https://shearwater.com/pages/shearwater-cloud)                                                                                                                                        |    XML    |
+|   `garmin`   | Data from **Garmin** dive computers. <br> [![Get log][get_log_img]](https://connect.garmin.com/signin/) [![How to][how_to_img]](https://github.com/noppanut15/depthviz/blob/main/docs/GARMIN.md)                                                              |    FIT    |
+|   `suunto`   | Data from **Suunto** dive computers. <br> [![Get log][get_log_img]](https://www.suunto.com/suunto-app/suunto-app-2022/)  [![How to][how_to_img]](https://www.suunto.com/Support/faq-articles/suunto-app/what-type-of-files-can-i-export-from-the-suunto-app/) |    FIT    |
+|   `manual`   | Manual depth input without a dive computer. <br> [![How to][how_to_img]](#-no-dive-computer)                                                                                                                                                                  |    CSV    |
 
 **Example**:
 
@@ -321,4 +321,5 @@ For any inquiries, please [open an issue](https://github.com/noppanut15/depthviz
 [facebook_share_img]: https://img.shields.io/badge/facebook-black?style=for-the-badge&logo=facebook
 
 <!-- Help -->
-[how_to_img]: https://img.shields.io/badge/how%20to-1974D2?style=flat-square&logo=gitbook&logoColor=white
+[how_to_img]: https://img.shields.io/badge/How%20to-1974D2?style=flat-square&logo=gitbook&logoColor=white
+[get_log_img]: https://img.shields.io/badge/Get%20log-1974D2?style=flat-square&logo=transmission&logoColor=white
