@@ -125,11 +125,23 @@ depthviz -i 123456_ACTIVITY.fit -s garmin -o depth_overlay.mp4
 > Use the `--decimal-places` option to control the precision of the depth display (e.g., `--decimal-places 1` displays depths like `-12.5m`)
 
 
-#### Additional Overlay Videos
+#### Additional Options for Time Overlay
+
+You can also generate a time overlay video as a separate video that displays the time elapsed during the dive. It will be exported in the same directory as the depth overlay video.
+
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Option&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Values | Description                  |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------ | ---------------------------- |
 | `--time`                                                                                                                                               | -      | Create a time overlay video. |
 
+<details>
+<summary><b>Example with Time Overlay</b></summary>
+Example of generating a depth overlay video named `mydive.mp4` and a time overlay video using data from `123456_ACTIVITY.fit` exported from [Garmin Connect](https://github.com/noppanut15/depthviz/blob/main/docs/GARMIN.md).
+
+```bash
+depthviz -i 123456_ACTIVITY.fit -s garmin -o mydive.mp4 --time
+```
+The time overlay video will be automatically generated and saved in the same directory as the depth overlay video with the filename `mydive_time.mp4`.
+</details>
 
 <!-- **Required Arguments:**
 
