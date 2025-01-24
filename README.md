@@ -86,11 +86,11 @@ Use `depthviz` to generate a depth overlay video from your dive log.
 ```bash
 depthviz -i <input_file> -s <source> -o <output_video.mp4>
 ```
-| &nbsp;&nbsp;&nbsp;&nbsp;Option&nbsp;&nbsp;&nbsp;&nbsp; | Short | Values                                                               | Description                                                                      |
-| ------------------------------------------------------ | ----- | -------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `--input`                                              | `-i`  | File path                                                            | Path to your dive log file.                                                      |
+| &nbsp;&nbsp;&nbsp;&nbsp;Option&nbsp;&nbsp;&nbsp;&nbsp; | Short | Values                                                               | Description                                                                    |
+| ------------------------------------------------------ | ----- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| `--input`                                              | `-i`  | File path                                                            | Path to your dive log file.                                                    |
 | `--source`                                             | `-s`  | `apnealizer`,<br>`shearwater`,<br>`garmin`,<br>`suunto`,<br>`manual` | Source of the data.<br>(See the [Data Source](#data-source) for more details.) |
-| `--output`                                             | `-o`  | File path                                                            | Path or filename for the generated video. File format must be `.mp4`.            |
+| `--output`                                             | `-o`  | File path                                                            | Path or filename for the generated video. File format must be `.mp4`.          |
 
 #### Data Source
 
