@@ -6,7 +6,7 @@
 
 A CLI tool that creates heads-up displays <br>for your **freediving videos**, <br>automatically tracking **depth** and **time** <br>from dive computer logs or manual records.
 
-[![PyPI - Version](https://img.shields.io/pypi/v/depthviz?label=version&logo=pypi&logoColor=white&color=1d7dbe)](https://pypi.org/project/depthviz/) [![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/noppanut15/depthviz/deploy.yaml?logo=github&color=1d7dbe)](https://github.com/noppanut15/depthviz/actions) [![Coveralls](https://img.shields.io/coveralls/github/noppanut15/depthviz?logo=coveralls&color=1d7dbe)](https://coveralls.io/github/noppanut15/depthviz) [![PyPI - Status](https://img.shields.io/pypi/status/depthviz?logo=pypi&logoColor=white&color=1d7dbe)](https://pypi.org/project/depthviz/) [![PyPI Downloads](https://static.pepy.tech/badge/depthviz)](https://pepy.tech/projects/depthviz)
+[![PyPI - Version](https://img.shields.io/pypi/v/depthviz?label=version&logo=pypi&logoColor=white)](https://pypi.org/project/depthviz/) [![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/noppanut15/depthviz/deploy.yaml?logo=github)](https://github.com/noppanut15/depthviz/actions) [![Coveralls](https://img.shields.io/coveralls/github/noppanut15/depthviz?logo=coveralls)](https://coveralls.io/github/noppanut15/depthviz) [![PyPI - Status](https://img.shields.io/pypi/status/depthviz?logo=pypi&logoColor=white)](https://pypi.org/project/depthviz/) [![PyPI Downloads](https://static.pepy.tech/badge/depthviz)](https://pepy.tech/projects/depthviz)
 
 **&searr;&nbsp;&nbsp;Share the project's link to your friends&nbsp;&nbsp;&swarr;**
 
