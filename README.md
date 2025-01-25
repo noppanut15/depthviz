@@ -185,6 +185,8 @@ The time overlay video will be automatically generated and saved in the same dir
 
 ### Step 3: Integrate with Your Footage
 
+<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/step3-dark.jpeg"><img src="./assets/step3-light.jpeg" title="integrate overlays with your footage" /></picture></p> 
+
 Import the generated **depth overlay** video and **time overlay** video (if used) into your preferred video editing software. Combine them with your original dive footage. Remove the background color if needed. Adjust position of the overlays to suit your video style.
 
 > [Watch this short tutorial](https://www.youtube.com/watch?v=ZggKrWk98Ag) on how to import an overlay video in CapCut Desktop.
