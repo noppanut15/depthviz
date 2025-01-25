@@ -81,6 +81,11 @@ When a new version is released, you can upgrade to the latest version using the 
 pipx upgrade depthviz
 ```
 
+You can check the installed version by running:
+```bash
+depthviz --version
+```
+
 <div align="right">
 
 [&nwarr; Back to top](#readme-top)
