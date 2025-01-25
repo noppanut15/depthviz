@@ -20,14 +20,10 @@
 ![depthviz DEMO](https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/demo-compressed-v2.gif)
 
 ---
-## ✨ Features
-
 <img src="https://s4.ezgif.com/tmp/ezgif-4-921474d0a1.gif" align="right" />
 
+## ✨ Features
 
-<div align="left" width="200px" align="left">
-
-&nbsp;
 * 100% **free** and **open-source** — made with ❤️ by freedivers for **all freedivers**, **with** or **without** a dive computer.
 * Cross-platform support for **Windows**, **macOS**, and **Linux**.
 * Supports various dive computer data formats, including **Apnealizer**, **Shearwater**, **Garmin**, and **Suunto**.
@@ -40,7 +36,6 @@
 > [!TIP]
 > For performance freedivers, you can incorporate `depthviz` into your dive analysis. By visualizing your dive profile, you can identify areas for improvement and track your progress over time.
 
-</div>
 
 <div align="right">
 
