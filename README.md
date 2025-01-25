@@ -236,7 +236,7 @@ Here is an example of a manual mode input file:
 |  33   |   5   |
 |  39   |   0   |
 
-Download the example input file here:
+Download the example input file and try it out:<br>
 [![Download Input File](https://img.shields.io/badge/Download%20Input%20File-1974D2?style=for-the-badge&logo=readdotcv)](https://github.com/noppanut15/depthviz/blob/main/assets/manual-input-example.csv)
 
 <div align="right">
