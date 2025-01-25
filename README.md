@@ -169,7 +169,7 @@ You can also generate a time overlay video as a separate video that displays the
 
 <details><summary><strong>Example Command with Time Overlay</strong></summary><br>
 
-Example of generating a depth overlay video named `mydive.mp4` and a time overlay video by adding the `--time` option.
+Example of generating a depth overlay video named `mydive.mp4` and a time overlay video by adding the `--time` option:
 
 ```bash
 depthviz -i 123456_ACTIVITY.fit -s garmin -o mydive.mp4 --time
