@@ -25,7 +25,7 @@
 <img src="https://s7.ezgif.com/tmp/ezgif-7-968863cb1e.gif" align="right" width="385px" />
  
 Key features of `depthviz` include:
-* 100% **free** and **open-source** <br> — made with ❤️ by freedivers <br>for **all freedivers**, **with** or **without** a dive computer.
+* 100% **free** and **open-source** for **all freedivers**, **with** or **without** a dive computer.
 * Cross-platform support for **Windows**, **macOS**, and **Linux**.
 * Supports various dive computer data formats, including **Apnealizer**, **Shearwater**, **Garmin**, and **Suunto**.
 * **Customizable display** with options for decimal places, font, background color, and stroke width.
