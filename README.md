@@ -67,12 +67,14 @@ Don't forget to share `depthviz` with your freediving community! 🌊
 * [pipx](https://pipx.pypa.io/stable/installation/) for installing Python CLI tools.
 
 **Install:**
+
 Run the following command in your terminal to install `depthviz` using `pipx`:
 ```bash
 pipx install depthviz
 ```
 
 **Upgrade:**
+
 When a new version is released, you can upgrade to the latest version using the following command:
 
 ```bash
