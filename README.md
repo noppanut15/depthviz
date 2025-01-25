@@ -24,6 +24,8 @@
 
 <img src="https://s4.ezgif.com/tmp/ezgif-4-921474d0a1.gif" align="right" />
 
+<div align="left">
+
 * 100% **free** and **open-source** — made with ❤️ by freedivers for **all freedivers**, **with** or **without** a dive computer.
 * Cross-platform support for **Windows**, **macOS**, and **Linux**.
 * Supports various dive computer data formats, including **Apnealizer**, **Shearwater**, **Garmin**, and **Suunto**.
@@ -32,8 +34,11 @@
 * **Automatically** generates a depth overlay video from your dive log data.
 * Generates the **time** overlay as a separate video to display the time elapsed during the dive.
 * Linear interpolation to fill in gaps in the dive log data for a **smooth depth profile**.
+
 > [!TIP]
 > For performance freedivers, you can incorporate `depthviz` into your dive analysis. By visualizing your dive profile, you can identify areas for improvement and track your progress over time.
+
+</div>
 
 <div align="right">
 
