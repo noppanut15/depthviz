@@ -22,16 +22,21 @@
 ---
 ## ✨ Features
 
-* 100% **free** and **open-source** — made with ❤️ by freedivers for **all freedivers**, **with** or **without** a dive computer.
+<img src="./assets/final-video-showcase-400x400.gif" alt="showcase video" align="right" width="385px" />
+ 
+Key features of `depthviz` include:
+* 100% **free** and **open-source** for **all freedivers**, **with** or **without** a dive computer.
 * Cross-platform support for **Windows**, **macOS**, and **Linux**.
 * Supports various dive computer data formats, including **Apnealizer**, **Shearwater**, **Garmin**, and **Suunto**.
 * **Customizable display** with options for decimal places, font, background color, and stroke width.
-* Works with **free** video editors like [CapCut](https://www.capcut.com/) and much more, no high-end software needed.
+* Works with **free** video editors like CapCut and much more.
 * **Automatically** generates a depth overlay video from your dive log data.
 * Generates the **time** overlay as a separate video to display the time elapsed during the dive.
 * Linear interpolation to fill in gaps in the dive log data for a **smooth depth profile**.
+
 > [!TIP]
 > For performance freedivers, you can incorporate `depthviz` into your dive analysis. By visualizing your dive profile, you can identify areas for improvement and track your progress over time.
+
 
 <div align="right">
 
@@ -43,8 +48,10 @@
 
 ## 🌟 Like depthviz?
 
-Please give us a shiny [![star](https://img.shields.io/github/stars/noppanut15/depthviz
-)](https://github.com/noppanut15/depthviz) and share `depthviz` with your freediving community! ⭐️
+If you like `depthviz` and find it useful, please click a 👁️ **Watch** button to avoid missing notifications about **new versions**, and give it a shiny [![star](https://img.shields.io/github/stars/noppanut15/depthviz
+)](https://github.com/noppanut15/depthviz) ✨
+
+Don't forget to share `depthviz` with your freediving community! 🌊
 
 <div align="right">
 
@@ -59,10 +66,24 @@ Please give us a shiny [![star](https://img.shields.io/github/stars/noppanut15/d
 * [Python](https://www.python.org/downloads/) (3.9 or higher) installed on your system.
 * [pipx](https://pipx.pypa.io/stable/installation/) for installing Python CLI tools.
 
-**Installation:**
+**Install:**
 
+Run the following command in your terminal to install `depthviz` using `pipx`:
 ```bash
 pipx install depthviz
+```
+
+**Upgrade:**
+
+When a new version is released, you can upgrade to the latest version using the following command:
+
+```bash
+pipx upgrade depthviz
+```
+
+You can check the installed version by running:
+```bash
+depthviz --version
 ```
 
 <div align="right">
@@ -145,9 +166,9 @@ depthviz -i 123456_ACTIVITY.fit -s garmin -o mydive.mp4 --decimal-places 1 --no-
 > Use the `--decimal-places` option to control the precision of the depth display (e.g., `--decimal-places 1` displays depths like `-12.5m`)
 
 
-#### Additional Options for Time Overlay
+#### Time Overlay Video
 
-<p align="center"><img src="./assets/time-overlay-cropped.gif" alt="time overlay demo" width="400"/></p>
+<p align="center"><img src="./assets/time-overlays.gif" alt="time overlay demo"/></p>
 
 You can also generate a time overlay video as a separate video that displays the time elapsed during the dive. It will be exported in the same directory as the depth overlay video.
 
@@ -157,7 +178,7 @@ You can also generate a time overlay video as a separate video that displays the
 
 <details><summary><strong>Example Command with Time Overlay</strong></summary><br>
 
-Example of generating a depth overlay video named `mydive.mp4` and a time overlay video using data from `123456_ACTIVITY.fit` exported from [Garmin Connect](https://github.com/noppanut15/depthviz/blob/main/docs/GARMIN.md).
+Example of generating a depth overlay video named `mydive.mp4` and a time overlay video by adding the `--time` option:
 
 ```bash
 depthviz -i 123456_ACTIVITY.fit -s garmin -o mydive.mp4 --time
@@ -170,6 +191,8 @@ The time overlay video will be automatically generated and saved in the same dir
 
 
 ### Step 3: Integrate with Your Footage
+
+<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/step3-dark-v2.jpeg" width="500px"><img src="./assets/step3-light-v2.jpeg" width="500px" title="integrate overlays with your footage" /></picture></p> 
 
 Import the generated **depth overlay** video and **time overlay** video (if used) into your preferred video editing software. Combine them with your original dive footage. Remove the background color if needed. Adjust position of the overlays to suit your video style.
 
@@ -224,7 +247,10 @@ Here is an example of a manual mode input file:
 |  33   |   5   |
 |  39   |   0   |
 
-Download the example input file [here](https://github.com/noppanut15/depthviz/blob/main/assets/manual-input-example.csv).
+Download the example input file and try it out:
+<br>
+
+[![Download Input File](https://img.shields.io/badge/Download%20Input%20File-1974D2?style=for-the-badge&logo=readdotcv)](https://github.com/noppanut15/depthviz/blob/main/assets/manual-input-example.csv)
 
 <div align="right">
 
@@ -296,7 +322,9 @@ To share your dive data, please follow the detailed instructions in our [**Donat
 
 ## ⚖️ License
 
-This project is licensed under the Apache License 2.0. See the [LICENSE](https://github.com/noppanut15/depthviz/blob/main/LICENSE) file for details.
+**depthviz** is free and open-source software licensed under the [Apache License 2.0](https://github.com/noppanut15/depthviz/blob/main/LICENSE), created and supported by [Noppanut Ploywong](https://github.com/noppanut15) with ❤️ for fellow freedivers.
+
+<!-- This project is licensed under the Apache License 2.0. See the [LICENSE](https://github.com/noppanut15/depthviz/blob/main/LICENSE) file for details. -->
 
 <div align="right">
 
