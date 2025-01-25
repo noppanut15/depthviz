@@ -24,8 +24,10 @@
 
 <img src="https://s4.ezgif.com/tmp/ezgif-4-921474d0a1.gif" align="right" />
 
-<div align="left">
 
+<div align="left" width="200px" align="left">
+
+&nbsp;
 * 100% **free** and **open-source** — made with ❤️ by freedivers for **all freedivers**, **with** or **without** a dive computer.
 * Cross-platform support for **Windows**, **macOS**, and **Linux**.
 * Supports various dive computer data formats, including **Apnealizer**, **Shearwater**, **Garmin**, and **Suunto**.
