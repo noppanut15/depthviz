@@ -29,7 +29,7 @@ Key features of `depthviz` include:
 * Cross-platform support for **Windows**, **macOS**, and **Linux**.
 * Supports various dive computer data formats, including **Apnealizer**, **Shearwater**, **Garmin**, and **Suunto**.
 * **Customizable display** with options for decimal places, font, background color, and stroke width.
-* Works with **free** video editors like [CapCut](https://www.capcut.com/) and much more.
+* Works with **free** video editors like CapCut and much more.
 * **Automatically** generates a depth overlay video from your dive log data.
 * Generates the **time** overlay as a separate video to display the time elapsed during the dive.
 * Linear interpolation to fill in gaps in the dive log data for a **smooth depth profile**.
