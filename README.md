@@ -22,7 +22,7 @@
 ---
 ## ✨ Features
 
-<img src="https://s7.ezgif.com/tmp/ezgif-7-968863cb1e.gif" align="right" width="350px" />
+<img src="https://s7.ezgif.com/tmp/ezgif-7-968863cb1e.gif" align="right" width="380px" />
  
 Key features of `depthviz` include:
 * 100% **free** and **open-source** — made with ❤️ by freedivers for **all freedivers**, **with** or **without** a dive computer.
