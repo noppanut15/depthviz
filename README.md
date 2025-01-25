@@ -23,10 +23,7 @@
 ## ✨ Features
 
 <img src="https://s4.ezgif.com/tmp/ezgif-4-921474d0a1.gif" align="right" />
-
-
-<div align="left" width="200px" align="left"> 
-
+ 
 Here are some of the key features of `depthviz`:
 * 100% **free** and **open-source** — made with ❤️ by freedivers for **all freedivers**, **with** or **without** a dive computer.
 * Cross-platform support for **Windows**, **macOS**, and **Linux**.
@@ -40,7 +37,6 @@ Here are some of the key features of `depthviz`:
 > [!TIP]
 > For performance freedivers, you can incorporate `depthviz` into your dive analysis. By visualizing your dive profile, you can identify areas for improvement and track your progress over time.
 
-</div>
 
 <div align="right">
 
