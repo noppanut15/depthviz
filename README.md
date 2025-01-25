@@ -46,10 +46,12 @@ Key features of `depthviz` include:
 
 ---
 
-## 🌟 Like depthviz?
+## 🌟 Love what depthviz can do?
 
-Please give us a shiny [![star](https://img.shields.io/github/stars/noppanut15/depthviz
-)](https://github.com/noppanut15/depthviz) and share `depthviz` with your freediving community! ⭐️
+If you like `depthviz` and find it useful, please click a 👁️ **Watch** button to avoid missing notifications about **new versions**, and give it a shiny [![star](https://img.shields.io/github/stars/noppanut15/depthviz
+)](https://github.com/noppanut15/depthviz) ✨
+
+Don't forget to share `depthviz` with your freediving community! 🌊
 
 <div align="right">
 
