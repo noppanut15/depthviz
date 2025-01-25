@@ -311,7 +311,9 @@ To share your dive data, please follow the detailed instructions in our [**Donat
 
 ## ⚖️ License
 
-This project is licensed under the Apache License 2.0. See the [LICENSE](https://github.com/noppanut15/depthviz/blob/main/LICENSE) file for details.
+**depthviz** is free and open-source software licensed under the [Apache License 2.0](https://github.com/noppanut15/depthviz/blob/main/LICENSE), created and supported by [Noppanut Ploywong](https://github.com/noppanut15) with ❤️ for fellow freedivers.
+
+<!-- This project is licensed under the Apache License 2.0. See the [LICENSE](https://github.com/noppanut15/depthviz/blob/main/LICENSE) file for details. -->
 
 <div align="right">
 
