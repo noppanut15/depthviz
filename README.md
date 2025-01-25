@@ -185,7 +185,7 @@ The time overlay video will be automatically generated and saved in the same dir
 
 ### Step 3: Integrate with Your Footage
 
-<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/step3-dark.jpeg" width="500px"><img src="./assets/step3-light.jpeg" width="500px" title="integrate overlays with your footage" /></picture></p> 
+<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/step3-dark-v2.jpeg" width="500px"><img src="./assets/step3-light-v2.jpeg" width="500px" title="integrate overlays with your footage" /></picture></p> 
 
 Import the generated **depth overlay** video and **time overlay** video (if used) into your preferred video editing software. Combine them with your original dive footage. Remove the background color if needed. Adjust position of the overlays to suit your video style.
 
