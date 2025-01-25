@@ -46,7 +46,7 @@ Key features of `depthviz` include:
 
 ---
 
-## 🌟 Love what depthviz can do?
+## 🌟 Like depthviz?
 
 If you like `depthviz` and find it useful, please click a 👁️ **Watch** button to avoid missing notifications about **new versions**, and give it a shiny [![star](https://img.shields.io/github/stars/noppanut15/depthviz
 )](https://github.com/noppanut15/depthviz) ✨
