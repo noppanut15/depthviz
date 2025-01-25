@@ -59,10 +59,17 @@ Please give us a shiny [![star](https://img.shields.io/github/stars/noppanut15/d
 * [Python](https://www.python.org/downloads/) (3.9 or higher) installed on your system.
 * [pipx](https://pipx.pypa.io/stable/installation/) for installing Python CLI tools.
 
-**Installation:**
-
+**Install:**
+Run the following command in your terminal to install `depthviz` using `pipx`:
 ```bash
 pipx install depthviz
+```
+
+**Upgrade:**
+When a new version is released, you can upgrade to the latest version using the following command:
+
+```bash
+pipx upgrade depthviz
 ```
 
 <div align="right">
