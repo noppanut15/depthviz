@@ -22,7 +22,7 @@
 ---
 ## ✨ Features
 
-<img src="./assets/final-video-showcase-400x400.gif" align="right" width="385px" />
+<img src="./assets/final-video-showcase-400x400.gif" alt="showcase video" align="right" width="385px" />
  
 Key features of `depthviz` include:
 * 100% **free** and **open-source** for **all freedivers**, **with** or **without** a dive computer.
