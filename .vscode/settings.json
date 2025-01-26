@@ -9,5 +9,33 @@
         "editor.defaultFormatter": "ms-python.black-formatter",
         "editor.formatOnSave": true
     },
+    "psi-header.config": {
+        "forceToTop": true,
+        "blankLinesAfter": 2,
+        "license": "Apache-2.0",
+    },
+    "psi-header.lang-config": [
+        {
+            "language": "python",
+            "prefix": "# ",
+            "begin": "",
+            "end": "",
+
+        }
+    ],  
+    "psi-header.templates": [
+        {
+            "language": "*",
+            "template": [
+                "Copyright (c) <<yeartoyear(2024, now)>> <<author>> (@<<githubuser>>) <<<authoremail>>>",
+                "Apache License 2.0 (see LICENSE file or http://www.apache.org/licenses/LICENSE-2.0)",
+            ]
+        }
+    ],
+    "psi-header.changes-tracking": {
+        "isActive": true,
+        "include": ["python"],
+        "autoHeader": "manualSave",
+    }
 
 }
