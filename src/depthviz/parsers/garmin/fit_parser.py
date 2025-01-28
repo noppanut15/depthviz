@@ -26,9 +26,8 @@ class GarminFitParser(DiveLogFitParser):
     A class to parse a FIT file containing depth data.
     """
 
-    def __init__(self, selected_dive_idx: int = -1) -> None:
-        self.__time_data: list[float] = []
-        self.__depth_data: list[float] = []
+    def __init__(self, selected_dive_idx: int = -1, depth_mode: str = "raw") -> None:
+        super().__init__(depth_mode=depth_mode)
         self.__margin_start_time = 2
 
         # Select the dive to be parsed (in case of multiple dives in FIT file)
@@ -161,17 +160,20 @@ class GarminFitParser(DiveLogFitParser):
 
             time = float(timestamp_now - first_timestamp)
             depth = cast(float, record.get("depth"))
-            self.__time_data.append(time)
-            self.__depth_data.append(depth)
+            self.time_data.append(time)
+            self.depth_data.append(depth)
 
             # If the depth is 0, the dive is considered to be ended
             if round(depth, 3) == 0:
                 break
 
-        if not self.__time_data or not self.__depth_data:
+        if not self.time_data or not self.depth_data:
             raise DiveLogFitDiveNotFoundError(
                 f"Invalid Dive Data: Dive data not found in FIT file: {file_path}"
             )
+
+        # Convert depth data according to the depth mode
+        self.depth_mode_execute()
 
     def get_time_data(self) -> list[float]:
         """
@@ -179,7 +181,7 @@ class GarminFitParser(DiveLogFitParser):
         Returns:
             The time data parsed from the FIT file.
         """
-        return self.__time_data
+        return self.time_data
 
     def get_depth_data(self) -> list[float]:
         """
@@ -187,4 +189,4 @@ class GarminFitParser(DiveLogFitParser):
         Returns:
             The depth data parsed from the FIT file.
         """
-        return self.__depth_data
+        return self.depth_data

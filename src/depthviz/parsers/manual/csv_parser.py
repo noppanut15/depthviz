@@ -26,9 +26,13 @@ class ManualCsvParser(DiveLogCsvParser):
     A class to parse a CSV file containing depth data.
     """
 
-    def __init__(self) -> None:
-        self.__time_data: list[float] = []
-        self.__depth_data: list[float] = []
+    def __init__(self, depth_mode: str = "raw") -> None:
+        """
+        Initializes the ManualCsvParser object.
+        Args:
+            depth_mode: The depth mode to be used for the parser.
+        """
+        super().__init__(depth_mode=depth_mode)
 
     def parse(self, file_path: str) -> None:
         """
@@ -50,7 +54,7 @@ class ManualCsvParser(DiveLogCsvParser):
                                     f"Invalid CSV: Invalid time value at row {excel_row}, "
                                     "the value must be positive"
                                 )
-                            self.__time_data.append(time_value)
+                            self.time_data.append(time_value)
                         except ValueError as e:
                             raise InvalidTimeValueError(
                                 f"Invalid CSV: Invalid time value at row {excel_row}"
@@ -62,7 +66,7 @@ class ManualCsvParser(DiveLogCsvParser):
                                     f"Invalid CSV: Invalid depth value at row {excel_row}, "
                                     "the value must be positive"
                                 )
-                            self.__depth_data.append(depth_value)
+                            self.depth_data.append(depth_value)
                         except ValueError as e:
                             raise InvalidDepthValueError(
                                 f"Invalid CSV: Invalid depth values at row {excel_row}"
@@ -72,12 +76,15 @@ class ManualCsvParser(DiveLogCsvParser):
                             "Invalid CSV: Invalid headers in CSV file, make sure "
                             "there are 'Time' and 'Depth' columns in the CSV file"
                         )
-            if not self.__depth_data or not self.__time_data:
+            if not self.depth_data or not self.time_data:
                 raise EmptyFileError("Invalid CSV: File is empty")
         except FileNotFoundError as e:
             raise DiveLogFileNotFoundError(
                 f"Invalid CSV: File not found: {file_path}"
             ) from e
+
+        # Convert depth data according to the depth mode
+        self.depth_mode_execute()
 
     def get_time_data(self) -> list[float]:
         """
@@ -85,7 +92,7 @@ class ManualCsvParser(DiveLogCsvParser):
         Returns:
             The time data parsed from the CSV file.
         """
-        return self.__time_data
+        return self.time_data
 
     def get_depth_data(self) -> list[float]:
         """
@@ -93,4 +100,4 @@ class ManualCsvParser(DiveLogCsvParser):
         Returns:
             The depth data parsed from the CSV file.
         """
-        return self.__depth_data
+        return self.depth_data

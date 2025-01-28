@@ -7,6 +7,7 @@ Unit tests for the ApnealizerCsvParser class.
 """
 
 import os
+from unittest.mock import patch, Mock
 import pytest
 from depthviz.parsers.apnealizer.csv_parser import ApnealizerCsvParser
 from depthviz.parsers.generic.generic_divelog_parser import (
@@ -49,6 +50,28 @@ class TestApnealizerCsvParser:
             6.27,
             6.76,
         ]
+
+    @pytest.mark.parametrize("depth_mode", ["raw", "zero-based"])
+    @patch(
+        "depthviz.parsers.apnealizer.csv_parser.ApnealizerCsvParser.depth_mode_execute"
+    )
+    def test_parse_valid_csv_depth_mode_exec(
+        self,
+        mock_depth_mode_execute: Mock,
+        depth_mode: str,
+        request: pytest.FixtureRequest,
+    ) -> None:
+        """
+        Test parsing a valid CSV file with depth mode execution.
+        """
+        file_path = str(
+            request.path.parent.joinpath(
+                "data", "apnealizer", "valid_depth_data_trimmed.csv"
+            )
+        )
+        csv_parser = ApnealizerCsvParser(depth_mode=depth_mode)
+        csv_parser.parse(file_path)
+        mock_depth_mode_execute.assert_called_once()
 
     def test_parse_invalid_csv_x_header(self, request: pytest.FixtureRequest) -> None:
         """

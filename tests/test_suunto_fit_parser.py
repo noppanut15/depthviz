@@ -7,7 +7,7 @@ Unit tests for the SuuntoFitParser class.
 """
 
 from typing import Any, Union
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch, Mock
 import pytest
 from garmin_fit_sdk import Stream, Decoder
 from depthviz.parsers.suunto.fit_parser import SuuntoFitParser
@@ -909,7 +909,7 @@ class TestSuuntoFitParser:
     @patch("builtins.input", return_value="2")
     def test_select_dive_multiple_dives(
         self,
-        mock_input: MagicMock,
+        mock_input: Mock,
         capsys: pytest.CaptureFixture[str],
     ) -> None:
         """
@@ -957,7 +957,7 @@ class TestSuuntoFitParser:
     @patch("builtins.input", return_value="xxx")
     def test_select_invalid_dive_non_number(
         self,
-        mock_input: MagicMock,
+        mock_input: Mock,
     ) -> None:
         """
         Test selecting an invalid dive index.
@@ -989,7 +989,7 @@ class TestSuuntoFitParser:
 
     @patch("builtins.input", return_value="3")
     def test_select_invalid_dive_idx(
-        self, mock_input: MagicMock, monkeypatch: pytest.MonkeyPatch
+        self, mock_input: Mock, monkeypatch: pytest.MonkeyPatch
     ) -> None:
         """
         Test parsing a FIT file with an invalid dive index.
@@ -1035,3 +1035,25 @@ class TestSuuntoFitParser:
             fit_parser.parse(file_path)
         assert str(e.value) == "Invalid Dive: Please enter a number between 1 and 2"
         assert mock_input.call_count == 1
+
+    @pytest.mark.parametrize("depth_mode", ["raw", "zero-based"])
+    @patch("depthviz.parsers.suunto.fit_parser.SuuntoFitParser.depth_mode_execute")
+    def test_parse_valid_fit_depth_mode_exec(
+        self,
+        mock_depth_mode_execute: Mock,
+        depth_mode: str,
+        request: pytest.FixtureRequest,
+    ) -> None:
+        """
+        Test parsing a valid FIT file with depth mode execution.
+        """
+        file_path = str(
+            request.path.parent.joinpath(
+                "data",
+                "suunto",
+                "FreeDiving_2024-10-16T16_33_30.fit",
+            )
+        )
+        parser = SuuntoFitParser(depth_mode=depth_mode, selected_dive_idx=0)
+        parser.parse(file_path)
+        mock_depth_mode_execute.assert_called_once()

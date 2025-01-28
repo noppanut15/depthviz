@@ -133,13 +133,14 @@ depthviz -i 123456_ACTIVITY.fit -s garmin -o depth_overlay.mp4
 </details>
 
 #### Advanced Options
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Option&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Values            | Default                                                     | Description                                                                   |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------- | ----------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| `-d`, <br/>`--decimal-places`                                                                                                                          | `0-2`             | `0`                                                         | Number of decimal places to display in the depth overlay.                     |
-| `--no-minus`                                                                                                                                           | -                 | -                                                           | Hide the minus sign for depth values (e.g., display `10m` instead of `-10m`). |
-| `--font`                                                                                                                                               | File path         | [Default font](https://fonts.google.com/specimen/Open+Sans) | Path to a custom font file for the text.                                      |
-| `--bg-color`                                                                                                                                           | Color name or hex | `black`                                                     | Background color (e.g., `green`, `'#000000'`).                                |
-| `--stroke-width`                                                                                                                                       | Positive integer  | `5`                                                         | Width of the stroke around the text in pixels.                                |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Option&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Values&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Default                                                     | Description                                                                                                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ----------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-d`, <br/>`--decimal-places`                                                                                                                          | `0-2`                                                                          | `0`                                                         | Number of decimal places to display in the depth overlay.                                                                                                                                    |
+| `--depth-mode`                                                                                                                                         | `raw`, <br/>`zero-based`                                                       | `raw`                                                       | Depth display mode. `raw` displays the raw depth values from the dive log. `zero-based` sets the starting depth & ending depth to 0m. [See Raw vs Zero-Based](#depth-mode-raw-vs-zero-based) |
+| `--no-minus`                                                                                                                                           | -                                                                              | -                                                           | Hide the minus sign for depth values (e.g., display `10m` instead of `-10m`).                                                                                                                |
+| `--font`                                                                                                                                               | File path                                                                      | [Default font](https://fonts.google.com/specimen/Open+Sans) | Path to a custom font file for the text.                                                                                                                                                     |
+| `--bg-color`                                                                                                                                           | Color name or hex                                                              | `black`                                                     | Background color (e.g., `green`, `'#000000'`).                                                                                                                                               |
+| `--stroke-width`                                                                                                                                       | Positive integer                                                               | `5`                                                         | Width of the stroke around the text in pixels.                                                                                                                                               |
 
 
 <details><summary><strong>Example Command with Advanced Options</strong></summary><br>
@@ -147,9 +148,10 @@ depthviz -i 123456_ACTIVITY.fit -s garmin -o depth_overlay.mp4
 Example of generating a depth overlay video named `mydive.mp4` using data from `123456_ACTIVITY.fit` exported from [Garmin Connect](https://github.com/noppanut15/depthviz/blob/main/docs/GARMIN.md):
 
 ```bash
-depthviz -i 123456_ACTIVITY.fit -s garmin -o mydive.mp4 --decimal-places 1 --no-minus --bg-color green --font ~/Downloads/font.ttf
+depthviz -i 123456_ACTIVITY.fit -s garmin -o mydive.mp4 --depth-mode zero-based --decimal-places 1 --no-minus --bg-color green --font ~/Downloads/font.ttf
 ```
 
+- Set the depth display mode to **zero-based** to start the depth from 0m instead of the actual depth values from the dive log.
 - The depth values will be displayed with **one** decimal place.
 - The minus sign will be **hidden**.
 - The background color will be set to **green**.
@@ -165,10 +167,17 @@ depthviz -i 123456_ACTIVITY.fit -s garmin -o mydive.mp4 --decimal-places 1 --no-
 > [!TIP]
 > Use the `--decimal-places` option to control the precision of the depth display (e.g., `--decimal-places 1` displays depths like `-12.5m`)
 
+#### Depth Mode: Raw vs Zero-based
+
+<p align="center"><img src="./assets/depth-mode-comparison.jpg" alt="Depth Mode: raw vs zero-based" width="600px"/></p>
+
+
+> [!TIP]
+> Use `--depth-mode zero-based` to set the **starting depth and ending depth to 0m**. *(right figure)* This can be useful for displaying the depth from the surface.<br><br> Note that it assumes a descent and ascent rate of 1m/s between 0m and the actual starting/ending depth from the dive log.<br><br> If accuracy is important, use `raw` (default mode) to display the actual depth values from the dive log. The depth values **may start from some depth other than 0m, depending on when the dive computer started recording**. *(left figure)*
 
 #### Time Overlay Video
 
-<p align="center"><img src="./assets/time-overlays.gif" alt="time overlay demo"/></p>
+<p align="center"><img src="./assets/time-overlays.gif" alt="time overlay demo" width="600px"/></p>
 
 You can also generate a time overlay video as a separate video that displays the time elapsed during the dive. It will be exported in the same directory as the depth overlay video.
 

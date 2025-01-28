@@ -318,8 +318,8 @@ class TestMainCLI:
     @mock.patch("depthviz.parsers.garmin.fit_parser.GarminFitParser.parse")
     def test_main_with_args_garmin(
         self,
-        mock_parse: mock.MagicMock,
-        mock_create_depth_video: mock.MagicMock,
+        mock_parse: mock.Mock,
+        mock_create_depth_video: mock.Mock,
         capsys: pytest.CaptureFixture[str],
         tmp_path: pathlib.Path,
     ) -> None:
@@ -472,8 +472,8 @@ class TestMainCLI:
     @mock.patch("depthviz.parsers.suunto.fit_parser.SuuntoFitParser.parse")
     def test_main_with_args_suunto(
         self,
-        mock_parse: mock.MagicMock,
-        mock_create_depth_video: mock.MagicMock,
+        mock_parse: mock.Mock,
+        mock_create_depth_video: mock.Mock,
         capsys: pytest.CaptureFixture[str],
         tmp_path: pathlib.Path,
     ) -> None:
@@ -705,3 +705,37 @@ class TestMainCLI:
             time_data=[0, -1, 2, 3],
         )
         mock_save.assert_not_called()
+
+    # def test_main_with_args_depth_mode(
+    #     self,
+    #     capsys: pytest.CaptureFixture[str],
+    #     tmp_path: pathlib.Path,
+    #     request: pytest.FixtureRequest,
+    # ) -> None:
+    #     """
+    #     Test the main function with arguments for depth-mode as zero-based
+    #     to force the depth to start from zero and end with zero.
+    #     """
+
+    #     input_path = (
+    #         request.path.parent / "data" / "apnealizer" / "valid_depth_data_trimmed.csv"
+    #     )
+    #     output_path = tmp_path / "test_main_with_args.mp4"
+    #     sys.argv = [
+    #         "main",
+    #         "-i",
+    #         str(input_path.as_posix()),
+    #         "-s",
+    #         "apnealizer",
+    #         "-o",
+    #         str(output_path.as_posix()),
+    #         "--depth-mode",
+    #         "zero-based",
+    #     ]
+    #     app = DepthvizApplication()
+    #     app.main()
+    #     captured = capsys.readouterr()
+    #     assert (
+    #         f"Depth video successfully created: {output_path.as_posix()}"
+    #         in captured.out
+    #     )

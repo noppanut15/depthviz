@@ -7,7 +7,7 @@ Unit tests for the GarminFitParser class.
 """
 
 from typing import Any, Union
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch, Mock
 import pytest
 from garmin_fit_sdk import Stream, Decoder
 from depthviz.parsers.garmin.fit_parser import GarminFitParser
@@ -1178,7 +1178,7 @@ class TestGarminFitParser:
 
     @patch("builtins.input", return_value="3")
     def test_invalid_dive_idx(
-        self, mock_input: MagicMock, monkeypatch: pytest.MonkeyPatch
+        self, mock_input: Mock, monkeypatch: pytest.MonkeyPatch
     ) -> None:
         """
         Test parsing a FIT file with an invalid dive index.
@@ -1313,7 +1313,7 @@ class TestGarminFitParser:
     @patch("builtins.input", return_value="2")
     def test_select_dive_multiple_dives(
         self,
-        mock_input: MagicMock,
+        mock_input: Mock,
         capsys: pytest.CaptureFixture[str],
     ) -> None:
         """
@@ -1361,7 +1361,7 @@ class TestGarminFitParser:
     @patch("builtins.input", return_value="xxx")
     def test_select_invalid_dive(
         self,
-        mock_input: MagicMock,
+        mock_input: Mock,
     ) -> None:
         """
         Test selecting an invalid dive index.
@@ -1390,3 +1390,25 @@ class TestGarminFitParser:
             == f"Invalid Dive: Please enter a number between 1 and {len(dive_summary)}"
         )
         assert mock_input.call_count == 1
+
+    @pytest.mark.parametrize("depth_mode", ["raw", "zero-based"])
+    @patch("depthviz.parsers.garmin.fit_parser.GarminFitParser.depth_mode_execute")
+    def test_parse_valid_fit_depth_mode_exec(
+        self,
+        mock_depth_mode_execute: Mock,
+        depth_mode: str,
+        request: pytest.FixtureRequest,
+    ) -> None:
+        """
+        Test parsing a valid FIT file with depth mode execution.
+        """
+        file_path = str(
+            request.path.parent.joinpath(
+                "data",
+                "garmin",
+                "11211432883_ACTIVITY.fit",
+            )
+        )
+        parser = GarminFitParser(depth_mode=depth_mode, selected_dive_idx=0)
+        parser.parse(file_path)
+        mock_depth_mode_execute.assert_called_once()

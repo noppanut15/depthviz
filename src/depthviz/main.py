@@ -97,6 +97,13 @@ class DepthvizApplication:
             default=DEFAULT_STROKE_WIDTH,
         )
         self.parser.add_argument(
+            "--depth-mode",
+            help="Control how the depth is displayed. (default: raw)",
+            type=str,
+            choices=["raw", "zero-based"],
+            default="raw",
+        )
+        self.parser.add_argument(
             "--time", help="Create a time overlay video.", action="store_true"
         )
         self.parser.add_argument(
@@ -209,15 +216,15 @@ class DepthvizApplication:
 
         divelog_parser: DiveLogParser
         if args.source == "apnealizer":
-            divelog_parser = ApnealizerCsvParser()
+            divelog_parser = ApnealizerCsvParser(depth_mode=args.depth_mode)
         elif args.source == "shearwater":
-            divelog_parser = ShearwaterXmlParser()
+            divelog_parser = ShearwaterXmlParser(depth_mode=args.depth_mode)
         elif args.source == "garmin":
-            divelog_parser = GarminFitParser()
+            divelog_parser = GarminFitParser(depth_mode=args.depth_mode)
         elif args.source == "suunto":
-            divelog_parser = SuuntoFitParser()
+            divelog_parser = SuuntoFitParser(depth_mode=args.depth_mode)
         elif args.source == "manual":
-            divelog_parser = ManualCsvParser()
+            divelog_parser = ManualCsvParser(depth_mode=args.depth_mode)
         else:
             print(f"Source {args.source} not supported.")
             return 1
