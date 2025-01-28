@@ -91,17 +91,17 @@ class ShearwaterXmlParser(DiveLogXmlParser):
             Returns the depth data parsed from the XML file.
     """
 
-    def __init__(self, salinity: str = "en13319") -> None:
+    def __init__(self, salinity: str = "en13319", depth_mode: str = "raw") -> None:
         """
         Initializes the ShearwaterXmlParser with the specified salinity setting.
         Args:
             salinity: The salinity setting for the water density calculation.
                       Can be "fresh", "en13319", or "salt". Default is "en13319".
+            depth_mode: The depth mode setting for the depth data.
         Raises:
             ValueError: If the salinity setting is invalid.
         """
-        self.__time_data: list[float] = []
-        self.__depth_data: list[float] = []
+        super().__init__(depth_mode=depth_mode)
         self.__start_surface_pressure: float = 0
         self.__water_density: float = WATER_DENSITY_EN13319
         salinity = salinity.lower()
@@ -255,8 +255,11 @@ class ShearwaterXmlParser(DiveLogXmlParser):
         for dive_log_record in dive_log_records:
             time = self.__get_current_time(dive_log_record)
             depth_meter = self.__get_current_depth(dive_log_record)
-            self.__time_data.append(time)
-            self.__depth_data.append(round(depth_meter, 2))
+            self.time_data.append(time)
+            self.depth_data.append(round(depth_meter, 2))
+
+        # Convert depth data according to the depth mode
+        self.depth_mode_execute()
 
     def get_time_data(self) -> list[float]:
         """
@@ -264,7 +267,7 @@ class ShearwaterXmlParser(DiveLogXmlParser):
         Returns:
             The time data parsed from the XML file.
         """
-        return self.__time_data
+        return self.time_data
 
     def get_depth_data(self) -> list[float]:
         """
@@ -272,4 +275,4 @@ class ShearwaterXmlParser(DiveLogXmlParser):
         Returns:
             The depth data parsed from the XML file.
         """
-        return self.__depth_data
+        return self.depth_data

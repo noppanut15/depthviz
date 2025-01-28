@@ -29,9 +29,8 @@ class SuuntoFitParser(DiveLogFitParser):
     A class to parse a FIT file containing depth data.
     """
 
-    def __init__(self, selected_dive_idx: int = -1) -> None:
-        self.__time_data: list[float] = []
-        self.__depth_data: list[float] = []
+    def __init__(self, selected_dive_idx: int = -1, depth_mode: str = "raw") -> None:
+        super().__init__(depth_mode=depth_mode)
 
         # Select the dive to be parsed (in case of multiple dives in FIT file)
         self.__selected_dive_idx = selected_dive_idx
@@ -107,6 +106,9 @@ class SuuntoFitParser(DiveLogFitParser):
         self.__validate_fit_file(messages, file_path)
         dive_summary = self.__extract_dive_logs(messages)
         self.__parse_selected_dive(dive_summary)
+
+        # Convert depth data according to the depth mode
+        self.depth_mode_execute()
 
     def __read_fit_file(self, file_path: str) -> dict[str, Any]:
         """
@@ -256,8 +258,8 @@ class SuuntoFitParser(DiveLogFitParser):
                 first_timestamp = timestamp
             time = float(timestamp - first_timestamp)
             depth = record.get("depth")
-            self.__time_data.append(time)
-            self.__depth_data.append(depth)
+            self.time_data.append(time)
+            self.depth_data.append(depth)
 
     def get_time_data(self) -> list[float]:
         """
@@ -265,7 +267,7 @@ class SuuntoFitParser(DiveLogFitParser):
         Returns:
             The time data parsed from the FIT file.
         """
-        return self.__time_data
+        return self.time_data
 
     def get_depth_data(self) -> list[float]:
         """
@@ -273,4 +275,4 @@ class SuuntoFitParser(DiveLogFitParser):
         Returns:
             The depth data parsed from the FIT file.
         """
-        return self.__depth_data
+        return self.depth_data
