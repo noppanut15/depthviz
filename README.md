@@ -1,6 +1,6 @@
 <div align="center">
   <a href="#">
-  <img src="./assets/logo/depthviz-temp-logo.png" width="300" alt="depthviz logo"/>
+  <img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/logo/depthviz-temp-logo.png" width="300" alt="depthviz logo"/>
   </a>
   <a name="readme-top"></a>
 
@@ -22,7 +22,7 @@
 ---
 ## ✨ Features
 
-<img src="./assets/final-video-showcase-400x400.gif" alt="showcase video" align="right" width="385px" />
+<img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/final-video-showcase-400x400.gif" alt="showcase video" align="right" width="385px" />
  
 Key features of `depthviz` include:
 * 100% **free** and **open-source** for **all freedivers**, **with** or **without** a dive computer.
@@ -169,7 +169,7 @@ depthviz -i 123456_ACTIVITY.fit -s garmin -o mydive.mp4 --depth-mode zero-based 
 
 #### Depth Mode: Raw vs Zero-based
 
-<p align="center"><img src="./assets/depth-mode-comparison.jpg" alt="Depth Mode: raw vs zero-based" width="600px"/></p>
+<p align="center"><img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/depth-mode-comparison.jpg" alt="Depth Mode: raw vs zero-based" width="600px"/></p>
 
 
 > [!TIP]
@@ -177,7 +177,7 @@ depthviz -i 123456_ACTIVITY.fit -s garmin -o mydive.mp4 --depth-mode zero-based 
 
 #### Time Overlay Video
 
-<p align="center"><img src="./assets/time-overlays.gif" alt="time overlay demo" width="600px"/></p>
+<p align="center"><img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/time-overlays.gif" alt="time overlay demo" width="600px"/></p>
 
 You can also generate a time overlay video as a separate video that displays the time elapsed during the dive. It will be exported in the same directory as the depth overlay video.
 
@@ -201,7 +201,7 @@ The time overlay video will be automatically generated and saved in the same dir
 
 ### Step 3: Integrate with Your Footage
 
-<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/step3-dark-v2.jpeg" width="500px"><img src="./assets/step3-light-v2.jpeg" width="500px" title="integrate overlays with your footage" /></picture></p> 
+<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/step3-dark-v2.jpeg" width="500px"><img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/step3-light-v2.jpeg" width="500px" title="integrate overlays with your footage" /></picture></p> 
 
 Import the generated **depth overlay** video and **time overlay** video (if used) into your preferred video editing software. Combine them with your original dive footage. Remove the background color if needed. Adjust position of the overlays to suit your video style.
 
