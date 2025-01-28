@@ -1,13 +1,13 @@
 [tool.poetry]
 name = "depthviz"
 version = "0.0.0"
-description = "Automate depth tracking for your freediving videos: Works with or without dive computers."
+description = "Visualize your depth for your freediving videos: Works with or without dive computers."
 authors = ["Noppanut Ploywong <noppanut.connect@gmail.com>"]
 license = "Apache-2.0"
 readme = "README.md"
 packages = [{ include = "depthviz", from = "src" }]
 repository = "https://github.com/noppanut15/depthviz"
-keywords = ["freediving", "dive", "video", "overlay", "depth", "dive-computer", "dive-log"]
+keywords = ["freediving", "dive", "video", "overlay", "depth", "dive-computer", "dive-log", "hud"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "License :: OSI Approved :: Apache Software License",
