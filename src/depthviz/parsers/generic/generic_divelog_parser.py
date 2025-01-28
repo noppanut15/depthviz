@@ -103,7 +103,7 @@ class DiveLogParser(ABC):
             duration = (1 / ASSUMED_ASCENT_RATE) * last_depth
             self.time_data.append(last_time + duration)
 
-        # Step 3: Ensure the time data is positive
+        # Step 3: Ensure the time data is positive (by starting at zero)
         self.time_data = [time - self.time_data[0] for time in self.time_data]
 
     def depth_mode_execute(self) -> None:
