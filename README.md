@@ -169,7 +169,7 @@ depthviz -i 123456_ACTIVITY.fit -s garmin -o mydive.mp4 --depth-mode zero-based 
 
 #### Depth Mode: Raw vs Zero-based
 
-<p align="center"><img src="./assets/depth-mode-comparison.jpg" alt="Depth Mode: raw vs zero-based" width="500px"/></p>
+<p align="center"><img src="./assets/depth-mode-comparison.jpg" alt="Depth Mode: raw vs zero-based" width="600px"/></p>
 
 
 > [!TIP]
@@ -177,7 +177,7 @@ depthviz -i 123456_ACTIVITY.fit -s garmin -o mydive.mp4 --depth-mode zero-based 
 
 #### Time Overlay Video
 
-<p align="center"><img src="./assets/time-overlays.gif" alt="time overlay demo" width="500px"/></p>
+<p align="center"><img src="./assets/time-overlays.gif" alt="time overlay demo" width="600px"/></p>
 
 You can also generate a time overlay video as a separate video that displays the time elapsed during the dive. It will be exported in the same directory as the depth overlay video.
 
