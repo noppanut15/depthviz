@@ -173,7 +173,7 @@ depthviz -i 123456_ACTIVITY.fit -s garmin -o mydive.mp4 --depth-mode zero-based 
 
 
 > [!TIP]
-> Use `--depth-mode zero-based` to set the **starting depth and ending depth to 0m**. *(right figure)* This can be useful for displaying the depth from the surface.<br><br> Note that it assumes a descent and ascent rate of 1m/s between 0m and the actual starting depth from the dive log.<br><br> If accuracy is important, use `raw` (default mode) to display the actual depth values from the dive log. The depth values **may start from some depth other than 0m, depending on when the dive computer started recording**. *(left figure)*
+> Use `--depth-mode zero-based` to set the **starting depth and ending depth to 0m**. *(right figure)* This can be useful for displaying the depth from the surface.<br><br> Note that it assumes a descent and ascent rate of 1m/s between 0m and the actual starting/ending depth from the dive log.<br><br> If accuracy is important, use `raw` (default mode) to display the actual depth values from the dive log. The depth values **may start from some depth other than 0m, depending on when the dive computer started recording**. *(left figure)*
 
 #### Time Overlay Video
 
