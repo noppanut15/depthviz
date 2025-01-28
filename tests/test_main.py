@@ -318,8 +318,8 @@ class TestMainCLI:
     @mock.patch("depthviz.parsers.garmin.fit_parser.GarminFitParser.parse")
     def test_main_with_args_garmin(
         self,
-        mock_parse: mock.MagicMock,
-        mock_create_depth_video: mock.MagicMock,
+        mock_parse: mock.Mock,
+        mock_create_depth_video: mock.Mock,
         capsys: pytest.CaptureFixture[str],
         tmp_path: pathlib.Path,
     ) -> None:
@@ -472,8 +472,8 @@ class TestMainCLI:
     @mock.patch("depthviz.parsers.suunto.fit_parser.SuuntoFitParser.parse")
     def test_main_with_args_suunto(
         self,
-        mock_parse: mock.MagicMock,
-        mock_create_depth_video: mock.MagicMock,
+        mock_parse: mock.Mock,
+        mock_create_depth_video: mock.Mock,
         capsys: pytest.CaptureFixture[str],
         tmp_path: pathlib.Path,
     ) -> None:

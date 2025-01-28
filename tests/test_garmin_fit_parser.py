@@ -7,7 +7,7 @@ Unit tests for the GarminFitParser class.
 """
 
 from typing import Any, Union
-from unittest.mock import patch, MagicMock, Mock
+from unittest.mock import patch, Mock
 import pytest
 from garmin_fit_sdk import Stream, Decoder
 from depthviz.parsers.garmin.fit_parser import GarminFitParser
@@ -1178,7 +1178,7 @@ class TestGarminFitParser:
 
     @patch("builtins.input", return_value="3")
     def test_invalid_dive_idx(
-        self, mock_input: MagicMock, monkeypatch: pytest.MonkeyPatch
+        self, mock_input: Mock, monkeypatch: pytest.MonkeyPatch
     ) -> None:
         """
         Test parsing a FIT file with an invalid dive index.
@@ -1313,7 +1313,7 @@ class TestGarminFitParser:
     @patch("builtins.input", return_value="2")
     def test_select_dive_multiple_dives(
         self,
-        mock_input: MagicMock,
+        mock_input: Mock,
         capsys: pytest.CaptureFixture[str],
     ) -> None:
         """
@@ -1361,7 +1361,7 @@ class TestGarminFitParser:
     @patch("builtins.input", return_value="xxx")
     def test_select_invalid_dive(
         self,
-        mock_input: MagicMock,
+        mock_input: Mock,
     ) -> None:
         """
         Test selecting an invalid dive index.
