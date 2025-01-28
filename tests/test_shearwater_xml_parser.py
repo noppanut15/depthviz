@@ -7,6 +7,7 @@ Unit tests for the ShearwaterXmlParser class.
 """
 
 import os
+from unittest.mock import patch, Mock
 import pytest
 from depthviz.parsers.shearwater.shearwater_xml_parser import (
     ShearwaterXmlParser,
@@ -355,3 +356,27 @@ class TestShearwaterXmlParser:
             str(e.value)
             == "Invalid salinity setting: Must be 'fresh', 'en13319', or 'salt'"
         )
+
+    @pytest.mark.parametrize("depth_mode", ["raw", "zero-based"])
+    @patch(
+        "depthviz.parsers.shearwater.shearwater_xml_parser.ShearwaterXmlParser.depth_mode_execute"
+    )
+    def test_parse_valid_xml_depth_mode_exec(
+        self,
+        mock_depth_mode_execute: Mock,
+        depth_mode: str,
+        request: pytest.FixtureRequest,
+    ) -> None:
+        """
+        Test parsing a valid XML file with depth mode execution.
+        """
+        file_path = str(
+            request.path.parent.joinpath(
+                "data",
+                "shearwater",
+                "valid_depth_data_trimmed.xml",
+            )
+        )
+        parser = ShearwaterXmlParser(depth_mode=depth_mode)
+        parser.parse(file_path)
+        mock_depth_mode_execute.assert_called_once()
