@@ -26,12 +26,18 @@
  
 Why use *depthviz*?
 
-✅ **Free & Open-Source** – Accessible to all freedivers, with or without a dive computer.  
+✅ **Free & Open-Source** – Accessible to all freedivers, with or without a dive computer.
+
 ✅ **Cross-Platform** – Works on **Windows, macOS, and Linux**.
+
 ✅ **Supports Multiple Dive Logs** – Compatible with **Apnealizer, Shearwater, Garmin**, and **Suunto**.
+
 ✅ **Customizable Display** – Adjust decimal places, fonts, colors, and stroke width to match your style.
+
 ✅ **Seamless Video Integration** – Works with **free** video editors like CapCut.  
+
 ✅ **Automatic Depth & Time Overlays** – Generates both depth and time overlays for accurate dive visualization.
+
 ✅ **Smooth Depth Display** – Automatically fills in missing data for a seamless and natural depth display. Includes zero-based depth mode to estimate a 0m starting depth when dive logs begin below the surface.
 
 > [!TIP]
