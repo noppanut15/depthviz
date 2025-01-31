@@ -24,15 +24,15 @@
 
 <img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/final-video-showcase-400x400.gif" alt="showcase video" align="right" width="385px" />
  
-Key features of `depthviz` include:
-* 100% **free** and **open-source** for **all freedivers**, **with** or **without** a dive computer.
-* Cross-platform support for **Windows**, **macOS**, and **Linux**.
-* Supports various dive computer data formats, including **Apnealizer**, **Shearwater**, **Garmin**, and **Suunto**.
-* **Customizable display** with options for decimal places, font, background color, and stroke width.
-* Works with **free** video editors like CapCut and much more.
-* **Automatically** generates a depth overlay video from your dive log data.
-* Generates the **time** overlay as a separate video to display the time elapsed during the dive.
-* Linear interpolation to fill in gaps in the dive log data for a **smooth depth profile**.
+Why use *depthviz*?
+
+✅ **Free & Open-Source** – Accessible to all freedivers, with or without a dive computer.  
+✅ **Cross-Platform** – Works on **Windows, macOS, and Linux**.
+✅ **Supports Multiple Dive Logs** – Compatible with **Apnealizer, Shearwater, Garmin**, and **Suunto**.
+✅ **Customizable Display** – Adjust decimal places, fonts, colors, and stroke width to match your style.
+✅ **Seamless Video Integration** – Works with **free** video editors like CapCut.  
+✅ **Automatic Depth & Time Overlays** – Generates both depth and time overlays for accurate dive visualization.
+✅ **Smooth Depth Display** – Automatically fills in missing data for a seamless and natural depth display. Includes zero-based depth mode to estimate a 0m starting depth when dive logs begin below the surface.
 
 > [!TIP]
 > For performance freedivers, you can incorporate `depthviz` into your dive analysis. By visualizing your dive profile, you can identify areas for improvement and track your progress over time.
