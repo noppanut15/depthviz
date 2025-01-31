@@ -75,7 +75,7 @@ pipx install depthviz
 
 **Upgrade:**
 
-When a new version is released, you can upgrade to the latest version using the following command:
+When a new version is released, upgrade `depthviz` to the latest version by running:
 
 ```bash
 pipx upgrade depthviz
