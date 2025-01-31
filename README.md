@@ -94,33 +94,39 @@ depthviz --version
 
 ## 🚀 Usage
 
-### Step 1: Download Your Data
+`depthviz` generates overlay videos for **depth** and **time**. Follow these steps to create your overlays and add them to your footage. 🏊‍♂️🎥
 
-- **✅ If you have a dive computer:**<br>Export your dive log from your dive computer or diving application. See the [Data Source](#data-source) for supported formats.
-- **🚫 If you don't have a dive computer:**<br>Record your dive profile manually using depth markers in your footage. See the [No Dive Computer?](#-no-dive-computer) section for more details.
+### Step 1: Prepare Your Dive Data
 
-### Step 2: Generate the Overlay
+- **✅ If you have a dive computer:**<br>Export your dive log from your dive computer or diving application. See the [Supported Dive Log Formats](#supported-dive-log-formats) for details.
+- **🚫 No dive computer? No problem!**<br>Record your dive profile manually using depth markers in your footage. See the [No Dive Computer?](#-no-dive-computer) section for more details.
 
-Use `depthviz` to generate a depth overlay video from your dive log.
+### Step 2: Generate the Overlay 🎬
+
+Use the following command to create a depth overlay video from your dive log:
 
 ```bash
-depthviz -i <input_file> -s <source> -o <output_video.mp4>
+depthviz -i YOUR_DIVE_LOG -s DATA_SOURCE -o OUTPUT_VIDEO.mp4
 ```
-| &nbsp;&nbsp;&nbsp;&nbsp;Option&nbsp;&nbsp;&nbsp;&nbsp; | Short | Values                                                               | Description                                                                    |
-| ------------------------------------------------------ | ----- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| `--input`                                              | `-i`  | File path                                                            | Path to your dive log file.                                                    |
-| `--source`                                             | `-s`  | `apnealizer`,<br>`shearwater`,<br>`garmin`,<br>`suunto`,<br>`manual` | Source of the data.<br>(See the [Data Source](#data-source) for more details.) |
-| `--output`                                             | `-o`  | File path                                                            | Path or filename for the generated video. File format must be `.mp4`.          |
+For example, if using a **Garmin** dive log, run:
+```bash
+depthviz -i 123456_ACTIVITY.fit -s garmin -o my_dive_overlay.mp4
+```
+| &nbsp;&nbsp;&nbsp;&nbsp;Option&nbsp;&nbsp;&nbsp;&nbsp; | Short | Values                                                               | Description                                                                                             |
+| ------------------------------------------------------ | ----- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `--input`                                              | `-i`  | File path                                                            | Path to your dive log file.                                                                             |
+| `--source`                                             | `-s`  | `apnealizer`,<br>`shearwater`,<br>`garmin`,<br>`suunto`,<br>`manual` | Source of the data.<br>(See the [Supported Dive Log Formats](#supported-dive-log-formats) for details.) |
+| `--output`                                             | `-o`  | File path                                                            | Path or filename for the generated video. File format must be `.mp4`.                                   |
 
-#### Data Source
+#### 📂 Supported Dive Log Formats
 
 |    Source    | Description                                                                                                                                                                                                                                                   | File type |
 | :----------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------: |
-| `apnealizer` | Data from **Apnealizer** application. <br> [![Get log][get_log_img]](https://apnealizer.com/)                                                                                                                                                                 |    CSV    |
-| `shearwater` | Data from **Shearwater** dive computers. <br> [![Get log][get_log_img]](https://shearwater.com/pages/shearwater-cloud)                                                                                                                                        |    XML    |
-|   `garmin`   | Data from **Garmin** dive computers. <br> [![Get log][get_log_img]](https://connect.garmin.com/signin/) [![How to][how_to_img]](https://github.com/noppanut15/depthviz/blob/main/docs/GARMIN.md)                                                              |    FIT    |
-|   `suunto`   | Data from **Suunto** dive computers. <br> [![Get log][get_log_img]](https://www.suunto.com/suunto-app/suunto-app-2022/)  [![How to][how_to_img]](https://www.suunto.com/Support/faq-articles/suunto-app/what-type-of-files-can-i-export-from-the-suunto-app/) |    FIT    |
-|   `manual`   | Manual depth input without a dive computer. <br> [![How to][how_to_img]](#-no-dive-computer)                                                                                                                                                                  |    CSV    |
+| `apnealizer` | Exported logs from the **Apnealizer** app. <br> [![Get log][get_log_img]](https://apnealizer.com/)                                                                                                                                                            |    CSV    |
+| `shearwater` | Logs from **Shearwater** dive computers. <br> [![Get log][get_log_img]](https://shearwater.com/pages/shearwater-cloud)                                                                                                                                        |    XML    |
+|   `garmin`   | Logs from **Garmin** dive computers. <br> [![Get log][get_log_img]](https://connect.garmin.com/signin/) [![How to][how_to_img]](https://github.com/noppanut15/depthviz/blob/main/docs/GARMIN.md)                                                              |    FIT    |
+|   `suunto`   | Logs from **Suunto** dive computers. <br> [![Get log][get_log_img]](https://www.suunto.com/suunto-app/suunto-app-2022/)  [![How to][how_to_img]](https://www.suunto.com/Support/faq-articles/suunto-app/what-type-of-files-can-i-export-from-the-suunto-app/) |    FIT    |
+|   `manual`   | Manually entered depth logs. <br> [![How to][how_to_img]](#-no-dive-computer)                                                                                                                                                                                 |    CSV    |
 
 <details><summary><strong>Example Command</strong></summary><br>
 
@@ -132,15 +138,16 @@ depthviz -i 123456_ACTIVITY.fit -s garmin -o depth_overlay.mp4
 
 </details>
 
-#### Advanced Options
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Option&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Values&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Default                                                     | Description                                                                                                                                                                                  |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ----------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `-d`, <br/>`--decimal-places`                                                                                                                          | `0-2`                                                                          | `0`                                                         | Number of decimal places to display in the depth overlay.                                                                                                                                    |
-| `--depth-mode`                                                                                                                                         | `raw`, <br/>`zero-based`                                                       | `raw`                                                       | Depth display mode. `raw` displays the raw depth values from the dive log. `zero-based` sets the starting depth & ending depth to 0m. [See Raw vs Zero-Based](#depth-mode-raw-vs-zero-based) |
-| `--no-minus`                                                                                                                                           | -                                                                              | -                                                           | Hide the minus sign for depth values (e.g., display `10m` instead of `-10m`).                                                                                                                |
-| `--font`                                                                                                                                               | File path                                                                      | [Default font](https://fonts.google.com/specimen/Open+Sans) | Path to a custom font file for the text.                                                                                                                                                     |
-| `--bg-color`                                                                                                                                           | Color name or hex                                                              | `black`                                                     | Background color (e.g., `green`, `'#000000'`).                                                                                                                                               |
-| `--stroke-width`                                                                                                                                       | Positive integer                                                               | `5`                                                         | Width of the stroke around the text in pixels.                                                                                                                                               |
+#### 🎛 Advanced Customization Options
+Want more control? Use these optional parameters:
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Option&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Values&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Default                                                     | Description                                                                                                                                                                                          |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ----------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-d`, <br/>`--decimal-places`                                                                                                                          | `0-2`                                                                          | `0`                                                         | Number of decimal places in the depth overlay.                                                                                                                                                       |
+| `--depth-mode`                                                                                                                                         | `raw`, <br/>`zero-based`                                                       | `raw`                                                       | `raw` displays actual depth values, while `zero-based` ensures the overlay starts and ends at 0m, as dive computers begin recording at depth. [See Raw vs Zero-Based](#depth-mode-raw-vs-zero-based) |
+| `--no-minus`                                                                                                                                           | -                                                                              | -                                                           | Removes the minus sign from depth values (e.g., `10m` instead of `-10m`).                                                                                                                            |
+| `--font`                                                                                                                                               | File path                                                                      | [Default font](https://fonts.google.com/specimen/Open+Sans) | Path to a custom font file for the text.                                                                                                                                                             |
+| `--bg-color`                                                                                                                                           | Color name or hex                                                              | `black`                                                     | Background color (e.g., `green`, `'#000000'`).                                                                                                                                                       |
+| `--stroke-width`                                                                                                                                       | Positive integer                                                               | `5`                                                         | Thickness of the text outline for better visibility.                                                                                                                                                 |
 
 
 <details><summary><strong>Example Command with Advanced Options</strong></summary><br>
@@ -203,12 +210,12 @@ The time overlay video will be automatically generated and saved in the same dir
 
 <p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/step3-dark-v2.jpeg" width="500px"><img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/step3-light-v2.jpeg" width="500px" title="integrate overlays with your footage" /></picture></p> 
 
-Import the generated **depth overlay** video and **time overlay** video (if used) into your preferred video editing software. Combine them with your original dive footage. Remove the background color if needed. Adjust position of the overlays to suit your video style.
+Import the generated **depth overlay** and **time overlay** (if used) into your video editing software. Remove the background color. Adjust position of the overlays to suit your video style.
 
-> [Watch this short tutorial](https://www.youtube.com/watch?v=ZggKrWk98Ag) on how to import an overlay video in CapCut Desktop.
+> [🎓 Watch a quick tutorial](https://www.youtube.com/watch?v=ZggKrWk98Ag): How to import overlays in CapCut.
 
 > [!TIP]
-> **Chroma Keying**: If you want to remove the background color from the overlay video, you can use the [chroma key](https://en.wikipedia.org/wiki/Chroma_key) effect in your video editor. You can use the `--bg-color` option to set the background color to match your video editor's chroma key color. `--bg-color green` is a common choice.
+> **🎨 Chroma Keying**: If you want to remove the background color from the overlay, use the [chroma key](https://en.wikipedia.org/wiki/Chroma_key) effect in your video editor. You can use the `--bg-color` option to set the background color to match your video editor's chroma key color. Using `--bg-color green` is a common choice.
 
 <div align="right">
 
