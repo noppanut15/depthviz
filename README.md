@@ -259,19 +259,19 @@ depthviz -i manual_input.csv -s manual -o output_video.mp4
 
 `depthviz` offers two depth modes for displaying your depth:
 
-- **`raw` (Default & Most Accurate)** – Displays depth **exactly as recorded** by the dive computer.  
-  - Since dive computers start logging **after detecting water pressure**, the first recorded depth may not be **0m** (e.g., **-0.3m, -1m, -1.6m**, etc.).  
-  - Some dive computers **stop logging slightly early**, so the final logged depth may be just above the surface (e.g., **-0.1m**).  
-  - **If precise accuracy is important, choose `raw` mode**, as it maintains the **true recorded depth values** from the dive log.
+- **`raw` (Default)** – Displays depth **exactly as recorded** by the dive computer.  
+  - Since dive computers start logging **after detecting water pressure**, the first recorded depth may not be **0m** (e.g., -0.3m, -1m, -1.6m, etc.).  
+  - Some dive computers **stop logging slightly early**, so the final logged depth may be just above the surface (e.g., -0.1m).  
+  - **If precise accuracy is important**, choose `raw` mode, as it maintains the true recorded depth values from the dive log.
 
 - **`zero-based`** – Adjusts the overlay to **start and end at 0m**, even if the dive log begins or ends below the surface.
-  - Useful for those who want to **show depth starting and ending at the surface**, rather than the dive computer’s first and last recorded depth.  
-  - Corrects cases where **dive computers log the end of the dive just before reaching 0m** (e.g., **-0.1m**).  
+  - Useful for those who want to show depth **starting and ending at the surface**, rather than the dive computer’s first and last recorded depth.  
+  - Corrects cases where dive computers log the end of the dive just before reaching 0m (e.g., -0.1m).  
   - Assumes a **1m/s descent and ascent rate** between 0m and the first/last recorded depth.
 
 > [!TIP]
-> - **Use `zero-based`** if you prefer the overlay to **start and end at 0m**.
-> - **Use `raw`** if you want to display the **exact depth values** from the dive log for maximum accuracy.
+> - Use `zero-based` if you prefer the overlay to **start and end at 0m**.
+> - Use `raw` if you want to display the **exact depth values** from the dive log for maximum accuracy.
 
 <div align="right">
 
