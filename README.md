@@ -53,8 +53,7 @@ Want **early access** to new open-source projects, exclusive insights, and sneak
 
 <a href="https://github.com/noppanut15/" title="Follow Me on GitHub">
 <picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/follow%20me%20on%20github-white.svg?style=for-the-badge&logo=github&logoColor=black"><img src="https://img.shields.io/badge/follow%20me%20on%20github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white" title="Follow Me on GitHub" /></picture>
-</a>
-
+</a><br><br>
 
 I’d also love to see your diving stories or videos made with `depthviz`! Share your creations by tagging me [@noppanut15](https://www.instagram.com/noppanut15/) or using the hashtag **#depthviz**. 
 
