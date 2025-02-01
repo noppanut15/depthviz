@@ -94,29 +94,30 @@ depthviz --version
 
 ## 🚀 Usage
 
-`depthviz` generates overlay videos for **depth** and **time**. Follow these steps to create your overlays and add them to your footage. 🏊‍♂️🎥
+`depthviz` turns your dive logs into overlay videos that show your depth and elapsed time. Follow these 3 simple steps: 🏊‍♂️🎥
 
 ### Step 1: Prepare Your Dive Data
 
-- **✅ If you have a dive computer:**<br>Export your dive log from your dive computer or diving application. See the [Supported Dive Log Formats](#supported-dive-log-formats) for details.
-- **🚫 No dive computer? No problem!**<br>Record your dive profile manually using depth markers in your footage. See the [No Dive Computer?](#-no-dive-computer) section for more details.
+- **✅ With a Dive Computer:**<br>Export your dive log from your dive computer or diving application. (see [Supported Dive Log Formats](#-supported-dive-log-formats) below).
+- **🚫 No Dive Computer?**<br>You can record your dive manually (details in [No Dive Computer?](#-no-dive-computer)).
+
 
 ### Step 2: Generate the Overlay 🎬
 
-Use the following command to create a depth overlay video from your dive log:
+Run this command to create your depth overlay video from your dive log:
 
 ```bash
 depthviz -i YOUR_DIVE_LOG -s DATA_SOURCE -o OUTPUT_VIDEO.mp4
 ```
-For example, if using a **Garmin** dive log, run:
+**Example (Garmin dive log):**
 ```bash
 depthviz -i 123456_ACTIVITY.fit -s garmin -o my_dive_overlay.mp4
 ```
 | &nbsp;&nbsp;&nbsp;&nbsp;Option&nbsp;&nbsp;&nbsp;&nbsp; | Short | Values                                                               | Description                                                                                             |
 | ------------------------------------------------------ | ----- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `--input`                                              | `-i`  | File path                                                            | Path to your dive log file.                                                                             |
-| `--source`                                             | `-s`  | `apnealizer`,<br>`shearwater`,<br>`garmin`,<br>`suunto`,<br>`manual` | Source of the data.<br>(See the [Supported Dive Log Formats](#supported-dive-log-formats) for details.) |
-| `--output`                                             | `-o`  | File path                                                            | Path or filename for the generated video. File format must be `.mp4`.                                   |
+| `--input`                                              | `-i`  | File path                                                            | Path or filename to your dive log file.                                                                             |
+| `--source`                                             | `-s`  | `apnealizer`,<br>`shearwater`,<br>`garmin`,<br>`suunto`,<br>`manual` | The data source.<br>(See the [Supported Dive Log Formats](#supported-dive-log-formats) for details.) |
+| `--output`                                             | `-o`  | File path                                                            | Path or filename for the output video. (must end with `.mp4`)                                   |
 
 #### 📂 Supported Dive Log Formats
 
