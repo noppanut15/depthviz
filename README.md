@@ -51,7 +51,7 @@ If you like `depthviz` and find it useful, please give it a shiny [![star](https
 
 Want **early access** to new open-source projects, exclusive insights, and sneak peeks into upcoming `depthviz` features? 🚀
 
-<a href="https://github.com/noppanut15/" _target="blank">
+<a href="https://github.com/noppanut15/" title="Follow Me on GitHub">
 <picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/follow%20me%20on%20github-white.svg?style=for-the-badge&logo=github&logoColor=black"><img src="https://img.shields.io/badge/follow%20me%20on%20github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white" title="Follow Me on GitHub" /></picture>
 </a>
 
