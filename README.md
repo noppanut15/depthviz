@@ -151,15 +151,20 @@ Want more control? Use these optional parameters:
 Example of generating a depth overlay video named `mydive.mp4` using data from `123456_ACTIVITY.fit` exported from [Garmin Connect](https://github.com/noppanut15/depthviz/blob/main/docs/GARMIN.md):
 
 ```bash
-depthviz -i 123456_ACTIVITY.fit -s garmin -o mydive.mp4 --depth-mode zero-based --decimal-places 1 --no-minus --bg-color green --font ~/Downloads/font.ttf
+depthviz \
+  -i 123456_ACTIVITY.fit -s garmin -o mydive.mp4 \
+  --depth-mode zero-based \
+  --decimal-places 1 \
+  --no-minus \
+  --bg-color green \
+  --font ~/Downloads/YourCustomFont.ttf
 ```
 
 - Set the depth display mode to **zero-based** to start the depth from 0m instead of the actual depth values from the dive log.
 - The depth values will be displayed with **one** decimal place.
 - The minus sign will be **hidden**.
 - The background color will be set to **green**.
-- A **custom font** file at `~/Downloads/font.ttf` will be used for the text.
-
+- A **custom font** file at `~/Downloads/YourCustomFont.ttf` will be used for the text.
 
 ---
 </details>
