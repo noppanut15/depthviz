@@ -217,33 +217,11 @@ Import the generated **depth overlay** and **time overlay** (if used) into your 
 
 ## 🚫 No Dive Computer?
 
-**No Dive Computer, No Problem!** You can still create a depth overlay video by **manually inputting your dive log** using the `-s manual` source option.
+Even without a dive computer, **you can** create a depth overlay! Simply record **key moments** of your dive (using depth markers on your rope, for example) and prepare a CSV file with two columns:
+- **Time**: in seconds
+- **Depth**: in meters
 
-**Example Command**:
-```bash
-depthviz -i manual_input.csv -s manual -o output_video.mp4
-```
-
-Freediving ropes with **depth markers** can help you record your dive profile manually. Use the depth markers in your footage as reference points to manually record your dive profile. Simply note the time and depth at each marker point to create your dive log.
-
-
-|  ![Example of a Freediving Rope with Depth Markers](https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/marked-rope-example.png)   |
-| :----------------------------------------------------------------------------------------------------------------------------------------------: |
-| *Example of a [Freediving Rope](https://2bfreeequipment.com/shop/2-b-free-freediving-rope-superstatic-marked-with-stopper/) with depth markers.* |
-
-**Manual Mode Input File Format:**
-
-The input file for manual mode should be a CSV file with the following columns:
-
-* `Time`: The time in seconds (e.g., `0`, `1`, `2`, ...).
-* `Depth`: The depth in meters (e.g., `10`, `9`, `8`, ...).
-
-**You don't need to record the depth at every second.** Record the depth at each time point where a depth marker is visible in your footage. `depthviz` will interpolate the depth values between the recorded points to create a smooth depth profile. 
-
-> [!TIP]
-> To quickly generate a basic depth overlay, you can record just three points: **the start** (0m), **the maximum depth**, and **the end** (0m). `depthviz` will handle the rest! For more complex dives (e.g., dives with significant variations in descent/ascent rate or bottom time), more data points are recommended.
-
-Here is an example of a manual mode input file:
+**Example Manual Input File:**
 
 | Time  | Depth |
 | :---: | :---: |
@@ -255,10 +233,24 @@ Here is an example of a manual mode input file:
 |  33   |   5   |
 |  39   |   0   |
 
-Download the example input file and try it out:
-<br>
-
 [![Download Input File](https://img.shields.io/badge/Download%20Input%20File-1974D2?style=for-the-badge&logo=readdotcv)](https://github.com/noppanut15/depthviz/blob/main/assets/manual-input-example.csv)
+
+**Example Command**:
+```bash
+depthviz -i manual_input.csv -s manual -o output_video.mp4
+```
+
+> [!TIP]
+> For a simple dive, recording just three points (start, maximum depth, end) is enough. `depthviz` will interpolate the values for a smooth overlay!
+
+|  ![Example of a Freediving Rope with Depth Markers](https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/marked-rope-example.png)   |
+| :----------------------------------------------------------------------------------------------------------------------------------------------: |
+| [Freediving rope](https://2bfreeequipment.com/shop/2-b-free-freediving-rope-superstatic-marked-with-stopper/) with depth markers helps record key moments of your dive. |
+
+**You don't need to record the depth at every second.** Record the depth at each time point where a depth marker is visible in your footage. `depthviz` will interpolate the depth values between the recorded points to create a smooth depth profile. 
+
+> [!IMPORTANT]
+> For more complex dives (e.g., dives with significant variations in descent/ascent rate or bottom time), more data points are recommended.
 
 <div align="right">
 
