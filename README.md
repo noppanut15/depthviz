@@ -56,7 +56,7 @@ Want **early access** to new open-source projects, exclusive insights, and sneak
 
 I’d also love to see your diving stories or videos made with `depthviz`! Share your creations by tagging me [@noppanut15](https://www.instagram.com/noppanut15/) or using the hashtag **#depthviz**. 
 
-See you in the deep! 🌊
+See you in the deep! 🌊😊
 
 <div align="right">
 
