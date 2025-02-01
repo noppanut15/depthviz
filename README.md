@@ -116,7 +116,7 @@ depthviz -i 123456_ACTIVITY.fit -s garmin -o my_dive_overlay.mp4
 | &nbsp;&nbsp;&nbsp;&nbsp;Option&nbsp;&nbsp;&nbsp;&nbsp; | Short | Values                                                               | Description                                                                                             |
 | ------------------------------------------------------ | ----- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
 | `--input`                                              | `-i`  | File path                                                            | Path or filename to your dive log file.                                                                             |
-| `--source`                                             | `-s`  | `apnealizer`,<br>`shearwater`,<br>`garmin`,<br>`suunto`,<br>`manual` | The data source.<br>(See the [Supported Dive Log Formats](#supported-dive-log-formats) for details.) |
+| `--source`                                             | `-s`  | `apnealizer`,<br>`shearwater`,<br>`garmin`,<br>`suunto`,<br>`manual` | The data source.<br>(See the [Supported Dive Log Formats](#-supported-dive-log-formats) for details.) |
 | `--output`                                             | `-o`  | File path                                                            | Path or filename for the output video. (must end with `.mp4`)                                   |
 
 #### 📂 Supported Dive Log Formats
