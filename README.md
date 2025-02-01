@@ -26,13 +26,13 @@
  
 Why use *depthviz*?
 
-- **Free & Open-Source** – Accessible to all freedivers, with or without a dive computer.
-- **Cross-Platform** – Works on **Windows, macOS, and Linux**.
-- **Supports Multiple Dive Logs** – Compatible with **Apnealizer, Shearwater, Garmin**, and **Suunto**.
+- **Free & Open-Source** – Made for all freedivers, whether or not you have a dive computer.
+- **Cross-Platform** – Works on **Windows**, **macOS**, and **Linux**.
+- **Multi-Source Dive Log Support:** Works with dive logs from **Apnealizer, Shearwater, Garmin, Suunto**, or even your own **manual input**.
 - **Customizable Display** – Adjust decimal places, fonts, colors, and stroke width to match your style.
-- **Seamless Video Integration** – Works with **free** video editors like CapCut.
+- **Easy Video Integration** – Designed to work seamlessly with free video editors like CapCut.
 - **Automatic Depth & Time Overlays** – Generates both depth and time overlays for accurate dive visualization.
-- **Smooth Depth Display** – Automatically fills in missing data for a seamless and natural depth display. Includes zero-based depth mode to estimate a 0m starting depth when dive logs begin below the surface.
+- **Smooth Depth Display** – Automatically fills in missing data for a seamless and natural depth display. Includes *zero-based* depth option to start your overlay at 0m if your dive log doesn’t record from the surface.
 
 > [!TIP]
 > For performance freedivers, you can incorporate `depthviz` into your dive analysis. By visualizing your dive profile, you can identify areas for improvement and track your progress over time.
@@ -60,28 +60,28 @@ Don't forget to share `depthviz` with your freediving community! 🌊
 </div>
 
 ## 🛠️ Installation
+### Prerequisites
+- **Python 3.9 or higher**  
+  [Download Python](https://www.python.org/downloads/) • [How to install Python](https://realpython.com/installing-python/)
+- **pipx** – the recommended tool for installing Python CLI tools  
+  [How to install pipx](https://pipx.pypa.io/stable/installation/)
 
-**Prerequisites:**
+### Install depthviz
 
-* [Python](https://www.python.org/downloads/) (3.9 or higher) installed on your system.
-* [pipx](https://pipx.pypa.io/stable/installation/) for installing Python CLI tools.
-
-**Install:**
-
-Run the following command in your terminal to install `depthviz` using `pipx`:
+Open your terminal and run:
 ```bash
 pipx install depthviz
 ```
 
-**Upgrade:**
+### Upgrade
 
-When a new version is released, upgrade `depthviz` to the latest version by running:
+When a new version is available, update with:
 
 ```bash
 pipx upgrade depthviz
 ```
 
-You can check the installed version by running:
+Check your installed version with:
 ```bash
 depthviz --version
 ```
