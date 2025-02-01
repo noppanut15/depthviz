@@ -46,10 +46,14 @@ Why use *depthviz*?
 
 ## 🌟 Like depthviz?
 
-If you like `depthviz` and find it useful, please click a 👁️ **Watch** button to avoid missing notifications about **new versions**, and give it a shiny [![star](https://img.shields.io/github/stars/noppanut15/depthviz
+If you like `depthviz` and find it useful, please give it a shiny [![star](https://img.shields.io/github/stars/noppanut15/depthviz
 )](https://github.com/noppanut15/depthviz) ✨
 
-Don't forget to share `depthviz` with your freediving community! 🌊
+Want **early access** to new open-source projects, exclusive insights, and sneak peeks into upcoming `depthviz` features? 🚀
+[![Follow me](https://img.shields.io/badge/follow%20me%20on%20github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/noppanut15/) 
+
+
+I’d also love to see your diving stories or videos made with `depthviz`! Share your creations by tagging me [@noppanut15](https://www.instagram.com/noppanut15/) or using the hashtag **#depthviz**. 🌊
 
 <div align="right">
 
