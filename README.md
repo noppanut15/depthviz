@@ -54,7 +54,7 @@ Want **early access** to new open-source projects, exclusive insights, and sneak
 [![Follow me](https://img.shields.io/badge/follow%20me%20on%20github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/noppanut15/) 
 
 
-I’d also love to see your diving stories or videos made with `depthviz`! Share your creations by tagging me [@noppanut15](https://www.instagram.com/noppanut15/) or using the hashtag **#depthviz**. 🌊
+I’d also love to see your diving stories or videos made with `depthviz`! Share your creations by tagging me [@noppanut15](https://www.instagram.com/noppanut15/) or using the hashtag **#depthviz**. See you in the deep! 🌊🔱
 
 <div align="right">
 
