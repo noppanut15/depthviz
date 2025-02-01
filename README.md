@@ -50,6 +50,7 @@ If you like `depthviz` and find it useful, please give it a shiny [![star](https
 )](https://github.com/noppanut15/depthviz) ✨
 
 Want **early access** to new open-source projects, exclusive insights, and sneak peeks into upcoming `depthviz` features? 🚀
+
 [![Follow me](https://img.shields.io/badge/follow%20me%20on%20github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/noppanut15/) 
 
 
