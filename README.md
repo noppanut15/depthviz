@@ -35,7 +35,7 @@ Why use *depthviz*?
 - **Smooth Depth Display** – Automatically fills in missing data for a seamless and natural depth display. Includes *zero-based* depth option to start your overlay at 0m if your dive log doesn’t record from the surface.
 
 > [!TIP]
-> For performance freedivers, you can incorporate `depthviz` into your dive analysis. By visualizing your dive profile, you can identify areas for improvement and track your progress over time.
+> Perfect for performance freedivers tracking PBs or analyzing technique. Overlay your data and see every moment of your dive!
 
 
 <div align="right">
