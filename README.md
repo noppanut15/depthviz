@@ -152,12 +152,12 @@ Example of generating a depth overlay video named `mydive.mp4` using data from `
 
 ```bash
 depthviz \
-  -i 123456_ACTIVITY.fit -s garmin -o mydive.mp4 \
-  --depth-mode zero-based \
-  --decimal-places 1 \
-  --no-minus \
-  --bg-color green \
-  --font ~/Downloads/YourCustomFont.ttf
+    -i 123456_ACTIVITY.fit -s garmin -o mydive.mp4 \
+    --depth-mode zero-based \
+    --decimal-places 1 \
+    --no-minus \
+    --bg-color green \
+    --font ~/Downloads/YourCustomFont.ttf
 ```
 
 - Set the depth display mode to **zero-based** to start the depth from 0m instead of the actual depth values from the dive log.
