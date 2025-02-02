@@ -100,13 +100,13 @@ depthviz --version
 
 `depthviz` turns your dive logs into overlay videos that show your depth and elapsed time. Follow these 3 simple steps: 🏊‍♂️🎥
 
-### Step 1: Prepare Your Dive Data
+### 📌 Step 1: Prepare Your Dive Data
 
 - **✅ With a Dive Computer:**<br>Export your dive log from your dive computer or diving application. (see [Supported Dive Log Formats](#-supported-dive-log-formats) below).
 - **🚫 No Dive Computer?**<br>You can record your dive manually (details in [No Dive Computer?](#-no-dive-computer)).
 
 
-### Step 2: Generate the Overlay 🎬
+### 📌 Step 2: Generate the Overlay
 
 Run this command to create your depth overlay video from your dive log:
 
@@ -175,7 +175,7 @@ depthviz \
 > [!TIP]
 > Use the `--decimal-places` option to control the precision of the depth display (e.g., `--decimal-places 1` displays depths like `-12.5m`)
 
-#### Time Overlay Video
+#### ⏱️ Time Overlay Video
 
 <p align="center"><img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/time-overlays.gif" alt="time overlay demo" width="600px"/></p>
 
@@ -197,7 +197,7 @@ depthviz -i 123456_ACTIVITY.fit -s garmin -o mydive.mp4 --time
 </details>
 
 
-### Step 3: Integrate with Your Footage
+### 📌 Step 3: Integrate with Your Footage
 
 <p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/step3-dark-v2.jpeg" width="500px"><img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/step3-light-v2.jpeg" width="500px" title="integrate overlays with your footage" /></picture></p> 
 
