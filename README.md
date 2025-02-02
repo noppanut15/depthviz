@@ -245,10 +245,8 @@ depthviz -i manual_input.csv -s manual -o output_video.mp4
 > [!IMPORTANT]
 > For more complex dives (e.g., dives with significant variations in descent/ascent rate or bottom time), more data points are recommended.
 
-| [![Example of a Freediving Rope with Depth Markers](https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/marked-rope-example.png)](https://2bfreeequipment.com/shop/2-b-free-freediving-rope-superstatic-marked-with-stopper/) |
-| :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|                                                                                 *Freediving rope with depth markers helps record key moments of your dive.*                                                                                 |
-
+<a href="https://2bfreeequipment.com/shop/2-b-free-freediving-rope-superstatic-marked-with-stopper/"><p align="center"><img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/marked-rope-example.png" alt="Example of a Freediving Rope with Depth Markers" width="600px"/></p></a>
+> *Freediving rope with depth markers helps record key moments of your dive.*
 
 <div align="right">
 
