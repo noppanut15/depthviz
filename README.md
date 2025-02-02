@@ -219,7 +219,7 @@ Import the generated **depth overlay** and **time overlay** (if used) into your 
 
 ## 🚫 No Dive Computer?
 
-Even without a dive computer, **you can** create a depth overlay! Simply record **key moments** of your dive (using depth markers on your rope, for example) and prepare a CSV file with two columns:
+No dive computer? No problem! **You can still create a depth overlay!** Simply record **key moments** of your dive (using depth markers on your rope, for example) and prepare a CSV file with two columns:
 - **Time**: in seconds
 - **Depth**: in meters
 
