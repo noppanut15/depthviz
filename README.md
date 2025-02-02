@@ -268,8 +268,8 @@ depthviz -i manual_input.csv -s manual -o output_video.mp4
 |   `zero-based`    | Aesthetic Video Overlays | Adjusts depth to **start and end at 0m** for a smoother display. Assumes a **1m/s descent/ascent rate** for the missing surface portion. *(right figure)* |
 
 > [!TIP]
-> - Use `raw`  mode if accuracy matters (e.g., depth training, freedive analysis).  
-> - Use `zero-based` if your dive log starts/ends underwater but you want a clean 0m start/end.
+> - Use `raw`  mode if accuracy matters (e.g., dive analysis).  
+> - Use `zero-based` if your dive log starts/ends underwater but you want a clean 0m start/end. (e.g., social media videos)
 
 <div align="right">
 
