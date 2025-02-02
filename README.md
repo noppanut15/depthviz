@@ -136,14 +136,14 @@ depthviz -i 123456_ACTIVITY.fit -s garmin -o my_dive_overlay.mp4
 
 #### 🎛 Advanced Customization Options
 Want more control? Use these optional parameters:
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Option&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Values&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |                           Default                           | Description                                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :----------------------------------------------------------------------------: | :---------------------------------------------------------: | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `-d` or <br/>`--decimal-places`                                                                                                                                    |                                `0`, `1`, or `2`                                |                             `0`                             | Number of decimal places in the depth overlay.                                                                                           |
-| `--depth-mode`                                                                                                                                                     |                         `raw` <br/>or<br/>`zero-based`                         |                            `raw`                            | `raw` shows the actual depth; `zero-based` forces the overlay to start/end at 0m. [See Raw vs Zero-Based](#-depth-mode-raw-vs-zero-based) |
-| `--no-minus`                                                                                                                                                       |                                       -                                        |                              -                              | Removes the minus sign from depth values (e.g., `10m` instead of `-10m`).                                                                |
-| `--font`                                                                                                                                                           |                                   File path                                    | [Default font](https://fonts.google.com/specimen/Open+Sans) | Path to a custom font file for the text.                                                                                                 |
-| `--bg-color`                                                                                                                                                       |                             Color name or hex code                             |                           `black`                           | Background color (e.g., `green`, `'#000000'`).                                                                                           |
-| `--stroke-width`                                                                                                                                                   |                                Positive integer                                |                             `5`                             | Thickness of the text outline for better visibility.                                                                                     |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Option&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Values&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |                           Default                           | Description                                                                                                                               |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :----------------------------------------------------------------------------: | :---------------------------------------------------------: | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `-d` or <br/>`--decimal-places`                                                                                                                                    |                                `0`, `1`, or `2`                                |                             `0`                             | Number of decimal places in the depth overlay.                                                                                            |
+| `--depth-mode`                                                                                                                                                     |                         `raw` <br/>or<br/>`zero-based`                         |                            `raw`                            | `raw` shows the actual depth; `zero-based` forces the overlay to start/end at 0m. [See Raw vs Zero-Based](#-raw-vs-zero-based-depth-mode) |
+| `--no-minus`                                                                                                                                                       |                                       -                                        |                              -                              | Removes the minus sign from depth values (e.g., `10m` instead of `-10m`).                                                                 |
+| `--font`                                                                                                                                                           |                                   File path                                    | [Default font](https://fonts.google.com/specimen/Open+Sans) | Path to a custom font file for the text.                                                                                                  |
+| `--bg-color`                                                                                                                                                       |                             Color name or hex code                             |                           `black`                           | Background color (e.g., `green`, `'#000000'`).                                                                                            |
+| `--stroke-width`                                                                                                                                                   |                                Positive integer                                |                             `5`                             | Thickness of the text outline for better visibility.                                                                                      |
 
 
 <details><summary><strong>Example Command with Advanced Options</strong></summary><br>
@@ -258,25 +258,20 @@ depthviz -i manual_input.csv -s manual -o output_video.mp4
 
 </div>
 
-## 🎯 Depth Mode: Raw vs Zero-Based
+## 💡 Raw vs Zero-Based Depth Mode
 
 <p align="center"><img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/depth-mode-comparison.jpg" alt="Depth Mode: raw vs zero-based" width="600px"/></p>
 
-`depthviz` offers two depth modes for displaying your depth:
+`depthviz` offers **two ways** to display depth:
 
-- **`raw` (Default)** – Displays depth **exactly as recorded** by the dive computer. *(left figure)*
-  - Since dive computers start logging **after detecting water pressure**, the first recorded depth may not be **0m** (e.g., -0.3m, -1m, -1.6m, etc.).  
-  - Some dive computers **stop logging slightly early**, so the final logged depth may be just above the surface (e.g., -0.1m).  
-  - **If precise accuracy is important**, choose `raw` mode, as it maintains the true recorded depth values from the dive log.
-
-- **`zero-based`** – Adjusts the overlay to **start and end at 0m**, even if the dive log begins or ends below the surface. *(right figure)*
-  - Useful for those who want to show depth **starting and ending at the surface**, rather than the dive computer’s first and last recorded depth.  
-  - Corrects cases where dive computers log the end of the dive just before reaching 0m (e.g., -0.1m).  
-  - Assumes a **1m/s descent and ascent rate** between 0m and the first/last recorded depth.
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mode&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Description                                                                                                                                                 |
+| :--------------------------------------------------------------------------: | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|                              `raw` *(Default)*                               | Shows **actual recorded** depth. Your dive might **start and end at -0.3m, -0.5m, etc.** if the dive computer didn’t record at the surface. *(left figure)* |
+|                                 `zero-based`                                 | Adjusts depth to **start and end at 0m** for a smoother display. Assumes a **1m/s descent/ascent rate** for the missing surface portion. *(right figure)*   |
 
 > [!TIP]
-> - Use `zero-based` if you prefer the overlay to **start and end at 0m**.
-> - Use `raw` if you want to display the **exact depth values** from the dive log for maximum accuracy.
+> - Use `raw`  mode for maximum accuracy.
+> - Use `zero-based` if your dive log starts/ends underwater but you want a clean 0m start/end.
 
 <div align="right">
 
