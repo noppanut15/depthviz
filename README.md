@@ -288,7 +288,7 @@ Dive computers record either **depth** directly or **pressure**, which `depthviz
 
 Underwater pressure consists of atmospheric pressure (collected during the surface interval or dive start) and hydrostatic pressure. To determine hydrostatic pressure:
 
-<br><p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="https://latex.codecogs.com/svg.image?\large&space;{\color{White}P_{\text{hydro}}=P_{\text{absolute}}-P_{\text{atmospheric}}}"><img src="https://latex.codecogs.com/svg.image?\large&space;$$P_{\text{hydro}}=P_{\text{absolute}}-P_{\text{atmospheric}}$$" title="$$P_{\text{hydro}}=P_{\text{absolute}}-P_{\text{atmospheric}}$$" /></picture></p><br>
+<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="https://latex.codecogs.com/svg.image?\large&space;{\color{White}P_{\text{hydro}}=P_{\text{absolute}}-P_{\text{atmospheric}}}"><img src="https://latex.codecogs.com/svg.image?\large&space;$$P_{\text{hydro}}=P_{\text{absolute}}-P_{\text{atmospheric}}$$" title="$$P_{\text{hydro}}=P_{\text{absolute}}-P_{\text{atmospheric}}$$" /></picture></p>
 
 <!-- $$
 P_{\text{hydro}} = P_{\text{absolute}} - P_{\text{atmospheric}}
@@ -300,7 +300,7 @@ Hydrostatic pressure increases with depth due to the weight of the water above, 
 
 Once hydrostatic pressure is known, depth can be calculated using the formula:
 
-<br><p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="https://latex.codecogs.com/svg.image?\large&space;{\color{White}h=\frac{P_{\text{hydro}}}{\rho&space;g}}"><img src="https://latex.codecogs.com/svg.image?\large&space;$$h=\frac{P_{\text{hydro}}}{\rho&space;g}$$" title="$$h=\frac{P_{\text{hydro}}}{\rho&space;g}$$" /></picture></p><br>
+<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="https://latex.codecogs.com/svg.image?\large&space;{\color{White}h=\frac{P_{\text{hydro}}}{\rho&space;g}}"><img src="https://latex.codecogs.com/svg.image?\large&space;$$h=\frac{P_{\text{hydro}}}{\rho&space;g}$$" title="$$h=\frac{P_{\text{hydro}}}{\rho&space;g}$$" /></picture></p>
 
 <!-- $$
 h=\frac{P_{\text{hydro}}}{\rho g}
