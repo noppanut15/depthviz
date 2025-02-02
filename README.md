@@ -281,7 +281,7 @@ depthviz -i manual_input.csv -s manual -o output_video.mp4
 `depthviz` transforms your dive log data into an overlay video that visually tracks your depth in real time. It supports multiple dive computer formats and even allows manual data input, making it a versatile tool for freedivers looking to analyze and improve their performance.
 
 ### 🔬 Understanding Depth Calculation
-Dive computers record either **depth** directly or **pressure**, which `depthviz` converts into depth using fluid statics principles. Understanding this process helps ensure accurate depth visualization.
+Dive computers record either **depth** directly or **pressure**, which `depthviz` converts into depth using *fluid statics principles*. Understanding this process helps ensure accurate depth visualization.
 
 #### 📌 Step 1: Calculating Hydrostatic Pressure
 
