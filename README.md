@@ -300,7 +300,7 @@ Hydrostatic pressure increases with depth due to the weight of the water above, 
 
 Once hydrostatic pressure is known, depth can be calculated using the formula:
 
-<br><p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="https://latex.codecogs.com/svg.image?\large&space;{\color{White}h=\frac{P_{\text{hydro}}}{\rho&space;g}}"><img src="https://latex.codecogs.com/svg.image?\large&space;$$h=\frac{P_{\text{hydro}}}{\rho&space;g}$$" title="$$h=\frac{P_{\text{hydro}}}{\rho&space;g}$$" /></picture></p><br>
+<br><p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="https://latex.codecogs.com/svg.image?\large&space;{\color{White}h=\frac{P_{\text{hydro}}}{\rho&space;g}}"><img src="https://latex.codecogs.com/svg.image?\large&space;$$h=\frac{P_{\text{hydro}}}{\rho&space;g}$$" title="$$h=\frac{P_{\text{hydro}}}{\rho&space;g}$$" /></picture></p>
 
 <!-- $$
 h=\frac{P_{\text{hydro}}}{\rho g}
