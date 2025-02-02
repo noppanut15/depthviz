@@ -283,7 +283,7 @@ depthviz -i manual_input.csv -s manual -o output_video.mp4
 ### 🔬 Understanding Depth Calculation
 Dive computers record either **depth** directly or **pressure**, which `depthviz` converts into depth using *fluid statics principles*. Understanding this process helps ensure accurate depth visualization.
 
-#### 🧮 Calculating Hydrostatic Pressure
+#### ↘️ Calculating Hydrostatic Pressure
 
 Underwater pressure consists of atmospheric pressure (collected during the surface interval or dive start) and hydrostatic pressure. To determine hydrostatic pressure:
 
@@ -295,7 +295,7 @@ $$ -->
 
 Hydrostatic pressure increases with depth due to the weight of the water above, making it a key factor in depth calculations.
 
-#### 🧮 Converting Pressure to Depth
+#### ↘️ Converting Pressure to Depth
 
 Once hydrostatic pressure is known, depth can be calculated using the formula:
 
