@@ -278,38 +278,74 @@ depthviz -i manual_input.csv -s manual -o output_video.mp4
 </div>
 
 ## 🧠 How It Works
-`depthviz` works by parsing dive log data exported from various dive computers (or manually inputting dive data) and generating an overlay video that displays depth information.
 
-Dive computers typically record either depth directly or pressure data. If the data is recorded as pressure, it is in the form of **absolute pressure**, which includes both atmospheric pressure and the pressure exerted by the water itself (hydrostatic pressure).
+`depthviz` transforms your dive log data into an overlay video that visually tracks your depth in real time. It supports multiple dive computer formats and even allows manual data input, making it a versatile tool for freedivers looking to analyze and improve their performance.
+
+### 🔬 Understanding Depth Calculation
+Dive computers record either **depth** directly or **pressure**, which `depthviz` converts into depth using fluid statics principles. Understanding this process helps ensure accurate depth visualization.
+
+#### 📌 Step 1: Calculating Hydrostatic Pressure
+
+Underwater pressure consists of atmospheric pressure (collected during the surface interval or dive start) and hydrostatic pressure. To determine hydrostatic pressure:
+
+$$
+P_{\text{hydro}} = P_{\text{absolute}} - P_{\text{atmospheric}}
+$$
+
+Hydrostatic pressure increases with depth due to the weight of the water above, making it a key factor in depth calculations.
+
+#### 📌 Step 2: Converting Pressure to Depth
+
+Once hydrostatic pressure is known, depth can be calculated using the formula:
+
+$$
+h = \frac{P_{\text{hydro}}}{\rho g}
+$$
+
+Where:
+
+- **h** = Depth in meters
+- **ρ** = Water density *(EN13319 standard: 1019.7 kg/m³, standard for dive computers)*
+- **g** = Gravity (9.81 m/s²)
+
+🔹 Water density varies between saltwater and freshwater, which can affect depth accuracy. Custom density settings are planned for future updates.
+
+### 📊 Handling Missing Data
+
+Dive computers record data at different rates, which may result in **gaps in data** due to device limitations, battery-saving settings, or inconsistent logging intervals. To create a smooth depth profile, `depthviz` applies **Linear Interpolation** to estimate missing values.
+
+#### 📈 Linear Interpolation Formula
+
+To estimate missing depth values, `depthviz` uses the following formula:
+
+$$
+y = y_1 + \frac{x - x_1}{x_2 - x_1} \times (y_2 - y_1)
+$$
+
+Where:
+
+- **y** = Estimated depth
+- **x** = Missing timestamp
+- **(x₁, y₁)** and **(x₂, y₂)** = Known data points
+
+This ensures a smooth transition between recorded depth values.
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/linear-interpolation.png" width="700" alt="Linear Interpolation Graph"/>
+</p>
+
+> **Example:** If your dive log records 5m at 10s and jumps to 10m at 20s, `depthviz` estimates intermediate depths at 11s, 12s, etc., for a seamless display.
 
 
-To determine the depth, `depthviz` uses the following approach:
-1.  **If the dive log contains depth data directly:** `depthviz` uses this data directly.
-2.  **If the dive log contains pressure data:**
-    * First, the **hydrostatic pressure** is calculated by subtracting atmospheric pressure (collected during the surface interval or dive start) from the absolute pressure:<br><br><p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="https://latex.codecogs.com/svg.image?\large&space;{\color{White}\text{Hydrostatic&space;Pressure}=\text{Absolute&space;Pressure}-\text{Atmospheric&space;Pressure}}"><img src="https://latex.codecogs.com/svg.image?\large&space;\text{Hydrostatic&space;Pressure}=\text{Absolute&space;Pressure}-\text{Atmospheric&space;Pressure}" title="\text{Hydrostatic Pressure}=\text{Absolute Pressure}-\text{Atmospheric Pressure}" /></picture></p><br>
-    * Then, the **fluid pressure formula** is used to calculate the depth:<br><br><p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="https://latex.codecogs.com/svg.image?\LARGE&space;{\color{White}P=\rho&space;g&space;h}"><img src="https://latex.codecogs.com/svg.image?\LARGE&space;&space;P=\rho&space;g&space;h" title=" P=\rho g h" /></picture></p> 
-       Where:
-         - $` P `$ is the fluid pressure,
-         - $` \rho `$ is the density of the fluid (water),
-         - $` g `$ is the acceleration due to gravity (9.80665 m/s²),
-         - $` h `$ is the height (or depth) of the fluid column (what we want to calculate).
-    * Rearranging the formula to solve for depth ($` h `$):<br><br><p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="https://latex.codecogs.com/svg.image?\LARGE&space;{\color{White}h=\frac{P}{\rho&space;g}}"><img src="https://latex.codecogs.com/svg.image?\LARGE&space;$$h=\frac{P}{\rho&space;g}$$" title="$$h=\frac{P}{\rho g}$$" /></picture></p><br>
+### 🎥 Creating the Overlay Video
 
-Currently, `depthviz` uses a water density ($` \rho `$) according to the **EN13319 standard**, a European CE standard for dive computers, which assumes a water density of 1019.7 kg/m³.
+Once the data is processed, `depthviz`:
 
-The water density can vary depending on the type of water (e.g., freshwater, saltwater). Even different locations in the ocean can have varying densities. This variability can affect the accuracy of depth calculations. For more precise measurements, users may need to adjust the density value based on their specific diving environment. Especially for freshwater diving, the water density is lower than the standard value, which can lead to depth overestimation. We will add support for custom water density in future releases.
-    
-> [!NOTE]
-> The EN13319 standard ensures the accuracy and reliability of depth measurements in dive computers. For more information, you can refer to the [EN13319 standard](https://standards.iteh.ai/catalog/standards/cen/5d35e933-ca50-4d80-8c9d-631f5597b784/en-13319-2000).
+✅ **Smooths depth values**, ensuring natural and fluid transitions between recorded points.  
+✅ **Applies display settings**, including color, font, and stroke width, for full customization.  
+✅ **Generates an overlay video**, ready for integration with your dive footage.
 
-3. **Fill in the Gaps**: Different dive computers have different sampling rates, and the data may not be recorded at regular intervals. If the dive log data contains gaps or missing values, `depthviz` uses **Linear Interpolation** to estimate the depth at those points. This method calculates the depth at each time point by interpolating between the two nearest known depth values recorded by the dive computer. This will help ensure a smooth and continuous depth profile in the overlay video.
-
-<p align="center"><img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/linear-interpolation.png" width="750" alt="Linear Interpolation"/></p>
-
-> [!NOTE]
-> Learn more about the [Linear Interpolation](https://en.wikipedia.org/wiki/Linear_interpolation) method and how it is used to estimate values between two known depths.
-
-4. **Generate Overlay Video**: The depth information from the linearly interpolated data is rendered into an overlay video, displaying the depth over time. This overlay can then be combined with your original dive footage in your video editor.
+This functionality allows freedivers to analyze their performance, track progress, and create engaging underwater visuals effortlessly. Whether for personal improvement, training analysis, or social media sharing, `depthviz` makes dive data visualization intuitive and powerful.
 
 <div align="right">
 
