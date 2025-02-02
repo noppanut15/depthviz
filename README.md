@@ -313,7 +313,7 @@ Where:
 
 ### 📊 Handling Missing Data
 
-Dive computers record data at different rates, which may result in **gaps in data** due to device limitations, battery-saving settings, or inconsistent logging intervals. To create a smooth depth profile, `depthviz` applies [**Linear Interpolation**](https://en.wikipedia.org/wiki/Linear_interpolation) to estimate missing values.
+Dive computers record data at different rates, which may result in **gaps in data** due to device limitations, battery-saving settings, or inconsistent logging intervals. To create a smooth depth profile, `depthviz` applies [Linear Interpolation](https://en.wikipedia.org/wiki/Linear_interpolation) to estimate missing values.
 
 To estimate missing depth values, `depthviz` uses the following formula:
 
