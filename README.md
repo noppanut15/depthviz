@@ -321,20 +321,22 @@ Dive computers record data at different rates, which may result in **gaps in dat
 
 To estimate missing depth values, `depthviz` uses the following formula:
 
-$$
-y = y_0 +  (x - x_0)\frac{y_1 - y_0}{x_1 - x_0}
-$$
+<br><p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="https://latex.codecogs.com/svg.image?\large&space;{\color{White}d=d_0+(t-t_0)\frac{d_1-d_0}{t_1-t_0}}"><img src="https://latex.codecogs.com/svg.image?\large&space;$$d=d_0+(t-t_0)\frac{d_1-d_0}{t_1-t_0}$$" title="$$d=d_0+(t-t_0)\frac{d_1-d_0}{t_1-t_0}$$" /></picture></p>
+
+<!-- $$
+d=d_0+(t-t_0)\frac{d_1-d_0}{t_1-t_0}
+$$ -->
 
 Where:
 
-- **y** = Estimated depth
-- **x** = Missing timestamp
-- **(x₀, y₀)** and **(x₁, y₁)** = Known data points
+- **d** = Estimated depth
+- **t** = Missing timestamp
+- **(t₀, d₀)** and **(t₁, d₁)** = Known data points
 
 This ensures a smooth transition between recorded depth values.
 
 <p align="center">
-  <img src="./assets/linear-interpolation-example.png" width="500" alt="Linear Interpolation Graph"/>
+  <img src="./assets/linear-interpolation-example.png" width="500" alt="Example Chart: Linear Interpolation of Depth Over Time"/>
 </p>
 
 > **Example:** If your dive log records 5m at 6s and jumps to 10m at 12s, `depthviz` estimates intermediate depths at 7s, 8s, etc., for a seamless display.
