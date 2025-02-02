@@ -318,14 +318,14 @@ Dive computers record data at different rates, which may result in **gaps in dat
 To estimate missing depth values, `depthviz` uses the following formula:
 
 $$
-y = y_1 + \frac{x - x_1}{x_2 - x_1} \times (y_2 - y_1)
+y = y_0 +  (x - x_0)\frac{y_1 - y_0}{x_1 - x_0}
 $$
 
 Where:
 
 - **y** = Estimated depth
 - **x** = Missing timestamp
-- **(x₁, y₁)** and **(x₂, y₂)** = Known data points
+- **(x₀, y₀)** and **(x₁, y₁)** = Known data points
 
 This ensures a smooth transition between recorded depth values.
 
