@@ -4,7 +4,7 @@
   </a>
   <a name="readme-top"></a>
 
-*A CLI tool that creates heads-up displays <br>for your **freediving videos**, <br>automatically tracking **depth** and **time** <br>from your **dive computer logs** or **manual input**.*
+*A CLI tool that creates video displays<br>of **depth** and **time** for freedivers<br>using a **dive computer** or **custom entries**.*
 
 [![PyPI - Version][version_badge_img]][version_badge_url] [![GitHub Actions Workflow Status][build_badge_img]][build_badge_url] [![Coveralls][coverage_badge_img]][coverage_badge_url] [![PyPI - Status][pypi_status_img]][pypi_status_url] [![PyPI Downloads][download_badge_img]][download_badge_url]
 
