@@ -288,7 +288,7 @@ Dive computers record either **depth** directly or **pressure**, which `depthviz
 
 Underwater pressure consists of atmospheric pressure (collected during the surface interval or dive start) and hydrostatic pressure. To determine hydrostatic pressure:
 
-<br><p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="https://latex.codecogs.com/svg.image?\LARGE&space;{\color{White}P_{\text{hydro}}=P_{\text{absolute}}-P_{\text{atmospheric}}}"><img src="https://latex.codecogs.com/svg.image?\LARGE&space;$$P_{\text{hydro}}=P_{\text{absolute}}-P_{\text{atmospheric}}$$" title="$$h=\frac{P}{\rho g}$$" /></picture></p><br>
+<br><p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="https://latex.codecogs.com/svg.image?\large&space;{\color{White}P_{\text{hydro}}=P_{\text{absolute}}-P_{\text{atmospheric}}}"><img src="https://latex.codecogs.com/svg.image?\large&space;$$P_{\text{hydro}}=P_{\text{absolute}}-P_{\text{atmospheric}}$$" title="$$h=\frac{P}{\rho g}$$" /></picture></p><br>
 
 <!-- $$
 P_{\text{hydro}} = P_{\text{absolute}} - P_{\text{atmospheric}}
