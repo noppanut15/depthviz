@@ -134,7 +134,7 @@ depthviz -i 123456_ACTIVITY.fit -s garmin -o my_dive_overlay.mp4
 |   `manual`   | Manually entered depth logs. <br> [![How to][how_to_img]](#-no-dive-computer)                                                                                                                                                                                 |    CSV    |
 
 
-#### 🎨 Advanced Customization Options
+#### ⚙️ Advanced Customization Options
 <details><summary><strong>View Advanced Options</strong></summary>
 
 Want more control? Use these optional parameters:
@@ -142,7 +142,7 @@ Want more control? Use these optional parameters:
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Option&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Values&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |                           Default                           | Description                                                                                                                               |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :----------------------------------------------------------------------------: | :---------------------------------------------------------: | ----------------------------------------------------------------------------------------------------------------------------------------- |
 | `-d` or <br/>`--decimal-places`                                                                                                                                    |                                `0`, `1`, or `2`                                |                             `0`                             | Number of decimal places in the depth overlay.                                                                                            |
-| `--depth-mode`                                                                                                                                                     |                         `raw` <br/>or<br/>`zero-based`                         |                            `raw`                            | `raw` shows the actual depth; `zero-based` forces the overlay to start/end at 0m. [See Raw vs Zero-Based](#-raw-vs-zero-based-depth-mode) |
+| `--depth-mode`                                                                                                                                                     |                         `raw` <br/>or<br/>`zero-based`                         |                            `raw`                            | `raw` shows the actual depth; `zero-based` forces the overlay to start/end at 0m. [See Raw vs Zero-Based](#-raw-vs-zero-based-mode) |
 | `--no-minus`                                                                                                                                                       |                                       -                                        |                              -                              | Removes the minus sign from depth values (e.g., `10m` instead of `-10m`).                                                                 |
 | `--font`                                                                                                                                                           |                                   File path                                    | [Default font](https://fonts.google.com/specimen/Open+Sans) | Path to a custom font file for the text.                                                                                                  |
 | `--bg-color`                                                                                                                                                       |                             Color name or hex code                             |                           `black`                           | Background color (e.g., `green`, `'#000000'`).                                                                                            |
@@ -163,7 +163,7 @@ depthviz \
     --font ~/Downloads/YourCustomFont.ttf
 ```
 
-- Set the depth display mode to **zero-based** to adjust the depth to start and end at 0m. (Learn more about [Zero-Based Depth Mode](#-raw-vs-zero-based-depth-mode))
+- Set the depth display mode to **zero-based** to adjust the depth to start and end at 0m. (Learn more about [Zero-Based Depth Mode](#-raw-vs-zero-based-mode))
 - The depth values will be displayed with **one** decimal place.
 - The minus sign will be **hidden**.
 - The background color will be set to **green** for chroma keying.
@@ -258,7 +258,7 @@ depthviz -i manual_input.csv -s manual -o output_video.mp4
 
 </div>
 
-## 💡 Raw vs Zero-Based Depth Mode
+## 💡 Raw vs Zero-Based Mode
 
 <p align="center"><img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/depth-mode-comparison.jpg" alt="Depth Mode: raw vs zero-based" width="600px"/></p>
 
