@@ -425,10 +425,10 @@ For any inquiries, please [open an issue](https://github.com/noppanut15/depthviz
 [download_badge_url]: https://pepy.tech/projects/depthviz
 
 <!-- Social links -->
-[x_share_url]: https://x.com/intent/tweet?hashtags=depth%2Cfreediving%2Chud&text=A%20CLI%20tool%20that%20creates%20heads-up%20displays%20for%20your%20freediving%20videos%2C%20automatically%20tracking%20depth%20and%20time%20from%20dive%20computer%20logs%20or%20manual%20records.&url=https%3A%2F%2Fgithub.com%2Fnoppanut15%2Fdepthviz
-[telegram_share_url]: https://t.me/share/url?url=https%3A//github.com/noppanut15/depthviz&text=A%20CLI%20tool%20that%20creates%20heads-up%20displays%20for%20your%20freediving%20videos,%20automatically%20tracking%20depth%20and%20time%20from%20dive%20computer%20logs%20or%20manual%20records.
-[whatsapp_share_url]: https://api.whatsapp.com/send?text=A%20CLI%20tool%20that%20creates%20heads-up%20displays%20for%20your%20freediving%20videos%2C%20automatically%20tracking%20depth%20and%20time%20from%20dive%20computer%20logs%20or%20manual%20records.%20https%3A%2F%2Fgithub.com%2Fnoppanut15%2Fdepthviz
-[reddit_share_url]: https://www.reddit.com/submit?url=https%3A%2F%2Fgithub.com%2Fnoppanut15%2Fdepthviz&title=A%20CLI%20tool%20that%20creates%20heads-up%20displays%20for%20your%20freediving%20videos%2C%20automatically%20tracking%20depth%20and%20time%20from%20dive%20computer%20logs%20or%20manual%20records.%20%23depth%20%23freediving
+[x_share_url]: https://x.com/intent/tweet?hashtags=depth%2Cfreediving%2Cvideo%2Cautomation&text=A%20CLI%20tool%20that%20creates%20video%20displays%20of%20depth%20and%20time%20for%20freedivers%20using%20a%20dive%20computer%20or%20custom%20entries.&url=https%3A%2F%2Fgithub.com%2Fnoppanut15%2Fdepthviz
+[telegram_share_url]: https://t.me/share/url?url=https%3A//github.com/noppanut15/depthviz&text=A%20CLI%20tool%20that%20creates%20video%20displays%20of%20depth%20and%20time%20for%20freedivers%20using%20a%20dive%20computer%20or%20custom%20entries.
+[whatsapp_share_url]: https://api.whatsapp.com/send?text=A%20CLI%20tool%20that%20creates%20video%20displays%20of%20depth%20and%20time%20for%20freedivers%20using%20a%20dive%20computer%20or%20custom%20entries.%20https%3A%2F%2Fgithub.com%2Fnoppanut15%2Fdepthviz
+[reddit_share_url]: https://www.reddit.com/submit?url=https%3A%2F%2Fgithub.com%2Fnoppanut15%2Fdepthviz&title=A%20CLI%20tool%20that%20creates%20video%20displays%20of%20depth%20and%20time%20for%20freedivers%20using%20a%20dive%20computer%20or%20custom%20entries.%20%23depth%20%23freediving%20%23video%20%23automation
 [facebook_share_url]: https://www.facebook.com/sharer/sharer.php?u=https%3A//github.com/noppanut15/depthviz
 [x_share_img]: https://img.shields.io/badge/x_(twitter)-black?style=for-the-badge&logo=x
 [telegram_share_img]: https://img.shields.io/badge/telegram-black?style=for-the-badge&logo=telegram
