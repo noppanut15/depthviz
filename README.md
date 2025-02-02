@@ -330,7 +330,7 @@ Where:
 This ensures a smooth transition between recorded depth values.
 
 <p align="center">
-  <img src="./assets/linear-interpolation-example.png" width="700" alt="Linear Interpolation Graph"/>
+  <img src="./assets/linear-interpolation-example.png" width="500" alt="Linear Interpolation Graph"/>
 </p>
 
 > **Example:** If your dive log records 5m at 6s and jumps to 10m at 12s, `depthviz` estimates intermediate depths at 7s, 8s, etc., for a seamless display.
