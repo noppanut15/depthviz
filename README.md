@@ -135,7 +135,9 @@ depthviz -i 123456_ACTIVITY.fit -s garmin -o my_dive_overlay.mp4
 
 
 #### 🎛 Advanced Customization Options
+<details><summary><strong>View Advanced Options</strong></summary><br>
 Want more control? Use these optional parameters:
+
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Option&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Values&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |                           Default                           | Description                                                                                                                               |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :----------------------------------------------------------------------------: | :---------------------------------------------------------: | ----------------------------------------------------------------------------------------------------------------------------------------- |
 | `-d` or <br/>`--decimal-places`                                                                                                                                    |                                `0`, `1`, or `2`                                |                             `0`                             | Number of decimal places in the depth overlay.                                                                                            |
@@ -144,7 +146,7 @@ Want more control? Use these optional parameters:
 | `--font`                                                                                                                                                           |                                   File path                                    | [Default font](https://fonts.google.com/specimen/Open+Sans) | Path to a custom font file for the text.                                                                                                  |
 | `--bg-color`                                                                                                                                                       |                             Color name or hex code                             |                           `black`                           | Background color (e.g., `green`, `'#000000'`).                                                                                            |
 | `--stroke-width`                                                                                                                                                   |                                Positive integer                                |                             `5`                             | Thickness of the text outline for better visibility.                                                                                      |
-
+</details>
 
 <details><summary><strong>Example Command with Advanced Options</strong></summary><br>
 
