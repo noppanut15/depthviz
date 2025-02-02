@@ -262,13 +262,13 @@ depthviz -i manual_input.csv -s manual -o output_video.mp4
 
 `depthviz` offers **two ways** to display depth:
 
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mode&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Description                                                                                                                                                 |
-| :--------------------------------------------------------------------------: | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|                              `raw` *(Default)*                               | Shows **actual recorded** depth. Your dive might **start and end at -0.3m, -0.5m, etc.** if the dive computer didn’t record at the surface. *(left figure)* |
-|                                 `zero-based`                                 | Adjusts depth to **start and end at 0m** for a smoother display. Assumes a **1m/s descent/ascent rate** for the missing surface portion. *(right figure)*   |
+|       Mode        | Best For                 | Description                                                                                                                                               |
+| :---------------: | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `raw` *(Default)* | Accuracy, Dive Analysis  | Shows **actual recorded** depth. Your dive might start at **-0.3m, -0.5m, etc.** if the dive computer didn’t record at the surface. *(left figure)*       |
+|   `zero-based`    | Aesthetic Video Overlays | Adjusts depth to **start and end at 0m** for a smoother display. Assumes a **1m/s descent/ascent rate** for the missing surface portion. *(right figure)* |
 
 > [!TIP]
-> - Use `raw`  mode for maximum accuracy.
+> - Use `raw`  mode if accuracy matters (e.g., depth training, freedive analysis).  
 > - Use `zero-based` if your dive log starts/ends underwater but you want a clean 0m start/end.
 
 <div align="right">
