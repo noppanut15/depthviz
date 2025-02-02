@@ -187,7 +187,6 @@ depthviz \
 - The background color will be set to **green** for chroma keying.
 - A **custom font** file at `~/Downloads/YourCustomFont.ttf` will be used for the text.
 
----
 </details>
 <br>
 
