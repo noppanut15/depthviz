@@ -160,10 +160,10 @@ depthviz \
     --font ~/Downloads/YourCustomFont.ttf
 ```
 
-- Set the depth display mode to **zero-based** to start the depth from 0m instead of the actual depth values from the dive log.
+- Set the depth display mode to **zero-based** to adjust the depth to start and end at 0m. (Learn more about [Zero-Based Depth Mode](#-raw-vs-zero-based-depth-mode))
 - The depth values will be displayed with **one** decimal place.
 - The minus sign will be **hidden**.
-- The background color will be set to **green**.
+- The background color will be set to **green** for chroma keying.
 - A **custom font** file at `~/Downloads/YourCustomFont.ttf` will be used for the text.
 
 ---
