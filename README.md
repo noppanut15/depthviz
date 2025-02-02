@@ -134,7 +134,7 @@ depthviz -i 123456_ACTIVITY.fit -s garmin -o my_dive_overlay.mp4
 |   `manual`   | Manually entered depth logs. <br> [![How to][how_to_img]](#-no-dive-computer)                                                                                                                                                                                 |    CSV    |
 
 
-#### 🎛 Advanced Customization Options
+#### 🎨 Advanced Customization Options
 <details><summary><strong>View Advanced Options</strong></summary>
 
 Want more control? Use these optional parameters:
