@@ -98,7 +98,17 @@ depthviz --version
 
 ## 🚀 Usage
 
-`depthviz` turns your dive logs into overlay videos that show your depth and elapsed time. Follow these 3 simple steps: 🏊‍♂️🎥
+### 🏁 First Time Using depthviz?
+Start with this quick example:
+
+```
+depthviz -i my_dive.fit -s garmin -o overlay.mp4
+```
+- 📂 `-i`: Your dive log file
+- 🔍 `-s`: Data source (`garmin`, `suunto`, etc.)
+- 🎬 `-o`: Name of output video
+
+For full customization, keep reading! 🚀
 
 ### 📌 Step 1: Prepare Your Dive Data
 
