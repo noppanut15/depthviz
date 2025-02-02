@@ -115,11 +115,14 @@ depthviz -i my_dive.fit -s garmin -o overlay.mp4
 
 For full customization, keep reading! 🚀
 
+---
+
 ### 📌 Step 1: Prepare Your Dive Data
 
 - **🙆 With a Dive Computer:**<br>Export your dive log from your dive computer or diving application. (see [Supported Dive Log Formats](#-supported-dive-log-formats) below).
 - **🙅 No Dive Computer?**<br>You can record your dive manually (details in [No Dive Computer?](#-no-dive-computer)).
 
+---
 
 ### 📌 Step 2: Generate the Overlay
 
@@ -214,6 +217,7 @@ depthviz -i 123456_ACTIVITY.fit -s garmin -o mydive.mp4 --time
 
 </details>
 
+---
 
 ### 📌 Step 3: Integrate with Your Footage
 
