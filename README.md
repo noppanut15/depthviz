@@ -85,7 +85,7 @@ When a new version is available, update with:
 pipx upgrade depthviz
 ```
 
-Check your installed version with:
+Check your current version:
 ```bash
 depthviz --version
 ```
