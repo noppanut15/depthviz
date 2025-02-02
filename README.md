@@ -4,7 +4,7 @@
   </a>
   <a name="readme-top"></a>
 
-*A CLI tool for freedivers<br>to create synced depth & time overlays <br>from **dive computer logs** or **manual logs**.*
+*A CLI tool for freedivers<br>to create depth & time overlay videos <br>from **dive computer logs** or **manual logs**.*
 
 [![PyPI - Version][version_badge_img]][version_badge_url] [![GitHub Actions Workflow Status][build_badge_img]][build_badge_url] [![Coveralls][coverage_badge_img]][coverage_badge_url] [![PyPI - Status][pypi_status_img]][pypi_status_url] [![PyPI Downloads][download_badge_img]][download_badge_url]
 
