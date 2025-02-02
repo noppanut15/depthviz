@@ -306,15 +306,14 @@ Where:
 
 - **h** = Depth in meters
 - **ρ** = Water density *(EN13319 standard: 1019.7 kg/m³, standard for dive computers)*
-- **g** = Gravity (9.81 m/s²)
+- **g** = Gravity (9.80665 m/s²)
 
-🔹 Water density varies between saltwater and freshwater, which can affect depth accuracy. Custom density settings are planned for future updates.
+> [!NOTE]
+> Water density varies between saltwater and freshwater, which can affect depth accuracy. Custom density settings are planned for future updates.
 
 ### 📊 Handling Missing Data
 
-Dive computers record data at different rates, which may result in **gaps in data** due to device limitations, battery-saving settings, or inconsistent logging intervals. To create a smooth depth profile, `depthviz` applies **Linear Interpolation** to estimate missing values.
-
-#### 📈 Linear Interpolation Formula
+Dive computers record data at different rates, which may result in **gaps in data** due to device limitations, battery-saving settings, or inconsistent logging intervals. To create a smooth depth profile, `depthviz` applies [**Linear Interpolation**](https://en.wikipedia.org/wiki/Linear_interpolation) to estimate missing values.
 
 To estimate missing depth values, `depthviz` uses the following formula:
 
@@ -341,11 +340,11 @@ This ensures a smooth transition between recorded depth values.
 
 Once the data is processed, `depthviz`:
 
-✅ **Smooths depth values**, ensuring natural and fluid transitions between recorded points.  
+✅ **Smooths depth values**, ensuring natural and fluid transitions between recorded points.
 ✅ **Applies display settings**, including color, font, and stroke width, for full customization.  
 ✅ **Generates an overlay video**, ready for integration with your dive footage.
 
-This functionality allows freedivers to analyze their performance, track progress, and create engaging underwater visuals effortlessly. Whether for personal improvement, training analysis, or social media sharing, `depthviz` makes dive data visualization intuitive and powerful.
+This functionality allows freedivers to analyze their performance, track progress, and create engaging underwater visuals effortlessly. Whether for personal improvement, training analysis, or social media sharing, `depthviz` simplifies dive data visualization, making it both accessible and insightful for freedivers of all skill levels.
 
 <div align="right">
 
