@@ -330,10 +330,10 @@ Where:
 This ensures a smooth transition between recorded depth values.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/linear-interpolation.png" width="700" alt="Linear Interpolation Graph"/>
+  <img src="./assets/linear-interpolation-example.png" width="700" alt="Linear Interpolation Graph"/>
 </p>
 
-> **Example:** If your dive log records 5m at 10s and jumps to 10m at 20s, `depthviz` estimates intermediate depths at 11s, 12s, etc., for a seamless display.
+> **Example:** If your dive log records 5m at 6s and jumps to 10m at 12s, `depthviz` estimates intermediate depths at 7s, 8s, etc., for a seamless display.
 
 
 ### 🎥 Creating the Overlay Video
