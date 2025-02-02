@@ -170,7 +170,7 @@ depthviz \
 </details>
 <br>
 
-<p align="center"><img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/depth-decimal-places-5s-trimmed.gif" alt="decimal places comparison"/></p>
+<p align="center"><img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/depth-decimal-places-5s-trimmed.gif" width="600px" alt="decimal places comparison"/></p>
 
 > [!TIP]
 > Use the `--decimal-places` option to control the precision of the depth display (e.g., `--decimal-places 1` displays depths like `-12.5m`)
