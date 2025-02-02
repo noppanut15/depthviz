@@ -341,7 +341,9 @@ This ensures a smooth transition between recorded depth values.
 Once the data is processed, `depthviz`:
 
 ✅ **Smooths depth values**, ensuring natural and fluid transitions between recorded points.
+
 ✅ **Applies display settings**, including color, font, and stroke width, for full customization.  
+
 ✅ **Generates an overlay video**, ready for integration with your dive footage.
 
 This functionality allows freedivers to analyze their performance, track progress, and create engaging underwater visuals effortlessly. Whether for personal improvement, training analysis, or social media sharing, `depthviz` simplifies dive data visualization, making it both accessible and insightful for freedivers of all skill levels.
