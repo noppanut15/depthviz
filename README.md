@@ -192,8 +192,6 @@ Example of generating a depth overlay video named `mydive.mp4` and a time overla
 ```bash
 depthviz -i 123456_ACTIVITY.fit -s garmin -o mydive.mp4 --time
 ```
-
-> [!NOTE]
 > The time overlay video will be automatically generated and saved in the same directory as the depth overlay video with the filename `mydive_time.mp4`.
 
 </details>
