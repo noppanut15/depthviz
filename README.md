@@ -22,7 +22,7 @@
 ---
 ## ✨ Features
 
-<img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/final-video-showcase-400x400.gif" alt="showcase video" align="right" width="385px" />
+<img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/final-video-showcase-400x400.gif" alt="A GIF showcasing the final video which contains depth and time overlays" align="right" width="385px" />
  
 Why use *depthviz*?
 
@@ -356,7 +356,7 @@ Where:
 This ensures a smooth transition between recorded depth values.
 
 <p align="center">
-  <img src="./assets/linear-interpolation-example.png" width="500" alt="Example Chart: Linear Interpolation of Depth Over Time"/>
+  <img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/linear-interpolation-example.png" width="500" alt="Example Chart: Linear Interpolation of Depth Over Time"/>
 </p>
 
 > **Example:** If your dive log records 5m at 6s and jumps to 10m at 12s, `depthviz` estimates intermediate depths at 7s, 8s, etc., for a seamless display.
