@@ -247,7 +247,7 @@ depthviz -i manual_input.csv -s manual -o output_video.mp4
 
 <a href="https://2bfreeequipment.com/shop/2-b-free-freediving-rope-superstatic-marked-with-stopper/"><p align="center"><img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/marked-rope-example.png" alt="Example of a Freediving Rope with Depth Markers" width="600px"/></p></a>
 > [!TIP]
-> Freediving rope with depth markers helps record key moments of your dive.
+> Freediving rope with depth markers can help you record key moments of your dive.
 
 <div align="right">
 
