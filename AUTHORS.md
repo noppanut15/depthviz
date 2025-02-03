@@ -1,38 +1,32 @@
-## depthviz: Transform your freediving footage with depth tracking
 
-* Original Author: 
-    * [Noppanut Ploywong](https://github.com/noppanut15)
-* Maintainer: 
-    * [Noppanut Ploywong](https://github.com/noppanut15)
+# 🌊 About depthviz
 
-## Dependencies
+## 👤 Author & Maintainer
+`depthviz` was created and is actively maintained by **[Noppanut Ploywong](https://github.com/noppanut15)**.  
 
-**MoviePy**: Zulko and [other contributors](https://github.com/Zulko/moviepy/graphs/contributors).
+If you have any questions, suggestions, or just want to chat about freediving tech, feel free to reach out! 🚀
 
-**FIT Python SDK**: Garmin and [other contributors](https://github.com/garmin/fit-python-sdk/graphs/contributors).
+## ⚡ Open-Source Dependencies  
+`depthviz` is built on the power of open-source! Huge thanks to the developers of:  
 
-**Open Sans font**: Steve Matteson and [other contributors](https://github.com/googlefonts/opensans/graphs/contributors).
+- **MoviePy** – [Zulko & contributors](https://github.com/Zulko/moviepy/graphs/contributors)  
+- **FIT Python SDK** – [Garmin & contributors](https://github.com/garmin/fit-python-sdk/graphs/contributors)  
+- **Open Sans font** – [Steve Matteson & contributors](https://github.com/googlefonts/opensans/graphs/contributors)  
 
-## Test dependencies
+### 🧪 Testing & Code Quality Dependencies  
+- **pytest** – [Holger Krekel & contributors](https://github.com/pytest-dev/pytest/blob/main/AUTHORS)  
+- **mypy** – [Jukka Lehtosalo & contributors](https://github.com/python/mypy/blob/master/CREDITS)  
+- **ruff** – [Charlie Marsh & contributors](https://github.com/astral-sh/ruff/graphs/contributors)  
+- **interrogate** – [Lynn Root & contributors](https://github.com/econchick/interrogate/graphs/contributors)  
+- **coverage** – [Ned Batchelder & contributors](https://github.com/nedbat/coveragepy/blob/master/CONTRIBUTORS.txt)  
 
-**pytest**: Holger Krekel and [other contributors](https://github.com/pytest-dev/pytest/blob/main/AUTHORS).
-
-**mypy**: Jukka Lehtosalo and [other contributors](https://github.com/python/mypy/blob/master/CREDITS).
-
-**ruff**: Charlie Marsh and [other contributors](https://github.com/astral-sh/ruff/graphs/contributors).
-
-**interrogate**: Lynn Root and [other contributors](https://github.com/econchick/interrogate/graphs/contributors).
-
-**coverage**: Ned Batchelder and [other contributors](https://github.com/nedbat/coveragepy/blob/master/CONTRIBUTORS.txt).
-
-
-## Contributors
-
-If your code or changes are here, but you are not mentioned, please open an issue. We appreciate your contributions!
-
-* [Noppanut Ploywong](https://github.com/noppanut15)
-* [Sigrun Eis](https://www.instagram.com/mesapholis/)
-* [Your name here 🙂]
+## 🙌 Contributors  
+A huge thank you to everyone who has contributed to `depthviz`! 💙 If you’ve contributed but don’t see your name here, feel free to [open an issue](https://github.com/noppanut15/depthviz/issues).
+- [Noppanut Ploywong](https://github.com/noppanut15)  
+- [Sigrun Eis](https://www.instagram.com/mesapholis/)  
+- *Your name here!* 😊  
 
 ---
-— Made with ❤️ by freedivers, for freedivers. 🌊🤿
+
+✨ **Made with ❤️ by freedivers, for freedivers.** 🌊🤿
+
