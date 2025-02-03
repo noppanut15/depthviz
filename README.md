@@ -399,18 +399,18 @@ Want to make `depthviz` even better? Whether it’s fixing bugs, adding features
 
 ### 🔧 Contribute Code or Ideas  
 - Found a bug? [Open an issue](https://github.com/noppanut15/depthviz/issues) so it can be fixed!  
-- Have a feature suggestion? Let’s discuss it in the [discussions section](https://github.com/noppanut15/depthviz/discussions) or [open an issue](https://github.com/noppanut15/depthviz/issues).
+- Have a feature suggestion? Let’s discuss it in the [Discussions](https://github.com/noppanut15/depthviz/discussions) or [open an issue](https://github.com/noppanut15/depthviz/issues).
 - Ready to code? Fork the repo and submit a [pull request](https://github.com/noppanut15/depthviz/pulls).  
 
 ### ⌚ Help Expand Dive Computer Support  
 Is your dive computer not supported yet? You can help change that! By sharing a sample dive log file, you’ll help `depthviz` analyze its format and add support in future updates.  
 
-To contribute your dive log, check out the guide in [**Donate My Dive**](https://github.com/noppanut15/depthviz/issues/15). Every log helps make `depthviz` better for all freedivers! 🌊💙 
+To contribute your dive log, check out the guide in [Donate My Dive](https://github.com/noppanut15/depthviz/issues/15). Every log helps make `depthviz` better for all freedivers! 🌊💙 
 
 ### 🙌 Credits & Contributors  
 `depthviz` wouldn’t be possible without our amazing community and the open-source projects it relies on.  
 
-See **[AUTHORS.md](https://github.com/noppanut15/depthviz/blob/main/AUTHORS.md)** for a list of contributors, maintainers, and dependencies that help power this project.
+See [AUTHORS.md](https://github.com/noppanut15/depthviz/blob/main/AUTHORS.md) for a list of contributors, maintainers, and dependencies that help power this project.
 
 <div align="right">
 
