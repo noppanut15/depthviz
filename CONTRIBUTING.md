@@ -4,21 +4,24 @@
 
 ### Contents
 
-- [Code of Conduct](#book-code-of-conduct)
-- [Opening an Issue](#inbox_tray-opening-an-issue)
-- [Feature Requests](#love_letter-feature-requests)
-- [Triaging Issues](#mag-triaging-issues)
-- [Submitting Pull Requests](#repeat-submitting-pull-requests)
-- [Writing Commit Messages](#memo-writing-commit-messages)
-- [Code Review](#white_check_mark-code-review)
-- [Coding Style](#nail_care-coding-style)
-- [Certificate of Origin](#medal_sports-certificate-of-origin)
+- [Contributing Guidelines](#contributing-guidelines)
+    - [Contents](#contents)
+  - [:book: Code of Conduct](#book-code-of-conduct)
+  - [:inbox\_tray: Opening an Issue](#inbox_tray-opening-an-issue)
+    - [:beetle: Bug Reports and Other Issues](#beetle-bug-reports-and-other-issues)
+  - [:love\_letter: Feature Requests](#love_letter-feature-requests)
+  - [:mag: Triaging Issues](#mag-triaging-issues)
+  - [:repeat: Submitting Pull Requests](#repeat-submitting-pull-requests)
+  - [:memo: Writing Commit Messages](#memo-writing-commit-messages)
+  - [:white\_check\_mark: Code Review](#white_check_mark-code-review)
+  - [:nail\_care: Coding Style](#nail_care-coding-style)
+  - [:medal\_sports: Certificate of Origin](#medal_sports-certificate-of-origin)
 
 > **This guide serves to set clear expectations for everyone involved with the project so that we can improve it together while also creating a welcoming space for everyone to participate. Following these guidelines will help ensure a positive experience for contributors and maintainers.**
 
 ## :book: Code of Conduct
 
-Please review our [Code of Conduct](https://github.com/jessesquires/.github/blob/main/CODE_OF_CONDUCT.md). It is in effect at all times. We expect it to be honored by everyone who contributes to this project. Acting like an asshole will not be tolerated.
+Please review our [Code of Conduct](https://github.com/noppanut15/depthviz/blob/main/CODE_OF_CONDUCT.md). It is in effect at all times. We expect it to be honored by everyone who contributes to this project. Acting like an asshole will not be tolerated.
 
 ## :inbox_tray: Opening an Issue
 

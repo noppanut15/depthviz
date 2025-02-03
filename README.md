@@ -4,7 +4,7 @@
   </a>
   <a name="readme-top"></a>
 
-*A CLI tool for freedivers<br>to create depth & time overlay videos <br>from **dive computer logs** or **manual logs**.*
+*A CLI tool for freedivers<br>to create depth & time overlay videos <br>from **dive computers** or **any manual logs**.*
 
 [![PyPI - Version][version_badge_img]][version_badge_url] [![GitHub Actions Workflow Status][build_badge_img]][build_badge_url] [![Coveralls][coverage_badge_img]][coverage_badge_url] [![PyPI - Status][pypi_status_img]][pypi_status_url] [![PyPI Downloads][download_badge_img]][download_badge_url]
 
@@ -26,17 +26,12 @@
  
 Why use *depthviz*?
 
-🎥 **Stunning Depth Overlays** – Turn dive logs into smooth, real-time depth displays.
-
-💻 **Works Anywhere** – Runs on Windows, macOS, and Linux.
-
-📊 **Dive Log Friendly** – Supports Apnealizer, Garmin, Suunto, Shearwater, and *even your own manual input!*
-
-🎨 **Fully Customizable** – Adjust fonts, colors, decimal places, stroke width, and more.
-
-🔗 **Easy Video Integration** – Works with CapCut, Premiere Pro, and other editors.
-
-⚡ **Smart Depth Smoothing** – Automatically [fills in missing data](#-handling-missing-data) for a seamless and natural depth display. Includes [*zero-based*](#-raw-vs-zero-based-mode) depth mode to smoothly estimate a 0m start if your dive log starts underwater.
+- 🎥 **Stunning Depth Overlays** – Turn dive logs into smooth, real-time depth displays.
+- 💻 **Works Anywhere** – Runs on Windows, macOS, and Linux.
+- 📊 **Dive Log Friendly** – Supports Apnealizer, Garmin, Suunto, Shearwater, and *even manually recorded logs!*
+- 🎨 **Fully Customizable** – Adjust fonts, colors, decimal places, stroke width, and more.
+- 🔗 **Easy Video Integration** – Works with CapCut, Premiere Pro, and other editors.
+- ⚡ **Smart Depth Smoothing** – Automatically [fills in missing data](#-handling-missing-data) for a seamless and natural depth display. Includes [*zero-based*](#-raw-vs-zero-based-mode) depth mode to smoothly estimate a 0m start if your dive log starts underwater.
 
 > [!TIP]
 > Perfect for performance freedivers tracking PBs or analyzing technique. Overlay your data and see every moment of your dive!
@@ -54,11 +49,11 @@ Why use *depthviz*?
 If you like `depthviz` and find it useful, please give it a shiny [![star](https://img.shields.io/github/stars/noppanut15/depthviz
 )](https://github.com/noppanut15/depthviz) ✨
 
-Want **early access** to new open-source projects, exclusive insights, and sneak peeks into upcoming `depthviz` features? 🚀
+**Get early access** to new open-source projects, exclusive insights, and sneak peeks at upcoming `depthviz` features! 🚀
 
 <a href="https://github.com/noppanut15/" title="Follow Me on GitHub"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/follow%20me%20on%20github-white.svg?style=for-the-badge&logo=github&logoColor=black"><img src="https://img.shields.io/badge/follow%20me%20on%20github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white" title="Follow Me on GitHub" /></picture></a>
 
-I’d also love to see your diving stories or videos made with `depthviz`! Share your creations by tagging me [@noppanut15](https://www.instagram.com/noppanut15/) or using the hashtag **#depthviz**. 
+I’d love to see your diving stories or videos made with `depthviz`! Share your creations by tagging [@noppanut15](https://www.instagram.com/noppanut15/) or using **#depthviz**. 
 
 See you in the deep! 🌊😊
 
@@ -157,14 +152,14 @@ depthviz -i 123456_ACTIVITY.fit -s garmin -o my_dive_overlay.mp4
 
 Want more control? Use these optional parameters:
 
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Option&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Values&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |                           Default                           | Description                                                                                                                               |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :----------------------------------------------------------------------------: | :---------------------------------------------------------: | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `-d` or <br/>`--decimal-places`                                                                                                                                    |                                `0`, `1`, or `2`                                |                             `0`                             | Number of decimal places in the depth overlay.                                                                                            |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Option&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Values&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |                           Default                           | Description                                                                                                                         |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :----------------------------------------------------------------------------: | :---------------------------------------------------------: | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `-d` or <br/>`--decimal-places`                                                                                                                                    |                                `0`, `1`, or `2`                                |                             `0`                             | Number of decimal places in the depth overlay.                                                                                      |
 | `--depth-mode`                                                                                                                                                     |                         `raw` <br/>or<br/>`zero-based`                         |                            `raw`                            | `raw` shows the actual depth; `zero-based` forces the overlay to start/end at 0m. [See Raw vs Zero-Based](#-raw-vs-zero-based-mode) |
-| `--no-minus`                                                                                                                                                       |                                       -                                        |                              -                              | Removes the minus sign from depth values (e.g., `10m` instead of `-10m`).                                                                 |
-| `--font`                                                                                                                                                           |                                   File path                                    | [Default font](https://fonts.google.com/specimen/Open+Sans) | Path to a custom font file for the text.                                                                                                  |
-| `--bg-color`                                                                                                                                                       |                             Color name or hex code                             |                           `black`                           | Background color (e.g., `green`, `'#000000'`).                                                                                            |
-| `--stroke-width`                                                                                                                                                   |                                Positive integer                                |                             `5`                             | Thickness of the text outline for better visibility.                                                                                      |
+| `--no-minus`                                                                                                                                                       |                                       -                                        |                              -                              | Removes the minus sign from depth values (e.g., `10m` instead of `-10m`).                                                           |
+| `--font`                                                                                                                                                           |                                   File path                                    | [Default font](https://fonts.google.com/specimen/Open+Sans) | Path to a custom font file for the text.                                                                                            |
+| `--bg-color`                                                                                                                                                       |                             Color name or hex code                             |                           `black`                           | Background color (e.g., `green`, `'#000000'`).                                                                                      |
+| `--stroke-width`                                                                                                                                                   |                                Positive integer                                |                             `5`                             | Thickness of the text outline for better visibility.                                                                                |
 </details>
 
 <details><summary><strong>Example Command with Advanced Options</strong></summary><br>
@@ -237,7 +232,7 @@ Import the generated **depth overlay** and **time overlay** (if used) into your 
 
 ## 🚫 No Dive Computer?
 
-No dive computer? No problem! **You can still create a depth overlay!** Simply record **key moments** of your dive (using depth markers on your rope, for example) and prepare a CSV file with two columns:
+**No dive computer? No problem!** You can still create a depth overlay! Simply record **key moments** of your dive (using depth markers on your rope, for example) and prepare a CSV file with two columns:
 - **Time**: in seconds
 - **Depth**: in meters
 
@@ -261,10 +256,10 @@ depthviz -i manual_input.csv -s manual -o output_video.mp4
 ```
 
 > [!TIP]
-> For a simple dive, recording just three points (start, maximum depth, end) is enough. `depthviz` will interpolate the values for a smooth depth profile!
+> For a simple dive, recording **just three points** (start, maximum depth, end) is enough. `depthviz` will interpolate the values for a smooth depth profile!
 
 > [!IMPORTANT]
-> For more complex dives (e.g., dives with significant variations in descent/ascent rate or bottom time), more data points are recommended.
+> For more complex dives (e.g., dives with significant variations in descent/ascent rate or bottom time), **more data points** are recommended.
 
 <a href="https://2bfreeequipment.com/shop/2-b-free-freediving-rope-superstatic-marked-with-stopper/"><p align="center"><img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/marked-rope-example.png" alt="Example of a Freediving Rope with Depth Markers" width="600px"/></p></a>
 > [!TIP]
@@ -376,9 +371,21 @@ This functionality allows freedivers to analyze their performance, track progres
 
 </div>
 
-## 🌱 Contribution
+## 📦 What's Inside depthviz?
 
-We welcome contributions to the `depthviz` project! If you have any ideas for improvement, bug fixes, or feature suggestions, feel free to [open an issue](https://github.com/noppanut15/depthviz/issues) to discuss or [submit a pull request](https://github.com/noppanut15/depthviz/pulls).
+Every `depthviz` release includes a **Software Bill of Materials (SBOM)** in **CycloneDX format**, providing full transparency into its dependencies. Whether you're a developer, a security-conscious freediver, or just curious, you’ll find everything under the hood.
+
+<details>
+  <summary>💡 <strong>What’s an SBOM?</strong> (Click to expand)</summary>
+
+An SBOM is like a **blueprint of `depthviz`**—a complete list of every package it depends on. It helps with:  
+- ✅ **Security:** Identify known vulnerabilities in dependencies  
+- ✅ **Transparency:** See exactly what’s inside `depthviz`  
+- ✅ **Reliability:** Ensures `depthviz` remains stable and up-to-date  
+</details>
+
+
+The SBOM is generated by the [GitHub Actions workflow](https://github.com/noppanut15/depthviz/blob/main/.github/workflows/deploy.yaml) using the [cyclonedx-python](https://github.com/CycloneDX/cyclonedx-python) library.<br>You can download the latest **SBOM** from the [release artifacts](https://github.com/noppanut15/depthviz/releases).
 
 <div align="right">
 
@@ -386,11 +393,26 @@ We welcome contributions to the `depthviz` project! If you have any ideas for im
 
 </div>
 
-## ⌚ Help Us Expand Dive Computer Support!
+## 🌱 Contribution
 
-**Missing your dive computer?** Help us add support! If you have a dive computer that is not currently supported by `depthviz`, you can help us by donating a sample dive log file exported from your device. This will allow us to analyze the data format and implement the necessary parsing logic to add support for your device.
+Want to make `depthviz` even better? Whether it’s fixing bugs, adding features, or improving dive computer support, every contribution helps!
 
-To share your dive data, please follow the detailed instructions in our [**Donate My Dive**](https://github.com/noppanut15/depthviz/issues/15) guide.
+### 🔧 Contribute Code or Ideas  
+- Found a bug? [Open an issue](https://github.com/noppanut15/depthviz/issues) so it can be fixed!  
+- Have a feature idea? Share it in [Discussions](https://github.com/noppanut15/depthviz/discussions) or [open an issue](https://github.com/noppanut15/depthviz/issues).
+- Ready to code? Fork the repo and submit a [pull request](https://github.com/noppanut15/depthviz/pulls).
+
+> 📖 **Before contributing, please read** [CONTRIBUTING.md](https://github.com/noppanut15/depthviz/blob/main/CONTRIBUTING.md) for guidelines on reporting issues, submitting pull requests, and coding standards.
+
+### ⌚ Help Expand Dive Computer Support  
+Is your dive computer not supported yet? You can help change that! By sharing a sample dive log file, you’ll help `depthviz` analyze its format and add support in future updates.  
+
+To contribute your dive log, check out the guide in [Donate My Dive](https://github.com/noppanut15/depthviz/issues/15). Every log helps make `depthviz` better for all freedivers! 🌊💙 
+
+### 🙌 Credits & Contributors  
+`depthviz` wouldn’t be possible without our amazing community and the open-source projects it relies on.  
+
+See [AUTHORS.md](https://github.com/noppanut15/depthviz/blob/main/AUTHORS.md) for a list of contributors, maintainers, and dependencies that help power this project.
 
 <div align="right">
 
@@ -400,19 +422,7 @@ To share your dive data, please follow the detailed instructions in our [**Donat
 
 ## ⚖️ License
 
-**depthviz** is free and open-source software licensed under the [Apache License 2.0](https://github.com/noppanut15/depthviz/blob/main/LICENSE), created and supported by [Noppanut Ploywong](https://github.com/noppanut15) with ❤️ for fellow freedivers.
-
-<!-- This project is licensed under the Apache License 2.0. See the [LICENSE](https://github.com/noppanut15/depthviz/blob/main/LICENSE) file for details. -->
-
-<div align="right">
-
-[&nwarr; Back to top](#readme-top)
-
-</div>
-
-## 📦 CycloneDX SBOM
-
-This project provides a CycloneDX Software Bill of Materials (SBOM) in JSON format. The SBOM is generated by the [GitHub Actions workflow](https://github.com/noppanut15/depthviz/blob/main/.github/workflows/deploy.yaml) and is available as an artifact for each release. The SBOM is generated using the [cyclonedx-python](https://github.com/CycloneDX/cyclonedx-python) library.
+`depthviz` is free and open-source software licensed under the [Apache License 2.0](https://github.com/noppanut15/depthviz/blob/main/LICENSE), created and supported by [Noppanut Ploywong](https://github.com/noppanut15) with ❤️ for fellow freedivers.
 
 <div align="right">
 
@@ -422,7 +432,11 @@ This project provides a CycloneDX Software Bill of Materials (SBOM) in JSON form
 
 ## 📬 Contact
 
-For any inquiries, please [open an issue](https://github.com/noppanut15/depthviz/issues) or contact the maintainer at [noppanut.connect@gmail.com](mailto:noppanut.connect@gmail.com).
+- **Have Questions or Ideas?** Join the [Discussions](https://github.com/noppanut15/depthviz/discussions).  
+- **Found a Bug or Have a Feature Request?** [Open an issue](https://github.com/noppanut15/depthviz/issues).  
+- **Need to Reach Out Directly?** Contact the maintainer at [noppanut.connect@gmail.com](mailto:noppanut.connect@gmail.com).
+
+Contributions and feedback are always appreciated! 🌊✨
 
 <div align="right">
 
@@ -443,10 +457,10 @@ For any inquiries, please [open an issue](https://github.com/noppanut15/depthviz
 [download_badge_url]: https://pepy.tech/projects/depthviz
 
 <!-- Social links -->
-[x_share_url]: https://x.com/intent/tweet?hashtags=depth%2Cfreediving%2Cvideo%2Cautomation&text=A%20CLI%20tool%20for%20freedivers%20to%20create%20depth%20%26%20time%20overlay%20videos%20from%20dive%20computer%20logs%20or%20manual%20logs.&url=https%3A%2F%2Fgithub.com%2Fnoppanut15%2Fdepthviz
-[telegram_share_url]: https://t.me/share/url?url=https%3A//github.com/noppanut15/depthviz&text=A%20CLI%20tool%20for%20freedivers%20to%20create%20depth%20%26%20time%20overlay%20videos%20from%20dive%20computer%20logs%20or%20manual%20logs.
-[whatsapp_share_url]: https://api.whatsapp.com/send?text=A%20CLI%20tool%20for%20freedivers%20to%20create%20depth%20%26%20time%20overlay%20videos%20from%20dive%20computer%20logs%20or%20manual%20logs.%20https%3A%2F%2Fgithub.com%2Fnoppanut15%2Fdepthviz
-[reddit_share_url]: https://www.reddit.com/submit?url=https%3A%2F%2Fgithub.com%2Fnoppanut15%2Fdepthviz&title=A%20CLI%20tool%20for%20freedivers%20to%20create%20depth%20%26%20time%20overlay%20videos%20from%20dive%20computer%20logs%20or%20manual%20logs.%20%23depth%20%23freediving%20%23video%20%23automation
+[x_share_url]: https://x.com/intent/tweet?hashtags=depth%2Cfreediving%2Cvideo%2Cautomation&text=A%20CLI%20tool%20for%20freedivers%20to%20create%20depth%20%26%20time%20overlay%20videos%20from%20dive%20computers%20or%20any%20manual%20logs.&url=https%3A%2F%2Fgithub.com%2Fnoppanut15%2Fdepthviz
+[telegram_share_url]: https://t.me/share/url?url=https%3A//github.com/noppanut15/depthviz&text=A%20CLI%20tool%20for%20freedivers%20to%20create%20depth%20%26%20time%20overlay%20videos%20from%20dive%20computers%20or%20any%20manual%20logs.
+[whatsapp_share_url]: https://api.whatsapp.com/send?text=A%20CLI%20tool%20for%20freedivers%20to%20create%20depth%20%26%20time%20overlay%20videos%20from%20dive%20computers%20or%20any%20manual%20logs.%20https%3A%2F%2Fgithub.com%2Fnoppanut15%2Fdepthviz
+[reddit_share_url]: https://www.reddit.com/submit?url=https%3A%2F%2Fgithub.com%2Fnoppanut15%2Fdepthviz&title=A%20CLI%20tool%20for%20freedivers%20to%20create%20depth%20%26%20time%20overlay%20videos%20from%20dive%20computers%20or%20any%20manual%20logs.%20%23depth%20%23freediving%20%23video%20%23automation
 [facebook_share_url]: https://www.facebook.com/sharer/sharer.php?u=https%3A//github.com/noppanut15/depthviz
 [x_share_img]: https://img.shields.io/badge/x_(twitter)-black?style=for-the-badge&logo=x
 [telegram_share_img]: https://img.shields.io/badge/telegram-black?style=for-the-badge&logo=telegram
