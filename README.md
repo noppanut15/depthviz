@@ -4,7 +4,7 @@
   </a>
   <a name="readme-top"></a>
 
-*A CLI tool for freedivers<br>to create depth & time overlay videos <br>from **dive computer logs** or **manual logs**.*
+*A CLI tool for freedivers<br>to create depth & time overlay videos <br>from **dive computers** or **any manual logs**.*
 
 [![PyPI - Version][version_badge_img]][version_badge_url] [![GitHub Actions Workflow Status][build_badge_img]][build_badge_url] [![Coveralls][coverage_badge_img]][coverage_badge_url] [![PyPI - Status][pypi_status_img]][pypi_status_url] [![PyPI Downloads][download_badge_img]][download_badge_url]
 
@@ -443,10 +443,10 @@ For any inquiries, please [open an issue](https://github.com/noppanut15/depthviz
 [download_badge_url]: https://pepy.tech/projects/depthviz
 
 <!-- Social links -->
-[x_share_url]: https://x.com/intent/tweet?hashtags=depth%2Cfreediving%2Cvideo%2Cautomation&text=A%20CLI%20tool%20for%20freedivers%20to%20create%20depth%20%26%20time%20overlay%20videos%20from%20dive%20computer%20logs%20or%20manual%20logs.&url=https%3A%2F%2Fgithub.com%2Fnoppanut15%2Fdepthviz
-[telegram_share_url]: https://t.me/share/url?url=https%3A//github.com/noppanut15/depthviz&text=A%20CLI%20tool%20for%20freedivers%20to%20create%20depth%20%26%20time%20overlay%20videos%20from%20dive%20computer%20logs%20or%20manual%20logs.
-[whatsapp_share_url]: https://api.whatsapp.com/send?text=A%20CLI%20tool%20for%20freedivers%20to%20create%20depth%20%26%20time%20overlay%20videos%20from%20dive%20computer%20logs%20or%20manual%20logs.%20https%3A%2F%2Fgithub.com%2Fnoppanut15%2Fdepthviz
-[reddit_share_url]: https://www.reddit.com/submit?url=https%3A%2F%2Fgithub.com%2Fnoppanut15%2Fdepthviz&title=A%20CLI%20tool%20for%20freedivers%20to%20create%20depth%20%26%20time%20overlay%20videos%20from%20dive%20computer%20logs%20or%20manual%20logs.%20%23depth%20%23freediving%20%23video%20%23automation
+[x_share_url]: https://x.com/intent/tweet?hashtags=depth%2Cfreediving%2Cvideo%2Cautomation&text=A%20CLI%20tool%20for%20freedivers%20to%20create%20depth%20%26%20time%20overlay%20videos%20from%20dive%20computers%20or%20any%20manual%20logs.&url=https%3A%2F%2Fgithub.com%2Fnoppanut15%2Fdepthviz
+[telegram_share_url]: https://t.me/share/url?url=https%3A//github.com/noppanut15/depthviz&text=A%20CLI%20tool%20for%20freedivers%20to%20create%20depth%20%26%20time%20overlay%20videos%20from%20dive%20computers%20or%20any%20manual%20logs.
+[whatsapp_share_url]: https://api.whatsapp.com/send?text=A%20CLI%20tool%20for%20freedivers%20to%20create%20depth%20%26%20time%20overlay%20videos%20from%20dive%20computers%20or%20any%20manual%20logs.%20https%3A%2F%2Fgithub.com%2Fnoppanut15%2Fdepthviz
+[reddit_share_url]: https://www.reddit.com/submit?url=https%3A%2F%2Fgithub.com%2Fnoppanut15%2Fdepthviz&title=A%20CLI%20tool%20for%20freedivers%20to%20create%20depth%20%26%20time%20overlay%20videos%20from%20dive%20computers%20or%20any%20manual%20logs.%20%23depth%20%23freediving%20%23video%20%23automation
 [facebook_share_url]: https://www.facebook.com/sharer/sharer.php?u=https%3A//github.com/noppanut15/depthviz
 [x_share_img]: https://img.shields.io/badge/x_(twitter)-black?style=for-the-badge&logo=x
 [telegram_share_img]: https://img.shields.io/badge/telegram-black?style=for-the-badge&logo=telegram
