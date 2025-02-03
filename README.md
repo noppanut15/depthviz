@@ -30,7 +30,7 @@ Why use *depthviz*?
 
 💻 **Works Anywhere** – Runs on Windows, macOS, and Linux.
 
-📊 **Dive Log Friendly** – Supports Apnealizer, Garmin, Suunto, Shearwater, and *even your own manual input!*
+📊 **Dive Log Friendly** – Supports Apnealizer, Garmin, Suunto, Shearwater, and *even your own manually recorded logs!*
 
 🎨 **Fully Customizable** – Adjust fonts, colors, decimal places, stroke width, and more.
 
