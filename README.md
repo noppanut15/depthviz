@@ -407,6 +407,11 @@ Is your dive computer not supported yet? You can help change that! By sharing a 
 
 To contribute your dive log, check out the guide in [**Donate My Dive**](https://github.com/noppanut15/depthviz/issues/15). Every log helps make `depthviz` better for all freedivers! 🌊💙 
 
+### 🙌 Credits & Contributors  
+`depthviz` wouldn’t be possible without our amazing community and the open-source projects it relies on.  
+
+See **[AUTHORS.md](https://github.com/noppanut15/depthviz/blob/main/AUTHORS.md)** for a list of contributors, maintainers, and dependencies that help power this project.
+
 <div align="right">
 
 [&nwarr; Back to top](#readme-top)
