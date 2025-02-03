@@ -399,7 +399,7 @@ Want to make `depthviz` even better? Whether it’s fixing bugs, adding features
 
 ### 🔧 Contribute Code or Ideas  
 - Found a bug? [Open an issue](https://github.com/noppanut15/depthviz/issues) so it can be fixed!  
-- Have a feature suggestion? Let’s discuss it in the [discussions section](https://github.com/noppanut15/depthviz/discussions).  
+- Have a feature suggestion? Let’s discuss it in the [discussions section](https://github.com/noppanut15/depthviz/discussions) or [open an issue](https://github.com/noppanut15/depthviz/issues).
 - Ready to code? Fork the repo and submit a [pull request](https://github.com/noppanut15/depthviz/pulls).  
 
 ### ⌚ Help Expand Dive Computer Support  
@@ -430,7 +430,11 @@ See **[AUTHORS.md](https://github.com/noppanut15/depthviz/blob/main/AUTHORS.md)*
 
 ## 📬 Contact
 
-For any inquiries, please [open an issue](https://github.com/noppanut15/depthviz/issues) or contact the maintainer at [noppanut.connect@gmail.com](mailto:noppanut.connect@gmail.com).
+- **Have Questions or Ideas?** Join the [Discussions](https://github.com/noppanut15/depthviz/discussions).  
+- **Found a Bug or Have a Feature Request?** [Open an issue](https://github.com/noppanut15/depthviz/issues).  
+- **Need to Reach Out Directly?** Contact the maintainer at [noppanut.connect@gmail.com](mailto:noppanut.connect@gmail.com).
+
+Contributions and feedback are always appreciated! 🌊✨
 
 <div align="right">
 
