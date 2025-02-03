@@ -402,8 +402,7 @@ Want to make `depthviz` even better? Whether it’s fixing bugs, adding features
 - Have a feature idea? Share it in [Discussions](https://github.com/noppanut15/depthviz/discussions) or [open an issue](https://github.com/noppanut15/depthviz/issues).
 - Ready to code? Fork the repo and submit a [pull request](https://github.com/noppanut15/depthviz/pulls).
 
-> [!IMPORTANT]
-> Before contributing, please read [CONTRIBUTING.md](https://github.com/noppanut15/depthviz/blob/main/CONTRIBUTING.md) for guidelines on reporting issues, submitting pull requests, and coding standards.
+> 📖 **Before contributing, please read** [CONTRIBUTING.md](https://github.com/noppanut15/depthviz/blob/main/CONTRIBUTING.md) for guidelines on reporting issues, submitting pull requests, and coding standards.
 
 ### ⌚ Help Expand Dive Computer Support  
 Is your dive computer not supported yet? You can help change that! By sharing a sample dive log file, you’ll help `depthviz` analyze its format and add support in future updates.  
