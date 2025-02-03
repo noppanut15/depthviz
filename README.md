@@ -261,10 +261,10 @@ depthviz -i manual_input.csv -s manual -o output_video.mp4
 ```
 
 > [!TIP]
-> For a simple dive, recording just three points (start, maximum depth, end) is enough. `depthviz` will interpolate the values for a smooth depth profile!
+> For a simple dive, recording **just three points** (start, maximum depth, end) is enough. `depthviz` will interpolate the values for a smooth depth profile!
 
 > [!IMPORTANT]
-> For more complex dives (e.g., dives with significant variations in descent/ascent rate or bottom time), more data points are recommended.
+> For more complex dives (e.g., dives with significant variations in descent/ascent rate or bottom time), **more data points** are recommended.
 
 <a href="https://2bfreeequipment.com/shop/2-b-free-freediving-rope-superstatic-marked-with-stopper/"><p align="center"><img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/marked-rope-example.png" alt="Example of a Freediving Rope with Depth Markers" width="600px"/></p></a>
 > [!TIP]
