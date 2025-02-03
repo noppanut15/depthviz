@@ -378,19 +378,17 @@ This functionality allows freedivers to analyze their performance, track progres
 
 ## 🌱 Contribution
 
-We welcome contributions to the `depthviz` project! If you have any ideas for improvement, bug fixes, or feature suggestions, feel free to [open an issue](https://github.com/noppanut15/depthviz/issues) to discuss or [submit a pull request](https://github.com/noppanut15/depthviz/pulls).
+Want to make `depthviz` even better? Whether it’s fixing bugs, adding features, or improving dive computer support, every contribution helps!
 
-<div align="right">
+### 🔧 Contribute Code or Ideas  
+- Found a bug? [Open an issue](https://github.com/noppanut15/depthviz/issues) so it can be fixed!  
+- Have a feature suggestion? Let’s discuss it in the [discussions section](https://github.com/noppanut15/depthviz/discussions).  
+- Ready to code? Fork the repo and submit a [pull request](https://github.com/noppanut15/depthviz/pulls).  
 
-[&nwarr; Back to top](#readme-top)
+### ⌚ Help Expand Dive Computer Support  
+Is your dive computer not supported yet? You can help change that! By sharing a sample dive log file, you’ll help `depthviz` analyze its format and add support in future updates.  
 
-</div>
-
-## ⌚ Help Us Expand Dive Computer Support!
-
-**Missing your dive computer?** Help us add support! If you have a dive computer that is not currently supported by `depthviz`, you can help us by donating a sample dive log file exported from your device. This will allow us to analyze the data format and implement the necessary parsing logic to add support for your device.
-
-To share your dive data, please follow the detailed instructions in our [**Donate My Dive**](https://github.com/noppanut15/depthviz/issues/15) guide.
+To contribute your dive log, check out the guide in [**Donate My Dive**](https://github.com/noppanut15/depthviz/issues/15). Every log helps make `depthviz` better for all freedivers! 🌊💙 
 
 <div align="right">
 
