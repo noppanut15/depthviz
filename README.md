@@ -49,11 +49,11 @@ Why use *depthviz*?
 If you like `depthviz` and find it useful, please give it a shiny [![star](https://img.shields.io/github/stars/noppanut15/depthviz
 )](https://github.com/noppanut15/depthviz) ✨
 
-Want **early access** to new open-source projects, exclusive insights, and sneak peeks into upcoming `depthviz` features? 🚀
+**Get early access** to new open-source projects, exclusive insights, and sneak peeks at upcoming `depthviz` features! 🚀
 
 <a href="https://github.com/noppanut15/" title="Follow Me on GitHub"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/follow%20me%20on%20github-white.svg?style=for-the-badge&logo=github&logoColor=black"><img src="https://img.shields.io/badge/follow%20me%20on%20github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white" title="Follow Me on GitHub" /></picture></a>
 
-I’d also love to see your diving stories or videos made with `depthviz`! Share your creations by tagging me [@noppanut15](https://www.instagram.com/noppanut15/) or using the hashtag **#depthviz**. 
+I’d love to see your diving stories or videos made with `depthviz`! Share your creations by tagging [@noppanut15](https://www.instagram.com/noppanut15/) or using **#depthviz**. 
 
 See you in the deep! 🌊😊
 
