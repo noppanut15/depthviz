@@ -28,7 +28,7 @@ Why use *depthviz*?
 
 - 🎥 **Stunning Depth Overlays** – Turn dive logs into smooth, real-time depth displays.
 - 💻 **Works Anywhere** – Runs on Windows, macOS, and Linux.
-- 📊 **Dive Log Friendly** – Supports Apnealizer, Garmin, Suunto, Shearwater, and *even your own manually recorded logs!*
+- 📊 **Dive Log Friendly** – Supports Apnealizer, Garmin, Suunto, Shearwater, and *even manually recorded logs!*
 - 🎨 **Fully Customizable** – Adjust fonts, colors, decimal places, stroke width, and more.
 - 🔗 **Easy Video Integration** – Works with CapCut, Premiere Pro, and other editors.
 - ⚡ **Smart Depth Smoothing** – Automatically [fills in missing data](#-handling-missing-data) for a seamless and natural depth display. Includes [*zero-based*](#-raw-vs-zero-based-mode) depth mode to smoothly estimate a 0m start if your dive log starts underwater.
@@ -373,7 +373,7 @@ This functionality allows freedivers to analyze their performance, track progres
 
 ## 📦 What's Inside depthviz?
 
-Each `depthviz` release includes a **Software Bill of Materials (SBOM)**, automatically generated in **CycloneDX** format. Whether you're a developer, a security-conscious freediver, or just curious, this gives you full transparency into what’s under the hood.
+Every `depthviz` release includes a **Software Bill of Materials (SBOM)** in **CycloneDX format**, providing full transparency into its dependencies. Whether you're a developer, a security-conscious freediver, or just curious, you’ll find everything under the hood.
 
 <details>
   <summary>💡 <strong>What’s an SBOM?</strong> (Click to expand)</summary>
@@ -399,7 +399,7 @@ Want to make `depthviz` even better? Whether it’s fixing bugs, adding features
 
 ### 🔧 Contribute Code or Ideas  
 - Found a bug? [Open an issue](https://github.com/noppanut15/depthviz/issues) so it can be fixed!  
-- Have a feature suggestion? Let’s discuss it in the [Discussions](https://github.com/noppanut15/depthviz/discussions) or [open an issue](https://github.com/noppanut15/depthviz/issues).
+- Have a feature idea? Share it in [Discussions](https://github.com/noppanut15/depthviz/discussions) or [open an issue](https://github.com/noppanut15/depthviz/issues).
 - Ready to code? Fork the repo and submit a [pull request](https://github.com/noppanut15/depthviz/pulls).  
 
 ### ⌚ Help Expand Dive Computer Support  
