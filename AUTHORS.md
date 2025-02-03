@@ -24,9 +24,9 @@ If you have any questions, suggestions, or just want to chat about freediving te
 A huge thank you to everyone who has contributed to `depthviz`! 💙 If you’ve contributed but don’t see your name here, feel free to [open an issue](https://github.com/noppanut15/depthviz/issues).
 - [Noppanut Ploywong](https://github.com/noppanut15)  
 - [Sigrun Eis](https://www.instagram.com/mesapholis/)  
-- *Your name here!* 😊  
+- [ **Your name here!** 😊 ]
 
 ---
 
-✨ **Made with ❤️ by freedivers, for freedivers.** 🌊🤿
+✨ *Made with ❤️ by freedivers, for freedivers.* 🌊🤿
 
