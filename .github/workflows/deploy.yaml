@@ -39,7 +39,7 @@ jobs:
         run: |
           poetry run mypy .
           poetry run ruff check .
-          poetry run interrogate --ignore-init-module --ignore-init-method --quiet --fail-under=95 .
+          poetry run interrogate --ignore-init-module --ignore-init-method --quiet --fail-under=100 .
       - name: Test depthviz with coverage 🧪
         run: poetry run coverage run --source=depthviz -m pytest . && poetry run coverage lcov -o coverage.lcov --fail-under=100
       - name: Submit coverage report to Coveralls 📈
