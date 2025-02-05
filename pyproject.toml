@@ -55,17 +55,20 @@ exclude = [
     "__pycache__",
     ".ruff",
 ]
+line-length = 100
+indent-width = 4
+
+[tool.ruff.lint]
+# Enable Pyflakes (`F`) and pycodestyle (`E`) checks
+select = ["E", "F"]
+ignore = []
 
 [[tool.mypy.overrides]]
-module = ["moviepy"]
-ignore_missing_imports = true
-
-[[tool.mypy.overrides]]
-module = ["proglog"]
-ignore_missing_imports = true
-
-[[tool.mypy.overrides]]
-module = ["garmin_fit_sdk"]
+module = [
+    "moviepy",
+    "proglog",
+    "garmin_fit_sdk",
+]
 ignore_missing_imports = true
 
 [tool.pytest.ini_options]
