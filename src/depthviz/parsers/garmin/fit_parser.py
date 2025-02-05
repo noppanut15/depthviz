@@ -41,6 +41,10 @@ class GarminFitParser(DiveLogFitParser):
     def convert_fit_epoch_to_datetime(self, fit_epoch: int) -> str:
         """Convert the epoch time in the FIT file to a human-readable datetime string.
 
+        Note:
+            The FIT epoch is not a standard Unix epoch.
+            Must add 631065600 to the FIT epoch to convert it to a Unix epoch.
+
         Args:
             fit_epoch: The FIT epoch time in the FIT file.
 
