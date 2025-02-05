@@ -60,8 +60,8 @@ class TestManualCsvParser:
         with pytest.raises(DiveLogCsvInvalidHeaderError) as e:
             csv_parser.parse(file_path)
         assert (
-            str(e.value)
-            == "Invalid CSV: Invalid headers in CSV file, make sure there are 'Time' and 'Depth' columns in the CSV file"
+            str(e.value) == "Invalid CSV: Invalid headers in CSV file, "
+            "make sure there are 'Time' and 'Depth' columns in the CSV file"
         )
 
     def test_parse_empty_csv(self, request: pytest.FixtureRequest) -> None:
