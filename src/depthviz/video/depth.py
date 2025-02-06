@@ -2,9 +2,7 @@
 # Apache License 2.0 (see LICENSE file or http://www.apache.org/licenses/LICENSE-2.0)
 
 
-"""
-Module to create a video that reports the depth in meters from an array input.
-"""
+"""Module to create a video that reports the depth in meters from an array input."""
 
 from typing import Union
 from moviepy import VideoClip
@@ -20,15 +18,12 @@ class DepthReportVideoCreatorError(OverlayVideoCreatorError):
 
 
 class DepthReportVideoCreator(OverlayVideoCreator):
-    """
-    Class to create a video that reports the depth in meters from an array input.
-    """
+    """Class to create a video that reports the depth in meters from an array input."""
 
     def __clip_duration_in_seconds(
         self, current_pos: int, time_data: list[float]
     ) -> float:
-        """
-        Returns the total duration of the video in seconds.
+        """Returns the total duration of the video in seconds.
 
         Args:
             current_pos: The current position in the array.
@@ -50,8 +45,7 @@ class DepthReportVideoCreator(OverlayVideoCreator):
         decimal_places: int = 0,
         minus_sign: bool = True,
     ) -> VideoClip:
-        """
-        Creates a video that reports the depth in meters from an array input.
+        """Creates a video that reports the depth in meters from an array input.
 
         Args:
             time_data: An array of time values in seconds.
@@ -61,6 +55,10 @@ class DepthReportVideoCreator(OverlayVideoCreator):
 
         Returns:
             The processed video.
+
+        Raises:
+            DepthReportVideoCreatorError: If the decimal places value is invalid
+            DepthReportVideoCreatorError: If there is an error in the interpolation process
         """
         # Check the decimal places value
         if (
