@@ -2,8 +2,21 @@
 # Apache License 2.0 (see LICENSE file or http://www.apache.org/licenses/LICENSE-2.0)
 
 
-"""
-This module provides the command line interface for the depthviz package.
+"""Main module for the depthviz command line interface.
+
+This module contains the DepthvizApplication class which is responsible for
+handling the depthviz command line interface. The DepthvizApplication class
+parses the command line arguments, validates the user input, and creates the
+depth overlay video.
+
+Constants:
+    BANNER (str): Banner for the command line interface.
+
+Notes:
+    The DepthvizApplication class is designed to be used as a standalone
+    command line interface. It can be run directly from the command line
+    using the `python -m depthviz` command or by running the `depthviz` 
+    if the package is installed.
 """
 
 import sys
@@ -39,11 +52,15 @@ BANNER = """
 
 
 class DepthvizApplication:
-    """
-    Class to handle the depthviz command line interface.
+    """Class to handle the depthviz command line interface.
+
+    Attributes:
+        parser: Argument parser for the command line interface.
+        required_args: Group for required arguments in the parser.
     """
 
     def __init__(self) -> None:
+        """Initialize the DepthvizApplication class."""
         self.parser = argparse.ArgumentParser(
             prog="depthviz",
             description="Generate depth overlay videos from your dive log.",
@@ -123,8 +140,22 @@ class DepthvizApplication:
         bg_color: str = DEFAULT_BG_COLOR,
         stroke_width: int = DEFAULT_STROKE_WIDTH,
     ) -> int:
-        """
-        Create the depth overlay video.
+        """Create the depth overlay video.
+
+        Args:
+            divelog_parser: DiveLogParser object containing the parsed dive log data.
+            output_path: Path to save the output video file.
+            decimal_places: Number of decimal places to round the depth.
+            font: Path to the font file.
+            no_minus: Hide the minus sign for depth values.
+            bg_color: Background color of the video.
+            stroke_width: Width of the stroke around the text in pixels.
+
+        Returns:
+            int: Return code for the depth overlay video creation.
+
+        Exceptions:
+            OverlayVideoCreatorError: An error occurred during the video creation.
         """
         try:
             time_data_from_divelog = divelog_parser.get_time_data()
@@ -158,8 +189,20 @@ class DepthvizApplication:
         bg_color: str = DEFAULT_BG_COLOR,
         stroke_width: int = DEFAULT_STROKE_WIDTH,
     ) -> int:
-        """
-        Create the time overlay video.
+        """Create the time overlay video.
+
+        Args:
+            divelog_parser: DiveLogParser object containing the parsed dive log data.
+            output_path: Path to save the output video file.
+            font: Path to the font file.
+            bg_color: Background color of the video.
+            stroke_width: Width of the stroke around the text in pixels.
+
+        Returns:
+            int: Return code for the time overlay video creation.
+
+        Exceptions:
+            OverlayVideoCreatorError: An error occurred during the video creation.
         """
         try:
             time_data_from_divelog = divelog_parser.get_time_data()
@@ -184,8 +227,13 @@ class DepthvizApplication:
         return 0
 
     def is_user_input_valid(self, args: argparse.Namespace) -> bool:
-        """
-        Check if the user input is valid.
+        """Check if the user input is valid.
+
+        Args:
+            args: Parsed command line arguments.
+
+        Returns:
+            bool: True if the user input is valid, False otherwise.
         """
         if args.decimal_places not in [0, 1, 2]:
             print("Invalid value for decimal places. Valid values: 0, 1, 2.")
@@ -198,8 +246,27 @@ class DepthvizApplication:
         return True
 
     def main(self) -> int:
-        """
-        Main function for the depthviz command line interface.
+        """Main method for the depthviz command line interface.
+
+        This method parses the command line arguments, validates the user input,
+        and creates the depth overlay video.
+
+        Returns:
+            int: Return code for the depthviz command line interface.
+
+        Exceptions:
+            DiveLogParserError: An error occurred during the dive log parsing.
+
+        Notes:
+            The main method is the entry point for the depthviz command line interface.
+            It is called when the depthviz module is run as a script using the `depthviz` command.
+
+            Currently, the main method supports the following sources:
+                - Apnealizer CSV files
+                - Shearwater XML files
+                - Garmin FIT files
+                - Suunto FIT files
+                - Manual CSV files
         """
         if len(sys.argv) == 1:
             self.parser.print_help(sys.stderr)
@@ -263,8 +330,10 @@ class DepthvizApplication:
 
 
 def run() -> int:
-    """
-    Entry point for the depthviz command line interface.
+    """Run the depthviz command line interface.
+
+    Returns:
+        int: Return code for the depthviz command line interface.
     """
     app = DepthvizApplication()
     exit_code: int = app.main()
