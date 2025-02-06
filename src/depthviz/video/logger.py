@@ -2,22 +2,18 @@
 # Apache License 2.0 (see LICENSE file or http://www.apache.org/licenses/LICENSE-2.0)
 
 
-"""
-This module contains the progress bar logger class for the DepthViz application.
-"""
+"""This module contains the progress bar logger class for the DepthViz application."""
 
 from proglog import TqdmProgressBarLogger
 
 
 class DepthVizProgessBarLogger(TqdmProgressBarLogger):  # type: ignore
-    """
-    Class to handle the progress bar logger for the DepthViz application,
-    inheriting from TqdmProgressBarLogger.
-    """
+    """Class to handle the progress bar logger for the DepthViz application."""
 
     def __init__(
         self, description: str, unit: str, color: str, ncols: int = 70
     ) -> None:
+        """Initialize the progress bar logger."""
         super().__init__(
             init_state=None,
             bars=None,
