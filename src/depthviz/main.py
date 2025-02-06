@@ -8,7 +8,7 @@ This module provides the command line interface for the depthviz package.
 
 import sys
 import argparse
-from depthviz._version import __version__
+from depthviz.__version__ import __version__
 from depthviz.parsers.generic.generic_divelog_parser import (
     DiveLogParser,
     DiveLogParserError,
