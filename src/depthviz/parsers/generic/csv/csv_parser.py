@@ -31,7 +31,7 @@ class DiveLogCsvParser(DiveLogParser):
         """Parses a CSV file containing depth data.
 
         Args:
-        file_path: The path to the CSV file to be parsed.
+            file_path: The path to the CSV file to be parsed.
         """
 
     @abstractmethod
@@ -39,7 +39,7 @@ class DiveLogCsvParser(DiveLogParser):
         """Returns the time data parsed from the CSV file.
 
         Returns:
-        The time data parsed from the CSV file.
+            The time data parsed from the CSV file.
         """
 
     @abstractmethod
@@ -47,5 +47,5 @@ class DiveLogCsvParser(DiveLogParser):
         """Returns the depth data parsed from the CSV file.
 
         Returns:
-        The depth data parsed from the CSV file.
+            The depth data parsed from the CSV file.
         """

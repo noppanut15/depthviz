@@ -40,7 +40,7 @@ class DiveLogFitParser(DiveLogParser):
         """Parses a FIT file containing depth data.
 
         Args:
-        file_path: The path to the FIT file to be parsed.
+            file_path: The path to the FIT file to be parsed.
         """
 
     @abstractmethod
@@ -48,7 +48,7 @@ class DiveLogFitParser(DiveLogParser):
         """Returns the time data parsed from the FIT file.
 
         Returns:
-        The time data parsed from the FIT file.
+            The time data parsed from the FIT file.
         """
 
     @abstractmethod
@@ -56,5 +56,5 @@ class DiveLogFitParser(DiveLogParser):
         """Returns the depth data parsed from the FIT file.
 
         Returns:
-        The depth data parsed from the FIT file.
+            The depth data parsed from the FIT file.
         """
