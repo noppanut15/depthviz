@@ -2,9 +2,7 @@
 # Apache License 2.0 (see LICENSE file or http://www.apache.org/licenses/LICENSE-2.0)
 
 
-"""
-Unit tests for the ManualCsvParser class.
-"""
+"""Unit tests for the ManualCsvParser class."""
 
 import os
 from unittest.mock import patch, Mock
@@ -23,14 +21,10 @@ from depthviz.parsers.generic.csv.csv_parser import (
 
 
 class TestManualCsvParser:
-    """
-    Test class for the ManualCsvParser
-    """
+    """Test class for the ManualCsvParser."""
 
     def test_parse_valid_csv(self, request: pytest.FixtureRequest) -> None:
-        """
-        Test parsing a valid CSV file.
-        """
+        """Test parsing a valid CSV file."""
         file_path = str(
             request.path.parent.joinpath(
                 "data", "manual", "valid_depth_data_trimmed.csv"
@@ -50,9 +44,7 @@ class TestManualCsvParser:
         ]
 
     def test_parse_invalid_csv_x_header(self, request: pytest.FixtureRequest) -> None:
-        """
-        Test parsing a CSV file with an invalid header.
-        """
+        """Test parsing a CSV file with an invalid header."""
         file_path = str(
             request.path.parent.joinpath("data", "manual", "invalid_data_x_header.csv")
         )
@@ -65,9 +57,7 @@ class TestManualCsvParser:
         )
 
     def test_parse_empty_csv(self, request: pytest.FixtureRequest) -> None:
-        """
-        Test parsing an empty CSV file.
-        """
+        """Test parsing an empty CSV file."""
         file_path = str(
             request.path.parent.joinpath("data", "manual", "empty_file.csv")
         )
@@ -79,9 +69,7 @@ class TestManualCsvParser:
     def test_parse_invalid_csv_missing_depth(
         self, request: pytest.FixtureRequest
     ) -> None:
-        """
-        Test parsing a CSV file with missing depth values.
-        """
+        """Test parsing a CSV file with missing depth values."""
         file_path = str(
             request.path.parent.joinpath("data", "manual", "invalid_data_x_depth.csv")
         )
@@ -93,9 +81,7 @@ class TestManualCsvParser:
     def test_parse_invalid_csv_missing_file(
         self, request: pytest.FixtureRequest
     ) -> None:
-        """
-        Test parsing a missing CSV file.
-        """
+        """Test parsing a missing CSV file."""
         file_path = str(
             request.path.parent.joinpath("data", "manual", "missing_file_xyz.csv")
         )
@@ -108,9 +94,7 @@ class TestManualCsvParser:
     def test_parse_invalid_csv_missing_time(
         self, request: pytest.FixtureRequest
     ) -> None:
-        """
-        Test parsing a CSV file with missing time values.
-        """
+        """Test parsing a CSV file with missing time values."""
         file_path = str(
             request.path.parent.joinpath(
                 "data", "manual", "invalid_time_depth_mismatched.csv"
@@ -124,9 +108,7 @@ class TestManualCsvParser:
     def test_parse_invalid_csv_negative_depth(
         self, request: pytest.FixtureRequest
     ) -> None:
-        """
-        Test parsing a CSV file with negative depth values.
-        """
+        """Test parsing a CSV file with negative depth values."""
         file_path = str(
             request.path.parent.joinpath(
                 "data", "manual", "invalid_data_negative_depth.csv"
@@ -143,9 +125,7 @@ class TestManualCsvParser:
     def test_parse_invalid_csv_negative_time(
         self, request: pytest.FixtureRequest
     ) -> None:
-        """
-        Test parsing a CSV file with negative time values.
-        """
+        """Test parsing a CSV file with negative time values."""
         file_path = str(
             request.path.parent.joinpath(
                 "data", "manual", "invalid_data_negative_time.csv"
@@ -167,9 +147,7 @@ class TestManualCsvParser:
         depth_mode: str,
         request: pytest.FixtureRequest,
     ) -> None:
-        """
-        Test parsing a valid CSV file with depth mode execution.
-        """
+        """Test parsing a valid CSV file with depth mode execution."""
         file_path = str(
             request.path.parent.joinpath(
                 "data", "manual", "valid_depth_data_trimmed.csv"

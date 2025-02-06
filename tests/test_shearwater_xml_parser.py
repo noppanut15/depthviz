@@ -2,9 +2,7 @@
 # Apache License 2.0 (see LICENSE file or http://www.apache.org/licenses/LICENSE-2.0)
 
 
-"""
-Unit tests for the ShearwaterXmlParser class.
-"""
+"""Unit tests for the ShearwaterXmlParser class."""
 
 import os
 from unittest.mock import patch, Mock
@@ -27,16 +25,12 @@ from depthviz.parsers.generic.xml.xml_parser import (
 
 
 class TestShearwaterXmlParser:
-    """
-    Test class for the ShearwaterXmlParser
-    """
+    """Test class for the ShearwaterXmlParser."""
 
     def test_parse_valid_xml_salinity_salt(
         self, request: pytest.FixtureRequest
     ) -> None:
-        """
-        Test parsing a valid XML file.
-        """
+        """Test parsing a valid XML file."""
         file_path = str(
             request.path.parent.joinpath(
                 "data", "shearwater", "valid_depth_data_trimmed.xml"
@@ -72,9 +66,7 @@ class TestShearwaterXmlParser:
     def test_parse_valid_xml_salinity_fresh(
         self, request: pytest.FixtureRequest
     ) -> None:
-        """
-        Test parsing a valid XML file.
-        """
+        """Test parsing a valid XML file."""
         file_path = str(
             request.path.parent.joinpath(
                 "data", "shearwater", "valid_depth_data_trimmed.xml"
@@ -110,9 +102,7 @@ class TestShearwaterXmlParser:
     def test_parse_valid_xml_salinity_en13319(
         self, request: pytest.FixtureRequest
     ) -> None:
-        """
-        Test parsing a valid XML file.
-        """
+        """Test parsing a valid XML file."""
         file_path = str(
             request.path.parent.joinpath(
                 "data", "shearwater", "valid_depth_data_trimmed.xml"
@@ -148,9 +138,7 @@ class TestShearwaterXmlParser:
     def test_parse_invalid_xml_x_element_start_surface_pressure(
         self, request: pytest.FixtureRequest
     ) -> None:
-        """
-        Test parsing a XML file with an invalid startSurfacePressure element.
-        """
+        """Test parsing a XML file with an invalid startSurfacePressure element."""
         file_path = str(
             request.path.parent.joinpath(
                 "data",
@@ -166,9 +154,7 @@ class TestShearwaterXmlParser:
     def test_parse_invalid_xml_x_element_root(
         self, request: pytest.FixtureRequest
     ) -> None:
-        """
-        Test parsing a XML file with an invalid root element.
-        """
+        """Test parsing a XML file with an invalid root element."""
         file_path = str(
             request.path.parent.joinpath(
                 "data",
@@ -184,9 +170,7 @@ class TestShearwaterXmlParser:
     def test_parse_invalid_xml_x_element_time(
         self, request: pytest.FixtureRequest
     ) -> None:
-        """
-        Test parsing a XML file with an invalid time element.
-        """
+        """Test parsing a XML file with an invalid time element."""
         file_path = str(
             request.path.parent.joinpath(
                 "data",
@@ -202,9 +186,7 @@ class TestShearwaterXmlParser:
     def test_parse_invalid_xml_x_element_depth(
         self, request: pytest.FixtureRequest
     ) -> None:
-        """
-        Test parsing a XML file with an invalid depth element.
-        """
+        """Test parsing a XML file with an invalid depth element."""
         file_path = str(
             request.path.parent.joinpath(
                 "data",
@@ -221,9 +203,7 @@ class TestShearwaterXmlParser:
     def test_parse_invalid_xml_x_value_start_surface_pressure(
         self, request: pytest.FixtureRequest
     ) -> None:
-        """
-        Test parsing a XML file with an invalid startSurfacePressure value.
-        """
+        """Test parsing a XML file with an invalid startSurfacePressure value."""
         file_path = str(
             request.path.parent.joinpath(
                 "data",
@@ -240,9 +220,7 @@ class TestShearwaterXmlParser:
     def test_parse_invalid_xml_x_value_time(
         self, request: pytest.FixtureRequest
     ) -> None:
-        """
-        Test parsing a XML file with an invalid time value.
-        """
+        """Test parsing a XML file with an invalid time value."""
         file_path = str(
             request.path.parent.joinpath(
                 "data",
@@ -259,9 +237,7 @@ class TestShearwaterXmlParser:
     def test_parse_invalid_xml_x_value_depth(
         self, request: pytest.FixtureRequest
     ) -> None:
-        """
-        Test parsing a XML file with an invalid depth value.
-        """
+        """Test parsing a XML file with an invalid depth value."""
         file_path = str(
             request.path.parent.joinpath(
                 "data",
@@ -278,9 +254,7 @@ class TestShearwaterXmlParser:
     def test_parse_invalid_xml_missing_file(
         self, request: pytest.FixtureRequest
     ) -> None:
-        """
-        Test parsing a missing XML file.
-        """
+        """Test parsing a missing XML file."""
         file_path = str(
             request.path.parent.joinpath(
                 "data",
@@ -295,9 +269,7 @@ class TestShearwaterXmlParser:
         assert str(e.value) == f"Invalid XML: File not found: {file_path}"
 
     def test_parse_empty_xml(self, request: pytest.FixtureRequest) -> None:
-        """
-        Test parsing an empty XML file.
-        """
+        """Test parsing an empty XML file."""
         file_path = str(
             request.path.parent.joinpath(
                 "data",
@@ -313,9 +285,7 @@ class TestShearwaterXmlParser:
     def test_parse_invalid_xml_missing_divelog(
         self, request: pytest.FixtureRequest
     ) -> None:
-        """
-        Test parsing a XML file with missing diveLog element.
-        """
+        """Test parsing a XML file with missing diveLog element."""
         file_path = str(
             request.path.parent.joinpath(
                 "data",
@@ -331,9 +301,7 @@ class TestShearwaterXmlParser:
     def test_parse_invalid_missing_divelog_records(
         self, request: pytest.FixtureRequest
     ) -> None:
-        """
-        Test parsing a XML file with missing diveLogRecords element.
-        """
+        """Test parsing a XML file with missing diveLogRecords element."""
         file_path = str(
             request.path.parent.joinpath(
                 "data",
@@ -347,9 +315,7 @@ class TestShearwaterXmlParser:
         assert str(e.value) == "Invalid XML: Dive log records not found"
 
     def test_invalid_salinity(self) -> None:
-        """
-        Test parsing a XML file with invalid salinity.
-        """
+        """Test parsing a XML file with invalid salinity."""
         with pytest.raises(ValueError) as e:
             ShearwaterXmlParser(salinity="invalid")
         assert (
@@ -367,9 +333,7 @@ class TestShearwaterXmlParser:
         depth_mode: str,
         request: pytest.FixtureRequest,
     ) -> None:
-        """
-        Test parsing a valid XML file with depth mode execution.
-        """
+        """Test parsing a valid XML file with depth mode execution."""
         file_path = str(
             request.path.parent.joinpath(
                 "data",

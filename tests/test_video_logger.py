@@ -2,23 +2,17 @@
 # Apache License 2.0 (see LICENSE file or http://www.apache.org/licenses/LICENSE-2.0)
 
 
-"""
-Unit tests for the progress bar logger class.
-"""
+"""Unit tests for the progress bar logger class."""
 
 import pytest
 from depthviz.video.logger import DepthVizProgessBarLogger
 
 
 def test_depthviz_progress_bar_logger(monkeypatch: pytest.MonkeyPatch) -> None:
-    """
-    Test the DepthVizProgessBarLogger class for the closing tqdm bar function.
-    """
+    """Test the DepthVizProgessBarLogger class for the closing tqdm bar function."""
 
     def mock_close_tqdm_bar(bar_mock: str) -> None:
-        """
-        The mock function for overriding the close_tqdm_bar function to not actually close the bar.
-        """
+        """Mock the close_tqdm_bar function to not actually close the bar."""
         print(f"Closing bar: {bar_mock}")
         raise SystemExit()
 

@@ -2,9 +2,7 @@
 # Apache License 2.0 (see LICENSE file or http://www.apache.org/licenses/LICENSE-2.0)
 
 
-"""
-Unit tests for the ApnealizerCsvParser class.
-"""
+"""Unit tests for the ApnealizerCsvParser class."""
 
 import os
 from unittest.mock import patch, Mock
@@ -23,14 +21,10 @@ from depthviz.parsers.generic.csv.csv_parser import (
 
 
 class TestApnealizerCsvParser:
-    """
-    Test class for the ApnealizerCsvParser
-    """
+    """Test class for the ApnealizerCsvParser."""
 
     def test_parse_valid_csv(self, request: pytest.FixtureRequest) -> None:
-        """
-        Test parsing a valid CSV file.
-        """
+        """Test parsing a valid CSV file."""
         file_path = str(
             request.path.parent.joinpath(
                 "data", "apnealizer", "valid_depth_data_trimmed.csv"
@@ -61,9 +55,7 @@ class TestApnealizerCsvParser:
         depth_mode: str,
         request: pytest.FixtureRequest,
     ) -> None:
-        """
-        Test parsing a valid CSV file with depth mode execution.
-        """
+        """Test parsing a valid CSV file with depth mode execution."""
         file_path = str(
             request.path.parent.joinpath(
                 "data", "apnealizer", "valid_depth_data_trimmed.csv"
@@ -74,9 +66,7 @@ class TestApnealizerCsvParser:
         mock_depth_mode_execute.assert_called_once()
 
     def test_parse_invalid_csv_x_header(self, request: pytest.FixtureRequest) -> None:
-        """
-        Test parsing a CSV file with an invalid header.
-        """
+        """Test parsing a CSV file with an invalid header."""
         file_path = str(
             request.path.parent.joinpath(
                 "data", "apnealizer", "invalid_data_x_header.csv"
@@ -88,9 +78,7 @@ class TestApnealizerCsvParser:
         assert str(e.value) == "Invalid CSV: Target header not found"
 
     def test_parse_empty_csv(self, request: pytest.FixtureRequest) -> None:
-        """
-        Test parsing an empty CSV file.
-        """
+        """Test parsing an empty CSV file."""
         file_path = str(
             request.path.parent.joinpath("data", "apnealizer", "empty_file.csv")
         )
@@ -102,9 +90,7 @@ class TestApnealizerCsvParser:
     def test_parse_invalid_csv_missing_depth(
         self, request: pytest.FixtureRequest
     ) -> None:
-        """
-        Test parsing a CSV file with missing depth values.
-        """
+        """Test parsing a CSV file with missing depth values."""
         file_path = str(
             request.path.parent.joinpath(
                 "data", "apnealizer", "invalid_data_x_depth.csv"
@@ -118,9 +104,7 @@ class TestApnealizerCsvParser:
     def test_parse_invalid_csv_missing_file(
         self, request: pytest.FixtureRequest
     ) -> None:
-        """
-        Test parsing a missing CSV file.
-        """
+        """Test parsing a missing CSV file."""
         file_path = str(
             request.path.parent.joinpath("data", "apnealizer", "missing_file_xyz.csv")
         )
@@ -133,9 +117,7 @@ class TestApnealizerCsvParser:
     def test_parse_invalid_csv_missing_time(
         self, request: pytest.FixtureRequest
     ) -> None:
-        """
-        Test parsing a CSV file with missing time values.
-        """
+        """Test parsing a CSV file with missing time values."""
         file_path = str(
             request.path.parent.joinpath(
                 "data", "apnealizer", "invalid_time_depth_mismatched.csv"

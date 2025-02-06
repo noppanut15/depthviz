@@ -2,18 +2,14 @@
 # Apache License 2.0 (see LICENSE file or http://www.apache.org/licenses/LICENSE-2.0)
 
 
-"""
-Unit tests for the depth module.
-"""
+"""Unit tests for the depth module."""
 
 import pytest
 from depthviz.video.time import TimeReportVideoCreator, TimeReportVideoCreatorError
 
 
 class TestTimeReportVideoCreator:
-    """
-    Test the TimeReportVideoCreator class.
-    """
+    """Test the TimeReportVideoCreator class."""
 
     @pytest.mark.parametrize(
         "time_data, expected_duration, expected_num_clips, expected_clip_texts",
@@ -141,9 +137,7 @@ class TestTimeReportVideoCreator:
         expected_num_clips: int,
         expected_clip_texts: list[str],
     ) -> None:
-        """
-        Test the render_time_report_video method.
-        """
+        """Test the render_time_report_video method."""
         # Create a TimeReportVideoCreator instance
         time_report_video_creator = TimeReportVideoCreator()
 
@@ -175,9 +169,7 @@ class TestTimeReportVideoCreator:
     def test_render_time_report_video_error(
         self, time_data: list[float], expected_error_message: str
     ) -> None:
-        """
-        Test the render_time_report_video method with error cases.
-        """
+        """Test the render_time_report_video method with error cases."""
         # Create a TimeReportVideoCreator instance
         time_report_video_creator = TimeReportVideoCreator()
 
