@@ -1,11 +1,24 @@
-"""
-This module contains the DiveLogParser base class 
-which is used to parse a dive log file containing depth data.
+"""This module contains the DiveLogParser abstract base class.
+
+The DiveLogParser class is an abstract base class that defines the interface
+for parsing a dive log file containing depth data. The class also provides
+methods for ensuring that the depth data starts and ends at zero, and for
+executing the depth mode operation on the depth and time data.
+
+Constants:
+    ASSUMED_DESCENT_RATE (float): The assumed descent rate in meters per second.
+        The descent rate is used to calculate the duration of the descent phase
+        when ensuring that the depth data starts at zero.
+    ASSUMED_ASCENT_RATE (float): The assumed ascent rate in meters per second. 
+        The ascent rate is used to calculate the duration of the ascent phase when 
+        ensuring that the depth data ends at zero.
+    ASCENT_CUTOFF_DEPTH (float): The ascent cutoff depth in meters. If the depth
+        is less than this value, it is considered to be at the surface. This
+        value is used to determine the end of the dive.
 """
 
 from abc import ABC, abstractmethod
 
-# Constants
 ASSUMED_DESCENT_RATE = 1  # meters per second
 ASSUMED_ASCENT_RATE = 1  # meters per second
 ASCENT_CUTOFF_DEPTH = 1  # meters
@@ -32,49 +45,43 @@ class EmptyFileError(DiveLogParserError):
 
 
 class DiveLogParser(ABC):
-    """
-    A class to parse a dive log file containing depth data.
-    """
+    """A class to parse a dive log file containing depth data."""
 
     def __init__(self, depth_mode: str) -> None:
-        """
-        Initializes the DiveLogParser object.
-        """
-
+        """Initializes the DiveLogParser object."""
         self.time_data: list[float] = []
         self.depth_data: list[float] = []
         self.depth_mode = depth_mode
 
     @abstractmethod
     def parse(self, file_path: str) -> None:
-        """
-        Parses a dive log file containing depth data.
+        """Parses a dive log file containing depth data.
 
-        Parameters:
-        file_path (str): The path to the dive log file to be parsed.
+        Args:
+            file_path (str): The path to the dive log file to be parsed.
         """
 
     @abstractmethod
     def get_time_data(self) -> list[float]:
-        """
-        Returns the time data parsed from the dive log file.
+        """Returns the time data parsed from the dive log file.
 
         Returns:
-        list[float]: The time data parsed from the dive log file.
+            The time data parsed from the dive log file.
         """
 
     @abstractmethod
     def get_depth_data(self) -> list[float]:
-        """
-        Returns the depth data parsed from the dive log file.
+        """Returns the depth data parsed from the dive log file.
 
         Returns:
-        list[float]: The depth data parsed from the dive log file.
+            The depth data parsed from the dive log file.
         """
 
     def ensure_zero_depth_at_surface(self) -> None:
-        """
-        Ensures that the depth data starts and ends at zero.
+        """Ensures that the depth data starts and ends at zero.
+
+        Note:
+            This is a helper method which will be called by depth_mode_execute().
         """
         # Step 1: Ensure that the depth data STARTS at zero
         first_depth = self.depth_data[0]
@@ -107,8 +114,14 @@ class DiveLogParser(ABC):
         self.time_data = [time - self.time_data[0] for time in self.time_data]
 
     def depth_mode_execute(self) -> None:
-        """
-        Executes the depth mode operation on the depth and time data.
+        """Executes the depth mode operation on the depth and time data.
+
+        Mode of operation:
+            `zero-based`: Ensures that the depth data starts and ends at zero.
+            `raw`: No operation needed. (The starting and ending depth values are not modified.)
+
+        Raises:
+            DiveLogParserError: If the depth mode is invalid.
         """
         if self.depth_mode == "zero-based":
             self.ensure_zero_depth_at_surface()
