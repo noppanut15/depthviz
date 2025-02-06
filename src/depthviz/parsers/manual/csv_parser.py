@@ -2,10 +2,7 @@
 # Apache License 2.0 (see LICENSE file or http://www.apache.org/licenses/LICENSE-2.0)
 
 
-"""
-This module contains the ManualCsvParser class 
-which is used to parse a CSV file from the user's manual input.
-"""
+"""A module for parsing a CSV file containing depth data for manual input."""
 
 import csv
 from depthviz.parsers.generic.generic_divelog_parser import (
@@ -22,23 +19,28 @@ from depthviz.parsers.generic.csv.csv_parser import (
 
 
 class ManualCsvParser(DiveLogCsvParser):
-    """
-    A class to parse a CSV file containing depth data.
-    """
+    """A class to parse a CSV file containing depth data."""
 
     def __init__(self, depth_mode: str = "raw") -> None:
-        """
-        Initializes the ManualCsvParser object.
+        """Initializes the ManualCsvParser object.
+
         Args:
             depth_mode: The depth mode to be used for the parser.
         """
         super().__init__(depth_mode=depth_mode)
 
     def parse(self, file_path: str) -> None:
-        """
-        Parses a CSV file containing depth data.
+        """Parses a CSV file containing depth data.
+
         Args:
             file_path: Path to the CSV file containing depth data.
+
+        Raises:
+            DiveLogFileNotFoundError: If the CSV file is not found.
+            InvalidTimeValueError: If the time value in the CSV file is invalid.
+            InvalidDepthValueError: If the depth value in the CSV file is invalid.
+            DiveLogCsvInvalidHeaderError: If the headers in the CSV file are invalid.
+            EmptyFileError: If the CSV file is empty.
         """
         try:
             with open(file_path, "r", encoding="utf-8") as file:
@@ -87,16 +89,16 @@ class ManualCsvParser(DiveLogCsvParser):
         self.depth_mode_execute()
 
     def get_time_data(self) -> list[float]:
-        """
-        Returns the time data parsed from the CSV file.
+        """Returns the time data parsed from the CSV file.
+
         Returns:
             The time data parsed from the CSV file.
         """
         return self.time_data
 
     def get_depth_data(self) -> list[float]:
-        """
-        Returns the depth data parsed from the CSV file.
+        """Returns the depth data parsed from the CSV file.
+
         Returns:
             The depth data parsed from the CSV file.
         """
