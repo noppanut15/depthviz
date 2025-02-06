@@ -90,7 +90,7 @@ jobs:
           poetry self add "poetry-dynamic-versioning[plugin]"
       - name: Generate CycloneDX SBOM artifacts 📃
         run: |
-          poetry run cyclonedx-py poetry --all-extras --of JSON -o depthviz-${{ github.ref_name }}.cyclonedx.json
+          poetry run cyclonedx-py poetry --without dev --all-extras --of JSON -o depthviz-${{ github.ref_name }}.cyclonedx.json
       - name: Build the package 📦
         run: |
           poetry build
