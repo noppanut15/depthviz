@@ -2,10 +2,7 @@
 # Apache License 2.0 (see LICENSE file or http://www.apache.org/licenses/LICENSE-2.0)
 
 
-"""
-This module contains the XmlParser base class 
-which is used to parse a XML file containing depth data.
-"""
+"""This module contains the abstract base class for parsing a XML file containing depth data."""
 
 from abc import abstractmethod
 from depthviz.parsers.generic.generic_divelog_parser import (
@@ -31,33 +28,28 @@ class DiveLogXmlFileContentUnreadableError(DiveLogXmlParserError):
 
 
 class DiveLogXmlParser(DiveLogParser):
-    """
-    A class to parse a XML file containing depth data.
-    """
+    """A class to parse a XML file containing depth data."""
 
     @abstractmethod
     def parse(self, file_path: str) -> None:
-        """
-        Parses a XML file containing depth data.
+        """Parses a XML file containing depth data.
 
         Parameters:
-        file_path (str): The path to the XML file to be parsed.
+            file_path: The path to the XML file to be parsed.
         """
 
     @abstractmethod
     def get_time_data(self) -> list[float]:
-        """
-        Returns the time data parsed from the XML file.
+        """Returns the time data parsed from the XML file.
 
         Returns:
-        list[float]: The time data parsed from the XML file.
+            The time data parsed from the XML file.
         """
 
     @abstractmethod
     def get_depth_data(self) -> list[float]:
-        """
-        Returns the depth data parsed from the XML file.
+        """Returns the depth data parsed from the XML file.
 
         Returns:
-        list[float]: The depth data parsed from the XML file.
+            The depth data parsed from the XML file.
         """
