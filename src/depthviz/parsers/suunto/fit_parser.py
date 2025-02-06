@@ -2,9 +2,13 @@
 # Apache License 2.0 (see LICENSE file or http://www.apache.org/licenses/LICENSE-2.0)
 
 
-"""
-This module contains the SuuntoFitParser class 
-which is used to parse a Suunto FIT file from Suunto App
+"""A module to parse a Suunto FIT file containing depth data.
+
+Constants:
+    CUT_OFF_DEPTH (float): The depth which the dive is considered to have started or ended 
+        in meters (used to filter out surface intervals).
+    LOWEST_MAX_DEPTH (float): The minimum depth for a dive to be considered valid in meters
+        (used to filter out dives that are too shallow).
 """
 
 from typing import cast, Union, Any
@@ -20,16 +24,35 @@ from depthviz.parsers.generic.fit.fit_parser import (
 )
 
 # Constants
-CUT_OFF_DEPTH = 1.5  # The depth which the dive is considered to have started or ended
-LOWEST_MAX_DEPTH = 3  # The minimum depth for a dive to be considered valid
+CUT_OFF_DEPTH = 1.5  # meters
+LOWEST_MAX_DEPTH = 3  # meters
 
 
 class SuuntoFitParser(DiveLogFitParser):
-    """
-    A class to parse a FIT file containing depth data.
+    """A class to parse a FIT file containing depth data.
+
+    Attributes:
+        selected_dive_idx (int): The index of the dive to be parsed from the FIT file.
+        depth_mode (str): The mode to convert the depth data to (raw or smoothed).
+        time_data (list[float]): The time data parsed from the FIT file.
+        depth_data (list[float]): The depth data parsed from the FIT file.
+        __selected_dive_idx (int): The index of the dive to be parsed from the FIT file.
+        __current_dive (dict[str, Any]): The current dive being extracted from the FIT file.
+        __descended (bool): A flag to indicate if the diver has descended.
+        __ascended (bool): A flag to indicate if the diver has ascended.
     """
 
     def __init__(self, selected_dive_idx: int = -1, depth_mode: str = "raw") -> None:
+        """Initializes the SuuntoFitParser object.
+
+        Args:
+            selected_dive_idx: The index of the dive to be parsed.
+            depth_mode: The depth mode to use for parsing the FIT file.
+
+        Note:
+            If there are multiple dives in the FIT file, the user will be prompted to select a dive
+            to import. The selected dive will be stored in the `__selected_dive_idx` attribute.
+        """
         super().__init__(depth_mode=depth_mode)
 
         # Select the dive to be parsed (in case of multiple dives in FIT file)
@@ -41,17 +64,27 @@ class SuuntoFitParser(DiveLogFitParser):
         self.__ascended: bool = False
 
     def __reset_dive_state(self) -> None:
-        """
-        A method to reset the internal state of the dive extraction process.
-        This is used to reset the state when a new dive is detected.
+        """A helper method to reset the internal state of the dive extraction process.
+
+        Note:
+            This is used to reset the state when a new dive is detected.
         """
         self.__current_dive = {}
         self.__descended = False
         self.__ascended = False
 
     def convert_fit_epoch_to_datetime(self, fit_epoch: int) -> str:
-        """
-        A method to convert the epoch time in the FIT file to a human-readable datetime string.
+        """Convert the epoch time in the FIT file to a human-readable datetime string.
+
+        Note:
+            The FIT epoch is not a standard Unix epoch.
+            Must add 631065600 to the FIT epoch to convert it to a Unix epoch.
+
+        Args:
+            fit_epoch: The FIT epoch time in the FIT file.
+
+        Returns:
+            A human-readable datetime string in the format "%Y-%m-%d %H:%M:%S (GMT)".
         """
         epoch = fit_epoch + 631065600
         return datetime.fromtimestamp(epoch, timezone.utc).strftime(
@@ -61,9 +94,16 @@ class SuuntoFitParser(DiveLogFitParser):
     def select_dive(
         self, dive_summary: list[dict[str, Union[int, float, object]]]
     ) -> int:
-        """
-        A method to prompt the user to select a dive from the FIT file,
-        if there are multiple dives in the file.
+        """Prompt the user to select a dive from the FIT file.
+
+        Note:
+            If there is only one dive in the FIT file, it will be automatically selected.
+
+        Args:
+            dive_summary: A list of dictionaries containing dive summary information.
+
+        Returns:
+            The index of the selected dive.
         """
         if len(dive_summary) == 1:
             return 0
@@ -99,8 +139,17 @@ class SuuntoFitParser(DiveLogFitParser):
         return selected_dive_idx
 
     def parse(self, file_path: str) -> None:
-        """
-        A method to parse a Suunto FIT file containing depth data.
+        """A method to parse a FIT file containing depth data.
+
+        Args:
+            file_path: The path to the FIT file to be parsed.
+
+        Raises:
+            DiveLogFitInvalidFitFileError: If the FIT file is invalid.
+            DiveLogFileNotFoundError: If the FIT file is not found.
+            DiveLogFitInvalidFitFileTypeError: If the FIT file type is invalid.
+                (e.g., not 'activity')
+            DiveLogFitDiveNotFoundError: If the dive data is not found in the FIT file.
         """
         messages = self.__read_fit_file(file_path)
         self.__validate_fit_file(messages, file_path)
@@ -111,9 +160,7 @@ class SuuntoFitParser(DiveLogFitParser):
         self.depth_mode_execute()
 
     def __read_fit_file(self, file_path: str) -> dict[str, Any]:
-        """
-        A method to read the FIT file and extract the messages from it.
-        """
+        """A method to read the FIT file and extract the messages from it."""
         try:
             stream = Stream.from_file(file_path)
             decoder = Decoder(stream)
@@ -127,8 +174,17 @@ class SuuntoFitParser(DiveLogFitParser):
             raise DiveLogFileNotFoundError(f"File not found: {file_path}") from e
 
     def __validate_fit_file(self, messages: dict[str, Any], file_path: str) -> None:
-        """
-        A method to validate the FIT file by checking the FIT type and manufacturer.
+        """A method to validate the FIT file by checking the FIT type and manufacturer.
+
+        Args:
+            messages: The messages extracted from the FIT file.
+            file_path: The path to the FIT file to be validated.
+
+        Raises:
+            DiveLogFitInvalidFitFileError:  If the FIT file type or manufacturer
+                cannot be identified.
+            DiveLogFitInvalidFitFileTypeError: If the file type is invalid.
+            DiveLogFitInvalidFitFileTypeError: If the manufacturer is invalid.
         """
         try:
             file_id_mesgs = messages.get("file_id_mesgs", [])
@@ -152,8 +208,19 @@ class SuuntoFitParser(DiveLogFitParser):
     def __extract_dive_logs(
         self, messages: dict[str, Any]
     ) -> list[dict[str, Union[int, float, object]]]:
-        """
-        A method to extract the dive logs from the records in the FIT file.
+        """A method to extract the dive logs from the records in the FIT file.
+
+        Args:
+            messages: The messages extracted from the FIT file.
+
+        Returns:
+            A list of dictionaries containing the dive logs.
+
+        Raises:
+            DiveLogFitDiveNotFoundError: If the FIT file does not contain any dive data.
+
+        Note:
+            The dive logs are filtered based on the CUT_OFF_DEPTH and LOWEST_MAX_DEPTH.
         """
         dive_summary = []
         raw_extracted_dive_logs: list[dict[str, Any]] = []
@@ -241,9 +308,14 @@ class SuuntoFitParser(DiveLogFitParser):
         return dive_summary
 
     def __parse_selected_dive(self, dive_summary: list[dict[str, Any]]) -> None:
-        """
-        A method to parse the selected dive from the dive summary
-        and save them as time and depth data.
+        """A method to parse the selected dive from the dive summary.
+
+        Args:
+            dive_summary: A list of dictionaries containing dive summary information.
+
+        Raises:
+            DiveLogFitDiveNotFoundError: If the dive data is not found in the FIT
+                file for the selected dive.
         """
         # A prompt to select the dive if there are multiple dives in the FIT file
         if self.__selected_dive_idx == -1:
@@ -262,16 +334,16 @@ class SuuntoFitParser(DiveLogFitParser):
             self.depth_data.append(depth)
 
     def get_time_data(self) -> list[float]:
-        """
-        Returns the time data parsed from the FIT file.
+        """Returns the time data parsed from the FIT file.
+
         Returns:
             The time data parsed from the FIT file.
         """
         return self.time_data
 
     def get_depth_data(self) -> list[float]:
-        """
-        Returns the depth data parsed from the FIT file.
+        """Returns the depth data parsed from the FIT file.
+
         Returns:
             The depth data parsed from the FIT file.
         """

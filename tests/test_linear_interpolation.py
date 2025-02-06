@@ -2,9 +2,7 @@
 # Apache License 2.0 (see LICENSE file or http://www.apache.org/licenses/LICENSE-2.0)
 
 
-"""
-Unit tests for the linear_interpolation.
-"""
+"""Unit tests for the linear_interpolation."""
 
 import pytest
 
@@ -15,9 +13,7 @@ from depthviz.optimizer.linear_interpolation import (
 
 
 class TestLinearInterpolation:
-    """
-    Test class for the LinearInterpolationDepth class.
-    """
+    """Test class for the LinearInterpolationDepth class."""
 
     # pylint: disable=too-many-lines
     @pytest.mark.parametrize(
@@ -1726,9 +1722,7 @@ class TestLinearInterpolation:
         expected_times: list[float],
         expected_depths: list[float],
     ) -> None:  # pylint: enable=too-many-arguments
-        """
-        Test the linear_interpolation function.
-        """
+        """Test the linear_interpolation function."""
         handler = LinearInterpolationDepth(times, depths, fps)
         assert handler.get_interpolated_times() == expected_times
         assert handler.get_interpolated_depths() == expected_depths
@@ -1762,9 +1756,7 @@ class TestLinearInterpolation:
         depths: list[float],
         fps: int,
     ) -> None:
-        """
-        Test the linear_interpolation function with invalid fps.
-        """
+        """Test the linear_interpolation function with invalid fps."""
         with pytest.raises(LinearInterpolationDepthError) as e:
             LinearInterpolationDepth(times, depths, fps)
         assert str(e.value) == "Error: FPS must be positive."
@@ -1776,9 +1768,7 @@ class TestLinearInterpolation:
         depths: list[float],
         fps: int,
     ) -> None:
-        """
-        Test the linear_interpolation function with invalid input.
-        """
+        """Test the linear_interpolation function with invalid input."""
         with pytest.raises(LinearInterpolationDepthError) as e:
             LinearInterpolationDepth(times, depths, fps)
         assert (
@@ -1792,9 +1782,7 @@ class TestLinearInterpolation:
         depths: list[float],
         fps: int,
     ) -> None:
-        """
-        Test the linear_interpolation function with invalid input.
-        """
+        """Test the linear_interpolation function with invalid input."""
         with pytest.raises(LinearInterpolationDepthError) as e:
             LinearInterpolationDepth(times, depths, fps)
         assert str(e.value) == "Error: Input times and depths must be lists."

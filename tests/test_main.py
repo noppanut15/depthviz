@@ -2,9 +2,7 @@
 # Apache License 2.0 (see LICENSE file or http://www.apache.org/licenses/LICENSE-2.0)
 
 
-"""
-Unit tests for the main CLI.
-"""
+"""Unit tests for the main CLI."""
 
 import sys
 import argparse
@@ -25,9 +23,7 @@ from depthviz.video.time import TimeReportVideoCreatorError
 # Mock the DEFAULT_VIDEO_SIZE constant to lower the resolution for faster tests.
 @mock.patch("depthviz.main.DEFAULT_VIDEO_SIZE", (640, 360))
 class TestMainCLI:
-    """
-    Test suite for the main CLI.
-    """
+    """Test suite for the main CLI."""
 
     def _mock_depthviz_create_depth_video(
         self,
@@ -35,15 +31,11 @@ class TestMainCLI:
         *_args: Any,
         **_kwargs: Any,
     ) -> None:
-        """
-        Mock the DepthvizApplication create_depth_video method.
-        """
+        """Mock the DepthvizApplication create_depth_video method."""
         print(f"Depth video successfully created: {output_path}")
 
     def test_main(self, capsys: pytest.CaptureFixture[str]) -> None:
-        """
-        Test the main function.
-        """
+        """Test the main function."""
         with pytest.raises(SystemExit) as excinfo:
             app = DepthvizApplication()
             app.main()
@@ -61,10 +53,7 @@ class TestMainCLI:
         tmp_path: pathlib.Path,
         request: pytest.FixtureRequest,
     ) -> None:
-        """
-        Test the main function with arguments.
-        """
-
+        """Test the main function with arguments."""
         input_path = (
             request.path.parent / "data" / "apnealizer" / "valid_depth_data_trimmed.csv"
         )
@@ -92,10 +81,7 @@ class TestMainCLI:
         tmp_path: pathlib.Path,
         request: pytest.FixtureRequest,
     ) -> None:
-        """
-        Test the main function with an invalid CSV.
-        """
-
+        """Test the main function with an invalid CSV."""
         input_path = (
             request.path.parent / "data" / "apnealizer" / "invalid_data_x_header.csv"
         )
@@ -116,9 +102,7 @@ class TestMainCLI:
         assert "Invalid CSV: Target header not found" in captured.out
 
     def test_main_without_args(self, capsys: pytest.CaptureFixture[str]) -> None:
-        """
-        Test the main function without arguments.
-        """
+        """Test the main function without arguments."""
         sys.argv = ["main"]
         app = DepthvizApplication()
         app.main()
@@ -135,10 +119,7 @@ class TestMainCLI:
         tmp_path: pathlib.Path,
         request: pytest.FixtureRequest,
     ) -> None:
-        """
-        Test the main function with an invalid output video file type.
-        """
-
+        """Test the main function with an invalid output video file type."""
         input_path = (
             request.path.parent / "data" / "apnealizer" / "valid_depth_data_trimmed.csv"
         )
@@ -165,9 +146,7 @@ class TestMainCLI:
         tmp_path: pathlib.Path,
         request: pytest.FixtureRequest,
     ) -> None:
-        """
-        Test the main function with an invalid source.
-        """
+        """Test the main function with an invalid source."""
         input_path = (
             request.path.parent / "data" / "apnealizer" / "valid_depth_data_trimmed.csv"
         )
@@ -190,15 +169,11 @@ class TestMainCLI:
     def test_main_with_invalid_source_direct_call_function(
         self, monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
     ) -> None:
-        """
-        Test the main function with an invalid source using direct function call.
-        """
+        """Test the main function with an invalid source using direct function call."""
         mock_source = "random-stuff"
 
         def mock_parse_args(*_args: Any, **_kwargs: Any) -> argparse.Namespace:
-            """
-            The mock function for overriding the parse_args function to inject nonexistent source.
-            """
+            """Mock the parse_args function to inject nonexistent source."""
             return argparse.Namespace(
                 input="test.csv",
                 source=mock_source,
@@ -213,9 +188,7 @@ class TestMainCLI:
         assert f"Source {mock_source} not supported." in captured.out
 
     def test_cli_run(self) -> None:
-        """
-        Test the entrypoint function.
-        """
+        """Test the entrypoint function."""
         sys.argv = ["main"]
         ret_code = run()
         assert ret_code == 1
@@ -226,10 +199,7 @@ class TestMainCLI:
         tmp_path: pathlib.Path,
         request: pytest.FixtureRequest,
     ) -> None:
-        """
-        Test the main function with arguments for Shearwater.
-        """
-
+        """Test the main function with arguments for Shearwater."""
         input_path = (
             request.path.parent / "data" / "shearwater" / "valid_depth_data_trimmed.xml"
         )
@@ -257,10 +227,7 @@ class TestMainCLI:
         tmp_path: pathlib.Path,
         request: pytest.FixtureRequest,
     ) -> None:
-        """
-        Test the main function with arguments for manual mode.
-        """
-
+        """Test the main function with arguments for manual mode."""
         input_path = (
             request.path.parent / "data" / "manual" / "valid_depth_data_trimmed.csv"
         )
@@ -288,10 +255,7 @@ class TestMainCLI:
         tmp_path: pathlib.Path,
         request: pytest.FixtureRequest,
     ) -> None:
-        """
-        Test the main function with arguments for manual mode with no minus option.
-        """
-
+        """Test the main function with arguments for manual mode with no minus option."""
         input_path = (
             request.path.parent / "data" / "manual" / "valid_depth_data_trimmed.csv"
         )
@@ -323,10 +287,7 @@ class TestMainCLI:
         capsys: pytest.CaptureFixture[str],
         tmp_path: pathlib.Path,
     ) -> None:
-        """
-        Test the main function with arguments for Garmin.
-        """
-
+        """Test the main function with arguments for Garmin."""
         input_path = tmp_path / "mock.fit"
         output_path = tmp_path / "test_main_with_args_garmin.mp4"
         sys.argv = [
@@ -402,9 +363,7 @@ class TestMainCLI:
         expected_output_message: str,
         capsys: pytest.CaptureFixture[str],
     ) -> None:
-        """
-        Test the is_user_input_valid method.
-        """
+        """Test the is_user_input_valid method."""
         app = DepthvizApplication()
         args = argparse.Namespace(decimal_places=decimal_places, output=output)
         is_valid = app.is_user_input_valid(args)
@@ -422,9 +381,7 @@ class TestMainCLI:
         mock_save: mock.Mock,
         capsys: pytest.CaptureFixture[str],
     ) -> None:
-        """
-        Test the create_depth_video method for failure in video creation.
-        """
+        """Test the create_depth_video method for failure in video creation."""
         # Create an instance of the main application.
         app = DepthvizApplication()
 
@@ -477,10 +434,7 @@ class TestMainCLI:
         capsys: pytest.CaptureFixture[str],
         tmp_path: pathlib.Path,
     ) -> None:
-        """
-        Test the main function with arguments for Suunto.
-        """
-
+        """Test the main function with arguments for Suunto."""
         input_path = tmp_path / "mock.fit"
         output_path = tmp_path / "test_main_with_args_suunto.mp4"
         sys.argv = [
@@ -522,10 +476,7 @@ class TestMainCLI:
         tmp_path: pathlib.Path,
         request: pytest.FixtureRequest,
     ) -> None:
-        """
-        Test the main function with arguments for font.
-        """
-
+        """Test the main function with arguments for font."""
         input_path = (
             request.path.parent / "data" / "apnealizer" / "valid_depth_data_trimmed.csv"
         )
@@ -558,10 +509,7 @@ class TestMainCLI:
         tmp_path: pathlib.Path,
         request: pytest.FixtureRequest,
     ) -> None:
-        """
-        Test the main function with arguments for background color.
-        """
-
+        """Test the main function with arguments for background color."""
         input_path = (
             request.path.parent / "data" / "apnealizer" / "valid_depth_data_trimmed.csv"
         )
@@ -591,10 +539,7 @@ class TestMainCLI:
         tmp_path: pathlib.Path,
         request: pytest.FixtureRequest,
     ) -> None:
-        """
-        Test the main function with arguments for stroke width.
-        """
-
+        """Test the main function with arguments for stroke width."""
         input_path = (
             request.path.parent / "data" / "apnealizer" / "valid_depth_data_trimmed.csv"
         )
@@ -626,10 +571,7 @@ class TestMainCLI:
         tmp_path: pathlib.Path,
         request: pytest.FixtureRequest,
     ) -> None:
-        """
-        Test the main function with arguments for time overlay video.
-        """
-
+        """Test the main function with arguments for time overlay video."""
         input_path = (
             request.path.parent / "data" / "apnealizer" / "valid_depth_data_trimmed.csv"
         )
@@ -664,9 +606,7 @@ class TestMainCLI:
         mock_save: mock.Mock,
         capsys: pytest.CaptureFixture[str],
     ) -> None:
-        """
-        Test the create_time_video method for failure in video creation.
-        """
+        """Test the create_time_video method for failure in video creation."""
         # Create an instance of the main application.
         app = DepthvizApplication()
 

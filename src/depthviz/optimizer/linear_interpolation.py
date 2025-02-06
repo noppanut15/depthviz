@@ -2,9 +2,7 @@
 # Apache License 2.0 (see LICENSE file or http://www.apache.org/licenses/LICENSE-2.0)
 
 
-"""
-This module provides a class to perform linear interpolation on depth data.
-"""
+"""This module provides a class to perform linear interpolation on depth data."""
 
 import math
 
@@ -14,16 +12,22 @@ class LinearInterpolationDepthError(Exception):
 
 
 class LinearInterpolationDepth:
-    """
-    A class to perform linear interpolation on depth data.
-
-    Args:
-        times: A list of time points (in seconds).
-        depths: A list of corresponding depth values (in meters).
-        fps: The target frame rate (frames per second).
-    """
+    """A class to perform linear interpolation on depth data."""
 
     def __init__(self, times: list[float], depths: list[float], fps: int) -> None:
+        """Initialize the LinearInterpolationDepth class.
+
+        Args:
+            times: A list of time points (in seconds).
+            depths: A list of corresponding depth values (in meters).
+            fps: The target frame rate (frames per second).
+
+        Raises:
+            LinearInterpolationDepthError:
+                - If the input times and depths are not lists.
+                - If the input times and depths do not have the same length.
+                - If the FPS is not positive.
+        """
         self.__current_pos = 0
         self.times = times
         self.depths = depths
@@ -32,20 +36,23 @@ class LinearInterpolationDepth:
         self.__interpolated_depths = self.__interpolate_depth()
 
     def __linear_interpolation(self, x: float, current_pos: int = 0) -> float:
-        """
-        A helper function to perform linear interpolation between two points.
-        """
+        """A helper function to perform linear interpolation between two points."""
         i = current_pos
         t1, d1 = self.times[i], self.depths[i]
         t2, d2 = self.times[i + 1], self.depths[i + 1]
         return float(d1 + (x - t1) * (d2 - d1) / (t2 - t1))
 
     def __interpolate_depth(self) -> list[float]:
-        """
-        Interpolates depth data to a given frame rate using linear interpolation.
-        Original data points are retained at their correct times.
-        """
+        """Interpolates depth data.
 
+        Interpolates the depth data at the target frame rate (fps) using linear interpolation.
+
+        Note:
+            Original data points are retained at their correct times.
+
+        Returns:
+            The interpolated depth data.
+        """
         if not (isinstance(self.times, list) and isinstance(self.depths, list)):
             raise LinearInterpolationDepthError(
                 "Error: Input times and depths must be lists."
@@ -105,16 +112,16 @@ class LinearInterpolationDepth:
         return interpolated_depths
 
     def get_interpolated_depths(self) -> list[float]:
-        """
-        Returns the interpolated depth data.
+        """Returns the interpolated depth data.
+
         Returns:
             The interpolated depth data.
         """
         return self.__interpolated_depths
 
     def get_interpolated_times(self) -> list[float]:
-        """
-        Returns the interpolated time data.
+        """Returns the interpolated time data.
+
         Returns:
             The interpolated time data.
         """

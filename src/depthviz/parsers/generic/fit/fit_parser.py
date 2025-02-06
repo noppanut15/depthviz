@@ -2,9 +2,11 @@
 # Apache License 2.0 (see LICENSE file or http://www.apache.org/licenses/LICENSE-2.0)
 
 
-"""
-This module contains the DiveLogFitParser base class 
-which is used to parse a FIT file containing depth data.
+"""This module contains the abstract base class for FIT file parsers.
+
+The FIT file format is a binary file format used by Garmin devices (and some other brands) 
+to store activity data. This module provides an abstract base class for FIT file parsers 
+that can be used to parse FIT files containing depth data.
 """
 
 from abc import abstractmethod
@@ -31,33 +33,28 @@ class DiveLogFitDiveNotFoundError(DiveLogFitParserError):
 
 
 class DiveLogFitParser(DiveLogParser):
-    """
-    A class to parse a FIT file containing depth data.
-    """
+    """A class to parse a FIT file containing depth data."""
 
     @abstractmethod
     def parse(self, file_path: str) -> None:
-        """
-        Parses a FIT file containing depth data.
+        """Parses a FIT file containing depth data.
 
-        Parameters:
-        file_path (str): The path to the FIT file to be parsed.
+        Args:
+            file_path: The path to the FIT file to be parsed.
         """
 
     @abstractmethod
     def get_time_data(self) -> list[float]:
-        """
-        Returns the time data parsed from the FIT file.
+        """Returns the time data parsed from the FIT file.
 
         Returns:
-        list[float]: The time data parsed from the FIT file.
+            The time data parsed from the FIT file.
         """
 
     @abstractmethod
     def get_depth_data(self) -> list[float]:
-        """
-        Returns the depth data parsed from the FIT file.
+        """Returns the depth data parsed from the FIT file.
 
         Returns:
-        list[float]: The depth data parsed from the FIT file.
+            The depth data parsed from the FIT file.
         """

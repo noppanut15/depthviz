@@ -2,9 +2,7 @@
 # Apache License 2.0 (see LICENSE file or http://www.apache.org/licenses/LICENSE-2.0)
 
 
-"""
-Generic video creator module to create a video from an array input.
-"""
+"""Generic video creator module to create a video from an array input."""
 
 import os.path
 from typing import Tuple, cast, Union
@@ -36,9 +34,7 @@ class VideoFormatError(OverlayVideoCreatorError):
 
 
 class OverlayVideoCreator:
-    """
-    Generic class to create an overlay video from an array input.
-    """
+    """Generic class to create an overlay video from an array input."""
 
     def __init__(
         self,
@@ -53,6 +49,25 @@ class OverlayVideoCreator:
         bitrate: str = "5000k",
         fps: int = 25,
     ):
+        """Initializes the video creator.
+
+        Args:
+            font: The font file path.
+            interline: The space between lines.
+            color: The text color.
+            bg_color: The background color.
+            stroke_color: The stroke color.
+            stroke_width: The stroke width.
+            align: The text alignment.
+            size: The video size.
+            bitrate: The video bitrate.
+            fps: The video frame rate.
+
+        Raises:
+            OverlayVideoCreatorError: An error occurred when validating the font file.
+            OverlayVideoCreatorError: An error occurred when validating the background color.
+            OverlayVideoCreatorError: An error occurred when validating the stroke width.
+        """
         self.font = font
         self.fontsize = int(
             size[1] * 120 / 360
@@ -87,8 +102,7 @@ class OverlayVideoCreator:
         text_list: list[dict[str, Union[str, float]]],
         progress_bar_desc: str = "Rendering",
     ) -> VideoClip:
-        """
-        Creates a video from an array input.
+        """Creates a video from an array input.
 
         Args:
             text_list: A list of dictionaries containing the text and duration for each frame.
@@ -96,6 +110,10 @@ class OverlayVideoCreator:
 
         Returns:
             The processed video.
+
+        Raises:
+            VideoNotRenderError: An error occurred when the video is not rendered yet.
+            VideoFormatError: An error occurred when the file format is invalid.
         """
         # Create a text clip for each text value and track the progress with a progress bar
         clips = []
@@ -132,12 +150,17 @@ class OverlayVideoCreator:
     def save(
         self, video: VideoClip, path: str, progress_bar_desc: str = "Exporting"
     ) -> None:
-        """
-        Saves the video to a file.
+        """Saves the video to a file.
 
         Args:
             video: The video to save.
             path: The path to save the video (expected file format: .mp4).
+            progress_bar_desc: The description for the progress bar.
+
+        Raises:
+            FileNotFoundError: An error occurred when the parent directory does not exist.
+            VideoNotRenderError: An error occurred when the video is not rendered yet.
+            VideoFormatError: An error occurred when the file format is invalid.
         """
         parent_dir = os.path.dirname(path)
         if parent_dir == "":
@@ -172,8 +195,12 @@ class OverlayVideoCreator:
             raise FileNotFoundError(f"Parent directory does not exist: {parent_dir}")
 
     def __font_validate(self) -> None:
-        """
-        Validates the font file.
+        """Validates the font file.
+
+        Raises:
+            OverlayVideoCreatorError: An error occurred when the font file is not found.
+            OverlayVideoCreatorError: An error occurred when the font file is not a file.
+            OverlayVideoCreatorError: An error occurred when the font file is invalid.
         """
         # Check if the font file exists
         if not os.path.exists(self.font):
@@ -195,8 +222,10 @@ class OverlayVideoCreator:
             ) from e
 
     def __bg_color_validate(self) -> None:
-        """
-        Validates the background color.
+        """Validates the background color.
+
+        Raises:
+            OverlayVideoCreatorError: An error occurred when the background color is invalid.
         """
         # Check if the background color is a valid color
         try:

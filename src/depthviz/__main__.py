@@ -2,9 +2,7 @@
 # Apache License 2.0 (see LICENSE file or http://www.apache.org/licenses/LICENSE-2.0)
 
 
-"""
-This module is the main entry point for the command line interface (CLI) of the DepthViz package.
-"""
+"""This module provides the command line interface for the depthviz package."""
 
 import sys
 from depthviz.main import run

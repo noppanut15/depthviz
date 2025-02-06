@@ -59,9 +59,12 @@ line-length = 100
 indent-width = 4
 
 [tool.ruff.lint]
-# Enable Pyflakes (`F`) and pycodestyle (`E`) checks
-select = ["E", "F"]
-ignore = []
+# Enable Pyflakes (`F`), pycodestyle (`E`) checks and pydocstyle (`D`) checks
+select = ["E", "F", "D"]
+ignore = ["D104"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
 
 [[tool.mypy.overrides]]
 module = [

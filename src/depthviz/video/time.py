@@ -2,9 +2,7 @@
 # Apache License 2.0 (see LICENSE file or http://www.apache.org/licenses/LICENSE-2.0)
 
 
-"""
-Module to create a timer video.
-"""
+"""Module to create a timer video."""
 
 import math
 from typing import Union
@@ -24,9 +22,7 @@ class TimeReportVideoCreatorError(OverlayVideoCreatorError):
 
 
 class TimeReportVideoCreator(OverlayVideoCreator):
-    """
-    Class to create a video that reports the depth in meters from an array input.
-    """
+    """Class to create a video that reports the depth in meters from an array input."""
 
     def __init__(
         self,
@@ -35,6 +31,14 @@ class TimeReportVideoCreator(OverlayVideoCreator):
         stroke_width: int = DEFAULT_STROKE_WIDTH,
         size: tuple[int, int] = DEFAULT_VIDEO_SIZE,
     ):
+        """Initializes the TimeReportVideoCreator object.
+
+        Args:
+            font: The font file path.
+            bg_color: The background color in hexadecimal format or color name.
+            stroke_width: The stroke width.
+            size: The video size.
+        """
         super().__init__(
             font=font,
             bg_color=bg_color,
@@ -44,8 +48,7 @@ class TimeReportVideoCreator(OverlayVideoCreator):
         )
 
     def _convert_time_to_text(self, time: float) -> str:
-        """
-        Converts a time value to a text string.
+        """Converts a time value to a text string.
 
         Args:
             time: The time value in seconds.
@@ -61,8 +64,7 @@ class TimeReportVideoCreator(OverlayVideoCreator):
         self,
         time_data: list[float],
     ) -> VideoClip:
-        """
-        Creates a video that reports the depth in meters from an array input.
+        """Creates a video that reports the depth in meters from an array input.
 
         Args:
             time_data: An array of time values in seconds.
@@ -91,8 +93,7 @@ class TimeReportVideoCreator(OverlayVideoCreator):
         return full_video
 
     def to_time_output_path(self, path: str) -> str:
-        """
-        Convert a video path to a time output path by adding a suffix `_time`.
+        """Convert a video path to a time output path by adding a suffix `_time`.
 
         Args:
             path: The video path.
@@ -107,12 +108,12 @@ class TimeReportVideoCreator(OverlayVideoCreator):
     def save(
         self, video: VideoClip, path: str, progress_bar_desc: str = "Exporting"
     ) -> None:
-        """
-        Save the video to a file.
+        """Save the video to a file.
 
         Args:
             video: The video to save.
             path: The path to save the video to.
+            progress_bar_desc: The description for the progress bar.
         """
         # Add a suffix `_time` to the file name
         path = self.to_time_output_path(path)

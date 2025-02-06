@@ -2,9 +2,7 @@
 # Apache License 2.0 (see LICENSE file or http://www.apache.org/licenses/LICENSE-2.0)
 
 
-"""
-Unit tests for the GarminFitParser class.
-"""
+"""Unit tests for the GarminFitParser class."""
 
 from typing import Any, Union
 from unittest.mock import patch, Mock
@@ -22,23 +20,17 @@ from depthviz.parsers.generic.generic_divelog_parser import (
 
 
 class TestGarminFitParser:
-    """
-    Test class for the GarminFitParser
-    """
+    """Test class for the GarminFitParser."""
 
     def _mock_stream_from_file(self, _: Any) -> None:
-        """
-        A mock function for the Stream.from_file method.
-        """
+        """A mock function for the Stream.from_file method."""
 
     def _mock_decoder_init(
         self,
         *args: Union[str, bool],
         **kwargs: Union[str, bool],
     ) -> None:
-        """
-        A mock function for the Decoder.__init__ method.
-        """
+        """A mock function for the Decoder.__init__ method."""
 
     @pytest.mark.parametrize(
         "file_path, selected_dive_idx, expected_time_data, expected_depth_data",
@@ -1063,9 +1055,7 @@ class TestGarminFitParser:
         expected_time_data: list[float],
         expected_depth_data: list[float],
     ) -> None:
-        """
-        Test parsing a valid FIT file.
-        """
+        """Test parsing a valid FIT file."""
         file_path = str(request.path.parent.joinpath("data", "garmin", file_path))
         fit_parser = GarminFitParser(selected_dive_idx=selected_dive_idx)
         fit_parser.parse(file_path)
@@ -1077,9 +1067,7 @@ class TestGarminFitParser:
         self,
         request: pytest.FixtureRequest,
     ) -> None:
-        """
-        Test parsing an invalid FIT file.
-        """
+        """Test parsing an invalid FIT file."""
         file_path = str(
             request.path.parent.joinpath("data", "garmin", "invalid_file.fit")
         )
@@ -1092,17 +1080,13 @@ class TestGarminFitParser:
     def test_parse_invalid_fit_no_file_id_mesgs(
         self, monkeypatch: pytest.MonkeyPatch
     ) -> None:
-        """
-        Test parsing a FIT file with no file_id_mesgs.
-        """
+        """Test parsing a FIT file with no file_id_mesgs."""
 
         def mock_decoder_read(
             *_args: Union[str, bool],
             **_kwargs: Union[str, bool],
         ) -> tuple[dict[str, list[Any]], list[Any]]:
-            """
-            A mock function for the Decoder.read method.
-            """
+            """A mock function for the Decoder.read method."""
             return {"file_id_mesgs": []}, []
 
         file_path = "mock"
@@ -1120,17 +1104,13 @@ class TestGarminFitParser:
     def test_parse_invalid_fit_wrong_file_type(
         self, monkeypatch: pytest.MonkeyPatch
     ) -> None:
-        """
-        Test parsing a FIT file with the wrong file type.
-        """
+        """Test parsing a FIT file with the wrong file type."""
 
         def mock_decoder_read(
             *_args: Union[str, bool],
             **_kwargs: Union[str, bool],
         ) -> tuple[dict[str, list[Any]], list[Any]]:
-            """
-            A mock function for the Decoder.read method.
-            """
+            """A mock function for the Decoder.read method."""
             return {"file_id_mesgs": [{"type": "workout"}]}, []
 
         file_path = "mock"
@@ -1147,17 +1127,13 @@ class TestGarminFitParser:
         )
 
     def test_no_dive_summary_mesgs(self, monkeypatch: pytest.MonkeyPatch) -> None:
-        """
-        Test parsing a FIT file with no dive_summary_mesgs.
-        """
+        """Test parsing a FIT file with no dive_summary_mesgs."""
 
         def mock_decoder_read(
             *_args: Union[str, bool],
             **_kwargs: Union[str, bool],
         ) -> tuple[dict[str, list[Any]], list[Any]]:
-            """
-            A mock function for the Decoder.read method.
-            """
+            """A mock function for the Decoder.read method."""
             return {
                 "file_id_mesgs": [{"type": "activity"}],
                 "dive_summary_mesgs": [],
@@ -1180,17 +1156,13 @@ class TestGarminFitParser:
     def test_invalid_dive_idx(
         self, mock_input: Mock, monkeypatch: pytest.MonkeyPatch
     ) -> None:
-        """
-        Test parsing a FIT file with an invalid dive index.
-        """
+        """Test parsing a FIT file with an invalid dive index."""
 
         def mock_decoder_read(
             *_args: Union[str, bool],
             **_kwargs: Union[str, bool],
         ) -> tuple[dict[str, list[Any]], list[Any]]:
-            """
-            A mock function for the Decoder.read method.
-            """
+            """A mock function for the Decoder.read method."""
             return {
                 "file_id_mesgs": [{"type": "activity"}],
                 "dive_summary_mesgs": [
@@ -1231,17 +1203,13 @@ class TestGarminFitParser:
         assert mock_input.call_count == 1
 
     def test_empty_record_mesgs(self, monkeypatch: pytest.MonkeyPatch) -> None:
-        """
-        Test parsing a FIT file with empty record_mesgs.
-        """
+        """Test parsing a FIT file with empty record_mesgs."""
 
         def mock_decoder_read(
             *_args: Union[str, bool],
             **_kwargs: Union[str, bool],
         ) -> tuple[dict[str, list[Any]], list[Any]]:
-            """
-            A mock function for the Decoder.read method.
-            """
+            """A mock function for the Decoder.read method."""
             return {
                 "file_id_mesgs": [{"type": "activity"}],
                 "dive_summary_mesgs": [
@@ -1273,9 +1241,7 @@ class TestGarminFitParser:
         )
 
     def test_file_not_found(self) -> None:
-        """
-        Test parsing a FIT file that does not exist.
-        """
+        """Test parsing a FIT file that does not exist."""
         file_path = "invalid_file_path"
 
         fit_parser = GarminFitParser()
@@ -1284,9 +1250,7 @@ class TestGarminFitParser:
         assert str(e.value) == f"File not found: {file_path}"
 
     def test_select_dive_single_dive(self) -> None:
-        """
-        Test selecting a dive from a FIT file with a single dive.
-        """
+        """Test selecting a dive from a FIT file with a single dive."""
         dive_summary = [
             {
                 "start_time": 0,
@@ -1300,9 +1264,7 @@ class TestGarminFitParser:
         assert fit_parser.select_dive(dive_summary) == 0
 
     def test_convert_time(self) -> None:
-        """
-        Test converting time from a FIT file to a human-readable format.
-        """
+        """Test converting time from a FIT file to a human-readable format."""
         fit_epoch_time = 1054147458
         fit_parser = GarminFitParser()
         assert (
@@ -1316,14 +1278,15 @@ class TestGarminFitParser:
         mock_input: Mock,
         capsys: pytest.CaptureFixture[str],
     ) -> None:
-        """
-        Test selecting a dive from a FIT file with multiple dives.
-        This test uses the mock_input fixture to simulate user input.
+        """Test selecting a dive from a FIT file with multiple dives.
 
-        The output should be:
-        Multiple dives found in the FIT file. Please select a dive to import:
-        [1]: Dive 1: Start Time: 2023-05-27 19:10:00 (GMT), Max Depth: 30.0m, Bottom Time: 60.0s
-        [2]: Dive 2: Start Time: 2023-05-27 19:11:00 (GMT), Max Depth: 20.0m, Bottom Time: 59.0s
+        Note:
+            This test uses the mock_input fixture to simulate user input.
+
+        Expected Output:
+            Multiple dives found in the FIT file. Please select a dive to import:
+            [1]: Dive 1: Start Time: 2023-05-27 19:10:00 (GMT), Max Depth: 30.0m, Bottom Time: 60.0s
+            [2]: Dive 2: Start Time: 2023-05-27 19:11:00 (GMT), Max Depth: 20.0m, Bottom Time: 59.0s
         """
         dive_summary = [
             {
@@ -1363,9 +1326,7 @@ class TestGarminFitParser:
         self,
         mock_input: Mock,
     ) -> None:
-        """
-        Test selecting an invalid dive index.
-        """
+        """Test selecting an invalid dive index."""
         dive_summary = [
             {
                 "start_time": 1054149000,
@@ -1399,9 +1360,7 @@ class TestGarminFitParser:
         depth_mode: str,
         request: pytest.FixtureRequest,
     ) -> None:
-        """
-        Test parsing a valid FIT file with depth mode execution.
-        """
+        """Test parsing a valid FIT file with depth mode execution."""
         file_path = str(
             request.path.parent.joinpath(
                 "data",

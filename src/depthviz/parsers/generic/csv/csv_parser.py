@@ -2,9 +2,10 @@
 # Apache License 2.0 (see LICENSE file or http://www.apache.org/licenses/LICENSE-2.0)
 
 
-"""
-This module contains the DiveLogCsvParser base class 
-which is used to parse a CSV file containing depth data.
+"""A module for parsing a CSV file containing depth data.
+
+This module contains the abstract base class `DiveLogCsvParser` 
+for parsing a CSV file containing depth data.
 """
 
 from abc import abstractmethod
@@ -23,33 +24,28 @@ class DiveLogCsvInvalidHeaderError(DiveLogParserError):
 
 
 class DiveLogCsvParser(DiveLogParser):
-    """
-    A class to parse a CSV file containing depth data.
-    """
+    """A generic class to parse a CSV file containing depth data."""
 
     @abstractmethod
     def parse(self, file_path: str) -> None:
-        """
-        Parses a CSV file containing depth data.
+        """Parses a CSV file containing depth data.
 
-        Parameters:
-        file_path (str): The path to the CSV file to be parsed.
+        Args:
+            file_path: The path to the CSV file to be parsed.
         """
 
     @abstractmethod
     def get_time_data(self) -> list[float]:
-        """
-        Returns the time data parsed from the CSV file.
+        """Returns the time data parsed from the CSV file.
 
         Returns:
-        list[float]: The time data parsed from the CSV file.
+            The time data parsed from the CSV file.
         """
 
     @abstractmethod
     def get_depth_data(self) -> list[float]:
-        """
-        Returns the depth data parsed from the CSV file.
+        """Returns the depth data parsed from the CSV file.
 
         Returns:
-        list[float]: The depth data parsed from the CSV file.
+            The depth data parsed from the CSV file.
         """

@@ -2,9 +2,7 @@
 # Apache License 2.0 (see LICENSE file or http://www.apache.org/licenses/LICENSE-2.0)
 
 
-"""
-Unit tests for the depth module.
-"""
+"""Unit tests for the depth module."""
 
 import os.path
 import pathlib
@@ -19,14 +17,10 @@ from depthviz.video.depth import DepthReportVideoCreator, DepthReportVideoCreato
 
 
 class TestDepthReportVideoCreator:
-    """
-    Test the DepthReportVideoCreator class.
-    """
+    """Test the DepthReportVideoCreator class."""
 
     def test_render_depth_report_video(self) -> None:
-        """
-        Test the render_depth_report_video method.
-        """
+        """Test the render_depth_report_video method."""
         # Create a DepthReportVideoCreator instance
         depth_report_video_creator = DepthReportVideoCreator()
 
@@ -60,9 +54,7 @@ class TestDepthReportVideoCreator:
         assert len(video.clips) == 94
 
     def test_save_specific_dir(self, tmp_path: pathlib.Path) -> None:
-        """
-        Test the save method in a specific directory.
-        """
+        """Test the save method in a specific directory."""
         # Create a DepthReportVideoCreator instance
         depth_report_video_creator = DepthReportVideoCreator(fps=1)
 
@@ -82,9 +74,7 @@ class TestDepthReportVideoCreator:
         assert path.suffix == ".mp4"
 
     def test_save_current_dir(self) -> None:
-        """
-        Test the save method in the current directory.
-        """
+        """Test the save method in the current directory."""
         # Create a DepthReportVideoCreator instance
         depth_report_video_creator = DepthReportVideoCreator(fps=4)
 
@@ -102,9 +92,7 @@ class TestDepthReportVideoCreator:
         assert os.path.exists(".depth_overlay.mp4")
 
     def test_save_to_nonexistent_path(self, tmp_path: pathlib.Path) -> None:
-        """
-        Test the save method with a nonexistent path.
-        """
+        """Test the save method with a nonexistent path."""
         # Create a DepthReportVideoCreator instance
         depth_report_video_creator = DepthReportVideoCreator(fps=1)
 
@@ -122,9 +110,7 @@ class TestDepthReportVideoCreator:
         assert str(e.value) == f"Parent directory does not exist: {wrong_path.parent}"
 
     def test_save_without_file_name(self, tmp_path: pathlib.Path) -> None:
-        """
-        Test the save method without a file name.
-        """
+        """Test the save method without a file name."""
         # Create a DepthReportVideoCreator instance
         depth_report_video_creator = DepthReportVideoCreator(fps=1)
 
@@ -146,9 +132,7 @@ class TestDepthReportVideoCreator:
         )
 
     def test_save_video_not_rendered(self, tmp_path: pathlib.Path) -> None:
-        """
-        Test the save method with a video not rendered.
-        """
+        """Test the save method with a video not rendered."""
         # Create a DepthReportVideoCreator instance
         depth_report_video_creator = DepthReportVideoCreator(fps=1)
         video = None
@@ -159,9 +143,7 @@ class TestDepthReportVideoCreator:
         assert str(e.value) == "Cannot save video because it has not been rendered yet."
 
     def test_save_video_wrong_format(self, tmp_path: pathlib.Path) -> None:
-        """
-        Test the save method with a wrong file format.
-        """
+        """Test the save method with a wrong file format."""
         # Create a DepthReportVideoCreator instance
         depth_report_video_creator = DepthReportVideoCreator(fps=1)
 
@@ -179,9 +161,10 @@ class TestDepthReportVideoCreator:
         assert str(e.value) == "Invalid file format: The file format must be .mp4"
 
     def test_render_depth_video_with_invalid_input(self) -> None:
-        """
-        Test the render_depth_report_video method with invalid input.
-        (different length between time and depth data)
+        """Test the render_depth_report_video method with invalid input.
+
+        Note:
+            Test with different length between time and depth data
         """
         # Create a DepthReportVideoCreator instance
         depth_report_video_creator = DepthReportVideoCreator(fps=1)
@@ -209,9 +192,7 @@ class TestDepthReportVideoCreator:
     def test_render_depth_video_with_decimal_places(
         self, decimal_places: int, expected_texts: list[str]
     ) -> None:
-        """
-        Test the render_depth_report_video method with decimal places.
-        """
+        """Test the render_depth_report_video method with decimal places."""
         # Create a DepthReportVideoCreator instance
         depth_report_video_creator = DepthReportVideoCreator(fps=1)
 
@@ -242,9 +223,7 @@ class TestDepthReportVideoCreator:
     def test_render_depth_video_with_invalid_decimal_places(
         self, decimal_places: Any
     ) -> None:
-        """
-        Test the render_depth_report_video method with invalid decimal places.
-        """
+        """Test the render_depth_report_video method with invalid decimal places."""
         # Create a DepthReportVideoCreator instance
         depth_report_video_creator = DepthReportVideoCreator(fps=1)
 
@@ -276,9 +255,7 @@ class TestDepthReportVideoCreator:
     def test_render_depth_video_with_no_minus_sign_option(
         self, minus_sign: bool, decimal_places: int, expected_texts: list[str]
     ) -> None:
-        """
-        Test the render_depth_report_video method with no minus option.
-        """
+        """Test the render_depth_report_video method with no minus option."""
         # Create a DepthReportVideoCreator instance
         depth_report_video_creator = DepthReportVideoCreator(fps=1)
 
@@ -308,10 +285,7 @@ class TestDepthReportVideoCreator:
     def test_render_depth_report_video_with_user_font(
         self, request: pytest.FixtureRequest
     ) -> None:
-        """
-        Test the render_depth_report_video method with a user-specified font.
-        """
-
+        """Test the render_depth_report_video method with a user-specified font."""
         file_path = str(
             request.path.parent.joinpath(
                 "data", "assets", "fonts", "OpenSans-Regular.ttf"
@@ -353,10 +327,7 @@ class TestDepthReportVideoCreator:
     def test_render_depth_report_video_with_user_font_invalid_file(
         self, request: pytest.FixtureRequest, font: str, expected_error_prefix: str
     ) -> None:
-        """
-        Test the render_depth_report_video method with a user-specified font.
-        """
-
+        """Test the render_depth_report_video method with a user-specified font."""
         file_path = str(request.path.parent.joinpath("data", "assets", "fonts", font))
 
         with pytest.raises(OverlayVideoCreatorError) as e:
@@ -374,9 +345,7 @@ class TestDepthReportVideoCreator:
         ],
     )
     def test_render_depth_report_video_with_bg_color(self, bg_color: str) -> None:
-        """
-        Test the render_depth_report_video method with a background color.
-        """
+        """Test the render_depth_report_video method with a background color."""
         _ = DepthReportVideoCreator(fps=1, bg_color=bg_color)
 
     @pytest.mark.parametrize(
@@ -386,9 +355,7 @@ class TestDepthReportVideoCreator:
     def test_render_depth_report_video_with_invalid_bg_color(
         self, bg_color: str
     ) -> None:
-        """
-        Test the render_depth_report_video method with an invalid background color.
-        """
+        """Test the render_depth_report_video method with an invalid background color."""
         with pytest.raises(OverlayVideoCreatorError) as e:
             _ = DepthReportVideoCreator(fps=1, bg_color=bg_color)
 
@@ -401,9 +368,7 @@ class TestDepthReportVideoCreator:
     def test_render_depth_report_video_with_stroke_width(
         self, stroke_width: int
     ) -> None:
-        """
-        Test the render_depth_report_video method with a stroke width.
-        """
+        """Test the render_depth_report_video method with a stroke width."""
         _ = DepthReportVideoCreator(fps=1, stroke_width=stroke_width)
 
     @pytest.mark.parametrize(
@@ -413,9 +378,7 @@ class TestDepthReportVideoCreator:
     def test_render_depth_report_video_with_invalid_stroke_width(
         self, stroke_width: Any
     ) -> None:
-        """
-        Test the render_depth_report_video method with an invalid stroke width.
-        """
+        """Test the render_depth_report_video method with an invalid stroke width."""
         with pytest.raises(OverlayVideoCreatorError) as e:
             _ = DepthReportVideoCreator(fps=1, stroke_width=stroke_width)
 
