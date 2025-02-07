@@ -1,7 +1,10 @@
 <div align="center">
   <a href="#">
-  <img src="./assets/logo/temp/LOGO1.jpg" width="400" alt="depthviz logo"/>
-  </a>
+  <!-- <img src="./assets/logo/temp/LOGO1.jpg" width="400" alt="depthviz logo"/>
+  </a> -->
+
+  <a href="#"><p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/logo/temp/LOGO4-dark.jpg" width="400px"><img src="./assets/logo/temp/LOGO4.jpg" width="400px" title="depthviz logo" /></picture></p></a>
+
   <a name="readme-top"></a>
 
 *A CLI tool for freedivers<br>to create depth & time overlay videos <br>from **dive computers** or **any manual logs**.*
