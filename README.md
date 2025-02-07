@@ -1,6 +1,6 @@
 <div align="center">
   <a href="#">
-  <img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/logo/depthviz-temp-logo.png" width="300" alt="depthviz logo"/>
+  <img src="./assets/logo/temp/LOGO1.jpg" width="300" alt="depthviz logo"/>
   </a>
   <a name="readme-top"></a>
 
