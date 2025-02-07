@@ -1,6 +1,6 @@
 <div align="center">
   <a href="#">
-  <img src="./assets/logo/temp/LOGO1.jpg" width="300" alt="depthviz logo"/>
+  <img src="./assets/logo/temp/LOGO1.jpg" width="400" alt="depthviz logo"/>
   </a>
   <a name="readme-top"></a>
 
