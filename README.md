@@ -47,7 +47,7 @@ Why use *depthviz*?
 ## 🌟 Like depthviz?
 
 If you like `depthviz` and find it useful, please give it a shiny [![star](https://img.shields.io/github/stars/noppanut15/depthviz
-)](https://github.com/noppanut15/depthviz) ✨
+)](#top) ✨
 
 **Get early access** to new open-source projects, exclusive insights, and sneak peeks at upcoming `depthviz` features! 🚀
 
