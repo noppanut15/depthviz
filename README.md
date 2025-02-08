@@ -3,7 +3,7 @@
   <!-- <img src="./assets/logo/temp/LOGO1.jpg" width="400" alt="depthviz logo"/>
   </a> -->
 
-  <a href="#"><p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/logo/temp/LOGO4-dark.jpg" width="400px"><img src="./assets/logo/temp/LOGO4.jpg" width="400px" title="depthviz logo" /></picture></p></a>
+  <a href="#"><p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/logo/temp/LOGO1-dark.jpg" width="400px"><img src="./assets/logo/temp/LOGO1.jpg" width="400px" title="depthviz logo" /></picture></p></a>
 
   <a name="readme-top"></a>
 
