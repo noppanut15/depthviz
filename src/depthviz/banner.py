@@ -30,9 +30,9 @@ BANNER = f"""
   {BRIGHT}sss{RESET}  {DARK}mmm{RESET}  {MID}+{RESET}  {DARK}mmm{RESET}  {BRIGHT}sss{RESET}     {DEFAULT}_                  _     _{RESET}             {BRIGHT}_ (){RESET}      
    {BRIGHT}sss{RESET}  {DARK}mmm{RESET}   {DARK}mmm{RESET}  {BRIGHT}sss{RESET}     {DEFAULT}| |                | |   | |{RESET}           {BRIGHT}(_){RESET}        
     {BRIGHT}sss{RESET}  {DARK}mmm{RESET} {DARK}mmm{RESET}  {BRIGHT}sss{RESET}    {DEFAULT}__| |   ___   _ __   | |_  | |__{RESET}   {BRIGHT}__   __  _   ____{RESET}
-     {BRIGHT}sss{RESET}  {DARK}mmmmm{RESET}  {BRIGHT}sss{RESET}    {DEFAULT}/ _` |  / _ \ | '_ \  | __| | '_ \{RESET}  {BRIGHT}\ \ / / | | |_  /{RESET}
-      {BRIGHT}sss{RESET}  {DARK}mmm{RESET}  {BRIGHT}sss{RESET}    {DEFAULT}| (_| | |  __/ | |_) | | |_  | | | |{RESET}  {BRIGHT}\ V /  | |  / /{RESET} 
-       {BRIGHT}sss{RESET}  {DARK}m{RESET}  {BRIGHT}sss{RESET}      {DEFAULT}\__,_|  \___| | .__/   \__| |_| |_|{RESET}   {BRIGHT}\_/   |_| /___|{RESET}
+     {BRIGHT}sss{RESET}  {DARK}mmmmm{RESET}  {BRIGHT}sss{RESET}    {DEFAULT}/ _` |  / _ \\ | '_ \\  | __| | '_ \\{RESET}  {BRIGHT}\\ \\ / / | | |_  /{RESET}
+      {BRIGHT}sss{RESET}  {DARK}mmm{RESET}  {BRIGHT}sss{RESET}    {DEFAULT}| (_| | |  __/ | |_) | | |_  | | | |{RESET}  {BRIGHT}\\ V /  | |  / /{RESET} 
+       {BRIGHT}sss{RESET}  {DARK}m{RESET}  {BRIGHT}sss{RESET}      {DEFAULT}\\__,_|  \\___| | .__/   \\__| |_| |_|{RESET}   {BRIGHT}\\_/   |_| /___|{RESET}
         {BRIGHT}sss{RESET}   {BRIGHT}sss{RESET}                     {DEFAULT}| |{RESET}                                    
          {BRIGHT}sssssss{RESET}                      {DEFAULT}|_|{RESET}                                    
            {BRIGHT}sss{RESET}                                                               
