@@ -1,5 +1,5 @@
 <div align="center">
-  <a href="#"><p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/logo/depthviz-logo-dark.png" width="350px"><img src="./assets/logo/depthviz-logo-light.png" width="350px" title="depthviz logo" /></picture></p></a>
+  <a href="#"><p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/logo/depthviz-logo-dark.png" width="350px"><img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/logo/depthviz-logo-light.png" width="350px" title="depthviz logo" /></picture></p></a>
 
   <a name="readme-top"></a>
 
