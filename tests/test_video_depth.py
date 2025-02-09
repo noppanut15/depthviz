@@ -51,7 +51,11 @@ class TestDepthReportVideoCreator:
         assert video.duration == pytest.approx(3.76)
 
         # Check the number of clips in the video
-        assert len(video.clips) == 94
+        assert len(video.clips) == 4
+
+        # Check the text of each clip in the video
+        video_clip_texts = [video.clips[i].text for i in range(len(video.clips))]
+        assert video_clip_texts == ["0m", "-1m", "-2m", "-3m"]
 
     def test_save_specific_dir(self, tmp_path: pathlib.Path) -> None:
         """Test the save method in a specific directory."""
@@ -184,7 +188,7 @@ class TestDepthReportVideoCreator:
     @pytest.mark.parametrize(
         "decimal_places, expected_texts",
         [
-            (0, ["0m", "0m", "0m", "-1m", "-2m", "-3343m"]),
+            (0, ["0m", "-1m", "-2m", "-3343m"]),
             (1, ["0.0m", "-0.1m", "-0.3m", "-1.3m", "-1.5m", "-3343.3m"]),
             (2, ["0.00m", "-0.13m", "-0.27m", "-1.34m", "-1.54m", "-3343.32m"]),
         ],
@@ -210,7 +214,7 @@ class TestDepthReportVideoCreator:
         assert video.duration == 6
 
         # Check the number of clips in the video
-        assert len(video.clips) == 6
+        assert len(video.clips) == len(expected_texts)
 
         # Check the text of each clip in the video
         video_clip_texts = [video.clips[i].text for i in range(len(video.clips))]
@@ -244,8 +248,8 @@ class TestDepthReportVideoCreator:
     @pytest.mark.parametrize(
         "minus_sign, decimal_places, expected_texts",
         [
-            (True, 0, ["0m", "0m", "0m", "-1m", "-2m", "-3343m"]),
-            (False, 0, ["0m", "0m", "0m", "1m", "2m", "3343m"]),
+            (True, 0, ["0m", "-1m", "-2m", "-3343m"]),
+            (False, 0, ["0m", "1m", "2m", "3343m"]),
             (True, 1, ["-0.1m", "-0.2m", "-0.3m", "-1.2m", "-2.0m", "-3343.3m"]),
             (False, 1, ["0.1m", "0.2m", "0.3m", "1.2m", "2.0m", "3343.3m"]),
             (True, 2, ["-0.10m", "-0.20m", "-0.30m", "-1.23m", "-2.00m", "-3343.33m"]),
@@ -276,7 +280,7 @@ class TestDepthReportVideoCreator:
         assert video.duration == 6
 
         # Check the number of clips in the video
-        assert len(video.clips) == 6
+        assert len(video.clips) == len(expected_texts)
 
         # Check the text of each clip in the video
         video_clip_texts = [video.clips[i].text for i in range(len(video.clips))]

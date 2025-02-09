@@ -78,6 +78,7 @@ class DepthReportVideoCreator(OverlayVideoCreator):
             interpolated_times = interpolated_depth.get_interpolated_times()
 
             depth_frame_list: list[dict[str, Union[str, float]]] = []
+            previous_text = "NA"
             clip_count = len(interpolated_times)
             for i in range(clip_count):
                 duration = self.__clip_duration_in_seconds(i, interpolated_times)
@@ -93,7 +94,16 @@ class DepthReportVideoCreator(OverlayVideoCreator):
                         text = f"{0:.{decimal_places}f}m"
                     else:
                         text = f"{'-' if minus_sign else ''}{current_depth:.{decimal_places}f}m"
-                depth_frame_list.append({"text": text, "duration": duration})
+                # Check if the text is the same as the previous text to reduce the number of clips
+                # with the same text for better performance when rendering
+                if text != previous_text:
+                    # Append the text and duration to the list
+                    depth_frame_list.append({"text": text, "duration": duration})
+                    previous_text = text
+                else:
+                    # If the text is the same, just add the duration to the last clip
+                    previous_duration = float(depth_frame_list[-1]["duration"])
+                    depth_frame_list[-1]["duration"] = previous_duration + duration
 
             full_video = super().render_text_video(depth_frame_list)
             return full_video
