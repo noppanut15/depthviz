@@ -1,7 +1,6 @@
 <div align="center">
-  <a href="#">
-  <img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/logo/depthviz-temp-logo.png" width="300" alt="depthviz logo"/>
-  </a>
+  <a href="#"><p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/logo/depthviz-logo-dark.png" width="350px"><img src="https://raw.githubusercontent.com/noppanut15/depthviz/main/assets/logo/depthviz-logo-light.png" width="350px" title="depthviz logo" /></picture></p></a>
+
   <a name="readme-top"></a>
 
 *A CLI tool for freedivers<br>to create depth & time overlay videos <br>from **dive computers** or **any manual logs**.*
