@@ -84,7 +84,7 @@ class OverlayVideoCreator:
         self.progress_bar_logger_config = {
             "unit": "f",
             "color": "#3982d8",
-            "ncols": 70,
+            "ncols": 80,
         }
 
         # Validate the font file

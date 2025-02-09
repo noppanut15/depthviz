@@ -11,7 +11,7 @@ class DepthVizProgessBarLogger(TqdmProgressBarLogger):  # type: ignore
     """Class to handle the progress bar logger for the DepthViz application."""
 
     def __init__(
-        self, description: str, unit: str, color: str, ncols: int = 70
+        self, description: str, unit: str, color: str, ncols: int = 80
     ) -> None:
         """Initialize the progress bar logger."""
         super().__init__(
