@@ -83,7 +83,7 @@ class OverlayVideoCreator:
         self.fps = fps
         self.progress_bar_logger_config = {
             "unit": "f",
-            "color": "#3982d8",
+            "color": "#23aae1",
             "ncols": 80,
         }
 
