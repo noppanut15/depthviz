@@ -37,7 +37,7 @@ BANNER = f"""
          {BRIGHT}sssssss{RESET}                      {DEFAULT}|_|{RESET}                                    
            {BRIGHT}sss{RESET}                                                               
             {BRIGHT}s{RESET}                                                                
-"""
+"""  # noqa: E501
 
 
 class Banner:
