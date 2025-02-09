@@ -9,9 +9,6 @@ handling the depthviz command line interface. The DepthvizApplication class
 parses the command line arguments, validates the user input, and creates the
 depth overlay video.
 
-Constants:
-    BANNER (str): Banner for the command line interface.
-
 Notes:
     The DepthvizApplication class is designed to be used as a standalone
     command line interface. It can be run directly from the command line
@@ -40,15 +37,7 @@ from depthviz.video.video_creator import (
 )
 from depthviz.video.depth import DepthReportVideoCreator
 from depthviz.video.time import TimeReportVideoCreator
-
-# Banner for the command line interface
-BANNER = """
-     _,-._
-    / \\_/ \\    d e p t h v i z
-    >-(_)-<
-    \\_/ \\_/    ~~~~~~~~~~~~~~~
-      `-'
-"""
+from depthviz.banner import Banner
 
 
 class DepthvizApplication:
@@ -274,7 +263,8 @@ class DepthvizApplication:
 
         args = self.parser.parse_args(sys.argv[1:])
 
-        print(BANNER)
+        # Print the depthviz banner
+        Banner.print_banner()
 
         # Check if the user input is valid before analyzing the dive log
         # This is to avoid long processing times for invalid input
