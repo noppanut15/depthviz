@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-16"?>
+<dive xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="3">
+  <diveLog>
+    <number>999</number>
+    <gfMin>50</gfMin>
+    <gfMax>70</gfMax>
+    <surfaceMins>1392</surfaceMins>
+    <imperialUnits>false</imperialUnits>
+    <startBatteryVoltage>4.20000029</startBatteryVoltage>
+    <startCns>0</startCns>
+    <startDate>1/1/2024 1:07:14 PM</startDate>
+    <startO2SensorStatus>false</startO2SensorStatus>
+    <startLowSetPoint>0</startLowSetPoint>
+    <startHighSetPoint>1</startHighSetPoint>
+    <computerFirmware>23</computerFirmware>
+    <maxDepth>41.2</maxDepth>
+    <maxTime>3124</maxTime>
+    <errorHistory />
+    <endBatteryVoltage>4.20000029</endBatteryVoltage>
+    <endCns>14</endCns>
+    <endDate>1/1/2024 1:59:18 PM</endDate>
+    <endO2SensorStatus>false</endO2SensorStatus>
+    <endLowSetPoint>0</endLowSetPoint>
+    <endHighSetPoint>0</endHighSetPoint>
+    <computerSerial>XXXXXXXX</computerSerial>
+    <computerSoftwareVersion>23</computerSoftwareVersion>
+    <computerModel>0</computerModel>
+    <logVersion>13</logVersion>
+    <decoModel>0</decoModel>
+    <vpmbConservatism>3</vpmbConservatism>
+    <startSurfacePressure>996</startSurfacePressure>
+    <endSurfacePressure>996</endSurfacePressure>
+    <sensorDisplay>0</sensorDisplay>
+    <product>8</product>
+    <features>0</features>
+    <diveLogRecords>
+      <diveLogRecord>
+        <currentTime>0</currentTime>
+        <currentDepth>0.3</currentDepth>
+        <firstStopDepth>0</firstStopDepth>
+        <ttsMins>0</ttsMins>
+        <averagePPO2>0.21</averagePPO2>
+        <fractionO2>0.21</fractionO2>
+        <fractionHe>0</fractionHe>
+        <firstStopTime>0</firstStopTime>
+        <currentNdl>0</currentNdl>
+        <currentCircuitSetting>OC/BO</currentCircuitSetting>
+        <currentCcrModeSettings>0</currentCcrModeSettings>
+        <waterTemp>29</waterTemp>
+        <gasSwitchNeeded>false</gasSwitchNeeded>
+        <externalPPO2>0</externalPPO2>
+        <setPointType>0</setPointType>
+        <circuitSwitchType>0</circuitSwitchType>
+        <sensor1Millivolts>0</sensor1Millivolts>
+        <sensor2Millivolts>0</sensor2Millivolts>
+        <sensor3Millivolts>0</sensor3Millivolts>
+        <batteryVoltage>4.19</batteryVoltage>
+        <tank0pressurePSI>AI is off</tank0pressurePSI>
+        <tank1pressurePSI>AI is off</tank1pressurePSI>
+        <tank2pressurePSI>AI is off</tank2pressurePSI>
+        <tank3pressurePSI>AI is off</tank3pressurePSI>
+        <gasTime>Not paired</gasTime>
+        <sac>AI is off</sac>
+        <sad>0</sad>
+      </diveLogRecord>
+      <diveLogRecord>
+        <currentTime>10000</currentTime>
+        <currentDepth>2.9</currentDepth>
+        <firstStopDepth>0</firstStopDepth>
+        <ttsMins>1</ttsMins>
+        <averagePPO2>0.26</averagePPO2>
+        <fractionO2>0.21</fractionO2>
+        <fractionHe>0</fractionHe>
+        <firstStopTime>0</firstStopTime>
+        <currentNdl>99</currentNdl>
+        <currentCircuitSetting>OC/BO</currentCircuitSetting>
+        <currentCcrModeSettings>0</currentCcrModeSettings>
+        <waterTemp>29</waterTemp>
+        <gasSwitchNeeded>false</gasSwitchNeeded>
+        <externalPPO2>0</externalPPO2>
+        <setPointType>0</setPointType>
+        <circuitSwitchType>0</circuitSwitchType>
+        <sensor1Millivolts>0</sensor1Millivolts>
+        <sensor2Millivolts>0</sensor2Millivolts>
+        <sensor3Millivolts>0</sensor3Millivolts>
+        <batteryVoltage>4.19</batteryVoltage>
+        <tank0pressurePSI>AI is off</tank0pressurePSI>
+        <tank1pressurePSI>AI is off</tank1pressurePSI>
+        <tank2pressurePSI>AI is off</tank2pressurePSI>
+        <tank3pressurePSI>AI is off</tank3pressurePSI>
+        <gasTime>Not paired</gasTime>
+        <sac>AI is off</sac>
+        <sad>0</sad>
+      </diveLogRecord>
+      <diveLogRecord>
+        <currentTime>20000</currentTime>
+        <currentDepth>4.1</currentDepth>
+        <firstStopDepth>0</firstStopDepth>
+        <ttsMins>1</ttsMins>
+        <averagePPO2>0.29</averagePPO2>
+        <fractionO2>0.21</fractionO2>
+        <fractionHe>0</fractionHe>
+        <firstStopTime>0</firstStopTime>
+        <currentNdl>99</currentNdl>
+        <currentCircuitSetting>OC/BO</currentCircuitSetting>
+        <currentCcrModeSettings>0</currentCcrModeSettings>
+        <waterTemp>29</waterTemp>
+        <gasSwitchNeeded>false</gasSwitchNeeded>
+        <externalPPO2>0</externalPPO2>
+        <setPointType>0</setPointType>
+        <circuitSwitchType>0</circuitSwitchType>
+        <sensor1Millivolts>0</sensor1Millivolts>
+        <sensor2Millivolts>0</sensor2Millivolts>
+        <sensor3Millivolts>0</sensor3Millivolts>
+        <batteryVoltage>4.19</batteryVoltage>
+        <tank0pressurePSI>AI is off</tank0pressurePSI>
+        <tank1pressurePSI>AI is off</tank1pressurePSI>
+        <tank2pressurePSI>AI is off</tank2pressurePSI>
+        <tank3pressurePSI>AI is off</tank3pressurePSI>
+        <gasTime>Not paired</gasTime>
+        <sac>AI is off</sac>
+        <sad>0</sad>
+      </diveLogRecord>
+      <diveLogRecord>
+        <currentTime>30000</currentTime>
+        <currentDepth>5.20000029</currentDepth>
+        <firstStopDepth>0</firstStopDepth>
+        <ttsMins>1</ttsMins>
+        <averagePPO2>0.31</averagePPO2>
+        <fractionO2>0.21</fractionO2>
+        <fractionHe>0</fractionHe>
+        <firstStopTime>0</firstStopTime>
+        <currentNdl>99</currentNdl>
+        <currentCircuitSetting>OC/BO</currentCircuitSetting>
+        <currentCcrModeSettings>0</currentCcrModeSettings>
+        <waterTemp>29</waterTemp>
+        <gasSwitchNeeded>false</gasSwitchNeeded>
+        <externalPPO2>0</externalPPO2>
+        <setPointType>0</setPointType>
+        <circuitSwitchType>0</circuitSwitchType>
+        <sensor1Millivolts>0</sensor1Millivolts>
+        <sensor2Millivolts>0</sensor2Millivolts>
+        <sensor3Millivolts>0</sensor3Millivolts>
+        <batteryVoltage>4.19</batteryVoltage>
+        <tank0pressurePSI>AI is off</tank0pressurePSI>
+        <tank1pressurePSI>AI is off</tank1pressurePSI>
+        <tank2pressurePSI>AI is off</tank2pressurePSI>
+        <tank3pressurePSI>AI is off</tank3pressurePSI>
+        <gasTime>Not paired</gasTime>
+        <sac>AI is off</sac>
+        <sad>0</sad>
+      </diveLogRecord>
+      <diveLogRecord>
+        <currentTime>40000</currentTime>
+        <currentDepth>5.6</currentDepth>
+        <firstStopDepth>0</firstStopDepth>
+        <ttsMins>1</ttsMins>
+        <averagePPO2>0.32</averagePPO2>
+        <fractionO2>0.21</fractionO2>
+        <fractionHe>0</fractionHe>
+        <firstStopTime>0</firstStopTime>
+        <currentNdl>99</currentNdl>
+        <currentCircuitSetting>OC/BO</currentCircuitSetting>
+        <currentCcrModeSettings>0</currentCcrModeSettings>
+        <waterTemp>29</waterTemp>
+        <gasSwitchNeeded>false</gasSwitchNeeded>
+        <externalPPO2>0</externalPPO2>
+        <setPointType>0</setPointType>
+        <circuitSwitchType>0</circuitSwitchType>
+        <sensor1Millivolts>0</sensor1Millivolts>
+        <sensor2Millivolts>0</sensor2Millivolts>
+        <sensor3Millivolts>0</sensor3Millivolts>
+        <batteryVoltage>4.19</batteryVoltage>
+        <tank0pressurePSI>AI is off</tank0pressurePSI>
+        <tank1pressurePSI>AI is off</tank1pressurePSI>
+        <tank2pressurePSI>AI is off</tank2pressurePSI>
+        <tank3pressurePSI>AI is off</tank3pressurePSI>
+        <gasTime>Not paired</gasTime>
+        <sac>AI is off</sac>
+        <sad>0</sad>
+      </diveLogRecord>
+    </diveLogRecords>
+  </diveLog>
+</dive>

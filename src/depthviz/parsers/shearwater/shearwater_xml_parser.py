@@ -76,6 +76,7 @@ class ShearwaterXmlParser(DiveLogXmlParser):
         depth_mode: The depth mode setting for the depth data.
         __start_surface_pressure: The start surface pressure value.
         __water_density: The water density value for the hydrostatic pressure calculation.
+        __depth_unit: The unit of the depth data. (mbar, m)
     """
 
     def __init__(self, salinity: str = "en13319", depth_mode: str = "raw") -> None:
@@ -101,6 +102,7 @@ class ShearwaterXmlParser(DiveLogXmlParser):
             raise ValueError(
                 "Invalid salinity setting: Must be 'fresh', 'en13319', or 'salt'"
             )
+        self.__depth_unit: str = ""
 
     def __get_dive_log(self, file_path: str) -> ET.Element:
         """Returns the dive log element from the XML root.
@@ -226,22 +228,36 @@ class ShearwaterXmlParser(DiveLogXmlParser):
             InvalidDepthValueError: If depth values are invalid.
         """
         try:
-            current_depth = dive_log_record.find("currentDepth")
-            if current_depth is None:
+            current_depth_txt = dive_log_record.find("currentDepth")
+            if current_depth_txt is None:
                 raise DiveLogXmlInvalidElementError("Invalid XML: Depth not found")
-            mbar_absolute_pressure = float(str(current_depth.text))
+            current_depth = float(str(current_depth_txt.text))
         except ValueError as e:
             raise InvalidDepthValueError("Invalid XML: Invalid depth values") from e
 
-        # Calculate the hydrostatic pressure by subtracting the current pressure
-        # from the start surface pressure, return 0 if negative
-        mbar_hydrostatic_pressure = max(
-            mbar_absolute_pressure - self.__start_surface_pressure, 0
-        )
-        # Find the depth in meters based on the hydrostatic pressure formula
-        depth_meter = self.__find_depth_meter(
-            mbar_hydrostatic_pressure, self.__water_density
-        )
+        # Get the unit of the depth data
+        # If the depth unit is not set, determine the unit based on the current depth value
+        if self.__depth_unit == "":
+            # If the current depth is greater than 500, assume the unit is in millibars
+            # Note: The lowest atmospheric pressure is around 870 mbar
+            if current_depth > 500:
+                self.__depth_unit = "mbar"
+            else:
+                self.__depth_unit = "m"
+
+        # Convert the depth value to meters if the unit is in millibars
+        if self.__depth_unit == "mbar":
+            # Calculate the hydrostatic pressure by subtracting the current pressure
+            # (absolute pressure) from the start surface pressure, return 0 if negative
+            mbar_hydrostatic_pressure = max(
+                current_depth - self.__start_surface_pressure, 0
+            )
+            # Find the depth in meters based on the hydrostatic pressure formula
+            depth_meter = self.__find_depth_meter(
+                mbar_hydrostatic_pressure, self.__water_density
+            )
+        else:
+            depth_meter = current_depth
         return depth_meter
 
     def parse(self, file_path: str) -> None:
