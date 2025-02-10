@@ -9,7 +9,7 @@ packages = [{ include = "depthviz", from = "src" }]
 repository = "https://github.com/noppanut15/depthviz"
 keywords = ["freediving", "dive", "video", "overlay", "depth", "dive-computer", "dive-log", "hud"]
 classifiers = [
-    "Development Status :: 4 - Beta",
+    "Development Status :: 5 - Production/Stable",
     "License :: OSI Approved :: Apache Software License",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
