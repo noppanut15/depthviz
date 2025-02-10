@@ -11,6 +11,8 @@ If you have any questions, suggestions, or just want to chat about freediving te
 
 - **MoviePy** – [Zulko & contributors](https://github.com/Zulko/moviepy/graphs/contributors)  
 - **FIT Python SDK** – [Garmin & contributors](https://github.com/garmin/fit-python-sdk/graphs/contributors)  
+- **tqdm** – [Casper da Costa-Luis & contributors](https://github.com/tqdm/tqdm?tab=readme-ov-file#contributions)
+- **colorama** – [Jonathan Hartley & contributors](https://github.com/tartley/colorama/graphs/contributors)
 - **Open Sans font** – [Steve Matteson & contributors](https://github.com/googlefonts/opensans/graphs/contributors)  
 
 ### 🧪 Testing & Code Quality Dependencies  
