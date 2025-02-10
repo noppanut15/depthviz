@@ -16,7 +16,7 @@
 [![Share on X][x_share_img]][x_share_url] [![Share on Facebook][facebook_share_img]][facebook_share_url] [![Share on Telegram][telegram_share_img]][telegram_share_url] [![Share on WhatsApp][whatsapp_share_img]][whatsapp_share_url] [![Share on Reddit][reddit_share_img]][reddit_share_url]
 </div>
 
-![depthviz DEMO](./assets/depthviz-demo-v3-optimized.gif)
+<p align="center"><img src="./assets/depthviz-demo-v3-optimized.gif" alt="depthviz DEMO"/></p>
 
 ---
 ## ✨ Features
