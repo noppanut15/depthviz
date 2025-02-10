@@ -344,3 +344,28 @@ class TestShearwaterXmlParser:
         parser = ShearwaterXmlParser(depth_mode=depth_mode)
         parser.parse(file_path)
         mock_depth_mode_execute.assert_called_once()
+
+    def test_parse_valid_xml_scuba_longdive(
+        self, request: pytest.FixtureRequest
+    ) -> None:
+        """Test parsing a valid XML file with scuba long dive (OC Tec).
+
+        Note:
+            Scuba dive logs record the depth data in meters so we need to add
+            support both meters and millibars.
+        """
+        file_path = str(
+            request.path.parent.joinpath(
+                "data", "shearwater", "valid_depth_data_oc_tec_trimmed.xml"
+            )
+        )
+        xml_parser = ShearwaterXmlParser()
+        xml_parser.parse(file_path)
+        assert xml_parser.get_depth_data() == [0.3, 2.9, 4.1, 5.2, 5.6]
+        assert xml_parser.get_time_data() == [
+            0.0,
+            10.0,
+            20.0,
+            30.0,
+            40.0,
+        ]
