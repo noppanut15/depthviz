@@ -173,6 +173,7 @@ class GarminFitParser(DiveLogFitParser):
 
         records = messages.get("record_mesgs", [])
         first_timestamp = None
+        max_depth_reached = False
 
         for record in records:
             timestamp_now = cast(int, record.get("timestamp"))
@@ -180,6 +181,9 @@ class GarminFitParser(DiveLogFitParser):
                 int, dive_summary[self.__selected_dive_idx].get("start_time")
             )
             end_time = cast(int, dive_summary[self.__selected_dive_idx].get("end_time"))
+            max_depth = cast(
+                float, dive_summary[self.__selected_dive_idx].get("max_depth")
+            )
 
             # Skip the records before the dive starts
             if timestamp_now < start_time - self.__margin_start_time:
@@ -196,8 +200,12 @@ class GarminFitParser(DiveLogFitParser):
             self.time_data.append(time)
             self.depth_data.append(depth)
 
-            # If the depth is 0, the dive is considered to be ended
-            if round(depth, 3) == 0:
+            # Check if the max depth is reached to avoid stopping the dive too early
+            if not max_depth_reached and math.floor(depth) == math.floor(max_depth):
+                max_depth_reached = True
+
+            # If the depth is 0 and the max depth is reached, stop getting the depth data
+            if round(depth, 3) == 0 and max_depth_reached:
                 break
 
         if not self.time_data or not self.depth_data:
