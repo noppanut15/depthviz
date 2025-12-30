@@ -64,7 +64,7 @@ See you in the deep! 🌊😊
 
 ## 🛠️ Installation
 ### Prerequisites
-- **Python 3.9 or higher**  
+- **Python 3.9 to 3.13**  
   [Download Python](https://www.python.org/downloads/) • [How to install Python](https://realpython.com/installing-python/)
 - **pipx** – the recommended tool for installing Python CLI tools  
   [How to install pipx](https://pipx.pypa.io/stable/installation/)

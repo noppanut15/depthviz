@@ -19,6 +19,7 @@ jobs:
           - { "pythonVersion": "3.10" }
           - { "pythonVersion": "3.11" }
           - { "pythonVersion": "3.12" }
+          - { "pythonVersion": "3.13" }
         poetry-version: ["1.8.5"]
     steps:
       - name: Checkout 🛎️
